@@ -64,7 +64,9 @@ Assets/Imported/Layer Lab/3D Casual Character/Demo/Scripts/UI/
  ButtonParts.cs
  PartsUI.cs
  ViewModel.cs
-Assets/TutorialInfo/Scripts/Readme.cs
+Assets/
+ Scripts/Player/PlayerMovement.cs
+ TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]
