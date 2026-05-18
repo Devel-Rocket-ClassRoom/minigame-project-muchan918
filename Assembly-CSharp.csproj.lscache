@@ -67,9 +67,10 @@ Assets/Imported/Layer Lab/3D Casual Character/Demo/Scripts/UI/
 Assets/Scripts/Map/
  GroundChunkGenerator.cs
  MapGenerator.cs
-Assets/
- Scripts/Player/PlayerMovement.cs
- TutorialInfo/Scripts/Readme.cs
+Assets/Scripts/Player/
+ PlayerMovement.cs
+ PlayerSpawner.cs
+Assets/TutorialInfo/Scripts/Readme.cs
 Temp/obj/Assembly-CSharp/.NETStandard,Version=v2.1.AssemblyAttributes.cs
 
 [metadataReferences]
