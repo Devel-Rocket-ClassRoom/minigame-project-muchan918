@@ -7,7 +7,7 @@ public class DayNightCycleTest : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.qKey.wasPressedThisFrame)
         {
             gameManager.GetComponent<DayNightCycle>().SetMorning();
             Debug.Log("SetMorning called");

@@ -26,8 +26,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private InputActionReference moveAction;
 
+    private Animator animator;
+
     private Rigidbody rb;
     private Vector2 moveInput;
+
+    private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
 
     private void Awake()
     {
@@ -35,6 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
         // 캐릭터가 충돌 시 넘어지지 않도록 회전은 코드로만 제어
         rb.freezeRotation = true;
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -91,6 +97,12 @@ public class PlayerMovement : MonoBehaviour
                 rotationSpeed * Time.fixedDeltaTime
             );
             rb.MoveRotation(newRot);
+        }
+
+        if (animator != null)
+        {
+            bool IsWalking = moveDir.sqrMagnitude > 0.01f;
+            animator.SetBool(IsWalkingHash, IsWalking);
         }
     }
 }
