@@ -355,12 +355,33 @@ Library/PackageCache/
   Editor/VisualScripting.Core/EditorAssetResources/Unity.VisualScripting.TextureAssets.dll
   Runtime/VisualScripting.Flow/Dependencies/NCalc/Unity.VisualScripting.Antlr3.Runtime.dll
 Library/ScriptAssemblies/
+ Cinemachine.dll
+ com.unity.cinemachine.editor.dll
  glTFast.dll
  glTFast.dots.dll
  glTFast.Editor.dll
  HFDownloader.dll
  PPv2URPConverters.dll
+ PsdPlugin.dll
+ Unity.2D.Animation.Editor.dll
+ Unity.2D.Animation.Runtime.dll
+ Unity.2D.Aseprite.Common.dll
+ Unity.2D.Aseprite.Editor.dll
+ Unity.2D.Common.Editor.dll
+ Unity.2D.Common.Path.Editor.dll
+ Unity.2D.Common.Runtime.dll
+ Unity.2D.IK.Editor.dll
+ Unity.2D.IK.Runtime.dll
+ Unity.2D.PixelPerfect.dll
+ Unity.2D.PixelPerfect.Editor.dll
+ Unity.2D.Psdimporter.Editor.dll
  Unity.2D.Sprite.Editor.dll
+ Unity.2D.SpriteShape.Editor.dll
+ Unity.2D.SpriteShape.Runtime.dll
+ Unity.2D.Tilemap.Editor.dll
+ Unity.2D.Tilemap.Extras.dll
+ Unity.2D.Tilemap.Extras.Editor.dll
+ Unity.2D.Tooling.Editor.dll
  Unity.AI.Assistant.Agent.Dynamic.Extension.Editor.dll
  Unity.AI.Assistant.Annotations.Editor.dll
  Unity.AI.Assistant.API.Editor.dll
@@ -381,6 +402,8 @@ Library/ScriptAssemblies/
  Unity.Collections.Editor.dll
  Unity.InputSystem.dll
  Unity.InputSystem.ForUI.dll
+ Unity.InternalAPIEditorBridge.001.dll
+ Unity.InternalAPIEngineBridge.001.dll
  Unity.InternalAPIEngineBridge.004.dll
  Unity.Mathematics.dll
  Unity.Mathematics.Editor.dll
