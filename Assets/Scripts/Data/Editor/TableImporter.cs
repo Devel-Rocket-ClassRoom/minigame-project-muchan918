@@ -7,7 +7,7 @@ public class TableImporter : EditorWindow
     private enum TableType
     {
         Resource,
-        DropItem,
+        Item,
         // Animal,
         // Equip,
     }
@@ -41,8 +41,8 @@ public class TableImporter : EditorWindow
             case TableType.Resource:
                 ImportResource();
                 break;
-            case TableType.DropItem:
-                ImportDropItem();
+            case TableType.Item:
+                ImportItem();
                 break;
         }
     }
@@ -86,40 +86,40 @@ public class TableImporter : EditorWindow
         Debug.Log($"ResourceTable Import 완료: {list.Count}개");
     }
 
-    private void ImportDropItem()
+    private void ImportItem()
     {
-        string csvPath = "Assets/Resources/DataTables/DropItemTable.csv";
+        string csvPath = "Assets/Resources/DataTables/ItemTable.csv";
         string csvText = File.ReadAllText(csvPath);
-        var list = DataTable.LoadCSV<DropItemData>(csvText);
+        var list = DataTable.LoadCSV<ItemData>(csvText);
 
-        string soFolder = "Assets/ScriptableObjects/DropItems";
+        string soFolder = "Assets/ScriptableObjects/Items";
 
         if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
             AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
 
         if (!AssetDatabase.IsValidFolder(soFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "DropItems");
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Items");
 
         foreach (var data in list)
         {
-            string assetPath = $"{soFolder}/{data.DropItemID}.asset";
-            var existing = AssetDatabase.LoadAssetAtPath<DropItemAsset>(assetPath);
+            string assetPath = $"{soFolder}/{data.ItemID}.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<ItemAsset>(assetPath);
 
             if (existing != null)
             {
-                existing.DropItemID = data.DropItemID;
+                existing.ItemID = data.ItemID;
                 EditorUtility.SetDirty(existing);
             }
             else
             {
-                var so = CreateInstance<DropItemAsset>();
-                so.DropItemID = data.DropItemID;
+                var so = CreateInstance<ItemAsset>();
+                so.ItemID = data.ItemID;
                 AssetDatabase.CreateAsset(so, assetPath);
             }
         }
 
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
-        Debug.Log($"DropItemTable Import 완료: {list.Count}개");
+        Debug.Log($"ItemTable Import 완료: {list.Count}개");
     }
 }

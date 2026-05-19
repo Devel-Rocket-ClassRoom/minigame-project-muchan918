@@ -19,10 +19,10 @@ public static class DataTableManager
         resourceTable.Load("ResourceTable");
         tables.Add("ResourceTable", resourceTable);
 
-        // DropItem
-        var dropItemTable = new DropItemTable();
-        dropItemTable.Load("DropItemTable");
-        tables.Add("DropItemTable", dropItemTable);
+        // Item
+        var itemTable = new ItemTable();
+        itemTable.Load("ItemTable");
+        tables.Add("ItemTable", itemTable);
     }
 
     public static T Get<T>(string id)
