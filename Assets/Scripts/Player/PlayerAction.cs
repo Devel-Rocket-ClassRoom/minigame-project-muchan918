@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -33,7 +32,7 @@ public class PlayerAction : MonoBehaviour, IAttacker
 
     private void Update()
     {
-        if (Keyboard.current.spaceKey.isPressed && !IsActing)
+        if (Keyboard.current.spaceKey.wasPressedThisFrame && !IsActing)
             PerformAction();
     }
 

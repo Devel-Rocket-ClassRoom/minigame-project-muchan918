@@ -9,8 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 923688a28fac3d946befcd7268815d7f, type: 3}
-  m_Name: wood_oak
-  m_EditorClassIdentifier: Assembly-CSharp::DropItemAsset
-  DropItemID: wood_oak
+  m_Script: {fileID: 11500000, guid: 6a82e0e93c959c145a02cbd793efd175, type: 3}
+  m_Name: stone_small
+  m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
+  ItemID: stone_small
   Icon: {fileID: 0}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6064803344000030824}
   - component: {fileID: 440472311846593655}
   - component: {fileID: 7042596583874591296}
-  - component: {fileID: -442137041769273786}
+  - component: {fileID: 3694660889805534993}
   m_Layer: 0
   m_Name: ResourceDummyItem
   m_TagString: Untagged
@@ -113,7 +113,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-442137041769273786
+--- !u!114 &3694660889805534993
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,7 +122,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 210965813999700127}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b491250ec857ba44898775ea40308c84, type: 3}
+  m_Script: {fileID: 11500000, guid: 49a16fa7376aa464d9cfe02be6311f09, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DropItemObject
-  Asset: {fileID: 11400000, guid: 7c644050d96523343a54a7c73b242dad, type: 2}
+  m_EditorClassIdentifier: Assembly-CSharp::WorldItem
+  Asset: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
