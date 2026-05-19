@@ -309,7 +309,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   originalMaterial: {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
-  transparentMaterial: {fileID: 2100000, guid: 214c32e87977d274bbef5228488eb242, type: 2}
+  transparentMaterial: {fileID: 2100000, guid: a34f72c110299014694e1addb67bb9b2, type: 2}
   sphereRadius: 0.5
 --- !u!1 &400515892
 GameObject:
@@ -749,6 +749,11 @@ Transform:
   - {fileID: 400515893}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1915170529 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1422671190694009946, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+  m_PrefabInstance: {fileID: 56650075042092299}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2092990003
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 5
+  brightDuration: 100
   darkenDuration: 5
   maxIntensity: 1
   minIntensity: 0
@@ -898,13 +903,29 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 1422671190694009946, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5224556440869973755}
   m_SourcePrefab: {fileID: 100100000, guid: 2c58099b044771a4c940001a040b567d, type: 3}
 --- !u!4 &5224556440869973750 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4858127594318337637, guid: 2c58099b044771a4c940001a040b567d, type: 3}
   m_PrefabInstance: {fileID: 56650075042092299}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5224556440869973755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1915170529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664de32ccea82604e84fffd052b86277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
+  actionCooldown: 0.6
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
