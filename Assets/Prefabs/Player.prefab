@@ -7694,6 +7694,7 @@ GameObject:
   - component: {fileID: 3992449887152721330}
   - component: {fileID: 6206606302358517628}
   - component: {fileID: 4546593040521580740}
+  - component: {fileID: 3265548943839519873}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -7717,6 +7718,7 @@ Transform:
   - {fileID: 5021009521280112271}
   - {fileID: 3862122518633458720}
   - {fileID: 5270921570049437156}
+  - {fileID: 1136291829795523992}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6754870611007690153
@@ -7729,7 +7731,7 @@ Animator:
   m_GameObject: {fileID: 1422671190694009946}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 8bc6d2565c8252b4a9a94542162cbaf0, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c07601ed703dfc04f92dd6056008656f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -7780,7 +7782,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 614a83a8fffe556408f8309859c0ebcc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 4
+  moveSpeed: 3.5
   rotationSpeed: 20
   moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!136 &4546593040521580740
@@ -7806,6 +7808,19 @@ CapsuleCollider:
   m_Height: 1.5276403
   m_Direction: 1
   m_Center: {x: 0, y: 0.77, z: 0}
+--- !u!114 &3265548943839519873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422671190694009946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 664de32ccea82604e84fffd052b86277, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerAction
+  actionCooldown: 0.6
 --- !u!1 &1435013287879752901
 GameObject:
   m_ObjectHideFlags: 0
@@ -9951,6 +9966,37 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.37707335, y: 0.14585456, z: 0.00000011920929}
     m_Extent: {x: 0.14186484, y: 0.20806393, z: 0.26383618}
   m_DirtyAABB: 0
+--- !u!1 &1840583897830635638
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1136291829795523992}
+  m_Layer: 0
+  m_Name: HitBox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1136291829795523992
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1840583897830635638}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4858127594318337637}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1895300229493928726
 GameObject:
   m_ObjectHideFlags: 0

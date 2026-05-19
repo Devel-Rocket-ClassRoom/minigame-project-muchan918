@@ -51,7 +51,8 @@ public class CameraOcclusionHandler : MonoBehaviour
 
                 if (!fadedObjects.Contains(rend))
                 {
-                    rend.material = transparentMaterial;
+                    if (rend != null)
+                        rend.material = transparentMaterial;
                     fadedObjects.Add(rend);
                 }
             }
@@ -62,7 +63,8 @@ public class CameraOcclusionHandler : MonoBehaviour
         {
             if (!hitRenderers.Contains(rend))
             {
-                rend.material = originalMaterial;
+                if (rend != null)
+                    rend.material = originalMaterial;
                 toRestore.Add(rend);
             }
         }

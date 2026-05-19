@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ResourceObject : MonoBehaviour
+public class ResourceObject : MonoBehaviour, IDefender, IDroppable
 {
     public ResourceAsset Asset;
 
@@ -14,6 +14,11 @@ public class ResourceObject : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        TakeDamage(damage, Vector3.zero);
+    }
+
+    public void TakeDamage(int damage, Vector3 hitNormal)
+    {
         currentHP -= damage;
 
         if (currentHP <= 0)
@@ -23,7 +28,7 @@ public class ResourceObject : MonoBehaviour
         }
     }
 
-    private void Drop()
+    public void Drop()
     {
         if (Asset.DropPrefab != null)
             Instantiate(Asset.DropPrefab, transform.position, Quaternion.identity);
