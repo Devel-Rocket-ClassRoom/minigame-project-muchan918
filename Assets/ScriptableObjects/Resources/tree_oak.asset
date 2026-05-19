@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: tree_oak
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: tree_oak
-  Prefab: {fileID: 0}
+  DropPrefab: {fileID: 3498951114657571158, guid: fb9cd09d904ce994fbdbd3a53a966936, type: 3}
   Icon: {fileID: 0}
