@@ -10,7 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 8085731094702052912}
   - component: {fileID: 6663913377514129902}
-  m_Layer: 0
+  - component: {fileID: 4262818133718980762}
+  m_Layer: 10
   m_Name: CustomTree_Branchy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -55,6 +56,19 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.9097495, z: 1}
   m_Center: {x: 0, y: 1.4548745, z: 0}
+--- !u!114 &4262818133718980762
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3714375759832911863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7647f9609649da84facebf0fe1bb301d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceObject
+  Asset: {fileID: 11400000, guid: 32ab172a8476d8a4ab0da4dd53e45e5f, type: 2}
 --- !u!1 &7078595999618913289
 GameObject:
   m_ObjectHideFlags: 0

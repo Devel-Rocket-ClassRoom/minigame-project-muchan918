@@ -1,8 +1,9 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAction : MonoBehaviour
+public class PlayerAction : MonoBehaviour, IAttacker
 {
     private Animator animator;
     private static readonly int ActionHash = Animator.StringToHash("Action");
@@ -11,6 +12,17 @@ public class PlayerAction : MonoBehaviour
 
     [SerializeField]
     private float actionCooldown = 0.6f;
+
+    [SerializeField]
+    private int damage = 10;
+
+    [SerializeField]
+    private Collider hitbox;
+
+    [SerializeField]
+    private LayerMask targetLayers;
+
+    public int Damage => damage;
 
     private Coroutine actionCoroutine;
 
@@ -40,5 +52,32 @@ public class PlayerAction : MonoBehaviour
         IsActing = true;
         yield return new WaitForSeconds(actionCooldown);
         IsActing = false;
+    }
+
+    public void Attack(IDefender target)
+    {
+        Vector3 hitNormal = (
+            (target as Component).transform.position - transform.position
+        ).normalized;
+        target.TakeDamage(Damage, hitNormal);
+    }
+
+    public void OnActionHit()
+    {
+        if (hitbox == null)
+            return;
+
+        Collider[] hits = Physics.OverlapBox(
+            hitbox.bounds.center,
+            hitbox.bounds.extents,
+            hitbox.transform.rotation,
+            targetLayers
+        );
+
+        foreach (var hit in hits)
+        {
+            if (hit.TryGetComponent<IDefender>(out var defender))
+                Attack(defender);
+        }
     }
 }
