@@ -760,6 +760,7 @@ GameObject:
   - component: {fileID: 2092990005}
   - component: {fileID: 2092990004}
   - component: {fileID: 2092990006}
+  - component: {fileID: 2092990007}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -835,6 +836,21 @@ MonoBehaviour:
   darkenDuration: 5
   maxIntensity: 1
   minIntensity: 0
+--- !u!114 &2092990007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2092990003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a63703214525b48be0e4a73d79f54a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CameraAspectFit
+  virtualCamera: {fileID: 1366244927}
+  baseDistance: 8
+  baseAspect: 0.5625
 --- !u!1001 &56650075042092299
 PrefabInstance:
   m_ObjectHideFlags: 0
