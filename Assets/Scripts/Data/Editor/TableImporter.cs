@@ -7,6 +7,7 @@ public class TableImporter : EditorWindow
     private enum TableType
     {
         Resource,
+        DropItem,
         // Animal,
         // Equip,
     }
@@ -39,6 +40,9 @@ public class TableImporter : EditorWindow
         {
             case TableType.Resource:
                 ImportResource();
+                break;
+            case TableType.DropItem:
+                ImportDropItem();
                 break;
         }
     }
@@ -80,5 +84,42 @@ public class TableImporter : EditorWindow
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         Debug.Log($"ResourceTable Import 완료: {list.Count}개");
+    }
+
+    private void ImportDropItem()
+    {
+        string csvPath = "Assets/Resources/DataTables/DropItemTable.csv";
+        string csvText = File.ReadAllText(csvPath);
+        var list = DataTable.LoadCSV<DropItemData>(csvText);
+
+        string soFolder = "Assets/ScriptableObjects/DropItems";
+
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+
+        if (!AssetDatabase.IsValidFolder(soFolder))
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "DropItems");
+
+        foreach (var data in list)
+        {
+            string assetPath = $"{soFolder}/{data.DropItemID}.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<DropItemAsset>(assetPath);
+
+            if (existing != null)
+            {
+                existing.DropItemID = data.DropItemID;
+                EditorUtility.SetDirty(existing);
+            }
+            else
+            {
+                var so = CreateInstance<DropItemAsset>();
+                so.DropItemID = data.DropItemID;
+                AssetDatabase.CreateAsset(so, assetPath);
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        Debug.Log($"DropItemTable Import 완료: {list.Count}개");
     }
 }

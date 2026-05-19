@@ -14,9 +14,15 @@ public static class DataTableManager
     // 여기에 사용할 테이블 초기화
     private static void Init()
     {
+        // Resource
         var resourceTable = new ResourceTable();
         resourceTable.Load("ResourceTable");
         tables.Add("ResourceTable", resourceTable);
+
+        // DropItem
+        var dropItemTable = new DropItemTable();
+        dropItemTable.Load("DropItemTable");
+        tables.Add("DropItemTable", dropItemTable);
     }
 
     public static T Get<T>(string id)
