@@ -851,6 +851,10 @@ PrefabInstance:
       propertyPath: hitbox
       value: 
       objectReference: {fileID: 56650075042092301}
+    - target: {fileID: 3265548943839519873, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+      propertyPath: targetLayers.m_Bits
+      value: 1024
+      objectReference: {fileID: 0}
     - target: {fileID: 4858127594318337637, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
