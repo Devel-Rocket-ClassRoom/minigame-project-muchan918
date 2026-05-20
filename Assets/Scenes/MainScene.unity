@@ -208,7 +208,7 @@ Transform:
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34042537, y: 0, z: 0, w: 0.94027156}
-  m_LocalPosition: {x: 4.5, y: 7.1214767, z: -5.145769}
+  m_LocalPosition: {x: 4.5, y: 7.2670226, z: -5.3204246}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_TargetMovementOnly: 1
   m_ScreenX: 0.5
   m_ScreenY: 0.5
-  m_CameraDistance: 8
+  m_CameraDistance: 8.22735
   m_DeadZoneWidth: 0
   m_DeadZoneHeight: 0
   m_DeadZoneDepth: 0
@@ -742,7 +742,7 @@ Transform:
   m_GameObject: {fileID: 1366244926}
   serializedVersion: 2
   m_LocalRotation: {x: 0.34042534, y: 0, z: 0, w: 0.9402716}
-  m_LocalPosition: {x: 4.5, y: 7.1214767, z: -5.145769}
+  m_LocalPosition: {x: 4.5, y: 7.2670226, z: -5.3204246}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -845,12 +845,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 2092990003}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0a63703214525b48be0e4a73d79f54a, type: 3}
+  m_Script: {fileID: 11500000, guid: 89157ca19c9701341b1685e480d124f7, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::CameraAspectFit
+  m_EditorClassIdentifier: Assembly-CSharp::SafeAreaCameraAdjuster
   virtualCamera: {fileID: 1366244927}
   baseDistance: 8
-  baseAspect: 0.5625
+  distanceAdjustRange: 2
 --- !u!1001 &56650075042092299
 PrefabInstance:
   m_ObjectHideFlags: 0
