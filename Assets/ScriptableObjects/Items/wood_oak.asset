@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: wood_oak
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: wood_oak
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 66f3009072f894f56b5b3a8c0af0121d, type: 3}

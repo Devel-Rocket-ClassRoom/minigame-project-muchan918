@@ -33,6 +33,13 @@ public class SafeAreaPanel : MonoBehaviour
 
     private void Apply()
     {
+        if (parentCanvas == null)
+        {
+            parentCanvas = GetComponentInParent<Canvas>();
+            if (parentCanvas == null)
+                return;
+        }
+
         Rect pixelRect = parentCanvas.pixelRect;
         Rect safeArea = Screen.safeArea;
         Vector2Int screenSize = new Vector2Int(Screen.width, Screen.height);
