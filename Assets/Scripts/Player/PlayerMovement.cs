@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody rb;
     private Vector2 moveInput;
 
-    private static readonly int IsWalkingHash = Animator.StringToHash("IsWalking");
+    private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
     private void Awake()
     {
@@ -101,8 +101,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (animator != null)
         {
-            bool IsWalking = moveDir.sqrMagnitude > 0.01f;
-            animator.SetBool(IsWalkingHash, IsWalking);
+            animator.SetFloat(SpeedHash, moveDir.magnitude, 0.1f, Time.fixedDeltaTime);
         }
     }
 }
