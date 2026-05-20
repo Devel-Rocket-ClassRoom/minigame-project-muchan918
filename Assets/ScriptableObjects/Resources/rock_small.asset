@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: rock_small
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: rock_small
-  Prefab: {fileID: 0}
-  Icon: {fileID: 0}
+  DropPrefab: {fileID: 2073815298762949719, guid: 49fddddbceb4a5d4eb0fc2c9205ed450, type: 3}

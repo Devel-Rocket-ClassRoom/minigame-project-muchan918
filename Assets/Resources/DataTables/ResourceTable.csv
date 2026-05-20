@@ -1,3 +1,3 @@
 ResourceID,DisplayName,ResourceType,MaxHP
-tree_oak,참나무,Tree,50
-rock_small,작은 바위,Stone,100
+tree_oak,참나무,Tree,20
+rock_small,작은 바위,Stone,30
