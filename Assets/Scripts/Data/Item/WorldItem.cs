@@ -30,7 +30,7 @@ public class WorldItem : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         if (other.CompareTag("Player") && Keyboard.current.iKey.wasPressedThisFrame)
-            PickUp();
+            PickUp(other);
     }
 
     private void PickUp()
@@ -38,5 +38,13 @@ public class WorldItem : MonoBehaviour
         // TODO: 인벤토리에 추가
         Debug.Log($"[DropItemObject] {Asset.Data.DisplayName} 아이템 습득!");
         Destroy(gameObject);
+    }
+
+    private void PickUp(Collider other)
+    {
+        var inventory = other.GetComponent<PlayerInventory>();
+        inventory.AddItem(Asset);
+        Destroy(gameObject);
+        Debug.Log($"[DropItemObject] {Asset.Data.DisplayName} 아이템 습득!");
     }
 }
