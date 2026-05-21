@@ -16,6 +16,9 @@ public class PlayerHealth : MonoBehaviour, IDefender
     [SerializeField]
     private Slider hpSlider;
 
+    [SerializeField]
+    private GameObject gameOverUI;
+
     private void Start()
     {
         currentHp = maxHp;
@@ -66,5 +69,7 @@ public class PlayerHealth : MonoBehaviour, IDefender
     public void Die()
     {
         Debug.Log("죽음");
+        gameOverUI.SetActive(true);
+        GamePause.Pause();
     }
 }
