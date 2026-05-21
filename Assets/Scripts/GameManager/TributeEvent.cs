@@ -20,7 +20,7 @@ public class TributeEvent : MonoBehaviour
 
     public void AssignNewEvent()
     {
-        IsTributeFulfilled = true;
+        IsTributeFulfilled = false;
         // 나중에 요구사항 랜덤 생성 추가
     }
 }

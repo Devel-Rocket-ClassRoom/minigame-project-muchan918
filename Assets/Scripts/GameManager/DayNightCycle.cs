@@ -20,9 +20,11 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField]
     private float minIntensity = 0f;
 
+    [SerializeField]
+    private PlayerHealth playerHealth;
+
     private float elapsedTime = 0f;
     private TributeEvent tributeEvent;
-    public PlayerHealth playerHealth;
 
     public int CurrentDay { get; private set; } = 1;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
