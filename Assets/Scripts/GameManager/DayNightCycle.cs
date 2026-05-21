@@ -21,6 +21,8 @@ public class DayNightCycle : MonoBehaviour
     private float minIntensity = 0f;
 
     private float elapsedTime = 0f;
+    private TributeEvent tributeEvent;
+    public PlayerHealth playerHealth;
 
     public int CurrentDay { get; private set; } = 1;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
@@ -34,6 +36,11 @@ public class DayNightCycle : MonoBehaviour
             int hour = 6 + Mathf.FloorToInt(totalHours);
             return $"{hour}:00";
         }
+    }
+
+    private void Awake()
+    {
+        tributeEvent = GetComponent<TributeEvent>();
     }
 
     private void Update()
@@ -62,6 +69,18 @@ public class DayNightCycle : MonoBehaviour
     {
         elapsedTime = 0f;
         directionalLight.intensity = maxIntensity;
+
+        if (CurrentDay % 7 == 0)
+        {
+            if (tributeEvent.Evaluate())
+                tributeEvent.AssignNewEvent();
+            else
+            {
+                playerHealth.Die();
+                return;
+            }
+        }
+
         CurrentDay++;
     }
 }

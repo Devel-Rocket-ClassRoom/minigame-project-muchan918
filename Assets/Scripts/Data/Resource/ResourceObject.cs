@@ -6,6 +6,9 @@ public class ResourceObject : MonoBehaviour, IDefender, IDroppable
 
     private int currentHP;
 
+    public int MaxHp => Asset.Data.MaxHP;
+    public int CurrentHp => currentHP;
+
     private void Start()
     {
         Asset.Data = DataTableManager.Get<ResourceTable>("ResourceTable").Get(Asset.ResourceID);
@@ -24,7 +27,7 @@ public class ResourceObject : MonoBehaviour, IDefender, IDroppable
         if (currentHP <= 0)
         {
             Drop();
-            Destroy(gameObject);
+            Die();
         }
     }
 
@@ -32,5 +35,10 @@ public class ResourceObject : MonoBehaviour, IDefender, IDroppable
     {
         if (Asset.DropPrefab != null)
             Instantiate(Asset.DropPrefab, transform.position, Quaternion.identity);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 }
