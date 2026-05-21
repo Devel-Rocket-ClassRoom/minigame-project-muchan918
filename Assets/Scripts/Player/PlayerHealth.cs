@@ -9,6 +9,9 @@ public class PlayerHealth : MonoBehaviour, IDefender
     private int maxHp = 100;
     private int currentHp;
 
+    public int MaxHp => maxHp;
+    public int CurrentHp => currentHp;
+
     [Header("UI")]
     [SerializeField]
     private Slider hpSlider;
@@ -34,6 +37,11 @@ public class PlayerHealth : MonoBehaviour, IDefender
         UpdateUI();
 
         Debug.Log($"HP: {currentHp}/{maxHp}");
+
+        if (currentHp <= 0)
+        {
+            Die();
+        }
     }
 
     public void Recover()
@@ -53,5 +61,10 @@ public class PlayerHealth : MonoBehaviour, IDefender
         if (hpSlider == null)
             return;
         hpSlider.value = (float)currentHp / maxHp;
+    }
+
+    public void Die()
+    {
+        Debug.Log("죽음");
     }
 }

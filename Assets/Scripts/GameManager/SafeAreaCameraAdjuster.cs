@@ -61,9 +61,9 @@ public class SafeAreaCameraAdjuster : MonoBehaviour
 
         float finalDistance = baseDistance + distanceOffset;
 
-        Debug.Log(
-            $"aspectRatio: {aspectRatio}, distanceOffset: {distanceOffset}, finalDistance: {finalDistance}"
-        );
+        // Debug.Log(
+        //     $"aspectRatio: {aspectRatio}, distanceOffset: {distanceOffset}, finalDistance: {finalDistance}"
+        // );
 
         framingTransposer.m_CameraDistance = finalDistance;
     }
