@@ -20,6 +20,7 @@ public class AltarInteraction : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         altarPanel.SetActive(true);
+        GamePause.Pause();
     }
 
     public void OnTributeFulfillButton()
@@ -31,5 +32,6 @@ public class AltarInteraction : MonoBehaviour, IInteractable
     public void CloseAltarPanel()
     {
         altarPanel.SetActive(false);
+        GamePause.Resume();
     }
 }

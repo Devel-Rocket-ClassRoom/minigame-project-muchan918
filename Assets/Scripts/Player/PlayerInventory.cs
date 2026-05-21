@@ -28,7 +28,10 @@ public class PlayerInventory : MonoBehaviour
         isOpen = !isOpen;
         inventoryPanel.SetActive(isOpen);
 
-        GamePause.Toggle();
+        if (isOpen)
+            GamePause.Pause();
+        else
+            GamePause.Resume();
     }
 
     public void AddItem(ItemAsset asset)
