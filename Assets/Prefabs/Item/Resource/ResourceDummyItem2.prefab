@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 3278303426291685658}
   - component: {fileID: 4418818020432174197}
   - component: {fileID: -8017206023752538247}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ResourceDummyItem2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
