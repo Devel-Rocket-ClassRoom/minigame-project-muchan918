@@ -127,14 +127,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 299019899}
     m_Modifications:
-    - target: {fileID: 268499016532528917, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
-      propertyPath: m_SizeDelta.x
-      value: 753.0862
-      objectReference: {fileID: 0}
-    - target: {fileID: 268499016532528917, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 216.0198
-      objectReference: {fileID: 0}
     - target: {fileID: 545992873059073864, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_Value
       value: 1
@@ -173,7 +165,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.97117877
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
@@ -254,6 +246,14 @@ PrefabInstance:
     - target: {fileID: 7082971779913381671, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_Name
       value: GameUI
+      objectReference: {fileID: 0}
+    - target: {fileID: 7082971779913381671, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8097883870034524930, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
+      propertyPath: m_Sprite
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 8097883870034524930, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
@@ -1828,17 +1828,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1642298853 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1142312285171268174, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
-  m_PrefabInstance: {fileID: 3911451}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.TextMeshPro::TMPro.TextMeshProUGUI
 --- !u!1 &1715065795
 GameObject:
   m_ObjectHideFlags: 0
@@ -2093,7 +2082,6 @@ GameObject:
   - component: {fileID: 2092990004}
   - component: {fileID: 2092990006}
   - component: {fileID: 2092990007}
-  - component: {fileID: 2092990008}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2165,9 +2153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 11
-  darkenDuration: 3
-  nightDuration: 4
+  brightDuration: 100
+  darkenDuration: 5
   maxIntensity: 1
   minIntensity: 0
 --- !u!114 &2092990007
@@ -2185,19 +2172,6 @@ MonoBehaviour:
   virtualCamera: {fileID: 1366244927}
   baseDistance: 8
   distanceAdjustRange: 2
---- !u!114 &2092990008
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2092990003}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb0fcd0e1a1926440bb2fad1da93deca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DateUI
-  dateText: {fileID: 1642298853}
 --- !u!1 &2099513102 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1422671190694009946, guid: 2c58099b044771a4c940001a040b567d, type: 3}
