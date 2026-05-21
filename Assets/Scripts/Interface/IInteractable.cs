@@ -5,6 +5,7 @@ public enum InteractionType
 {
     PickUp,
     Sleep,
+    Altar,
     Craft,
     Cook,
 }
