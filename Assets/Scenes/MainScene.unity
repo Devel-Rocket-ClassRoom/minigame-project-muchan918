@@ -2391,6 +2391,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapGenerator
   startChunkPrefab: {fileID: 2106264118}
+  workbenchChunkPrefab: {fileID: 1298351895542990649, guid: 997f8670dadcf984cb32b6071b0a6eec, type: 3}
+  cauldronChunkPrefab: {fileID: 1298351895542990649, guid: 997f8670dadcf984cb32b6071b0a6eec, type: 3}
+  storageChunkPrefab: {fileID: 1298351895542990649, guid: 997f8670dadcf984cb32b6071b0a6eec, type: 3}
+  altarChunkPrefab: {fileID: 1298351895542990649, guid: 997f8670dadcf984cb32b6071b0a6eec, type: 3}
+  groundChunkPrefab: {fileID: 1298351895542990649, guid: 997f8670dadcf984cb32b6071b0a6eec, type: 3}
   forestChunkPrefabs:
   - {fileID: 8910326486945227270, guid: 0e63327f6e537674681bdd37227bcf1c, type: 3}
   - {fileID: 5539637104612000126, guid: 96bb4bef9da3d6541b3b79a01d04a0e4, type: 3}
