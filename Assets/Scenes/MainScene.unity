@@ -1410,6 +1410,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2983503241090534628, guid: 9ddbecfb32bd66243b1cd253293df403, type: 3}
+      propertyPath: m_Name
+      value: Cabin
+      objectReference: {fileID: 0}
+    - target: {fileID: 3720596810956292901, guid: 9ddbecfb32bd66243b1cd253293df403, type: 3}
+      propertyPath: dayNightCycle
+      value: 
+      objectReference: {fileID: 2092990006}
+    - target: {fileID: 6376563619708970578, guid: 9ddbecfb32bd66243b1cd253293df403, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 9161587131229490087, guid: 9ddbecfb32bd66243b1cd253293df403, type: 3}
       propertyPath: m_Name
       value: StartChunck

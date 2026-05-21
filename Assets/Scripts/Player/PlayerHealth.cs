@@ -36,6 +36,18 @@ public class PlayerHealth : MonoBehaviour, IDefender
         Debug.Log($"HP: {currentHp}/{maxHp}");
     }
 
+    public void Recover()
+    {
+        currentHp = maxHp;
+        UpdateUI();
+    }
+
+    public void Recover(int amount)
+    {
+        currentHp = Mathf.Min(currentHp + amount, maxHp);
+        UpdateUI();
+    }
+
     private void UpdateUI()
     {
         if (hpSlider == null)
