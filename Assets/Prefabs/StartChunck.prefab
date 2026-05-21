@@ -42616,7 +42616,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9161587131229490087}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -43199,6 +43199,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1267383275690838446}
     m_Modifications:
+    - target: {fileID: 1930699815307440436, guid: 199bd0985f4589942a5125df6b73c343, type: 3}
+      propertyPath: m_Layer
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540171847452054019, guid: 199bd0985f4589942a5125df6b73c343, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3540171847452054019, guid: 199bd0985f4589942a5125df6b73c343, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6078340034319150412, guid: 199bd0985f4589942a5125df6b73c343, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: c94430b26e5b2054b9e85a9a0cac9c62, type: 2}
     - target: {fileID: 7114906877629888205, guid: 199bd0985f4589942a5125df6b73c343, type: 3}
       propertyPath: m_LocalPosition.x
       value: 4.5
@@ -43241,7 +43257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7769461357204528002, guid: 199bd0985f4589942a5125df6b73c343, type: 3}
       propertyPath: m_Name
-      value: House
+      value: Cabin
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

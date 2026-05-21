@@ -7924,10 +7924,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   interactionButton: {fileID: 0}
-  interactionRange: {fileID: 0}
+  interactionRange: {fileID: 2308401297720442711}
   interactableLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
 --- !u!1 &1435013287879752901
 GameObject:
   m_ObjectHideFlags: 0
