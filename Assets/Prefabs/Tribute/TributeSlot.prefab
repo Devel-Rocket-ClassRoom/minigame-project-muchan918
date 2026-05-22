@@ -348,6 +348,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UiTributeSlot
   slotIndex: -1
   iconImage: {fileID: 5985562131445662767}
+  imageCompleted: {fileID: 1072176941962436719}
   button: {fileID: 3928272756050814208}
   nameText: {fileID: 3633353502672272180}
   amountText: {fileID: 8270099492462116973}

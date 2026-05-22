@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TributeRequirement
   requiredItems:
   - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
-    amount: 4
+    amount: 2
   - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
-    amount: 4
-  - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
     amount: 4
