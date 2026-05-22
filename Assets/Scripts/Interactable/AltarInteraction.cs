@@ -22,16 +22,4 @@ public class AltarInteraction : MonoBehaviour, IInteractable
         altarPanel.SetActive(true);
         GamePause.Pause();
     }
-
-    public void OnTributeFulfillButton()
-    {
-        tributeEvent.IsTributeFulfilled = true;
-        Debug.Log("임시: IsTributeFulfilled = true 로 설정됨");
-    }
-
-    public void CloseAltarPanel()
-    {
-        altarPanel.SetActive(false);
-        GamePause.Resume();
-    }
 }

@@ -9,7 +9,8 @@ public class UiInventorySlotList : MonoBehaviour
     public UiItemInfo uiItemInfo;
 
     private List<UiInventorySlot> slotList = new List<UiInventorySlot>();
-    private List<ItemAsset> itemAssetList = new List<ItemAsset>();
+
+    private List<(ItemAsset asset, int amount)> slotDataList = new List<(ItemAsset, int)>();
 
     private int selectedSlotIndex = -1;
     public int SelectedSlotIndex => selectedSlotIndex;
@@ -24,23 +25,59 @@ public class UiInventorySlotList : MonoBehaviour
         if (asset.Data == null)
             asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
 
-        itemAssetList.Add(asset);
+        int stackMax = asset.Data.StackMax;
+
+        // 같은 ItemID 중 마지막 슬롯 찾기
+        int lastIndex = -1;
+        for (int i = slotDataList.Count - 1; i >= 0; i--)
+        {
+            if (slotDataList[i].asset.ItemID == asset.ItemID)
+            {
+                lastIndex = i;
+                break;
+            }
+        }
+
+        if (lastIndex != -1 && slotDataList[lastIndex].amount < stackMax)
+        {
+            // 마지막 슬롯에 수량 추가
+            var entry = slotDataList[lastIndex];
+            slotDataList[lastIndex] = (entry.asset, entry.amount + 1);
+        }
+        else
+        {
+            // 새 슬롯 추가 (순서 그대로 뒤에 붙음)
+            slotDataList.Add((asset, 1));
+        }
+
         UpdateSlots();
     }
 
     public void RemoveItem()
     {
+        RemoveItem(1);
+    }
+
+    public void RemoveItem(int amount)
+    {
         if (selectedSlotIndex == -1)
             return;
 
-        itemAssetList.RemoveAt(selectedSlotIndex);
+        var entry = slotDataList[selectedSlotIndex];
+        int newAmount = entry.amount - amount;
+
+        if (newAmount <= 0)
+            slotDataList.RemoveAt(selectedSlotIndex);
+        else
+            slotDataList[selectedSlotIndex] = (entry.asset, newAmount);
+
         selectedSlotIndex = -1;
         UpdateSlots();
     }
 
     public void Clear()
     {
-        itemAssetList.Clear();
+        slotDataList.Clear();
         selectedSlotIndex = -1;
         UpdateSlots();
     }
@@ -49,40 +86,49 @@ public class UiInventorySlotList : MonoBehaviour
     {
         if (selectedSlotIndex == -1)
             return null;
-        return itemAssetList[selectedSlotIndex];
+        return slotDataList[selectedSlotIndex].asset;
+    }
+
+    public int GetTotalAmount(string itemID)
+    {
+        int total = 0;
+        foreach (var entry in slotDataList)
+            if (entry.asset.ItemID == itemID)
+                total += entry.amount;
+        return total;
     }
 
     private void UpdateSlots()
     {
-        if (slotList.Count < itemAssetList.Count)
+        int count = slotDataList.Count;
+
+        if (slotList.Count < count)
         {
-            for (int i = slotList.Count; i < itemAssetList.Count; i++)
+            for (int i = slotList.Count; i < count; i++)
             {
                 var slot = Instantiate(prefab, scrollRect.content);
-                slot.slotIndex = i;
                 slot.gameObject.SetActive(false);
-
-                int capturedIndex = i;
-                slot.button.onClick.AddListener(() =>
-                {
-                    selectedSlotIndex = capturedIndex;
-                    uiItemInfo.SetItem(itemAssetList[capturedIndex]);
-                });
-
                 slotList.Add(slot);
             }
         }
 
         for (int i = 0; i < slotList.Count; i++)
         {
-            if (i < itemAssetList.Count)
+            if (i < count)
             {
-                slotList[i].gameObject.SetActive(true);
-                slotList[i].SetItem(itemAssetList[i]);
+                int capturedIndex = i;
+                slotList[i].slotIndex = i;
+                slotList[i].button.onClick.RemoveAllListeners();
+                slotList[i]
+                    .button.onClick.AddListener(() =>
+                    {
+                        selectedSlotIndex = capturedIndex;
+                        uiItemInfo.SetItem(slotDataList[capturedIndex].asset);
+                    });
+                slotList[i].SetItem(slotDataList[i].asset, slotDataList[i].amount);
             }
             else
             {
-                slotList[i].gameObject.SetActive(false);
                 slotList[i].SetEmpty();
             }
         }
