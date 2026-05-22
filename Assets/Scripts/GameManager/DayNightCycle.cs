@@ -43,6 +43,7 @@ public class DayNightCycle : MonoBehaviour
     private void Awake()
     {
         tributeEvent = GetComponent<TributeEvent>();
+        tributeEvent.AssignNewEvent();
     }
 
     private void Update()

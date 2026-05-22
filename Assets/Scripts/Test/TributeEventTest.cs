@@ -7,7 +7,7 @@ public class TributeEventTest : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.spaceKey.wasPressedThisFrame)
+        if (Keyboard.current.uKey.wasPressedThisFrame)
             tributeEvent.AssignNewEvent();
     }
 }

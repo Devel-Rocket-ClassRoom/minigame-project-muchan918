@@ -11,6 +11,7 @@ public class UiInventorySlotList : MonoBehaviour
     private List<UiInventorySlot> slotList = new List<UiInventorySlot>();
 
     private List<(ItemAsset asset, int amount)> slotDataList = new List<(ItemAsset, int)>();
+    public List<(ItemAsset asset, int amount)> SlotDataList => slotDataList;
 
     private int selectedSlotIndex = -1;
     public int SelectedSlotIndex => selectedSlotIndex;

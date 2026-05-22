@@ -8,6 +8,9 @@ public class AltarInteraction : MonoBehaviour, IInteractable
     [SerializeField]
     private TributeEvent tributeEvent;
 
+    [SerializeField]
+    private TributeInventory tributeInventory;
+
     [Header("UI")]
     [SerializeField]
     private GameObject altarPanel;
@@ -20,6 +23,13 @@ public class AltarInteraction : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         altarPanel.SetActive(true);
+        tributeInventory.UpdateSlots();
         GamePause.Pause();
+    }
+
+    public void OnClickClose()
+    {
+        altarPanel.SetActive(false);
+        GamePause.Resume();
     }
 }

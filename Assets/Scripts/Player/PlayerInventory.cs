@@ -8,6 +8,7 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField]
     private UiInventorySlotList slotList;
+    public UiInventorySlotList SlotList => slotList;
 
     private bool isOpen;
 
