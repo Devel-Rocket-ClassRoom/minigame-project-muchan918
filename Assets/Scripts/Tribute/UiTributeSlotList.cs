@@ -4,6 +4,8 @@ using UnityEngine;
 public class UiTributeSlotList : MonoBehaviour
 {
     public UiTributeSlot prefab;
+    public UiSubmitPanel submitPanel;
+    public TributeInventory tributeInventory;
 
     private List<UiTributeSlot> slotList = new List<UiTributeSlot>();
 
@@ -26,7 +28,20 @@ public class UiTributeSlotList : MonoBehaviour
             slot.SetSlot(entry.item, entry.amount);
 
             int capturedIndex = index;
-            slot.button.onClick.AddListener(() => selectedSlotIndex = capturedIndex);
+            slot.button.onClick.AddListener(() =>
+            {
+                selectedSlotIndex = capturedIndex;
+
+                var selectedSlot = slotList[capturedIndex];
+                int inventoryAmount = tributeInventory.GetTotalAmount(selectedSlot.ItemID);
+                int maxAmount = Mathf.Min(
+                    selectedSlot.Required - selectedSlot.Submitted,
+                    inventoryAmount
+                );
+
+                tributeInventory.HighlightItem(selectedSlot.ItemID);
+                submitPanel.Setup(selectedSlot, maxAmount);
+            });
 
             slotList.Add(slot);
             index++;
@@ -46,5 +61,10 @@ public class UiTributeSlotList : MonoBehaviour
             if (!slot.IsComplete)
                 return false;
         return true;
+    }
+
+    public void Reset()
+    {
+        selectedSlotIndex = -1;
     }
 }

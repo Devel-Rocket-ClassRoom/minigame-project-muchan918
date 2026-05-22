@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class AltarInteraction : MonoBehaviour, IInteractable
 {
@@ -10,6 +9,12 @@ public class AltarInteraction : MonoBehaviour, IInteractable
 
     [SerializeField]
     private TributeInventory tributeInventory;
+
+    [SerializeField]
+    private UiTributeSlotList tributeSlotList;
+
+    [SerializeField]
+    private UiSubmitPanel submitPanel;
 
     [Header("UI")]
     [SerializeField]
@@ -29,6 +34,9 @@ public class AltarInteraction : MonoBehaviour, IInteractable
 
     public void OnClickClose()
     {
+        tributeInventory.Reset();
+        tributeSlotList.Reset();
+        submitPanel.gameObject.SetActive(false);
         altarPanel.SetActive(false);
         GamePause.Resume();
     }

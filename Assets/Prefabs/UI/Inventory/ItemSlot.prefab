@@ -470,6 +470,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UiInventorySlot
   slotIndex: -1
   imageIcon: {fileID: 7007929769193758165}
+  imageBg: {fileID: 4114520519482122320}
+  imageOutlineSelected: {fileID: 5164385516767037635}
   button: {fileID: 471389529499655606}
   amountText: {fileID: 7780272783177134915}
 --- !u!1 &8306095245852949465

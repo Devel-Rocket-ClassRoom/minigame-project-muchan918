@@ -137,4 +137,9 @@ public class UiInventorySlotList : MonoBehaviour
         selectedSlotIndex = -1;
         uiItemInfo.SetEmpty();
     }
+
+    public void SetSelectedIndex(int index)
+    {
+        selectedSlotIndex = index;
+    }
 }

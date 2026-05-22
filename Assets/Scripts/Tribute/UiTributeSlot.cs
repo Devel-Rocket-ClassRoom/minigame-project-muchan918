@@ -6,13 +6,16 @@ public class UiTributeSlot : MonoBehaviour
 {
     public int slotIndex = -1;
     public Image iconImage;
+    public Image imageCompleted;
     public Button button;
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI amountText;
 
     private ItemAsset itemAsset;
+    public ItemAsset ItemAsset => itemAsset;
     private int required;
     private int submitted;
+    public int Submitted => submitted;
 
     public string ItemID => itemAsset.ItemID;
     public int Required => required;
@@ -39,5 +42,8 @@ public class UiTributeSlot : MonoBehaviour
         iconImage.sprite = itemAsset.Icon;
         nameText.text = itemAsset.Data.DisplayName;
         amountText.text = $"{submitted} / {required}";
+
+        imageCompleted.gameObject.SetActive(IsComplete);
+        button.interactable = !IsComplete;
     }
 }
