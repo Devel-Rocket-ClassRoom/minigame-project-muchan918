@@ -142,4 +142,35 @@ public class UiInventorySlotList : MonoBehaviour
     {
         selectedSlotIndex = index;
     }
+
+    public void RemoveItemByAsset(ItemAsset asset, int amount)
+    {
+        int remaining = amount;
+
+        for (int i = slotDataList.Count - 1; i >= 0; i--)
+        {
+            if (remaining <= 0)
+                break;
+
+            if (slotDataList[i].asset == asset)
+            {
+                int slotAmount = slotDataList[i].amount;
+
+                if (slotAmount <= remaining)
+                {
+                    // 슬롯 전체 제거
+                    remaining -= slotAmount;
+                    slotDataList.RemoveAt(i);
+                }
+                else
+                {
+                    // 일부만 차감
+                    slotDataList[i] = (slotDataList[i].asset, slotAmount - remaining);
+                    remaining = 0;
+                }
+            }
+        }
+
+        UpdateSlots();
+    }
 }
