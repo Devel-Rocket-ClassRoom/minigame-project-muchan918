@@ -28,30 +28,33 @@ public class UiInventorySlotList : MonoBehaviour
 
         int stackMax = asset.Data.StackMax;
 
-        // 같은 ItemID 중 마지막 슬롯 찾기
         int lastIndex = -1;
-        for (int i = slotDataList.Count - 1; i >= 0; i--)
+        for (int i = 0; i < slotDataList.Count; i++)
         {
-            if (slotDataList[i].asset.ItemID == asset.ItemID)
+            if (slotDataList[i].asset.ItemID == asset.ItemID && slotDataList[i].amount < stackMax)
             {
                 lastIndex = i;
                 break;
             }
         }
 
-        if (lastIndex != -1 && slotDataList[lastIndex].amount < stackMax)
+        if (lastIndex != -1)
         {
-            // 마지막 슬롯에 수량 추가
             var entry = slotDataList[lastIndex];
             slotDataList[lastIndex] = (entry.asset, entry.amount + 1);
         }
         else
         {
-            // 새 슬롯 추가 (순서 그대로 뒤에 붙음)
             slotDataList.Add((asset, 1));
         }
 
         UpdateSlots();
+    }
+
+    public void AddItem(ItemAsset asset, int amount)
+    {
+        for (int i = 0; i < amount; i++)
+            AddItem(asset);
     }
 
     public void RemoveItem()
@@ -99,7 +102,7 @@ public class UiInventorySlotList : MonoBehaviour
         return total;
     }
 
-    private void UpdateSlots()
+    public void UpdateSlots()
     {
         int count = slotDataList.Count;
 

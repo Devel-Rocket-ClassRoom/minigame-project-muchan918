@@ -8,6 +8,7 @@ public enum InteractionType
     Altar,
     Craft,
     Cook,
+    Storage,
 }
 
 public interface IInteractable
