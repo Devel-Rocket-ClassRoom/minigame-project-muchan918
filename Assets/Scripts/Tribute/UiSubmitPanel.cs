@@ -16,6 +16,7 @@ public class UiSubmitPanel : MonoBehaviour
 
     public Button submitButton;
     public TributeInventory tributeInventory;
+    public PlayerInventory playerInventory;
 
     private int currentAmount;
     private int maxAmount;
@@ -84,6 +85,7 @@ public class UiSubmitPanel : MonoBehaviour
         tributeInventory.RemoveItems(submitDict);
         selectedTributeSlot.AddSubmit(currentAmount);
         tributeInventory.UpdateSlots();
+        playerInventory.SlotList.UpdateSlots();
         gameObject.SetActive(false);
     }
 
