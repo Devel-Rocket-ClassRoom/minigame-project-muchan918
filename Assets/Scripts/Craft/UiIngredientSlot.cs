@@ -29,6 +29,6 @@ public class UiIngredientSlot : MonoBehaviour
     private void UpdateDisplay()
     {
         amountText.text = $"{required}개 필요 (보유 {owned})";
-        amountText.color = IsFulfilled ? Color.white : Color.red;
+        amountText.color = IsFulfilled ? Color.darkGreen : Color.red;
     }
 }
