@@ -79,6 +79,7 @@ public class CraftInteraction : MonoBehaviour, IInteractable
     {
         ingredientPanel.SetActive(false);
         craftPanel.SetActive(false);
+        craftSlotList.ResetSelection();
         selectedRecipe = null;
         GamePause.Resume();
     }

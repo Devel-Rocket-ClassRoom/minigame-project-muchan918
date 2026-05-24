@@ -6,6 +6,8 @@ public class UiCraftSlot : MonoBehaviour
 {
     public int slotIndex = -1;
     public Image iconImage;
+    public Image backgroundImage;
+    public Image outlineImage;
     public Button button;
     public TextMeshProUGUI nameText;
 
@@ -27,7 +29,14 @@ public class UiCraftSlot : MonoBehaviour
 
     public void SetAvailable(bool available)
     {
-        iconImage.color = available ? Color.white : Color.gray;
+        Color color = available ? Color.white : Color.gray;
+        iconImage.color = color;
+        backgroundImage.color = color;
+    }
+
+    public void SetSelected(bool selected)
+    {
+        outlineImage.gameObject.SetActive(selected);
     }
 
     public void SetEmpty()

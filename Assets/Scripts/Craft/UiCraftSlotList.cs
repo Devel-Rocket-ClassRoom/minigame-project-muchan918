@@ -11,6 +11,7 @@ public class UiCraftSlotList : MonoBehaviour
 
     private List<UiCraftSlot> slotList = new List<UiCraftSlot>();
     private List<RecipeAsset> recipes = new List<RecipeAsset>();
+    private UiCraftSlot selectedSlot;
 
     public void Setup(List<RecipeAsset> recipeList)
     {
@@ -30,6 +31,14 @@ public class UiCraftSlotList : MonoBehaviour
         int capturedIndex = slotList.Count;
         slot.button.onClick.AddListener(() =>
         {
+            // 이전 선택 슬롯 outline 끄기
+            if (selectedSlot != null)
+                selectedSlot.SetSelected(false);
+
+            // 새 슬롯 선택
+            selectedSlot = slotList[capturedIndex];
+            selectedSlot.SetSelected(true);
+
             craftInteraction.OnSelectRecipe(recipes[capturedIndex]);
         });
 
@@ -51,5 +60,12 @@ public class UiCraftSlotList : MonoBehaviour
                 return false;
         }
         return true;
+    }
+
+    public void ResetSelection()
+    {
+        if (selectedSlot != null)
+            selectedSlot.SetSelected(false);
+        selectedSlot = null;
     }
 }
