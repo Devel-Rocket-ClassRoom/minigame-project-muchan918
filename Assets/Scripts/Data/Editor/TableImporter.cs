@@ -8,7 +8,7 @@ public class TableImporter : EditorWindow
     {
         Resource,
         Item,
-        // Animal,
+        Animal,
         // Equip,
     }
 
@@ -43,6 +43,9 @@ public class TableImporter : EditorWindow
                 break;
             case TableType.Item:
                 ImportItem();
+                break;
+            case TableType.Animal:
+                ImportAnimal();
                 break;
         }
     }
@@ -121,5 +124,64 @@ public class TableImporter : EditorWindow
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         Debug.Log($"ItemTable Import 완료: {list.Count}개");
+    }
+
+    private void ImportAnimal()
+    {
+        string csvPath = "Assets/Resources/DataTables/AnimalTable.csv";
+        string csvText = File.ReadAllText(csvPath);
+        var list = DataTable.LoadCSV<AnimalData>(csvText);
+
+        string passiveFolder = "Assets/ScriptableObjects/Animals/Passive";
+        string hostileFolder = "Assets/ScriptableObjects/Animals/Hostile";
+
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects/Animals"))
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Animals");
+        if (!AssetDatabase.IsValidFolder(passiveFolder))
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects/Animals", "Passive");
+        if (!AssetDatabase.IsValidFolder(hostileFolder))
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects/Animals", "Hostile");
+
+        foreach (var data in list)
+        {
+            if (data.AnimalType == AnimalType.Passive)
+            {
+                string path = $"{passiveFolder}/{data.AnimalID}.asset";
+                var existing = AssetDatabase.LoadAssetAtPath<PassiveAnimalAsset>(path);
+                if (existing != null)
+                {
+                    existing.AnimalID = data.AnimalID;
+                    EditorUtility.SetDirty(existing);
+                }
+                else
+                {
+                    var so = CreateInstance<PassiveAnimalAsset>();
+                    so.AnimalID = data.AnimalID;
+                    AssetDatabase.CreateAsset(so, path);
+                }
+            }
+            else
+            {
+                string path = $"{hostileFolder}/{data.AnimalID}.asset";
+                var existing = AssetDatabase.LoadAssetAtPath<HostileAnimalAsset>(path);
+                if (existing != null)
+                {
+                    existing.AnimalID = data.AnimalID;
+                    EditorUtility.SetDirty(existing);
+                }
+                else
+                {
+                    var so = CreateInstance<HostileAnimalAsset>();
+                    so.AnimalID = data.AnimalID;
+                    AssetDatabase.CreateAsset(so, path);
+                }
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        Debug.Log($"AnimalTable Import 완료: {list.Count}개");
     }
 }
