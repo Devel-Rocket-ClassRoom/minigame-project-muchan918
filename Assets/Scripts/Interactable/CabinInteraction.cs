@@ -9,13 +9,17 @@ public class CabinInteraction : MonoBehaviour, IInteractable
 
     public void Interact(GameObject player)
     {
+        if (!dayNightCycle.IsNight)
+        {
+            Debug.Log("아직 너무 이릅니다!");
+            return;
+        }
         // TODO: 잠자는 연출
         OnWakeUp(player);
     }
 
     private void OnWakeUp(GameObject player)
     {
-        player.GetComponent<PlayerHealth>().Recover();
-        dayNightCycle.SetMorning();
+        PlayerSpawner.Instance.Respawn(fullRecover: true);
     }
 }

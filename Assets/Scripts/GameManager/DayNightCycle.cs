@@ -23,12 +23,21 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField]
     private PlayerHealth playerHealth;
 
+    [SerializeField]
+    private GameObject gameOverUI;
+
+    [SerializeField]
+    private bool isCheatMode = false;
+
     private float elapsedTime = 0f;
+    private bool midnightTriggered = false;
     private TributeEvent tributeEvent;
 
     public int CurrentDay { get; private set; } = 1;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
     public float DayProgress => Mathf.Clamp01(elapsedTime / TotalDayDuration);
+
+    public bool IsNight => elapsedTime >= brightDuration + darkenDuration;
 
     public string CurrentTimeString
     {
@@ -65,22 +74,38 @@ public class DayNightCycle : MonoBehaviour
         {
             // 밤 - 최소 밝기 유지
             directionalLight.intensity = minIntensity;
+
+            // 24시 도달 시 리스폰 (치팅 모드면 무시)
+            if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
+            {
+                midnightTriggered = true;
+                PlayerSpawner.Instance.Respawn();
+                SetMorning();
+            }
         }
     }
 
     public void SetMorning()
     {
         elapsedTime = 0f;
+        midnightTriggered = false;
         directionalLight.intensity = maxIntensity;
 
         if (CurrentDay % 7 == 0)
         {
             if (tributeEvent.Evaluate())
+            {
                 tributeEvent.AssignNewEvent();
+            }
             else
             {
-                playerHealth.Die();
-                return;
+                tributeEvent.AssignNewEvent();
+                if (!isCheatMode)
+                {
+                    gameOverUI.SetActive(true);
+                    GamePause.Pause();
+                    return;
+                }
             }
         }
 
