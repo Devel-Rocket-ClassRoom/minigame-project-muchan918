@@ -23,6 +23,11 @@ public static class DataTableManager
         var itemTable = new ItemTable();
         itemTable.Load("ItemTable");
         tables.Add("ItemTable", itemTable);
+
+        // Animal
+        var animalTable = new AnimalTable();
+        animalTable.Load("AnimalTable");
+        tables.Add("AnimalTable", animalTable);
     }
 
     public static T Get<T>(string id)
