@@ -2019,6 +2019,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 443463882}
   m_CullTransparentMesh: 1
+--- !u!1 &443741520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 443741521}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &443741521
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443741520}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 1, z: -0, w: 0}
+  m_LocalPosition: {x: -0.5, y: 2, z: -5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &496991692
 GameObject:
   m_ObjectHideFlags: 0
@@ -3433,7 +3464,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 878268770}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 300688bb34638a0488fdad6d3438e38e, type: 3}
   m_Name: 
@@ -7279,6 +7310,7 @@ GameObject:
   - component: {fileID: 2747482360225214305}
   - component: {fileID: 9195796170670080755}
   - component: {fileID: 2007684327670716511}
+  - component: {fileID: 9195796170670080756}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7613,7 +7645,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5079424434380309103}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e0921ad0cbe502740ac294d151171fc1, type: 3}
   m_Name: 
@@ -7924,6 +7956,8 @@ MonoBehaviour:
   maxIntensity: 1
   minIntensity: 0
   playerHealth: {fileID: 5224556440869973754}
+  gameOverUI: {fileID: 805958337}
+  isCheatMode: 0
 --- !u!1 &8058806503815649746
 GameObject:
   m_ObjectHideFlags: 0
@@ -7997,6 +8031,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DateUI
   dateText: {fileID: 1642298853}
+--- !u!114 &9195796170670080756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079424434380309103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fdf3e9528a5124d9a1a974bfc2f795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
+  spawnPoint: {fileID: 443741521}
+  playerHealth: {fileID: 5224556440869973754}
+  playerInventory: {fileID: 56650075042092300}
 --- !u!1 &9215705670280141544
 GameObject:
   m_ObjectHideFlags: 0
@@ -8023,6 +8072,7 @@ SceneRoots:
   - {fileID: 330585546}
   - {fileID: 410087041}
   - {fileID: 832575519}
+  - {fileID: 443741521}
   - {fileID: 56650075042092299}
   - {fileID: 1366244928}
   - {fileID: 1471285575697334722}

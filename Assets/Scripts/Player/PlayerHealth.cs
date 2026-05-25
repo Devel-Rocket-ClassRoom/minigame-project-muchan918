@@ -16,8 +16,8 @@ public class PlayerHealth : MonoBehaviour, IDefender
     [SerializeField]
     private Slider hpSlider;
 
-    [SerializeField]
-    private GameObject gameOverUI;
+    // [SerializeField]
+    // private GameObject gameOverUI;
 
     private void Start()
     {
@@ -59,6 +59,12 @@ public class PlayerHealth : MonoBehaviour, IDefender
         UpdateUI();
     }
 
+    public void SetHealth(int amount)
+    {
+        currentHp = Mathf.Clamp(amount, 0, maxHp);
+        UpdateUI();
+    }
+
     private void UpdateUI()
     {
         if (hpSlider == null)
@@ -69,7 +75,8 @@ public class PlayerHealth : MonoBehaviour, IDefender
     public void Die()
     {
         Debug.Log("죽음");
-        gameOverUI.SetActive(true);
-        GamePause.Pause();
+        // gameOverUI.SetActive(true);
+        // GamePause.Pause();
+        PlayerSpawner.Instance.Respawn();
     }
 }
