@@ -26,8 +26,14 @@ public class TileMapGenerator : MonoBehaviour
 
     private MapData _mapData;
     private Transform _groundParent;
+    private ResourceGenerator resourceGenerator;
 
     public MapData MapData => _mapData;
+
+    private void Awake()
+    {
+        resourceGenerator = GetComponent<ResourceGenerator>();
+    }
 
     private void Start()
     {
@@ -97,7 +103,8 @@ public class TileMapGenerator : MonoBehaviour
         }
 
         Debug.Log("맵 생성 완료");
-        GamePause.Resume();
+        //GamePause.Resume();
+        resourceGenerator.Generate();
     }
 
     private void ClearMap()
