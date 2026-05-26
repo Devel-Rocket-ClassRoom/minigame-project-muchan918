@@ -109,20 +109,16 @@ public class HostileAnimal : Animal, IAttacker
         switch (newState)
         {
             case AnimalState.Idle:
-                Animator.SetTrigger(
-                    PrevState == AnimalState.Chase || PrevState == AnimalState.Attack
-                        ? "Stop"
-                        : "Idle"
-                );
+                Animator.SetInteger("State", 0);
                 break;
             case AnimalState.Roam:
-                Animator.SetTrigger("Walk");
+                Animator.SetInteger("State", 1);
                 break;
             case AnimalState.Chase:
-                Animator.SetTrigger("Run");
+                Animator.SetInteger("State", 2);
                 break;
             case AnimalState.Attack:
-                Animator.SetTrigger("Attack");
+                Animator.SetInteger("State", 3);
                 break;
         }
     }
