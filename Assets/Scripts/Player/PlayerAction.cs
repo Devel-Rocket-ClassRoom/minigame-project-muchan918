@@ -36,8 +36,11 @@ public class PlayerAction : MonoBehaviour, IAttacker
             PerformAction();
     }
 
-    private void PerformAction()
+    public void PerformAction()
     {
+        if (IsActing)
+            return;
+
         animator.SetTrigger(ActionHash);
 
         if (actionCoroutine != null)

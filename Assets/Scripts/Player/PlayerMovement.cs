@@ -22,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     private float rotationSpeed = 12f;
 
     [Header("Input")]
+    [SerializeField]
+    private Joystick joystick;
+
+    [Header("Input")]
     [Tooltip("InputSystem_Actions 에셋의 Player/Move 액션을 연결")]
     [SerializeField]
     private InputActionReference moveAction;
@@ -30,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private Vector2 moveInput;
+
+    public bool useJoystick = true;
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
 
@@ -46,15 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         if (moveAction != null)
-        {
             moveAction.action.Enable();
-        }
-        else
-        {
-            Debug.LogWarning(
-                "[PlayerMovement] Move Action이 연결되지 않았습니다. Inspector에서 InputActionReference를 설정해주세요."
-            );
-        }
     }
 
     private void OnDisable()
@@ -68,8 +66,27 @@ public class PlayerMovement : MonoBehaviour
         // Vector2 (x, y) 형태로 입력값을 받음
         // 키보드 WASD/방향키 → 두 축의 -1~1 값
         // 게임패드/조이스틱 → 아날로그 -1~1 값
-        if (moveAction != null)
-            moveInput = moveAction.action.ReadValue<Vector2>();
+        // if (moveAction != null)
+        //     moveInput = moveAction.action.ReadValue<Vector2>();
+
+        if (Application.isMobilePlatform)
+        {
+            // 모바일: Joystick Pack
+            if (joystick != null)
+                moveInput = new Vector2(joystick.Horizontal, joystick.Vertical);
+        }
+        else if (useJoystick)
+        {
+            // PC + 조이스틱 테스트: Inspector에서 체크
+            if (joystick != null)
+                moveInput = new Vector2(joystick.Horizontal, joystick.Vertical);
+        }
+        else
+        {
+            // PC: Input System (키보드/게임패드)
+            if (moveAction != null)
+                moveInput = moveAction.action.ReadValue<Vector2>();
+        }
     }
 
     private void FixedUpdate()
