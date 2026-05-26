@@ -1,5 +1,14 @@
 using UnityEngine;
 
+public enum AnimalState
+{
+    Idle,
+    Roam,
+    Flee,
+    Chase,
+    Attack,
+}
+
 public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 {
     public AnimalAsset Asset;
@@ -8,11 +17,88 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     public int MaxHp => Asset.Data.MaxHP;
     public int CurrentHp => currentHp;
 
+    protected Transform PlayerTransform { get; private set; }
+
+    private AnimalState currentState;
+    protected AnimalState CurrentState
+    {
+        get => currentState;
+        set
+        {
+            currentState = value;
+            OnStateChanged(value);
+        }
+    }
+
+    private float stateTimer;
+    protected Vector3 MoveDirection { get; set; }
+
     protected virtual void Start()
     {
         Asset.Data = DataTableManager.Get<AnimalTable>("AnimalTable").Get(Asset.AnimalID);
         currentHp = Asset.Data.MaxHP;
+        PlayerTransform = PlayerSpawner.Instance.PlayerTransform;
+
+        CurrentState = AnimalState.Idle;
+        stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
     }
+
+    protected virtual void Update()
+    {
+        switch (currentState)
+        {
+            case AnimalState.Idle:
+                UpdateIdle();
+                break;
+            case AnimalState.Roam:
+                UpdateRoam();
+                break;
+        }
+    }
+
+    private void UpdateIdle()
+    {
+        stateTimer -= Time.deltaTime;
+        if (stateTimer <= 0f)
+        {
+            MoveDirection = new Vector3(
+                Random.Range(-1f, 1f),
+                0f,
+                Random.Range(-1f, 1f)
+            ).normalized;
+            transform.forward = MoveDirection;
+            CurrentState = AnimalState.Roam;
+            stateTimer = Random.Range(Asset.RoamDurationMin, Asset.RoamDurationMax);
+        }
+    }
+
+    private void UpdateRoam()
+    {
+        transform.position += MoveDirection * Asset.Data.MoveSpeed * Time.deltaTime;
+
+        stateTimer -= Time.deltaTime;
+        if (stateTimer <= 0f)
+        {
+            CurrentState = AnimalState.Idle;
+            stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
+        }
+    }
+
+    protected virtual void OnStateChanged(AnimalState newState) { }
+
+    public void TakeDamage(int damage, Vector3 hitNormal)
+    {
+        currentHp -= damage;
+        OnTakeDamage(hitNormal);
+
+        if (currentHp <= 0)
+        {
+            Drop();
+            Die();
+        }
+    }
+
+    protected abstract void OnTakeDamage(Vector3 hitNormal);
 
     public void Die()
     {
@@ -24,18 +110,4 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         if (Asset.DropPrefab != null)
             Instantiate(Asset.DropPrefab, transform.position, Quaternion.identity);
     }
-
-    public void TakeDamage(int damage, Vector3 hitNormal)
-    {
-        currentHp -= damage;
-        OnTakeDamage();
-
-        if (currentHp <= 0)
-        {
-            Drop();
-            Die();
-        }
-    } // 피격 시 자식 클래스에서 각자 반응 (도망, 공격 등)
-
-    protected abstract void OnTakeDamage();
 }

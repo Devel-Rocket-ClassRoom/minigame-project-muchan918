@@ -1,9 +1,12 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour, IDefender
 {
+    public static event Action OnPlayerDied;
+
     [Header("Stats")]
     [SerializeField]
     private int maxHp = 100;
@@ -74,6 +77,7 @@ public class PlayerHealth : MonoBehaviour, IDefender
 
     public void Die()
     {
+        OnPlayerDied?.Invoke();
         Debug.Log("죽음");
         // gameOverUI.SetActive(true);
         // GamePause.Pause();
