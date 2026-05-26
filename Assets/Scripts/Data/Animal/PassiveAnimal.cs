@@ -16,20 +16,43 @@ public class PassiveAnimal : Animal
 
     private void UpdateFlee()
     {
+        Vector3 dirFromPlayer = (transform.position - PlayerTransform.position).normalized;
+        MoveDirection = new Vector3(dirFromPlayer.x, 0f, dirFromPlayer.z).normalized;
+        transform.forward = MoveDirection;
         transform.position += MoveDirection * Asset.Data.MoveSpeed * Time.deltaTime;
 
         fleeTimer -= Time.deltaTime;
         if (fleeTimer <= 0f)
+        {
+            ResetStateTimer();
             CurrentState = AnimalState.Idle;
+        }
     }
 
     protected override void OnTakeDamage(Vector3 hitNormal)
     {
-        Vector3 dirFromPlayer = (transform.position - PlayerTransform.position).normalized;
-        MoveDirection = new Vector3(dirFromPlayer.x, 0f, dirFromPlayer.z).normalized;
-        transform.forward = MoveDirection;
-
         fleeTimer = PassiveAsset.FleeDuration;
         CurrentState = AnimalState.Flee;
+    }
+
+    protected override void OnStateChanged(AnimalState newState)
+    {
+        switch (newState)
+        {
+            case AnimalState.Idle:
+                Animator.SetTrigger(PrevState == AnimalState.Flee ? "Stop" : "Idle");
+                break;
+            case AnimalState.Roam:
+                Animator.SetTrigger("Walk");
+                break;
+            case AnimalState.Flee:
+                Animator.SetTrigger("Run");
+                break;
+        }
+    }
+
+    protected override void SetAnimatorController()
+    {
+        Animator.runtimeAnimatorController = PassiveAsset.AnimatorController;
     }
 }

@@ -43,7 +43,7 @@ public class HostileAnimal : Animal, IAttacker
 
         if (
             Vector3.Distance(transform.position, PlayerTransform.position)
-            <= HostileAsset.AttackRange
+            <= HostileAsset.EnterAttackRange
         )
             CurrentState = AnimalState.Attack;
     }
@@ -54,8 +54,11 @@ public class HostileAnimal : Animal, IAttacker
         lookAt.y = transform.position.y;
         transform.LookAt(lookAt);
 
-        float currentRange = isAttacking ? HostileAsset.RealAttackRange : HostileAsset.AttackRange;
-        if (Vector3.Distance(transform.position, PlayerTransform.position) > currentRange)
+        if (
+            !isAttacking
+            && Vector3.Distance(transform.position, PlayerTransform.position)
+                > HostileAsset.ExitAttackRange
+        )
         {
             CurrentState = AnimalState.Chase;
             return;
@@ -64,16 +67,16 @@ public class HostileAnimal : Animal, IAttacker
 
     public void OnAttackStart() => isAttacking = true;
 
-    public void OnAttackEnd() => isAttacking = false;
-
     // 애니메이션 이벤트에서 호출
     public void OnAttackHit()
     {
         if (
             Vector3.Distance(transform.position, PlayerTransform.position)
-            <= HostileAsset.RealAttackRange
+            <= HostileAsset.ExitAttackRange
         )
             Attack(PlayerTransform.GetComponent<IDefender>());
+
+        isAttacking = false;
     }
 
     public void Attack(IDefender target)
@@ -99,5 +102,45 @@ public class HostileAnimal : Animal, IAttacker
     {
         isAttacking = false;
         CurrentState = AnimalState.Idle;
+    }
+
+    protected override void OnStateChanged(AnimalState newState)
+    {
+        switch (newState)
+        {
+            case AnimalState.Idle:
+                Animator.SetTrigger(
+                    PrevState == AnimalState.Chase || PrevState == AnimalState.Attack
+                        ? "Stop"
+                        : "Idle"
+                );
+                break;
+            case AnimalState.Roam:
+                Animator.SetTrigger("Walk");
+                break;
+            case AnimalState.Chase:
+                Animator.SetTrigger("Run");
+                break;
+            case AnimalState.Attack:
+                Animator.SetTrigger("Attack");
+                break;
+        }
+    }
+
+    protected override void SetAnimatorController()
+    {
+        Animator.runtimeAnimatorController = HostileAsset.AnimatorController;
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (HostileAsset == null)
+            return;
+
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, HostileAsset.EnterAttackRange);
+
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, HostileAsset.ExitAttackRange);
     }
 }

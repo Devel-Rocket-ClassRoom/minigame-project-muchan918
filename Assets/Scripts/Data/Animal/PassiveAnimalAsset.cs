@@ -7,4 +7,5 @@ using UnityEngine;
 public class PassiveAnimalAsset : AnimalAsset
 {
     public float FleeDuration;
+    public RuntimeAnimatorController AnimatorController;
 }

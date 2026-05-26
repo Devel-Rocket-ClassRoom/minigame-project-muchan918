@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: bear
   DropPrefab: {fileID: 0}
-  Damage: 0
-  AttackCooldown: 0
+  IdleDurationMin: 2
+  IdleDurationMax: 4
+  RoamDurationMin: 3
+  RoamDurationMax: 5
+  Damage: 1
+  EnterAttackRange: 1
+  ExitAttackRange: 1.6
+  AnimatorController: {fileID: 9100000, guid: 0cf7efe9a797e2747993b87536c4f9c0, type: 2}
