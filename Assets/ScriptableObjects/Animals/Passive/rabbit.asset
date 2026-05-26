@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: rabbit
   DropPrefab: {fileID: 0}
-  FleeDuration: 0
+  IdleDurationMin: 2
+  IdleDurationMax: 4
+  RoamDurationMin: 3
+  RoamDurationMax: 5
+  FleeDuration: 3

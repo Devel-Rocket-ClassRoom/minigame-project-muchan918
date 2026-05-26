@@ -16,7 +16,7 @@ public class FixQuirkyMaterials : EditorWindow
 
         string[] guids = AssetDatabase.FindAssets(
             "t:Material",
-            new[] { "Assets/Imported/Quirky Series Vol 3" }
+            new[] { "Assets/Imported/Quirky Series" }
         );
         int count = 0;
 
