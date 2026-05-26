@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.97117877
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
@@ -2151,6 +2151,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 299019899}
     m_Modifications:
+    - target: {fileID: 459841012203698171, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2286046686412975956, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_Name
       value: Inventory
@@ -2173,7 +2177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2354719749153065472, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -94.69971
+      value: -131.76917
       objectReference: {fileID: 0}
     - target: {fileID: 3797442257898432797, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_Pivot.x
@@ -2278,6 +2282,10 @@ PrefabInstance:
     - target: {fileID: 8360582239086766007, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8914082914844691740, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.97117877
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3431,6 +3439,7 @@ GameObject:
   - component: {fileID: 878268773}
   - component: {fileID: 878268774}
   - component: {fileID: 878268775}
+  - component: {fileID: 878268776}
   m_Layer: 0
   m_Name: Test
   m_TagString: Untagged
@@ -3515,6 +3524,26 @@ MonoBehaviour:
   - {fileID: 8235817832714090928, guid: 8dac292389ff353429a75ecd116bdea5, type: 3}
   - {fileID: 750520753856365691, guid: 525209b0ffc829141a3215f584cb83e0, type: 3}
   waterTilePrefab: {fileID: 1526672358175396467, guid: 6e6c36f9b2da5bb4aa99346c1e56f742, type: 3}
+--- !u!114 &878268776
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 878268770}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e55137edd28638429801d869352d2f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceGenerator
+  nearZoneRadius: 50
+  midZoneRadius: 100
+  nearZone:
+  - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
+    spawnTileType: 0
+    spawnChance: 0.022
+  midZone: []
+  farZone: []
 --- !u!1001 &902367661
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3570,6 +3599,10 @@ PrefabInstance:
     - target: {fileID: 5972542745036174205, guid: 7829ffac68ffe624cb6f2fdd3f39003d, type: 3}
       propertyPath: m_Name
       value: Bear
+      objectReference: {fileID: 0}
+    - target: {fileID: 5972542745036174205, guid: 7829ffac68ffe624cb6f2fdd3f39003d, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3630,6 +3663,10 @@ PrefabInstance:
     - target: {fileID: 7100625709073867658, guid: 50bf0d89f095438448e61792c16f8bef, type: 3}
       propertyPath: m_Name
       value: Rabbit
+      objectReference: {fileID: 0}
+    - target: {fileID: 7100625709073867658, guid: 50bf0d89f095438448e61792c16f8bef, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7100625709073867663, guid: 50bf0d89f095438448e61792c16f8bef, type: 3}
       propertyPath: m_Controller

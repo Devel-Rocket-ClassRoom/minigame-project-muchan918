@@ -18,13 +18,16 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     public int CurrentHp => currentHp;
 
     protected Transform PlayerTransform { get; private set; }
+    protected Animator Animator { get; private set; }
 
     private AnimalState currentState;
+    protected AnimalState PrevState { get; private set; }
     protected AnimalState CurrentState
     {
         get => currentState;
         set
         {
+            PrevState = currentState;
             currentState = value;
             OnStateChanged(value);
         }
@@ -38,10 +41,14 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         Asset.Data = DataTableManager.Get<AnimalTable>("AnimalTable").Get(Asset.AnimalID);
         currentHp = Asset.Data.MaxHP;
         PlayerTransform = PlayerSpawner.Instance.PlayerTransform;
+        Animator = GetComponent<Animator>();
+        SetAnimatorController();
 
         CurrentState = AnimalState.Idle;
         stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
     }
+
+    protected virtual void SetAnimatorController() { }
 
     protected virtual void Update()
     {
@@ -109,5 +116,10 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     {
         if (Asset.DropPrefab != null)
             Instantiate(Asset.DropPrefab, transform.position, Quaternion.identity);
+    }
+
+    protected void ResetStateTimer()
+    {
+        stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
     }
 }

@@ -13,9 +13,10 @@ MonoBehaviour:
   m_Name: rabbit
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: rabbit
-  DropPrefab: {fileID: 0}
+  DropPrefab: {fileID: 210965813999700127, guid: 778c8f1ca27464844aeccaba1f2d05fd, type: 3}
   IdleDurationMin: 2
   IdleDurationMax: 4
   RoamDurationMin: 3
   RoamDurationMax: 5
   FleeDuration: 3
+  AnimatorController: {fileID: 9100000, guid: c385039b209117f4abe7dcc9e1a6ff94, type: 2}
