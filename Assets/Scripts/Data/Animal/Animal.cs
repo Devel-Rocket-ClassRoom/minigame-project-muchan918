@@ -74,8 +74,8 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
                 Random.Range(-1f, 1f)
             ).normalized;
             transform.forward = MoveDirection;
-            CurrentState = AnimalState.Roam;
             stateTimer = Random.Range(Asset.RoamDurationMin, Asset.RoamDurationMax);
+            CurrentState = AnimalState.Roam;
         }
     }
 
@@ -86,8 +86,8 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         stateTimer -= Time.deltaTime;
         if (stateTimer <= 0f)
         {
-            CurrentState = AnimalState.Idle;
             stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
+            CurrentState = AnimalState.Idle;
         }
     }
 
