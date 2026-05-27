@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6104802519916053856}
   - component: {fileID: 5668834250696901350}
   - component: {fileID: 7216851680056431489}
+  - component: {fileID: -122180184899692004}
   m_Layer: 10
   m_Name: HarvestableStone
   m_TagString: Untagged
@@ -68,6 +69,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceObject
   Asset: {fileID: 11400000, guid: 2e2a07cba7de66c469ad58a761004309, type: 2}
+--- !u!208 &-122180184899692004
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6335314228145748445}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.5, y: 0.5, z: 0.5}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0.5
 --- !u!1001 &3862597490442767747
 PrefabInstance:
   m_ObjectHideFlags: 0

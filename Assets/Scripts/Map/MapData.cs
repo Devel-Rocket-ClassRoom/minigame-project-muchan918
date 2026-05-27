@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public enum TileType
@@ -11,6 +12,7 @@ public class MapData
 {
     public readonly int Width;
     public readonly int Height;
+    public readonly List<Vector2Int> GroundTiles = new();
 
     private readonly TileType[,] _tiles;
     private readonly int _baseSize = 30;
@@ -21,6 +23,7 @@ public class MapData
         Height = height;
         _tiles = new TileType[height, width];
         Generate(seed);
+        CacheTiles();
     }
 
     private void Generate(int seed)
@@ -46,6 +49,24 @@ public class MapData
         for (int x = 0; x < Width; x++)
             if (_tiles[y, x] == TileType.Ground && random.NextDouble() < 0.3)
                 _tiles[y, x] = TileType.GrassGround;
+    }
+
+    private void CacheTiles()
+    {
+        int halfWidth = Width / 2;
+        int halfHeight = Height / 2;
+        int baseHalf = _baseSize / 2;
+
+        for (int y = 0; y < Height; y++)
+        for (int x = 0; x < Width; x++)
+        {
+            int wx = x - halfWidth;
+            int wy = y - halfHeight;
+            if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
+                continue;
+            if (_tiles[y, x] == TileType.Ground)
+                GroundTiles.Add(new Vector2Int(wx, wy));
+        }
     }
 
     private void Spread(
