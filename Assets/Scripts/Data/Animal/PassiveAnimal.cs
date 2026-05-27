@@ -13,22 +13,17 @@ public class PassiveAnimal : Animal
 
         if (CurrentState == AnimalState.Flee)
             UpdateFlee();
-
-        // velocity 기반으로 Walk/Idle 애니메이션 전환
-        if (CurrentState == AnimalState.Roam || CurrentState == AnimalState.Flee)
-        {
-            int animState = Agent.velocity.sqrMagnitude > 0.01f ? 1 : 0;
-            Animator.SetInteger("State", animState);
-        }
     }
 
     private void UpdateFlee()
     {
-        Vector3 fleePos =
-            transform.position + (transform.position - PlayerTransform.position).normalized * 10f;
+        Vector3 fleeDir = (transform.position - PlayerTransform.position).normalized;
+        Vector3 fleePos = transform.position + fleeDir * 10f;
 
         if (NavMesh.SamplePosition(fleePos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             Agent.SetDestination(hit.position);
+        else
+            Agent.SetDestination(transform.position + fleeDir * 3f); // 실패 시 짧게라도 이동
 
         if (Agent.velocity.sqrMagnitude > 0.01f)
         {
@@ -54,7 +49,8 @@ public class PassiveAnimal : Animal
     protected override void OnTakeDamage(Vector3 hitNormal)
     {
         fleeTimer = PassiveAsset.FleeDuration;
-        CurrentState = AnimalState.Flee;
+        if (CurrentState != AnimalState.Flee)
+            CurrentState = AnimalState.Flee;
         Debug.Log("데미지 받음");
     }
 
@@ -67,8 +63,10 @@ public class PassiveAnimal : Animal
                 Agent.ResetPath();
                 break;
             case AnimalState.Roam:
+                Animator.SetInteger("State", 1);
+                break;
             case AnimalState.Flee:
-                // 상태 전환 시점엔 애니메이션 바꾸지 않고 velocity로 판단
+                Animator.SetInteger("State", 2);
                 break;
         }
     }
