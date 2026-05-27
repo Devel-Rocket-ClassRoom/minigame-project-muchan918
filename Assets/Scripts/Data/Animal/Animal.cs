@@ -31,6 +31,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         {
             PrevState = currentState;
             currentState = value;
+            // Debug.Log($"[{gameObject.name}] State: {PrevState} → {currentState}");
             OnStateChanged(value);
         }
     }
@@ -82,9 +83,15 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
             Vector3 targetPos = transform.position + randomDir * Random.Range(3f, 8f);
 
             if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            {
                 Agent.SetDestination(hit.position);
-
-            CurrentState = AnimalState.Roam;
+                CurrentState = AnimalState.Roam;
+            }
+            else
+            {
+                // 유효한 위치 못 찾으면 타이머 리셋하고 다시 대기
+                stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
+            }
         }
     }
 
@@ -102,9 +109,15 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
             );
         }
 
-        // 목적지에 도착하면 Idle로
-        if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
+        if (Agent.pathPending)
+            return;
+
+        if (
+            Agent.remainingDistance <= Agent.stoppingDistance
+            && Agent.velocity.sqrMagnitude < 0.01f
+        )
         {
+            Agent.ResetPath();
             stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
             CurrentState = AnimalState.Idle;
         }

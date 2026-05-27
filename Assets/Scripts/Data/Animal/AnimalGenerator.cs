@@ -7,28 +7,21 @@ public class AnimalGenerator : MonoBehaviour
     [System.Serializable]
     public class AnimalSpawnEntry
     {
-        public GameObject prefab; // Animal 컴포넌트가 붙은 프리팹
+        public GameObject prefab;
 
-        [Range(0f, 1f)]
-        public float spawnChance;
+        [Min(0)]
+        public int spawnCount;
     }
 
-    [Header("Zone 경계 (중심에서 거리 기준)")]
-    [SerializeField]
-    private float nearZoneRadius = 50f;
-
-    [SerializeField]
-    private float midZoneRadius = 100f;
-
-    [Header("Near Zone (희귀한 것 먼저)")]
+    [Header("Near Zone")]
     [SerializeField]
     private List<AnimalSpawnEntry> nearZone;
 
-    [Header("Mid Zone (희귀한 것 먼저)")]
+    [Header("Mid Zone")]
     [SerializeField]
     private List<AnimalSpawnEntry> midZone;
 
-    [Header("Far Zone (희귀한 것 먼저)")]
+    [Header("Far Zone")]
     [SerializeField]
     private List<AnimalSpawnEntry> farZone;
 
@@ -48,28 +41,58 @@ public class AnimalGenerator : MonoBehaviour
         animalParent = new GameObject("Animals").transform;
         animalParent.SetParent(transform);
 
-        StartCoroutine(SpawnCoroutine());
-    }
-
-    private IEnumerator SpawnCoroutine()
-    {
         MapData mapData = tileMapGenerator.MapData;
         System.Random random = new System.Random(Random.Range(1, 999999));
 
-        int count = 0;
-        int spawnPerFrame = 300;
+        var nearTiles = GetAvailableTiles(mapData.NearTiles, mapData);
+        var midTiles = GetAvailableTiles(mapData.MidTiles, mapData);
+        var farTiles = GetAvailableTiles(mapData.FarTiles, mapData);
 
-        foreach (var coord in mapData.GroundTiles)
+        Shuffle(nearTiles, random);
+        Shuffle(midTiles, random);
+        Shuffle(farTiles, random);
+
+        SpawnZone(nearZone, nearTiles, mapData);
+        SpawnZone(midZone, midTiles, mapData);
+        SpawnZone(farZone, farTiles, mapData);
+    }
+
+    private List<Vector2Int> GetAvailableTiles(List<Vector2Int> tiles, MapData mapData)
+    {
+        var result = new List<Vector2Int>();
+        foreach (var coord in tiles)
         {
-            float dist = Mathf.Sqrt(coord.x * coord.x + coord.y * coord.y);
-            List<AnimalSpawnEntry> zone = GetZone(dist);
+            int x = coord.x + mapData.Width / 2;
+            int y = coord.y + mapData.Height / 2;
+            if (mapData.GetTile(x, y) != TileType.Resource)
+                result.Add(coord);
+        }
+        return result;
+    }
 
-            foreach (var entry in zone)
+    private void SpawnZone(List<AnimalSpawnEntry> zone, List<Vector2Int> tiles, MapData mapData)
+    {
+        int tileIndex = 0;
+
+        foreach (var entry in zone)
+        {
+            if (entry.prefab == null || entry.spawnCount <= 0)
+                continue;
+
+            int spawned = 0;
+
+            while (spawned < entry.spawnCount)
             {
-                if (entry.prefab == null)
-                    continue;
-                if (random.NextDouble() > entry.spawnChance)
-                    continue;
+                if (tileIndex >= tiles.Count)
+                {
+                    Debug.LogWarning(
+                        $"[AnimalGenerator] '{entry.prefab.name}' {entry.spawnCount}마리 목표 중 "
+                            + $"{spawned}마리만 스폰됨 (타일 부족)"
+                    );
+                    break;
+                }
+
+                var coord = tiles[tileIndex++];
 
                 Instantiate(
                     entry.prefab,
@@ -77,26 +100,19 @@ public class AnimalGenerator : MonoBehaviour
                     Quaternion.identity,
                     animalParent
                 );
-                break;
-            }
 
-            count++;
-            if (count >= spawnPerFrame)
-            {
-                count = 0;
-                yield return null;
+                mapData.SetTile(coord, TileType.Resource);
+                spawned++;
             }
         }
-
-        Debug.Log("동물 생성 완료");
     }
 
-    private List<AnimalSpawnEntry> GetZone(float distance)
+    private static void Shuffle<T>(List<T> list, System.Random random)
     {
-        if (distance <= nearZoneRadius)
-            return nearZone;
-        if (distance <= midZoneRadius)
-            return midZone;
-        return farZone;
+        for (int i = list.Count - 1; i > 0; i--)
+        {
+            int j = random.Next(0, i + 1);
+            (list[i], list[j]) = (list[j], list[i]);
+        }
     }
 }

@@ -13,6 +13,13 @@ public class PassiveAnimal : Animal
 
         if (CurrentState == AnimalState.Flee)
             UpdateFlee();
+
+        // velocity 기반으로 Walk/Idle 애니메이션 전환
+        if (CurrentState == AnimalState.Roam || CurrentState == AnimalState.Flee)
+        {
+            int animState = Agent.velocity.sqrMagnitude > 0.01f ? 1 : 0;
+            Animator.SetInteger("State", animState);
+        }
     }
 
     private void UpdateFlee()
@@ -48,6 +55,7 @@ public class PassiveAnimal : Animal
     {
         fleeTimer = PassiveAsset.FleeDuration;
         CurrentState = AnimalState.Flee;
+        Debug.Log("데미지 받음");
     }
 
     protected override void OnStateChanged(AnimalState newState)
@@ -56,12 +64,11 @@ public class PassiveAnimal : Animal
         {
             case AnimalState.Idle:
                 Animator.SetInteger("State", 0);
+                Agent.ResetPath();
                 break;
             case AnimalState.Roam:
-                Animator.SetInteger("State", 1);
-                break;
             case AnimalState.Flee:
-                Animator.SetInteger("State", 2);
+                // 상태 전환 시점엔 애니메이션 바꾸지 않고 velocity로 판단
                 break;
         }
     }

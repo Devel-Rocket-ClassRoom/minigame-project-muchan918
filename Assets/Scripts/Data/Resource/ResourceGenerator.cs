@@ -13,13 +13,6 @@ public class ResourceGenerator : MonoBehaviour
         public float spawnChance;
     }
 
-    [Header("Zone 경계 (중심에서 거리 기준)")]
-    [SerializeField]
-    private float nearZoneRadius = 50f;
-
-    [SerializeField]
-    private float midZoneRadius = 100f;
-
     [Header("Near Zone (희귀한 것 먼저)")]
     [SerializeField]
     private List<ResourceSpawnEntry> nearZone;
@@ -48,23 +41,32 @@ public class ResourceGenerator : MonoBehaviour
 
         resourceParent = new GameObject("Resources").transform;
         resourceParent.SetParent(transform);
-
-        StartCoroutine(SpawnCoroutine());
     }
 
-    private IEnumerator SpawnCoroutine()
+    public IEnumerator SpawnCoroutine()
     {
+        Generate();
+
         MapData mapData = tileMapGenerator.MapData;
         System.Random random = new System.Random(Random.Range(1, 999999));
 
+        yield return SpawnZone(mapData.NearTiles, nearZone, mapData, random);
+        yield return SpawnZone(mapData.MidTiles, midZone, mapData, random);
+        yield return SpawnZone(mapData.FarTiles, farZone, mapData, random);
+    }
+
+    private IEnumerator SpawnZone(
+        List<Vector2Int> tiles,
+        List<ResourceSpawnEntry> zone,
+        MapData mapData,
+        System.Random random
+    )
+    {
         int count = 0;
-        int spawnPerFrame = 300;
+        const int spawnPerFrame = 300;
 
-        foreach (var coord in mapData.GroundTiles)
+        foreach (var coord in tiles)
         {
-            float dist = Mathf.Sqrt(coord.x * coord.x + coord.y * coord.y);
-            List<ResourceSpawnEntry> zone = GetZone(dist);
-
             foreach (var entry in zone)
             {
                 if (entry.prefab == null)
@@ -78,6 +80,8 @@ public class ResourceGenerator : MonoBehaviour
                     Quaternion.identity,
                     resourceParent
                 );
+
+                mapData.SetTile(coord, TileType.Resource);
                 break;
             }
 
@@ -88,17 +92,5 @@ public class ResourceGenerator : MonoBehaviour
                 yield return null;
             }
         }
-
-        Debug.Log("자원 생성 완료");
-        GamePause.Resume();
-    }
-
-    private List<ResourceSpawnEntry> GetZone(float distance)
-    {
-        if (distance <= nearZoneRadius)
-            return nearZone;
-        if (distance <= midZoneRadius)
-            return midZone;
-        return farZone;
     }
 }
