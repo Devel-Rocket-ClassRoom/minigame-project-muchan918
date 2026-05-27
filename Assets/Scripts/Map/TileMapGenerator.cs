@@ -6,13 +6,20 @@ public class TileMapGenerator : MonoBehaviour
 {
     [Header("맵 설정")]
     [SerializeField]
-    private int mapWidth = 300;
+    private int mapWidth = 200;
 
     [SerializeField]
-    private int mapHeight = 300;
+    private int mapHeight = 200;
 
     [SerializeField]
     private int seed = 0;
+
+    [Header("Zone 경계 (중심에서 거리 기준)")]
+    [SerializeField]
+    private float nearZoneRadius = 50f;
+
+    [SerializeField]
+    private float midZoneRadius = 100f;
 
     [Header("타일 프리팹")]
     [SerializeField]
@@ -27,12 +34,14 @@ public class TileMapGenerator : MonoBehaviour
     private MapData _mapData;
     private Transform _groundParent;
     private ResourceGenerator resourceGenerator;
+    private AnimalGenerator animalGenerator;
 
     public MapData MapData => _mapData;
 
     private void Awake()
     {
         resourceGenerator = GetComponent<ResourceGenerator>();
+        animalGenerator = GetComponent<AnimalGenerator>();
     }
 
     private void Start()
@@ -54,57 +63,63 @@ public class TileMapGenerator : MonoBehaviour
         GamePause.Pause();
 
         int usedSeed = seed == 0 ? Random.Range(1, 999999) : seed;
-        _mapData = new MapData(mapWidth, mapHeight, usedSeed);
+        _mapData = new MapData(mapWidth, mapHeight, usedSeed, nearZoneRadius, midZoneRadius);
 
         _groundParent = new GameObject("Ground").transform;
         _groundParent.SetParent(transform);
 
-        StartCoroutine(SpawnTilesCoroutine());
+        StartCoroutine(GenerateSequence());
+    }
+
+    private IEnumerator GenerateSequence()
+    {
+        yield return StartCoroutine(SpawnTilesCoroutine());
+        Debug.Log("맵 생성 완료");
+
+        yield return StartCoroutine(resourceGenerator.SpawnCoroutine());
+        Debug.Log("자원 생성 완료");
+
+        animalGenerator.Generate();
+        Debug.Log("동물 생성 완료");
+
+        GamePause.Resume();
     }
 
     private IEnumerator SpawnTilesCoroutine()
     {
-        int tilesPerFrame = 500;
         int count = 0;
+        int tilesPerFrame = 500;
         int halfWidth = mapWidth / 2;
         int halfHeight = mapHeight / 2;
-        int baseHalf = 15; // 30x30의 절반
+        int baseHalf = 15;
 
         for (int y = 0; y < mapHeight; y++)
+        for (int x = 0; x < mapWidth; x++)
         {
-            for (int x = 0; x < mapWidth; x++)
+            int wx = x - halfWidth;
+            int wy = y - halfHeight;
+            if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
+                continue;
+
+            TileType type = _mapData.GetTile(x, y);
+
+            GameObject prefab;
+            if (type == TileType.Water)
+                prefab = waterTilePrefab;
+            else if (type == TileType.GrassGround)
+                prefab = grassGroundTilePrefabs[Random.Range(0, grassGroundTilePrefabs.Length)];
+            else
+                prefab = groundTilePrefabs[Random.Range(0, groundTilePrefabs.Length)];
+
+            Instantiate(prefab, new Vector3(wx, 0f, wy), Quaternion.identity, _groundParent);
+
+            count++;
+            if (count >= tilesPerFrame)
             {
-                // 중앙 30x30 스킵
-                int wx = x - halfWidth;
-                int wy = y - halfHeight;
-                if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
-                    continue;
-
-                TileType type = _mapData.GetTile(x, y);
-
-                GameObject prefab;
-                if (type == TileType.Water)
-                    prefab = waterTilePrefab;
-                else if (type == TileType.GrassGround)
-                    prefab = grassGroundTilePrefabs[Random.Range(0, grassGroundTilePrefabs.Length)];
-                else
-                    prefab = groundTilePrefabs[Random.Range(0, groundTilePrefabs.Length)];
-
-                Vector3 pos = new Vector3(x - halfWidth, 0f, y - halfHeight);
-                Instantiate(prefab, pos, Quaternion.identity, _groundParent);
-
-                count++;
-                if (count >= tilesPerFrame)
-                {
-                    count = 0;
-                    yield return null;
-                }
+                count = 0;
+                yield return null;
             }
         }
-
-        Debug.Log("맵 생성 완료");
-        //GamePause.Resume();
-        resourceGenerator.Generate();
     }
 
     private void ClearMap()

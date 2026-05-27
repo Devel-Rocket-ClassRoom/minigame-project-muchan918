@@ -6,22 +6,31 @@ public enum TileType
     Ground,
     GrassGround,
     Water,
+    Resource,
 }
 
 public class MapData
 {
     public readonly int Width;
     public readonly int Height;
-    public readonly List<Vector2Int> GroundTiles = new();
+
+    public readonly List<Vector2Int> NearTiles = new();
+    public readonly List<Vector2Int> MidTiles = new();
+    public readonly List<Vector2Int> FarTiles = new();
 
     private readonly TileType[,] _tiles;
     private readonly int _baseSize = 30;
 
-    public MapData(int width, int height, int seed)
+    private readonly float _nearZoneRadius;
+    private readonly float _midZoneRadius;
+
+    public MapData(int width, int height, int seed, float nearZoneRadius, float midZoneRadius)
     {
         Width = width;
         Height = height;
         _tiles = new TileType[height, width];
+        _nearZoneRadius = nearZoneRadius;
+        _midZoneRadius = midZoneRadius;
         Generate(seed);
         CacheTiles();
     }
@@ -62,11 +71,30 @@ public class MapData
         {
             int wx = x - halfWidth;
             int wy = y - halfHeight;
+
             if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
                 continue;
-            if (_tiles[y, x] == TileType.Ground)
-                GroundTiles.Add(new Vector2Int(wx, wy));
+            if (_tiles[y, x] != TileType.Ground)
+                continue;
+
+            float dist = Mathf.Sqrt(wx * wx + wy * wy);
+            var coord = new Vector2Int(wx, wy);
+
+            if (dist < _nearZoneRadius)
+                NearTiles.Add(coord);
+            else if (dist < _midZoneRadius)
+                MidTiles.Add(coord);
+            else
+                FarTiles.Add(coord);
         }
+    }
+
+    public void SetTile(Vector2Int worldCoord, TileType type)
+    {
+        int x = worldCoord.x + Width / 2;
+        int y = worldCoord.y + Height / 2;
+        if (InBounds(x, y))
+            _tiles[y, x] = type;
     }
 
     private void Spread(
