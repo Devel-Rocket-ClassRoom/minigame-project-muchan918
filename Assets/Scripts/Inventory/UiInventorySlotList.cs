@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,9 +16,6 @@ public class UiInventorySlotList : MonoBehaviour
 
     [SerializeField]
     private TextMeshProUGUI capacityText;
-
-    [SerializeField]
-    private GameObject fullPopup;
 
     [Header("Drop")]
     [SerializeField]
@@ -37,8 +35,6 @@ public class UiInventorySlotList : MonoBehaviour
     private void Awake()
     {
         uiItemInfo.SetEmpty();
-        if (fullPopup != null)
-            fullPopup.SetActive(false);
         UpdateCapacityText();
     }
 
@@ -68,10 +64,6 @@ public class UiInventorySlotList : MonoBehaviour
             asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
 
         bool success = TryAddItemData(asset);
-
-        if (!success)
-            ShowFullPopup();
-
         UpdateSlots();
         return success;
     }
@@ -85,10 +77,7 @@ public class UiInventorySlotList : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             if (!TryAddItemData(asset))
-            {
-                ShowFullPopup();
                 break;
-            }
             moved++;
         }
 
@@ -165,10 +154,23 @@ public class UiInventorySlotList : MonoBehaviour
                 slotList[i]
                     .button.onClick.AddListener(() =>
                     {
+                        if (selectedSlotIndex == capturedIndex)
+                        {
+                            slotList[capturedIndex].SetNormal();
+                            selectedSlotIndex = -1;
+                            uiItemInfo.SetEmpty();
+                            return;
+                        }
+
+                        if (selectedSlotIndex != -1 && selectedSlotIndex < slotList.Count)
+                            slotList[selectedSlotIndex].SetNormal();
+
                         selectedSlotIndex = capturedIndex;
+                        slotList[capturedIndex].SetSelected();
                         uiItemInfo.SetItem(slotDataList[capturedIndex].asset);
                     });
                 slotList[i].SetItem(slotDataList[i].asset, slotDataList[i].amount);
+                slotList[i].SetNormal();
             }
             else
             {
@@ -220,19 +222,6 @@ public class UiInventorySlotList : MonoBehaviour
         if (capacityText == null)
             return;
         capacityText.text = $"{slotDataList.Count} / {maxSlots}";
-    }
-
-    private void ShowFullPopup()
-    {
-        if (fullPopup == null)
-            return;
-        fullPopup.SetActive(true);
-    }
-
-    public void OnClickCloseFullPopup()
-    {
-        if (fullPopup != null)
-            fullPopup.SetActive(false);
     }
 
     public void OnClickDrop()
