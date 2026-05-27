@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,6 +16,9 @@ public class StoragePlayerInventory : MonoBehaviour
     public int SelectedSlotIndex => selectedSlotIndex;
 
     public System.Action<int> OnSlotClicked;
+
+    [SerializeField]
+    private TextMeshProUGUI capacityText;
 
     private void Awake()
     {
@@ -65,6 +69,7 @@ public class StoragePlayerInventory : MonoBehaviour
         }
 
         selectedSlotIndex = -1;
+        UpdateCapacityText();
     }
 
     public ItemAsset GetSelectedAsset()
@@ -103,5 +108,12 @@ public class StoragePlayerInventory : MonoBehaviour
 
         selectedSlotIndex = -1;
         UpdateSlots();
+    }
+
+    private void UpdateCapacityText()
+    {
+        if (capacityText == null)
+            return;
+        capacityText.text = $"{slotDataList.Count} / {playerInventory.SlotList.MaxSlots}";
     }
 }
