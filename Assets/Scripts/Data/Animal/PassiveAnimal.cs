@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class PassiveAnimal : Animal
 {
@@ -16,14 +17,28 @@ public class PassiveAnimal : Animal
 
     private void UpdateFlee()
     {
-        Vector3 dirFromPlayer = (transform.position - PlayerTransform.position).normalized;
-        MoveDirection = new Vector3(dirFromPlayer.x, 0f, dirFromPlayer.z).normalized;
-        transform.forward = MoveDirection;
-        transform.position += MoveDirection * Asset.Data.MoveSpeed * Time.deltaTime;
+        Vector3 fleePos =
+            transform.position + (transform.position - PlayerTransform.position).normalized * 10f;
+
+        if (NavMesh.SamplePosition(fleePos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+            Agent.SetDestination(hit.position);
+
+        if (Agent.velocity.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(
+                new Vector3(Agent.velocity.x, 0f, Agent.velocity.z)
+            );
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                10f * Time.deltaTime
+            );
+        }
 
         fleeTimer -= Time.deltaTime;
         if (fleeTimer <= 0f)
         {
+            Agent.ResetPath();
             ResetStateTimer();
             CurrentState = AnimalState.Idle;
         }

@@ -36,16 +36,28 @@ public class HostileAnimal : Animal, IAttacker
 
     private void UpdateChase()
     {
-        Vector3 dir = (PlayerTransform.position - transform.position).normalized;
-        dir.y = 0f;
-        transform.forward = dir;
-        transform.position += dir * Asset.Data.MoveSpeed * Time.deltaTime;
+        Agent.SetDestination(PlayerTransform.position);
+
+        if (Agent.velocity.sqrMagnitude > 0.01f)
+        {
+            Quaternion targetRot = Quaternion.LookRotation(
+                new Vector3(Agent.velocity.x, 0f, Agent.velocity.z)
+            );
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                10f * Time.deltaTime
+            );
+        }
 
         if (
             Vector3.Distance(transform.position, PlayerTransform.position)
             <= HostileAsset.EnterAttackRange
         )
+        {
+            Agent.ResetPath();
             CurrentState = AnimalState.Attack;
+        }
     }
 
     private void UpdateAttack()

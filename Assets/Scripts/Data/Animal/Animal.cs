@@ -46,6 +46,8 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         Animator = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();
         Agent.speed = Asset.Data.MoveSpeed;
+        Agent.acceleration = 100f;
+        Agent.updateRotation = false;
         SetAnimatorController();
 
         CurrentState = AnimalState.Idle;
@@ -72,7 +74,6 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         stateTimer -= Time.deltaTime;
         if (stateTimer <= 0f)
         {
-            // NavMesh 위의 랜덤 지점으로 이동
             Vector3 randomDir = new Vector3(
                 Random.Range(-1f, 1f),
                 0f,
@@ -83,7 +84,6 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
             if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
                 Agent.SetDestination(hit.position);
 
-            stateTimer = Random.Range(Asset.RoamDurationMin, Asset.RoamDurationMax);
             CurrentState = AnimalState.Roam;
         }
     }
@@ -91,12 +91,20 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     private void UpdateRoam()
     {
         if (Agent.velocity.sqrMagnitude > 0.01f)
-            transform.forward = new Vector3(Agent.velocity.x, 0f, Agent.velocity.z).normalized;
-
-        stateTimer -= Time.deltaTime;
-        if (stateTimer <= 0f)
         {
-            Agent.ResetPath();
+            Quaternion targetRot = Quaternion.LookRotation(
+                new Vector3(Agent.velocity.x, 0f, Agent.velocity.z)
+            );
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRot,
+                10f * Time.deltaTime
+            );
+        }
+
+        // 목적지에 도착하면 Idle로
+        if (!Agent.pathPending && Agent.remainingDistance <= Agent.stoppingDistance)
+        {
             stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
             CurrentState = AnimalState.Idle;
         }
