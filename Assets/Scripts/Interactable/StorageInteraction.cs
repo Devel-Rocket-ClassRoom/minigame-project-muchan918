@@ -1,3 +1,5 @@
+using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class StorageInteraction : MonoBehaviour, IInteractable
@@ -15,6 +17,18 @@ public class StorageInteraction : MonoBehaviour, IInteractable
     [SerializeField]
     private GameObject buttonsPanel;
 
+    [Header("Full Popup")]
+    [SerializeField]
+    private GameObject fullPopup;
+
+    [SerializeField]
+    private TextMeshProUGUI fullPopupText;
+
+    [SerializeField]
+    private float fullPopupDuration = 1f;
+
+    private Coroutine fullPopupCoroutine;
+
     [Header("Components")]
     [SerializeField]
     private StorageInventory storageInventory;
@@ -30,6 +44,7 @@ public class StorageInteraction : MonoBehaviour, IInteractable
     {
         storagePanel.SetActive(false);
         buttonsPanel.SetActive(false);
+        fullPopup.SetActive(false);
 
         storageInventory.OnSlotClicked += (previousIndex) =>
         {
@@ -100,19 +115,47 @@ public class StorageInteraction : MonoBehaviour, IInteractable
 
         if (fromStorage)
         {
-            storageInventory.RemoveFromSelected(amount);
-            playerInventory.SlotList.AddItem(selectedAsset, amount);
-            playerInventoryMirror.UpdateSlots();
+            int moved = playerInventory.SlotList.AddItem(selectedAsset, amount);
+            if (moved > 0)
+            {
+                storageInventory.RemoveFromSelected(moved);
+                playerInventoryMirror.UpdateSlots();
+            }
+            if (moved < amount)
+                ShowFullPopup("인벤토리가 가득 찼습니다.");
         }
         else
         {
-            playerInventoryMirror.RemoveFromSelected(amount);
-            storageInventory.AddItem(selectedAsset, amount);
-            playerInventoryMirror.UpdateSlots();
+            int moved = storageInventory.AddItem(selectedAsset, amount);
+            if (moved > 0)
+            {
+                playerInventoryMirror.RemoveFromSelected(moved);
+                playerInventoryMirror.UpdateSlots();
+            }
+            if (moved < amount)
+                ShowFullPopup("창고가 가득 찼습니다.");
         }
 
         playerInventory.SlotList.UpdateSlots();
         ResetSelection();
+    }
+
+    private void ShowFullPopup(string message)
+    {
+        fullPopupText.text = message;
+
+        if (fullPopupCoroutine != null)
+            StopCoroutine(fullPopupCoroutine);
+
+        fullPopupCoroutine = StartCoroutine(FullPopupRoutine());
+    }
+
+    private IEnumerator FullPopupRoutine()
+    {
+        fullPopup.SetActive(true);
+        yield return new WaitForSecondsRealtime(fullPopupDuration);
+        fullPopup.SetActive(false);
+        fullPopupCoroutine = null;
     }
 
     private void ResetSelection()

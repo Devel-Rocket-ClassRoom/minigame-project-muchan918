@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,16 @@ public class StorageInventory : MonoBehaviour
 {
     public UiInventorySlot prefab;
     public ScrollRect scrollRect;
+
+    [Header("Capacity")]
+    [SerializeField]
+    private int maxSlots = 20;
+
+    [SerializeField]
+    private TextMeshProUGUI capacityText;
+
+    public int MaxSlots => maxSlots;
+    public bool IsFull => slotDataList.Count >= maxSlots;
 
     private List<UiInventorySlot> slotList = new List<UiInventorySlot>();
     private List<(ItemAsset asset, int amount)> slotDataList = new List<(ItemAsset, int)>();
@@ -15,6 +26,31 @@ public class StorageInventory : MonoBehaviour
     public int SelectedSlotIndex => selectedSlotIndex;
 
     public System.Action<int> OnSlotClicked;
+
+    private void Awake()
+    {
+        UpdateCapacityText();
+    }
+
+    private bool TryAddItemData(ItemAsset asset)
+    {
+        int stackMax = asset.Data.StackMax;
+
+        for (int i = 0; i < slotDataList.Count; i++)
+        {
+            if (slotDataList[i].asset.ItemID == asset.ItemID && slotDataList[i].amount < stackMax)
+            {
+                slotDataList[i] = (slotDataList[i].asset, slotDataList[i].amount + 1);
+                return true;
+            }
+        }
+
+        if (IsFull)
+            return false;
+
+        slotDataList.Add((asset, 1));
+        return true;
+    }
 
     public void UpdateSlots()
     {
@@ -60,42 +96,24 @@ public class StorageInventory : MonoBehaviour
         }
 
         selectedSlotIndex = -1;
+        UpdateCapacityText();
     }
 
-    public void AddItem(ItemAsset asset, int amount = 1)
+    public int AddItem(ItemAsset asset, int amount = 1)
     {
         if (asset.Data == null)
             asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
 
-        int stackMax = asset.Data.StackMax;
-
+        int moved = 0;
         for (int i = 0; i < amount; i++)
         {
-            int lastIndex = -1;
-            for (int j = 0; j < slotDataList.Count; j++)
-            {
-                if (
-                    slotDataList[j].asset.ItemID == asset.ItemID
-                    && slotDataList[j].amount < stackMax
-                )
-                {
-                    lastIndex = j;
-                    break;
-                }
-            }
-
-            if (lastIndex != -1)
-            {
-                var entry = slotDataList[lastIndex];
-                slotDataList[lastIndex] = (entry.asset, entry.amount + 1);
-            }
-            else
-            {
-                slotDataList.Add((asset, 1));
-            }
+            if (!TryAddItemData(asset))
+                break;
+            moved++;
         }
 
         UpdateSlots();
+        return moved;
     }
 
     public ItemAsset GetSelectedAsset()
@@ -134,5 +152,12 @@ public class StorageInventory : MonoBehaviour
         if (selectedSlotIndex != -1 && selectedSlotIndex < slotList.Count)
             slotList[selectedSlotIndex].SetNormal();
         selectedSlotIndex = -1;
+    }
+
+    private void UpdateCapacityText()
+    {
+        if (capacityText == null)
+            return;
+        capacityText.text = $"{slotDataList.Count} / {maxSlots}";
     }
 }
