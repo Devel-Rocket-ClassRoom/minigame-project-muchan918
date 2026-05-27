@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public enum AnimalState
 {
@@ -19,6 +20,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 
     protected Transform PlayerTransform { get; private set; }
     protected Animator Animator { get; private set; }
+    protected NavMeshAgent Agent { get; private set; }
 
     private AnimalState currentState;
     protected AnimalState PrevState { get; private set; }
@@ -42,6 +44,8 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         currentHp = Asset.Data.MaxHP;
         PlayerTransform = PlayerSpawner.Instance.PlayerTransform;
         Animator = GetComponent<Animator>();
+        Agent = GetComponent<NavMeshAgent>();
+        Agent.speed = Asset.Data.MoveSpeed;
         SetAnimatorController();
 
         CurrentState = AnimalState.Idle;
@@ -68,12 +72,17 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         stateTimer -= Time.deltaTime;
         if (stateTimer <= 0f)
         {
-            MoveDirection = new Vector3(
+            // NavMesh 위의 랜덤 지점으로 이동
+            Vector3 randomDir = new Vector3(
                 Random.Range(-1f, 1f),
                 0f,
                 Random.Range(-1f, 1f)
             ).normalized;
-            transform.forward = MoveDirection;
+            Vector3 targetPos = transform.position + randomDir * Random.Range(3f, 8f);
+
+            if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+                Agent.SetDestination(hit.position);
+
             stateTimer = Random.Range(Asset.RoamDurationMin, Asset.RoamDurationMax);
             CurrentState = AnimalState.Roam;
         }
@@ -81,11 +90,13 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 
     private void UpdateRoam()
     {
-        transform.position += MoveDirection * Asset.Data.MoveSpeed * Time.deltaTime;
+        if (Agent.velocity.sqrMagnitude > 0.01f)
+            transform.forward = new Vector3(Agent.velocity.x, 0f, Agent.velocity.z).normalized;
 
         stateTimer -= Time.deltaTime;
         if (stateTimer <= 0f)
         {
+            Agent.ResetPath();
             stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
             CurrentState = AnimalState.Idle;
         }
