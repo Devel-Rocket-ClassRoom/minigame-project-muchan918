@@ -1,4 +1,6 @@
+using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +9,20 @@ public class UiInventorySlotList : MonoBehaviour
     public UiInventorySlot prefab;
     public ScrollRect scrollRect;
     public UiItemInfo uiItemInfo;
+
+    [Header("Capacity")]
+    [SerializeField]
+    private int maxSlots = 20;
+
+    [SerializeField]
+    private TextMeshProUGUI capacityText;
+
+    [Header("Drop")]
+    [SerializeField]
+    private DropManager dropManager;
+
+    public int MaxSlots => maxSlots;
+    public bool IsFull => slotDataList.Count >= maxSlots;
 
     private List<UiInventorySlot> slotList = new List<UiInventorySlot>();
 
@@ -19,42 +35,54 @@ public class UiInventorySlotList : MonoBehaviour
     private void Awake()
     {
         uiItemInfo.SetEmpty();
+        UpdateCapacityText();
     }
 
-    public void AddItem(ItemAsset asset)
+    private bool TryAddItemData(ItemAsset asset)
     {
-        if (asset.Data == null)
-            asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
-
         int stackMax = asset.Data.StackMax;
 
-        int lastIndex = -1;
         for (int i = 0; i < slotDataList.Count; i++)
         {
             if (slotDataList[i].asset.ItemID == asset.ItemID && slotDataList[i].amount < stackMax)
             {
-                lastIndex = i;
-                break;
+                slotDataList[i] = (slotDataList[i].asset, slotDataList[i].amount + 1);
+                return true;
             }
         }
 
-        if (lastIndex != -1)
+        if (IsFull)
+            return false;
+
+        slotDataList.Add((asset, 1));
+        return true;
+    }
+
+    public bool AddItem(ItemAsset asset)
+    {
+        if (asset.Data == null)
+            asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
+
+        bool success = TryAddItemData(asset);
+        UpdateSlots();
+        return success;
+    }
+
+    public int AddItem(ItemAsset asset, int amount)
+    {
+        if (asset.Data == null)
+            asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
+
+        int moved = 0;
+        for (int i = 0; i < amount; i++)
         {
-            var entry = slotDataList[lastIndex];
-            slotDataList[lastIndex] = (entry.asset, entry.amount + 1);
-        }
-        else
-        {
-            slotDataList.Add((asset, 1));
+            if (!TryAddItemData(asset))
+                break;
+            moved++;
         }
 
         UpdateSlots();
-    }
-
-    public void AddItem(ItemAsset asset, int amount)
-    {
-        for (int i = 0; i < amount; i++)
-            AddItem(asset);
+        return moved;
     }
 
     public void RemoveItem()
@@ -126,10 +154,23 @@ public class UiInventorySlotList : MonoBehaviour
                 slotList[i]
                     .button.onClick.AddListener(() =>
                     {
+                        if (selectedSlotIndex == capturedIndex)
+                        {
+                            slotList[capturedIndex].SetNormal();
+                            selectedSlotIndex = -1;
+                            uiItemInfo.SetEmpty();
+                            return;
+                        }
+
+                        if (selectedSlotIndex != -1 && selectedSlotIndex < slotList.Count)
+                            slotList[selectedSlotIndex].SetNormal();
+
                         selectedSlotIndex = capturedIndex;
+                        slotList[capturedIndex].SetSelected();
                         uiItemInfo.SetItem(slotDataList[capturedIndex].asset);
                     });
                 slotList[i].SetItem(slotDataList[i].asset, slotDataList[i].amount);
+                slotList[i].SetNormal();
             }
             else
             {
@@ -139,6 +180,7 @@ public class UiInventorySlotList : MonoBehaviour
 
         selectedSlotIndex = -1;
         uiItemInfo.SetEmpty();
+        UpdateCapacityText();
     }
 
     public void SetSelectedIndex(int index)
@@ -161,13 +203,11 @@ public class UiInventorySlotList : MonoBehaviour
 
                 if (slotAmount <= remaining)
                 {
-                    // 슬롯 전체 제거
                     remaining -= slotAmount;
                     slotDataList.RemoveAt(i);
                 }
                 else
                 {
-                    // 일부만 차감
                     slotDataList[i] = (slotDataList[i].asset, slotAmount - remaining);
                     remaining = 0;
                 }
@@ -175,5 +215,21 @@ public class UiInventorySlotList : MonoBehaviour
         }
 
         UpdateSlots();
+    }
+
+    private void UpdateCapacityText()
+    {
+        if (capacityText == null)
+            return;
+        capacityText.text = $"{slotDataList.Count} / {maxSlots}";
+    }
+
+    public void OnClickDrop()
+    {
+        if (selectedSlotIndex == -1)
+            return;
+
+        int amount = slotDataList[selectedSlotIndex].amount;
+        dropManager.OpenPopup(amount);
     }
 }

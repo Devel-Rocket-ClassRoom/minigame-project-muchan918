@@ -1,6 +1,6 @@
 ItemID,DisplayName,ItemType,StackMax
-wood_oak,참나무 목재,Material,3
-stone_small,작은 돌,Material,3
+wood_oak,참나무 목재,Material,4
+stone_small,작은 돌,Material,4
 hardwood,단단한 나무,Material,3
 carved_stone,조각된 돌,Material,3
 wood_totem,나무 토템,Material,1
