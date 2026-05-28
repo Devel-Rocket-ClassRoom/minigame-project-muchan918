@@ -5,7 +5,6 @@ public enum EquipSlotType
     Bottom,
     Shoes,
     WeaponRight,
-    WeaponBack,
 }
 
 public enum EquipType
