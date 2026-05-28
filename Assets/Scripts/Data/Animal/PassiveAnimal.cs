@@ -60,7 +60,6 @@ public class PassiveAnimal : Animal
         {
             case AnimalState.Idle:
                 Animator.SetInteger("State", 0);
-                Agent.ResetPath();
                 break;
             case AnimalState.Roam:
                 Animator.SetInteger("State", 1);

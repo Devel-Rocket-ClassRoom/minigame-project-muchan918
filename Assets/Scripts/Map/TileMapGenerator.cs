@@ -83,6 +83,7 @@ public class TileMapGenerator : MonoBehaviour
         Debug.Log("동물 생성 완료");
 
         ResourceChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
+        AnimalChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
 
         GamePause.Resume();
     }
@@ -130,5 +131,6 @@ public class TileMapGenerator : MonoBehaviour
             Destroy(_groundParent.gameObject);
 
         ResourceChunkManager.Instance.Clear();
+        AnimalChunkManager.Instance.Clear();
     }
 }

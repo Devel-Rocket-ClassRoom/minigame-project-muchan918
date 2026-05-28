@@ -93,43 +93,4 @@ public class ResourceGenerator : MonoBehaviour
             }
         }
     }
-
-    // private IEnumerator SpawnZone(
-    //     List<Vector2Int> tiles,
-    //     List<ResourceSpawnEntry> zone,
-    //     MapData mapData,
-    //     System.Random random
-    // )
-    // {
-    //     int count = 0;
-    //     const int spawnPerFrame = 300;
-
-    //     foreach (var coord in tiles)
-    //     {
-    //         foreach (var entry in zone)
-    //         {
-    //             if (entry.prefab == null)
-    //                 continue;
-    //             if (random.NextDouble() > entry.spawnChance)
-    //                 continue;
-
-    //             Instantiate(
-    //                 entry.prefab,
-    //                 new Vector3(coord.x, 1f, coord.y),
-    //                 Quaternion.identity,
-    //                 resourceParent
-    //             );
-
-    //             mapData.SetTile(coord, TileType.Resource);
-    //             break;
-    //         }
-
-    //         count++;
-    //         if (count >= spawnPerFrame)
-    //         {
-    //             count = 0;
-    //             yield return null;
-    //         }
-    //     }
-    // }
 }
