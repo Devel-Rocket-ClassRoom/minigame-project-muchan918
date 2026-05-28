@@ -1,5 +1,5 @@
 AnimalID,DisplayName,MaxHP,MoveSpeed,AnimalType
-rabbit,토끼,1090,3.0,Passive
+rabbit,토끼,30,3.0,Passive
 deer,사슴,40,4.0,Passive
 wolf,늑대,60,4.5,Hostile
 bear,곰,60,3.0,Hostile

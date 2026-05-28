@@ -9,7 +9,8 @@ public class TableImporter : EditorWindow
         Resource,
         Item,
         Animal,
-        // Equip,
+        Equipment,
+        // Food,
     }
 
     private TableType selectedTable = TableType.Resource;
@@ -46,6 +47,9 @@ public class TableImporter : EditorWindow
                 break;
             case TableType.Animal:
                 ImportAnimal();
+                break;
+            case TableType.Equipment:
+                ImportEquipment();
                 break;
         }
     }
@@ -183,5 +187,41 @@ public class TableImporter : EditorWindow
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         Debug.Log($"AnimalTable Import 완료: {list.Count}개");
+    }
+
+    private void ImportEquipment()
+    {
+        string csvPath = "Assets/Resources/DataTables/EquipmentTable.csv";
+        string csvText = File.ReadAllText(csvPath);
+        var list = DataTable.LoadCSV<EquipmentData>(csvText);
+
+        string soFolder = "Assets/ScriptableObjects/Equipments";
+
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+        if (!AssetDatabase.IsValidFolder(soFolder))
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Equipments");
+
+        foreach (var data in list)
+        {
+            string assetPath = $"{soFolder}/{data.EquipmentID}.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<EquipmentAsset>(assetPath);
+
+            if (existing != null)
+            {
+                existing.EquipmentID = data.EquipmentID;
+                EditorUtility.SetDirty(existing);
+            }
+            else
+            {
+                var so = CreateInstance<EquipmentAsset>();
+                so.EquipmentID = data.EquipmentID;
+                AssetDatabase.CreateAsset(so, assetPath);
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        Debug.Log($"EquipmentTable Import 완료: {list.Count}개");
     }
 }

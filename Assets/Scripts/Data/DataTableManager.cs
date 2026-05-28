@@ -28,6 +28,11 @@ public static class DataTableManager
         var animalTable = new AnimalTable();
         animalTable.Load("AnimalTable");
         tables.Add("AnimalTable", animalTable);
+
+        // Equipment
+        var equipmentTable = new EquipmentTable();
+        equipmentTable.Load("EquipmentTable");
+        tables.Add("EquipmentTable", equipmentTable);
     }
 
     public static T Get<T>(string id)
