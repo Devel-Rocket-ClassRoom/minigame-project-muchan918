@@ -9846,7 +9846,7 @@ MonoBehaviour:
   m_OverrideTileSize: 0
   m_TileSize: 256
   m_OverrideVoxelSize: 0
-  m_VoxelSize: 0.16666667
+  m_VoxelSize: 0.033333335
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 23800000, guid: b397e629f0ef24142b13b7d2d8c51f4c, type: 2}
   m_BuildHeightMesh: 0
@@ -13140,7 +13140,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 11
+  brightDuration: 100
   darkenDuration: 3
   nightDuration: 4
   maxIntensity: 1
@@ -13251,19 +13251,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceGenerator
   nearZone:
   - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.04
   - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.04
   midZone:
   - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.04
   - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.04
   farZone:
   - prefab: {fileID: 6571442313496509980, guid: c999875d9a2bb5f4c90cbeb7a36975de, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.04
   - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.04
 --- !u!114 &9195796170670080758
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13305,12 +13305,12 @@ MonoBehaviour:
     spawnCount: 20
   midZone:
   - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 10
-  - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 10
-  farZone:
+    spawnCount: 20
   - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
     spawnCount: 20
+  farZone:
+  - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
+    spawnCount: 0
 --- !u!114 &9195796170670080760
 MonoBehaviour:
   m_ObjectHideFlags: 0
