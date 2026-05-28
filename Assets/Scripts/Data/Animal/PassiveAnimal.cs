@@ -18,21 +18,12 @@ public class PassiveAnimal : Animal
     private void UpdateFlee()
     {
         Vector3 fleeDir = (transform.position - PlayerTransform.position).normalized;
-        Vector3 fleePos = transform.position + fleeDir * 10f;
+        Agent.Move(fleeDir * Asset.Data.MoveSpeed * Time.deltaTime);
 
-        if (!Agent.pathPending)
+        // velocity 대신 fleeDir로 회전
+        if (fleeDir.sqrMagnitude > 0.01f)
         {
-            if (NavMesh.SamplePosition(fleePos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
-                Agent.SetDestination(hit.position);
-            else
-                Agent.SetDestination(transform.position + fleeDir * 3f);
-        }
-
-        if (Agent.velocity.sqrMagnitude > 0.01f)
-        {
-            Quaternion targetRot = Quaternion.LookRotation(
-                new Vector3(Agent.velocity.x, 0f, Agent.velocity.z)
-            );
+            Quaternion targetRot = Quaternion.LookRotation(new Vector3(fleeDir.x, 0f, fleeDir.z));
             transform.rotation = Quaternion.Slerp(
                 transform.rotation,
                 targetRot,
@@ -43,7 +34,6 @@ public class PassiveAnimal : Animal
         fleeTimer -= Time.deltaTime;
         if (fleeTimer <= 0f)
         {
-            Agent.ResetPath();
             ResetStateTimer();
             CurrentState = AnimalState.Idle;
         }
@@ -54,7 +44,7 @@ public class PassiveAnimal : Animal
         fleeTimer = PassiveAsset.FleeDuration;
         if (CurrentState != AnimalState.Flee)
             CurrentState = AnimalState.Flee;
-        Debug.Log("데미지 받음");
+        // Debug.Log("데미지 받음");
     }
 
     protected override void OnStateChanged(AnimalState newState)
@@ -69,6 +59,7 @@ public class PassiveAnimal : Animal
                 break;
             case AnimalState.Flee:
                 Animator.SetInteger("State", 2);
+                Agent.ResetPath();
                 break;
         }
     }

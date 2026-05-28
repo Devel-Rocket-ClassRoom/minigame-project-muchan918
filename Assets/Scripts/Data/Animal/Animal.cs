@@ -94,7 +94,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
                 0f,
                 Random.Range(-1f, 1f)
             ).normalized;
-            Vector3 targetPos = transform.position + randomDir * Random.Range(3f, 8f);
+            Vector3 targetPos = transform.position + randomDir * Random.Range(3f, 6f);
 
             if (NavMesh.SamplePosition(targetPos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
             {
