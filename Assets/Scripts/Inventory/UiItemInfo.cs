@@ -43,6 +43,21 @@ public class UiItemInfo : MonoBehaviour
                     .Get<EquipmentTable>("EquipmentTable")
                     .Get(asset.ItemID);
 
+                // 기존 장착 아이템 있으면 인벤토리에 돌려주기
+                ItemAsset previousItem = PlayerEquipment.Instance.GetEquippedItem(
+                    equipData.SlotType
+                );
+                if (previousItem != null)
+                {
+                    if (inventorySlotList.IsFull)
+                    {
+                        Debug.Log("인벤토리가 꽉 찼습니다!");
+                        // TODO: 팝업
+                        return;
+                    }
+                    inventorySlotList.AddItem(previousItem);
+                }
+
                 PlayerEquipment.Instance.Equip(equipData, asset);
                 equipPanel.Equip(equipData.SlotType, asset);
                 inventorySlotList.RemoveItemByAsset(asset, 1);
