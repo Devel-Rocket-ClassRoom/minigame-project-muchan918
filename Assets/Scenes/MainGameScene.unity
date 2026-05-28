@@ -3116,7 +3116,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2286046686412975956, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2331207502153653373, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_Color.b
@@ -3132,7 +3132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2354719749153065472, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -131.76917
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3797442257898432797, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_Pivot.x
@@ -3232,15 +3232,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8165079625344128094, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8165079625344128094, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8165079625344128094, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: -17
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8272762436577005944, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -3248,11 +3248,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8360582239086766007, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8360582239086766007, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8914082914844691740, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.x
@@ -6079,7 +6079,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1221560790
 MonoBehaviour:
   m_ObjectHideFlags: 0

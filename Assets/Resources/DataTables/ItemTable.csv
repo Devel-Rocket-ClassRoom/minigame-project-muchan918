@@ -4,3 +4,10 @@ stone_small,작은 돌,Material,4
 hardwood,단단한 나무,Material,3
 carved_stone,조각된 돌,Material,3
 wood_totem,나무 토템,Material,1
+equip_axe_01,낡은 도끼,Equipment,1
+equip_sword_01,낡은 검,Equipment,1
+equip_headgear_01,풀 모자,Equipment,1
+equip_top_01,낡은 셔츠,Equipment,1
+equip_bottom_01,낡은 바지,Equipment,1
+equip_shoes_01,낡은 신발,Equipment,1
+equip_headgear_02,헤드기어2,Equipment,1
