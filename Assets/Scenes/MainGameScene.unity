@@ -12518,6 +12518,7 @@ GameObject:
   - component: {fileID: 9195796170670080757}
   - component: {fileID: 9195796170670080759}
   - component: {fileID: 9195796170670080760}
+  - component: {fileID: 9195796170670080761}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -13249,18 +13250,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ResourceGenerator
   nearZone:
   - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
-    spawnChance: 0.02
+    spawnChance: 0.01
   - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
     spawnChance: 0.02
   midZone:
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.02
   - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
     spawnChance: 0.02
   farZone:
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.02
-  - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
+  - prefab: {fileID: 6571442313496509980, guid: c999875d9a2bb5f4c90cbeb7a36975de, type: 3}
     spawnChance: 0.02
 --- !u!114 &9195796170670080758
 MonoBehaviour:
@@ -13293,22 +13290,22 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5079424434380309103}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 863cc9f2329c33942ad7b9816471fd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalGenerator
   nearZone:
   - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 4
+    spawnCount: 1
   midZone:
   - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 4
+    spawnCount: 0
   - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 4
+    spawnCount: 0
   farZone:
   - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 10
+    spawnCount: 0
 --- !u!114 &9195796170670080760
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13325,6 +13322,18 @@ MonoBehaviour:
   storageInventory: {fileID: 5864152863047016145}
   inventorySlotList: {fileID: 1090617590}
   playerInventory: {fileID: 56650075042092300}
+--- !u!114 &9195796170670080761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079424434380309103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45dab270fbe415a45af96e3669effbf8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ResourceChunkManager
 --- !u!1 &9215705670280141544
 GameObject:
   m_ObjectHideFlags: 0

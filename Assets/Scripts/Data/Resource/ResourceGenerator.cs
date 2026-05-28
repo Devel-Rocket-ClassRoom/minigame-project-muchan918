@@ -41,6 +41,8 @@ public class ResourceGenerator : MonoBehaviour
 
         resourceParent = new GameObject("Resources").transform;
         resourceParent.SetParent(transform);
+
+        ResourceChunkManager.Instance.Initialize(resourceParent);
     }
 
     public IEnumerator SpawnCoroutine()
@@ -50,12 +52,12 @@ public class ResourceGenerator : MonoBehaviour
         MapData mapData = tileMapGenerator.MapData;
         System.Random random = new System.Random(Random.Range(1, 999999));
 
-        yield return SpawnZone(mapData.NearTiles, nearZone, mapData, random);
-        yield return SpawnZone(mapData.MidTiles, midZone, mapData, random);
-        yield return SpawnZone(mapData.FarTiles, farZone, mapData, random);
+        yield return RegisterZone(mapData.NearTiles, nearZone, mapData, random);
+        yield return RegisterZone(mapData.MidTiles, midZone, mapData, random);
+        yield return RegisterZone(mapData.FarTiles, farZone, mapData, random);
     }
 
-    private IEnumerator SpawnZone(
+    private IEnumerator RegisterZone(
         List<Vector2Int> tiles,
         List<ResourceSpawnEntry> zone,
         MapData mapData,
@@ -63,7 +65,7 @@ public class ResourceGenerator : MonoBehaviour
     )
     {
         int count = 0;
-        const int spawnPerFrame = 300;
+        const int registerPerFrame = 500;
 
         foreach (var coord in tiles)
         {
@@ -74,11 +76,9 @@ public class ResourceGenerator : MonoBehaviour
                 if (random.NextDouble() > entry.spawnChance)
                     continue;
 
-                Instantiate(
-                    entry.prefab,
+                ResourceChunkManager.Instance.RegisterSpawnInfo(
                     new Vector3(coord.x, 1f, coord.y),
-                    Quaternion.identity,
-                    resourceParent
+                    entry.prefab
                 );
 
                 mapData.SetTile(coord, TileType.Resource);
@@ -86,11 +86,50 @@ public class ResourceGenerator : MonoBehaviour
             }
 
             count++;
-            if (count >= spawnPerFrame)
+            if (count >= registerPerFrame)
             {
                 count = 0;
                 yield return null;
             }
         }
     }
+
+    // private IEnumerator SpawnZone(
+    //     List<Vector2Int> tiles,
+    //     List<ResourceSpawnEntry> zone,
+    //     MapData mapData,
+    //     System.Random random
+    // )
+    // {
+    //     int count = 0;
+    //     const int spawnPerFrame = 300;
+
+    //     foreach (var coord in tiles)
+    //     {
+    //         foreach (var entry in zone)
+    //         {
+    //             if (entry.prefab == null)
+    //                 continue;
+    //             if (random.NextDouble() > entry.spawnChance)
+    //                 continue;
+
+    //             Instantiate(
+    //                 entry.prefab,
+    //                 new Vector3(coord.x, 1f, coord.y),
+    //                 Quaternion.identity,
+    //                 resourceParent
+    //             );
+
+    //             mapData.SetTile(coord, TileType.Resource);
+    //             break;
+    //         }
+
+    //         count++;
+    //         if (count >= spawnPerFrame)
+    //         {
+    //             count = 0;
+    //             yield return null;
+    //         }
+    //     }
+    // }
 }
