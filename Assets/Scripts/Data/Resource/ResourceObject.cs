@@ -39,6 +39,7 @@ public class ResourceObject : MonoBehaviour, IDefender, IDroppable
 
     public void Die()
     {
+        ResourceChunkManager.Instance.UnregisterResource(gameObject);
         Destroy(gameObject);
     }
 }
