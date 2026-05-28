@@ -20,10 +20,13 @@ public class PassiveAnimal : Animal
         Vector3 fleeDir = (transform.position - PlayerTransform.position).normalized;
         Vector3 fleePos = transform.position + fleeDir * 10f;
 
-        if (NavMesh.SamplePosition(fleePos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
-            Agent.SetDestination(hit.position);
-        else
-            Agent.SetDestination(transform.position + fleeDir * 3f); // 실패 시 짧게라도 이동
+        if (!Agent.pathPending)
+        {
+            if (NavMesh.SamplePosition(fleePos, out NavMeshHit hit, 5f, NavMesh.AllAreas))
+                Agent.SetDestination(hit.position);
+            else
+                Agent.SetDestination(transform.position + fleeDir * 3f);
+        }
 
         if (Agent.velocity.sqrMagnitude > 0.01f)
         {
