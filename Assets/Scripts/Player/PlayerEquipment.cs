@@ -7,13 +7,15 @@ public class PlayerEquipment : MonoBehaviour
     public static PlayerEquipment Instance { get; private set; }
 
     private Transform _partsRoot;
-    private readonly Dictionary<EquipSlotType, (string partsName, int index)> _equipped = new();
+    private readonly Dictionary<
+        EquipSlotType,
+        (string partsName, int index, ItemAsset item)
+    > _equipped = new();
 
-    // 슬롯별 디폴트 파츠 (장비 착용 시 비활성화, 해제 시 활성화)
     private readonly Dictionary<EquipSlotType, (string partsName, int index)> _defaults = new()
     {
-        { EquipSlotType.Top, ("Top", 1) }, // Top_02 (인덱스 1)
-        { EquipSlotType.Bottom, ("Bottom", 1) }, // Bottom_02 (인덱스 1)
+        { EquipSlotType.Top, ("Top", 1) },
+        { EquipSlotType.Bottom, ("Bottom", 1) },
     };
 
     private void Awake()
@@ -22,21 +24,19 @@ public class PlayerEquipment : MonoBehaviour
         _partsRoot = transform.Find("Parts");
     }
 
-    public void Equip(EquipmentAsset asset)
+    public void Equip(EquipmentAsset asset, ItemAsset item)
     {
         if (asset.Data == null)
             asset.Data = DataTableManager
                 .Get<EquipmentTable>("EquipmentTable")
                 .Get(asset.EquipmentID);
 
-        Equip(asset.Data);
+        Equip(asset.Data, item);
     }
 
-    public void Equip(EquipmentData data)
+    public void Equip(EquipmentData data, ItemAsset item)
     {
         UnEquip(data.SlotType);
-
-        // 디폴트 파츠 비활성화
         SetDefaultActive(data.SlotType, false);
 
         Transform partsObj = _partsRoot.Find(data.PartsName);
@@ -54,16 +54,15 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         partsObj.GetChild(index).gameObject.SetActive(true);
-        _equipped[data.SlotType] = (data.PartsName, index);
+        _equipped[data.SlotType] = (data.PartsName, index, item);
     }
 
-    public void UnEquip(EquipSlotType slot)
+    public ItemAsset UnEquip(EquipSlotType slot)
     {
         if (!_equipped.TryGetValue(slot, out var current))
         {
-            // 장착된 게 없어도 디폴트는 비활성화 해제
             SetDefaultActive(slot, true);
-            return;
+            return null;
         }
 
         Transform partsObj = _partsRoot.Find(current.partsName);
@@ -71,9 +70,9 @@ public class PlayerEquipment : MonoBehaviour
             partsObj.GetChild(current.index).gameObject.SetActive(false);
 
         _equipped.Remove(slot);
-
-        // 디폴트 파츠 활성화
         SetDefaultActive(slot, true);
+
+        return current.item;
     }
 
     public void UnEquipAll()
@@ -81,6 +80,14 @@ public class PlayerEquipment : MonoBehaviour
         foreach (var slot in _equipped.Keys.ToList())
             UnEquip(slot);
     }
+
+    public ItemAsset GetEquippedItem(EquipSlotType slot)
+    {
+        _equipped.TryGetValue(slot, out var current);
+        return current.item;
+    }
+
+    public bool IsEquipped(EquipSlotType slot) => _equipped.ContainsKey(slot);
 
     private void SetDefaultActive(EquipSlotType slot, bool active)
     {
