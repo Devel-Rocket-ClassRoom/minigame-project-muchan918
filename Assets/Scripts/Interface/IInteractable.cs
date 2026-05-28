@@ -9,6 +9,7 @@ public enum InteractionType
     Craft,
     Cook,
     Storage,
+    Upgrade,
 }
 
 public interface IInteractable
