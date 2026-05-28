@@ -9,6 +9,7 @@ public class UiItemInfo : MonoBehaviour
     public TextMeshProUGUI textType;
     public Button equipButton;
     public Button unequipButton;
+    public Button dropButton;
 
     public UiInventorySlotList inventorySlotList;
     public UiEquipPanel equipPanel;
@@ -21,6 +22,7 @@ public class UiItemInfo : MonoBehaviour
         textType.text = string.Empty;
         equipButton.gameObject.SetActive(false);
         unequipButton.gameObject.SetActive(false);
+        dropButton.gameObject.SetActive(false);
     }
 
     public void SetItem(ItemAsset asset)
@@ -33,6 +35,7 @@ public class UiItemInfo : MonoBehaviour
         bool isEquipment = asset.Data.ItemType == "Equipment";
         equipButton.gameObject.SetActive(isEquipment);
         unequipButton.gameObject.SetActive(false);
+        dropButton.gameObject.SetActive(true);
 
         if (isEquipment)
         {
@@ -75,6 +78,7 @@ public class UiItemInfo : MonoBehaviour
 
         equipButton.gameObject.SetActive(false);
         unequipButton.gameObject.SetActive(true);
+        dropButton.gameObject.SetActive(false);
 
         unequipButton.onClick.RemoveAllListeners();
         unequipButton.onClick.AddListener(() =>
