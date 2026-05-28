@@ -4,11 +4,12 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiInventorySlotList : MonoBehaviour
+public class UiInventorySlotList : MonoBehaviour, IUpgradeable
 {
     public UiInventorySlot prefab;
     public ScrollRect scrollRect;
     public UiItemInfo uiItemInfo;
+    public int Level { get; private set; }
 
     [Header("Capacity")]
     [SerializeField]
@@ -36,6 +37,12 @@ public class UiInventorySlotList : MonoBehaviour
     {
         uiItemInfo.SetEmpty();
         UpdateCapacityText();
+    }
+
+    public void Upgrade()
+    {
+        Level++;
+        Debug.Log($"[Upgrade] 인벤토리 Lv {Level}");
     }
 
     private bool TryAddItemData(ItemAsset asset)
