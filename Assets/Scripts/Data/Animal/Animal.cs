@@ -39,6 +39,9 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     private float stateTimer;
     protected Vector3 MoveDirection { get; set; }
 
+    // 현재 속한 청크 좌표
+    private Vector2Int _currentChunk;
+
     protected virtual void Start()
     {
         Asset.Data = DataTableManager.Get<AnimalTable>("AnimalTable").Get(Asset.AnimalID);
@@ -50,6 +53,9 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         Agent.acceleration = 100f;
         Agent.updateRotation = false;
         SetAnimatorController();
+
+        // 초기 청크 좌표 저장
+        _currentChunk = AnimalChunkManager.Instance.WorldToChunk(transform.position);
 
         CurrentState = AnimalState.Idle;
         stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
@@ -67,6 +73,14 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
             case AnimalState.Roam:
                 UpdateRoam();
                 break;
+        }
+
+        // 청크 이동 감지
+        var newChunk = AnimalChunkManager.Instance.WorldToChunk(transform.position);
+        if (newChunk != _currentChunk)
+        {
+            AnimalChunkManager.Instance.UpdateAnimalChunk(this, _currentChunk, newChunk);
+            _currentChunk = newChunk;
         }
     }
 
@@ -124,6 +138,20 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     }
 
     protected virtual void OnStateChanged(AnimalState newState) { }
+
+    public void OnActivate()
+    {
+        Agent.enabled = true;
+        CurrentState = AnimalState.Idle;
+    }
+
+    public void OnDeactivate()
+    {
+        if (Agent.enabled)
+            Agent.ResetPath();
+        Agent.enabled = false;
+        CurrentState = AnimalState.Idle;
+    }
 
     public void TakeDamage(int damage, Vector3 hitNormal)
     {
