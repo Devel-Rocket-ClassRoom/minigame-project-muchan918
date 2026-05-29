@@ -1,0 +1,54 @@
+using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
+
+public class PlayerHunger : MonoBehaviour
+{
+    [Header("Stats")]
+    [SerializeField]
+    private int maxHunger;
+    private int currentHunger;
+
+    public int CurrentHunger => currentHunger;
+    public int MaxHunger => maxHunger;
+
+    [Header("UI")]
+    [SerializeField]
+    private Slider hungerSlider;
+
+    private void Awake()
+    {
+        maxHunger = 100;
+        currentHunger = 0;
+        UpdateUI();
+    }
+
+    private void Update()
+    {
+        // 테스트용: K키를 누르면 배고픔 30 회복
+        if (Keyboard.current.kKey.wasPressedThisFrame)
+        {
+            AddHunger(30);
+        }
+    }
+
+    public void AddHunger(int amount)
+    {
+        currentHunger = Mathf.Min(currentHunger + amount, maxHunger);
+        UpdateUI();
+        Debug.Log($"배고픔: {currentHunger}/{maxHunger}");
+    }
+
+    public void ResetHunger()
+    {
+        currentHunger = 0;
+        UpdateUI();
+    }
+
+    private void UpdateUI()
+    {
+        if (hungerSlider == null)
+            return;
+        hungerSlider.value = (float)currentHunger / maxHunger;
+    }
+}

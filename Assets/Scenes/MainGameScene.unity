@@ -283,6 +283,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7512613438013070588, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
+      propertyPath: m_Name
+      value: Slider_Hunger
+      objectReference: {fileID: 0}
     - target: {fileID: 8641921132058798497, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0.9
@@ -323,6 +327,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
   m_PrefabInstance: {fileID: 3911451}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &3911453 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3084214755482638266, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
+  m_PrefabInstance: {fileID: 3911451}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &21522428
 GameObject:
   m_ObjectHideFlags: 0
@@ -12367,7 +12382,7 @@ PrefabInstance:
       objectReference: {fileID: 1948195616}
     - target: {fileID: 6206606302358517628, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       propertyPath: useJoystick
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6625224297620763540, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       propertyPath: m_IsActive
@@ -12384,6 +12399,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1422671190694009946, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5224556440869973760}
+    - targetCorrespondingSourceObject: {fileID: 1422671190694009946, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5224556440869973761}
   m_SourcePrefab: {fileID: 100100000, guid: 2c58099b044771a4c940001a040b567d, type: 3}
 --- !u!114 &56650075042092300 stripped
 MonoBehaviour:
@@ -13466,6 +13484,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30767fb64791264f93ab1850374dc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipment
+--- !u!114 &5224556440869973761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 228299113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a709f314ed5fa424391b37807d7abc8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHunger
+  maxHunger: 100
+  hungerSlider: {fileID: 3911453}
 --- !u!1 &5718703397272350332
 GameObject:
   m_ObjectHideFlags: 0
@@ -14041,12 +14073,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 55
-  darkenDuration: 15
-  nightDuration: 20
+  brightDuration: 5
+  darkenDuration: 5
+  nightDuration: 5
   maxIntensity: 1
   minIntensity: 0
   playerHealth: {fileID: 5224556440869973754}
+  playerHunger: {fileID: 5224556440869973761}
   gameOverUI: {fileID: 805958337}
   isCheatMode: 0
 --- !u!1 &8058806503815649746
@@ -14137,6 +14170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerSpawner
   spawnPoint: {fileID: 443741521}
   playerHealth: {fileID: 5224556440869973754}
+  playerHunger: {fileID: 5224556440869973761}
   playerInventory: {fileID: 56650075042092300}
 --- !u!114 &9195796170670080757
 MonoBehaviour:
