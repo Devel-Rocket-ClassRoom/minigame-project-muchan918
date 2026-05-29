@@ -37,7 +37,6 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         upgradePanel.SetActive(true);
-        GamePause.Pause();
     }
 
     public void OnSelectUpgrade(UpgradeAsset asset)
@@ -69,6 +68,5 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
         upgradePanel.SetActive(false);
         upgradeSlotList.ResetSelection();
         selectedAsset = null;
-        GamePause.Resume();
     }
 }

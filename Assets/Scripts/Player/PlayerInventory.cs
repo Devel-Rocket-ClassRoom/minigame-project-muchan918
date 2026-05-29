@@ -42,11 +42,6 @@ public class PlayerInventory : MonoBehaviour
         if (isOpen)
         {
             slotList.UpdateSlots();
-            GamePause.Pause();
-        }
-        else
-        {
-            GamePause.Resume();
         }
     }
 

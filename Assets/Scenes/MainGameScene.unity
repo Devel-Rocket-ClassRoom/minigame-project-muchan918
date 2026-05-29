@@ -12301,6 +12301,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2851767028276502447, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3336935629842957672, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       propertyPath: slotList
       value: 
@@ -12364,6 +12368,14 @@ PrefabInstance:
     - target: {fileID: 6206606302358517628, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       propertyPath: useJoystick
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6625224297620763540, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9035314038948309199, guid: 2c58099b044771a4c940001a040b567d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14029,9 +14041,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 220
-  darkenDuration: 60
-  nightDuration: 80
+  brightDuration: 55
+  darkenDuration: 15
+  nightDuration: 20
   maxIntensity: 1
   minIntensity: 0
   playerHealth: {fileID: 5224556440869973754}

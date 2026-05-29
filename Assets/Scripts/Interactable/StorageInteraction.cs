@@ -87,7 +87,6 @@ public class StorageInteraction : MonoBehaviour, IInteractable
         storageInventory.UpdateSlots();
         playerInventoryMirror.UpdateSlots();
         buttonsPanel.SetActive(false);
-        GamePause.Pause();
     }
 
     public void OnClickAll()
@@ -105,7 +104,6 @@ public class StorageInteraction : MonoBehaviour, IInteractable
     {
         ResetSelection();
         storagePanel.SetActive(false);
-        GamePause.Resume();
     }
 
     private void MoveItem(bool fromStorage, int amount)

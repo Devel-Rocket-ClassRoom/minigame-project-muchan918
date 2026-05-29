@@ -45,7 +45,6 @@ public class CraftInteraction : MonoBehaviour, IInteractable, IUpgradeable
     {
         craftPanel.SetActive(true);
         craftSlotList.RefreshAvailability();
-        GamePause.Pause();
     }
 
     public void Upgrade()
@@ -88,6 +87,5 @@ public class CraftInteraction : MonoBehaviour, IInteractable, IUpgradeable
         craftPanel.SetActive(false);
         craftSlotList.ResetSelection();
         selectedRecipe = null;
-        GamePause.Resume();
     }
 }

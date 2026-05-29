@@ -29,7 +29,6 @@ public class AltarInteraction : MonoBehaviour, IInteractable
     {
         altarPanel.SetActive(true);
         tributeInventory.UpdateSlots();
-        GamePause.Pause();
     }
 
     public void OnClickClose()
@@ -38,6 +37,5 @@ public class AltarInteraction : MonoBehaviour, IInteractable
         tributeSlotList.Reset();
         submitPanel.gameObject.SetActive(false);
         altarPanel.SetActive(false);
-        GamePause.Resume();
     }
 }
