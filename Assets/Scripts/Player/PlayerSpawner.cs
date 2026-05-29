@@ -28,7 +28,7 @@ public class PlayerSpawner : MonoBehaviour
         dayNightCycle = GetComponent<DayNightCycle>();
     }
 
-    public void Respawn(bool fullRecover = false)
+    public void Respawn(bool clearInventory = false, bool fullRecover = false)
     {
         playerHealth.transform.position = spawnPoint.position;
 
@@ -37,7 +37,9 @@ public class PlayerSpawner : MonoBehaviour
         else
             playerHealth.SetHealth(playerHealth.MaxHp / 2);
 
-        playerInventory.SlotList.Clear();
+        if (clearInventory)
+            playerInventory.SlotList.Clear();
+
         dayNightCycle.SetMorning();
     }
 }

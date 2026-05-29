@@ -16,9 +16,7 @@ MonoBehaviour:
   DropPrefab: {fileID: 2073815298762949719, guid: 49fddddbceb4a5d4eb0fc2c9205ed450, type: 3}
   IdleDurationMin: 2
   IdleDurationMax: 4
-  RoamDurationMin: 3
-  RoamDurationMax: 5
-  Damage: 1
+  Damage: 5
   EnterAttackRange: 1
   ExitAttackRange: 1.6
   AnimatorController: {fileID: 9100000, guid: 0cf7efe9a797e2747993b87536c4f9c0, type: 2}
