@@ -11,3 +11,6 @@ equip_top_01,낡은 셔츠,Equipment,1
 equip_bottom_01,낡은 바지,Equipment,1
 equip_shoes_01,낡은 신발,Equipment,1
 equip_headgear_02,헤드기어2,Equipment,1
+food_rabbit_roast,토끼 구이,Food,5
+food_bear_roast,곰 구이,Food,5
+food_rabbit_bear_roast,토끼곰 구이,Food,5

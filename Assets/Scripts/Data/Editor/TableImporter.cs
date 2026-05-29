@@ -10,7 +10,7 @@ public class TableImporter : EditorWindow
         Item,
         Animal,
         Equipment,
-        // Food,
+        Food,
     }
 
     private TableType selectedTable = TableType.Resource;
@@ -50,6 +50,9 @@ public class TableImporter : EditorWindow
                 break;
             case TableType.Equipment:
                 ImportEquipment();
+                break;
+            case TableType.Food:
+                ImportFood();
                 break;
         }
     }
@@ -223,5 +226,41 @@ public class TableImporter : EditorWindow
         AssetDatabase.SaveAssets();
         AssetDatabase.Refresh();
         Debug.Log($"EquipmentTable Import 완료: {list.Count}개");
+    }
+
+    private void ImportFood()
+    {
+        string csvPath = "Assets/Resources/DataTables/FoodTable.csv";
+        string csvText = File.ReadAllText(csvPath);
+        var list = DataTable.LoadCSV<FoodData>(csvText);
+
+        string soFolder = "Assets/ScriptableObjects/Foods";
+
+        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+        if (!AssetDatabase.IsValidFolder(soFolder))
+            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Foods");
+
+        foreach (var data in list)
+        {
+            string assetPath = $"{soFolder}/{data.FoodID}.asset";
+            var existing = AssetDatabase.LoadAssetAtPath<FoodAsset>(assetPath);
+
+            if (existing != null)
+            {
+                existing.FoodID = data.FoodID;
+                EditorUtility.SetDirty(existing);
+            }
+            else
+            {
+                var so = CreateInstance<FoodAsset>();
+                so.FoodID = data.FoodID;
+                AssetDatabase.CreateAsset(so, assetPath);
+            }
+        }
+
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+        Debug.Log($"FoodTable Import 완료: {list.Count}개");
     }
 }

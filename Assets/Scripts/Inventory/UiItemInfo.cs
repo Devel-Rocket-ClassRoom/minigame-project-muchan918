@@ -9,6 +9,7 @@ public class UiItemInfo : MonoBehaviour
     public TextMeshProUGUI textType;
     public Button equipButton;
     public Button unequipButton;
+    public Button eatButton;
     public Button dropButton;
 
     public UiInventorySlotList inventorySlotList;
@@ -22,6 +23,7 @@ public class UiItemInfo : MonoBehaviour
         textType.text = string.Empty;
         equipButton.gameObject.SetActive(false);
         unequipButton.gameObject.SetActive(false);
+        eatButton.gameObject.SetActive(false);
         dropButton.gameObject.SetActive(false);
     }
 
@@ -33,8 +35,11 @@ public class UiItemInfo : MonoBehaviour
         textType.text = asset.Data.ItemType;
 
         bool isEquipment = asset.Data.ItemType == "Equipment";
+        bool isFood = asset.Data.ItemType == "Food";
+
         equipButton.gameObject.SetActive(isEquipment);
         unequipButton.gameObject.SetActive(false);
+        eatButton.gameObject.SetActive(isFood);
         dropButton.gameObject.SetActive(true);
 
         if (isEquipment)
@@ -64,6 +69,23 @@ public class UiItemInfo : MonoBehaviour
                 PlayerEquipment.Instance.Equip(equipData, asset);
                 equipPanel.Equip(equipData.SlotType, asset);
                 inventorySlotList.RemoveItemByAsset(asset, 1);
+                SetEmpty();
+            });
+        }
+
+        if (isFood)
+        {
+            eatButton.onClick.RemoveAllListeners();
+            eatButton.onClick.AddListener(() =>
+            {
+                var foodData = DataTableManager.Get<FoodTable>("FoodTable").Get(asset.ItemID);
+
+                if (foodData.EffectType == FoodEffectType.Hunger)
+                    PlayerHunger.Instance.AddHunger(foodData.Value);
+                else if (foodData.EffectType == FoodEffectType.Hp)
+                    PlayerHealth.Instance.Recover(foodData.Value);
+
+                inventorySlotList.RemoveItem(1);
                 SetEmpty();
             });
         }

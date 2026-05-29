@@ -33,6 +33,11 @@ public static class DataTableManager
         var equipmentTable = new EquipmentTable();
         equipmentTable.Load("EquipmentTable");
         tables.Add("EquipmentTable", equipmentTable);
+
+        // Food
+        var foodTable = new FoodTable();
+        foodTable.Load("FoodTable");
+        tables.Add("FoodTable", foodTable);
     }
 
     public static T Get<T>(string id)
