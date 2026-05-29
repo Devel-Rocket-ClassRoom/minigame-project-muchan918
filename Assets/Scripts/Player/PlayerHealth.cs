@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IDefender
 {
     public static event Action OnPlayerDied;
+    public static PlayerHealth Instance { get; private set; }
 
     [Header("Stats")]
     [SerializeField]
@@ -19,8 +20,15 @@ public class PlayerHealth : MonoBehaviour, IDefender
     [SerializeField]
     private Slider hpSlider;
 
-    // [SerializeField]
-    // private GameObject gameOverUI;
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
 
     private void Start()
     {

@@ -4,6 +4,8 @@ using UnityEngine.UI;
 
 public class PlayerHunger : MonoBehaviour
 {
+    public static PlayerHunger Instance { get; private set; }
+
     [Header("Stats")]
     [SerializeField]
     private int maxHunger;
@@ -18,6 +20,13 @@ public class PlayerHunger : MonoBehaviour
 
     private void Awake()
     {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
         maxHunger = 100;
         currentHunger = 0;
         UpdateUI();

@@ -1,0 +1,4 @@
+FoodID,DisplayName,EffectType,Value
+food_rabbit_roast,토끼 구이,Hunger,30
+food_bear_roast,곰 구이,Hunger,60
+food_rabbit_bear_roast,토끼곰 구이,Hp,50
