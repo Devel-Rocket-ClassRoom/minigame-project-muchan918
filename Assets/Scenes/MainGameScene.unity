@@ -3288,7 +3288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2286046686412975956, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2331207502153653373, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_Type
@@ -3316,7 +3316,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2354719749153065472, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -71.769165
       objectReference: {fileID: 0}
     - target: {fileID: 2554821031372399822, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_IsActive
@@ -3652,15 +3652,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8165079625344128094, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8165079625344128094, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8165079625344128094, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 8272762436577005944, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_SizeDelta.x
@@ -3684,11 +3684,11 @@ PrefabInstance:
       objectReference: {fileID: 21300000, guid: 2287bc5cff55542fdbb566e220410d50, type: 3}
     - target: {fileID: 8360582239086766007, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8360582239086766007, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8468113974354900855, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_Sprite
@@ -12363,7 +12363,7 @@ PrefabInstance:
       objectReference: {fileID: 1948195616}
     - target: {fileID: 6206606302358517628, guid: 2c58099b044771a4c940001a040b567d, type: 3}
       propertyPath: useJoystick
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14029,14 +14029,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 100
-  darkenDuration: 3
-  nightDuration: 4
+  brightDuration: 220
+  darkenDuration: 60
+  nightDuration: 80
   maxIntensity: 1
   minIntensity: 0
   playerHealth: {fileID: 5224556440869973754}
   gameOverUI: {fileID: 805958337}
-  isCheatMode: 1
+  isCheatMode: 0
 --- !u!1 &8058806503815649746
 GameObject:
   m_ObjectHideFlags: 0

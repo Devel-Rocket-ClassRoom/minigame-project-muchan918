@@ -81,6 +81,6 @@ public class PlayerHealth : MonoBehaviour, IDefender
         Debug.Log("죽음");
         // gameOverUI.SetActive(true);
         // GamePause.Pause();
-        PlayerSpawner.Instance.Respawn();
+        PlayerSpawner.Instance.Respawn(clearInventory: true);
     }
 }

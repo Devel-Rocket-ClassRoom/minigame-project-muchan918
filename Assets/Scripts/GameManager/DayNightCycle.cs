@@ -32,6 +32,7 @@ public class DayNightCycle : MonoBehaviour
     private float elapsedTime = 0f;
     private bool midnightTriggered = false;
     private TributeEvent tributeEvent;
+    private TileMapGenerator tileMapGenerator;
 
     public int CurrentDay { get; private set; } = 1;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
@@ -53,6 +54,7 @@ public class DayNightCycle : MonoBehaviour
     {
         tributeEvent = GetComponent<TributeEvent>();
         tributeEvent.AssignNewEvent();
+        tileMapGenerator = GetComponent<TileMapGenerator>();
     }
 
     private void Update()
@@ -79,7 +81,7 @@ public class DayNightCycle : MonoBehaviour
             if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
             {
                 midnightTriggered = true;
-                PlayerSpawner.Instance.Respawn();
+                PlayerSpawner.Instance.Respawn(clearInventory: true);
                 SetMorning();
             }
         }
@@ -96,6 +98,7 @@ public class DayNightCycle : MonoBehaviour
             if (tributeEvent.Evaluate())
             {
                 tributeEvent.AssignNewEvent();
+                tileMapGenerator.GenerateMap();
             }
             else
             {
