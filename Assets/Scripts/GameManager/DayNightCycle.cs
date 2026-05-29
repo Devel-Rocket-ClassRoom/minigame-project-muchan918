@@ -24,6 +24,9 @@ public class DayNightCycle : MonoBehaviour
     private PlayerHealth playerHealth;
 
     [SerializeField]
+    private PlayerHunger playerHunger;
+
+    [SerializeField]
     private GameObject gameOverUI;
 
     [SerializeField]
@@ -31,6 +34,7 @@ public class DayNightCycle : MonoBehaviour
 
     private float elapsedTime = 0f;
     private bool midnightTriggered = false;
+    private int hungerEmptyCount = 0;
     private TributeEvent tributeEvent;
     private TileMapGenerator tileMapGenerator;
 
@@ -82,7 +86,6 @@ public class DayNightCycle : MonoBehaviour
             {
                 midnightTriggered = true;
                 PlayerSpawner.Instance.Respawn(clearInventory: true);
-                SetMorning();
             }
         }
     }
@@ -99,6 +102,7 @@ public class DayNightCycle : MonoBehaviour
             {
                 tributeEvent.AssignNewEvent();
                 tileMapGenerator.GenerateMap();
+                hungerEmptyCount = 0;
             }
             else
             {
@@ -112,6 +116,18 @@ public class DayNightCycle : MonoBehaviour
             }
         }
 
+        if (playerHunger.CurrentHunger == 0)
+            hungerEmptyCount++;
+
+        if (hungerEmptyCount >= 3)
+        {
+            Debug.Log(hungerEmptyCount);
+            gameOverUI.SetActive(true);
+            GamePause.Pause();
+            return;
+        }
+
+        playerHunger.ResetHunger();
         CurrentDay++;
     }
 }

@@ -13,6 +13,9 @@ public class PlayerSpawner : MonoBehaviour
     private PlayerHealth playerHealth;
 
     [SerializeField]
+    private PlayerHunger playerHunger;
+
+    [SerializeField]
     private PlayerInventory playerInventory;
 
     public Transform PlayerTransform => playerHealth.transform;
@@ -31,11 +34,16 @@ public class PlayerSpawner : MonoBehaviour
     public void Respawn(bool clearInventory = false, bool fullRecover = false)
     {
         playerHealth.transform.position = spawnPoint.position;
+        playerHealth.transform.rotation = spawnPoint.rotation;
+
+        int penalty = Mathf.RoundToInt(
+            (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f
+        );
 
         if (fullRecover)
-            playerHealth.Recover();
+            playerHealth.SetHealth(playerHealth.MaxHp - penalty);
         else
-            playerHealth.SetHealth(playerHealth.MaxHp / 2);
+            playerHealth.SetHealth(playerHealth.MaxHp / 2 - penalty);
 
         if (clearInventory)
             playerInventory.SlotList.Clear();
