@@ -36,6 +36,7 @@ public class UpgradeManager : MonoBehaviour
             { UpgradeType.Storage, storageInventory },
             { UpgradeType.Inventory, inventorySlotList },
             { UpgradeType.Animal, GetComponent<AnimalGenerator>() },
+            { UpgradeType.Resource, GetComponent<ResourceGenerator>() },
         };
     }
 

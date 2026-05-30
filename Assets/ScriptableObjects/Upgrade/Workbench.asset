@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Workbench
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeAsset
   type: 0
-  displayName: "\uC778\uBCA4\uD1A0\uB9AC"
+  displayName: "\uC81C\uC791\uB300"
   icon: {fileID: 21300000, guid: 6bc3d08d338a54705af57cee66b32048, type: 3}
   costPerLevel:
   - ingredients:

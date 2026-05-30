@@ -5076,19 +5076,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e55137edd28638429801d869352d2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceGenerator
-  nearZone:
-  - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
-    spawnChance: 0.022
-  midZone:
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.01
-  - prefab: {fileID: 6571442313496509980, guid: c999875d9a2bb5f4c90cbeb7a36975de, type: 3}
-    spawnChance: 0.015
-  farZone:
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.01
-  - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
-    spawnChance: 0.015
+  spawnEntriesByLevel: []
 --- !u!1 &897522378
 GameObject:
   m_ObjectHideFlags: 0
@@ -8036,6 +8024,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a549a482e96c91f41a49d0086ec6e9fa, type: 2}
   - {fileID: 11400000, guid: 897ddd19b6dd1e445a2bff4062f1a050, type: 2}
   - {fileID: 11400000, guid: 7e5b2e343258b114789a4218f563e60f, type: 2}
+  - {fileID: 11400000, guid: 17f95983f2d8a6242a4f353ead7a8e45, type: 2}
   upgradePanel: {fileID: 2051115723}
   ingredientPanel: {fileID: 1960750311}
   upgradeSlotList: {fileID: 2051115725}
@@ -16705,9 +16694,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 110
-  darkenDuration: 30
-  nightDuration: 40
+  brightDuration: 10
+  darkenDuration: 10
+  nightDuration: 100
   maxIntensity: 1
   minIntensity: 0
   playerHealth: {fileID: 5224556440869973754}
@@ -17123,21 +17112,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e55137edd28638429801d869352d2f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceGenerator
-  nearZone:
-  - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
-    spawnChance: 0.04
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.04
-  midZone:
-  - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
-    spawnChance: 0.04
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.04
-  farZone:
-  - prefab: {fileID: 6571442313496509980, guid: c999875d9a2bb5f4c90cbeb7a36975de, type: 3}
-    spawnChance: 0.04
-  - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
-    spawnChance: 0.04
+  spawnEntriesByLevel:
+  - nearZone:
+    - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
+      spawnChance: 0.01
+    - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
+      spawnChance: 0.02
+    midZone: []
+    farZone: []
+  - nearZone:
+    - prefab: {fileID: 6571442313496509980, guid: c999875d9a2bb5f4c90cbeb7a36975de, type: 3}
+      spawnChance: 0.01
+    - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
+      spawnChance: 0.02
+    midZone: []
+    farZone: []
 --- !u!114 &9195796170670080758
 MonoBehaviour:
   m_ObjectHideFlags: 0
