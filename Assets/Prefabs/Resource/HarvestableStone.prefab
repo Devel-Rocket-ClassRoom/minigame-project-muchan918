@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -122180184899692004}
   m_Layer: 10
   m_Name: HarvestableStone
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

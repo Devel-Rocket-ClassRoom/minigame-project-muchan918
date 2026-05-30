@@ -17,10 +17,10 @@ public enum EquipType
 public class EquipmentData
 {
     public string EquipmentID { get; set; }
-    public EquipSlotType SlotType { get; set; } // 해제할 때 사용
-    public string PartsName { get; set; } // 장착할 때 사용 (Axe, Top, Bottom...)
-    public int PartsIndex { get; set; } // 장착할 때 사용
+    public EquipSlotType SlotType { get; set; }
+    public string PartsName { get; set; }
+    public int PartsIndex { get; set; }
     public EquipType EquipType { get; set; }
-    public int Attack { get; set; }
-    public int Defense { get; set; }
+    public int Value { get; set; }
+    public string TargetTag { get; set; }
 }

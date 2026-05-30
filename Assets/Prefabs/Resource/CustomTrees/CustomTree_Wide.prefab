@@ -182,7 +182,7 @@ GameObject:
   - component: {fileID: -1502341150723271042}
   m_Layer: 10
   m_Name: CustomTree_Wide
-  m_TagString: Untagged
+  m_TagString: Tree
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

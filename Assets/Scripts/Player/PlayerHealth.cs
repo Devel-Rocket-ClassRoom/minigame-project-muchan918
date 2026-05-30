@@ -76,6 +76,14 @@ public class PlayerHealth : MonoBehaviour, IDefender
         UpdateUI();
     }
 
+    public void AddMaxHp(int amount)
+    {
+        maxHp += amount;
+        currentHp += amount;
+        // Debug.Log($"{currentHp}/{maxHp}");
+        UpdateUI();
+    }
+
     private void UpdateUI()
     {
         if (hpSlider == null)

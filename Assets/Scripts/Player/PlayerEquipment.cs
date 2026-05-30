@@ -9,7 +9,7 @@ public class PlayerEquipment : MonoBehaviour
     private Transform _partsRoot;
     private readonly Dictionary<
         EquipSlotType,
-        (string partsName, int index, ItemAsset item)
+        (string partsName, int index, ItemAsset item, int value, EquipmentData data)
     > _equipped = new();
 
     private readonly Dictionary<EquipSlotType, (string partsName, int index)> _defaults = new()
@@ -54,7 +54,9 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         partsObj.GetChild(index).gameObject.SetActive(true);
-        _equipped[data.SlotType] = (data.PartsName, index, item);
+        _equipped[data.SlotType] = (data.PartsName, index, item, data.Value, data);
+
+        ApplyValue(data.SlotType, data.Value);
     }
 
     public ItemAsset UnEquip(EquipSlotType slot)
@@ -72,6 +74,8 @@ public class PlayerEquipment : MonoBehaviour
         _equipped.Remove(slot);
         SetDefaultActive(slot, true);
 
+        ApplyValue(slot, -current.value);
+
         return current.item;
     }
 
@@ -88,6 +92,22 @@ public class PlayerEquipment : MonoBehaviour
     }
 
     public bool IsEquipped(EquipSlotType slot) => _equipped.ContainsKey(slot);
+
+    public EquipmentData GetWeaponRightData()
+    {
+        if (!_equipped.TryGetValue(EquipSlotType.WeaponRight, out var current))
+            return null;
+
+        return current.data;
+    }
+
+    private void ApplyValue(EquipSlotType slot, int value)
+    {
+        if (slot == EquipSlotType.WeaponRight)
+            PlayerAction.Instance.AddDamage(Mathf.RoundToInt(value / 3f));
+        else
+            PlayerHealth.Instance.AddMaxHp(value);
+    }
 
     private void SetDefaultActive(EquipSlotType slot, bool active)
     {
