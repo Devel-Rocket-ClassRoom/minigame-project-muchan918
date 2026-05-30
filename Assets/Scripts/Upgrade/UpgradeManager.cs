@@ -15,6 +15,9 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField]
     private UiInventorySlotList inventorySlotList;
 
+    [SerializeField]
+    private UiCauldronSlotList cauldronSlotList;
+
     [Header("Player")]
     [SerializeField]
     private PlayerInventory playerInventory;
@@ -37,6 +40,7 @@ public class UpgradeManager : MonoBehaviour
             { UpgradeType.Inventory, inventorySlotList },
             { UpgradeType.Animal, GetComponent<AnimalGenerator>() },
             { UpgradeType.Resource, GetComponent<ResourceGenerator>() },
+            { UpgradeType.Cauldron, cauldronSlotList },
         };
     }
 

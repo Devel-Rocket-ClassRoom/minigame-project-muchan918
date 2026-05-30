@@ -8,6 +8,7 @@ public enum UpgradeType
     Inventory,
     Animal,
     Resource,
+    Cauldron,
 }
 
 [CreateAssetMenu(menuName = "7Days/UpgradeAsset")]

@@ -5216,7 +5216,6 @@ MonoBehaviour:
   recipes:
   - {fileID: 11400000, guid: 041bf04d5bc61c44f9919c45d243acad, type: 2}
   - {fileID: 11400000, guid: 1e463f309f12b4142893bb4ac4d739ef, type: 2}
-  - {fileID: 11400000, guid: 1fdd074321cba2b478df830fc59b734d, type: 2}
   playerInventory: {fileID: 56650075042092300}
   cauldronPanel: {fileID: 7787676689796282521}
   ingredientPanel: {fileID: 7347028419669332138}
@@ -8025,6 +8024,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 897ddd19b6dd1e445a2bff4062f1a050, type: 2}
   - {fileID: 11400000, guid: 7e5b2e343258b114789a4218f563e60f, type: 2}
   - {fileID: 11400000, guid: 17f95983f2d8a6242a4f353ead7a8e45, type: 2}
+  - {fileID: 11400000, guid: 30936aab1d1af1742ae33c6693968471, type: 2}
   upgradePanel: {fileID: 2051115723}
   ingredientPanel: {fileID: 1960750311}
   upgradeSlotList: {fileID: 2051115725}
@@ -17041,6 +17041,9 @@ MonoBehaviour:
   scrollRect: {fileID: 6925954177328442506}
   playerInventory: {fileID: 56650075042092300}
   cauldronInteraction: {fileID: 900987557}
+  recipesByLevel:
+  - recipes:
+    - {fileID: 11400000, guid: 1e463f309f12b4142893bb4ac4d739ef, type: 2}
 --- !u!114 &8947705405683188218
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17197,6 +17200,7 @@ MonoBehaviour:
   craftSlotList: {fileID: 1464152542}
   storageInventory: {fileID: 5864152863047016145}
   inventorySlotList: {fileID: 1090617590}
+  cauldronSlotList: {fileID: 8832404831836476315}
   playerInventory: {fileID: 56650075042092300}
 --- !u!114 &9195796170670080761
 MonoBehaviour:
