@@ -1,8 +1,8 @@
-EquipmentID,SlotType,PartsName,PartsIndex,EquipType,Attack,Defense
-equip_axe_01,WeaponRight,Axe,0,Axe,10,0
-equip_sword_01,WeaponRight,Sword,0,Sword,15,0
-equip_headgear_01,Hat,Headgear,0,None,0,3
-equip_top_01,Top,Top,0,None,5,5
-equip_bottom_01,Bottom,Bottom,0,None,5,5
-equip_shoes_01,Shoes,Shoes,0,None,0,2
-equip_headgear_02,Hat,Headgear,1,None,0,3
+EquipmentID,SlotType,PartsName,PartsIndex,EquipType,Value,TargetTag
+equip_axe_01,WeaponRight,Axe,0,Axe,10,Tree
+equip_sword_01,WeaponRight,Sword,0,Sword,15,Animal
+equip_headgear_01,Hat,Headgear,0,None,3,
+equip_headgear_02,Hat,Headgear,1,None,3,
+equip_top_01,Top,Top,0,None,10,
+equip_bottom_01,Bottom,Bottom,0,None,10,
+equip_shoes_01,Shoes,Shoes,0,None,2,

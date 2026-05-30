@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class PlayerAction : MonoBehaviour, IAttacker
 {
+    public static PlayerAction Instance { get; private set; }
+
     private Animator animator;
     private static readonly int ActionHash = Animator.StringToHash("Action");
 
@@ -27,6 +29,7 @@ public class PlayerAction : MonoBehaviour, IAttacker
 
     private void Awake()
     {
+        Instance = this;
         animator = GetComponent<Animator>();
     }
 
@@ -58,10 +61,21 @@ public class PlayerAction : MonoBehaviour, IAttacker
 
     public void Attack(IDefender target)
     {
+        int totalDamage = Damage;
+
+        EquipmentData weapon = PlayerEquipment.Instance.GetWeaponRightData();
+        if (weapon != null && !string.IsNullOrEmpty(weapon.TargetTag))
+        {
+            if ((target as Component).CompareTag(weapon.TargetTag))
+            {
+                totalDamage += weapon.Value;
+            }
+        }
+
         Vector3 hitNormal = (
             (target as Component).transform.position - transform.position
         ).normalized;
-        target.TakeDamage(Damage, hitNormal);
+        target.TakeDamage(totalDamage, hitNormal);
     }
 
     public void OnActionHit()
@@ -81,5 +95,10 @@ public class PlayerAction : MonoBehaviour, IAttacker
             if (hit.TryGetComponent<IDefender>(out var defender))
                 Attack(defender);
         }
+    }
+
+    public void AddDamage(int amount)
+    {
+        damage = Mathf.Max(0, damage + amount);
     }
 }
