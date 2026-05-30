@@ -18,8 +18,15 @@ public class CameraOcclusionHandler : MonoBehaviour
     [SerializeField]
     private float sphereRadius = 0.5f;
 
+    [SerializeField]
+    private string leavesBoneName = "Leaves";
+
+    [SerializeField]
+    private string trunkBoneName = "Trunk";
+
     private Camera cam;
-    private HashSet<Renderer> fadedObjects = new();
+    private HashSet<GameObject> hiddenLeaves = new();
+    private HashSet<Renderer> fadedRenderers = new();
 
     private void Awake()
     {
@@ -28,6 +35,7 @@ public class CameraOcclusionHandler : MonoBehaviour
 
     private void Update()
     {
+        HashSet<GameObject> hitLeaves = new();
         HashSet<Renderer> hitRenderers = new();
 
         Vector3 direction = cam.transform.position - player.position;
@@ -43,23 +51,53 @@ public class CameraOcclusionHandler : MonoBehaviour
 
         foreach (var hit in hits)
         {
-            Renderer[] renderers = hit.collider.GetComponentsInChildren<Renderer>();
+            Transform canopy = hit.collider.transform;
 
-            foreach (var rend in renderers)
+            // 나뭇잎 처리
+            Transform leaves = canopy.Find(leavesBoneName);
+            if (leaves != null)
             {
-                hitRenderers.Add(rend);
-
-                if (!fadedObjects.Contains(rend))
+                hitLeaves.Add(leaves.gameObject);
+                if (leaves.gameObject.activeSelf)
                 {
-                    if (rend != null)
+                    leaves.gameObject.SetActive(false);
+                    hiddenLeaves.Add(leaves.gameObject);
+                }
+            }
+
+            // 줄기 처리
+            Transform trunk = canopy.Find(trunkBoneName);
+            if (trunk != null)
+            {
+                foreach (var rend in trunk.GetComponentsInChildren<Renderer>())
+                {
+                    hitRenderers.Add(rend);
+                    if (!fadedRenderers.Contains(rend))
+                    {
                         rend.material = transparentMaterial;
-                    fadedObjects.Add(rend);
+                        fadedRenderers.Add(rend);
+                    }
                 }
             }
         }
 
+        // 나뭇잎 복원
+        List<GameObject> toShow = new();
+        foreach (var leaf in hiddenLeaves)
+        {
+            if (!hitLeaves.Contains(leaf))
+            {
+                if (leaf != null)
+                    leaf.SetActive(true);
+                toShow.Add(leaf);
+            }
+        }
+        foreach (var leaf in toShow)
+            hiddenLeaves.Remove(leaf);
+
+        // 줄기 복원
         List<Renderer> toRestore = new();
-        foreach (var rend in fadedObjects)
+        foreach (var rend in fadedRenderers)
         {
             if (!hitRenderers.Contains(rend))
             {
@@ -69,16 +107,19 @@ public class CameraOcclusionHandler : MonoBehaviour
             }
         }
         foreach (var rend in toRestore)
-            fadedObjects.Remove(rend);
+            fadedRenderers.Remove(rend);
     }
 
     private void OnDisable()
     {
-        foreach (var rend in fadedObjects)
-        {
+        foreach (var leaf in hiddenLeaves)
+            if (leaf != null)
+                leaf.SetActive(true);
+        hiddenLeaves.Clear();
+
+        foreach (var rend in fadedRenderers)
             if (rend != null)
                 rend.material = originalMaterial;
-        }
-        fadedObjects.Clear();
+        fadedRenderers.Clear();
     }
 }
