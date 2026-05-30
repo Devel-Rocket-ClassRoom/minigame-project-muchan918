@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CraftInteraction : MonoBehaviour, IInteractable, IUpgradeable
+public class CraftInteraction : MonoBehaviour, IInteractable
 {
     public InteractionType Type => InteractionType.Craft;
-    public int Level { get; private set; }
 
     [Header("Data")]
     [SerializeField]
@@ -45,12 +44,6 @@ public class CraftInteraction : MonoBehaviour, IInteractable, IUpgradeable
     {
         craftPanel.SetActive(true);
         craftSlotList.RefreshAvailability();
-    }
-
-    public void Upgrade()
-    {
-        Level++;
-        Debug.Log($"[Upgrade] 작업대 Lv {Level}");
     }
 
     public void OnClickCraft()

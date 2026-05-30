@@ -2643,6 +2643,8 @@ MonoBehaviour:
   originalMaterial: {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
   transparentMaterial: {fileID: 2100000, guid: a34f72c110299014694e1addb67bb9b2, type: 2}
   sphereRadius: 0.5
+  leavesBoneName: Leaves
+  trunkBoneName: Trunk
 --- !u!1 &331123264
 GameObject:
   m_ObjectHideFlags: 0
@@ -8334,6 +8336,26 @@ PrefabInstance:
       propertyPath: craftInteraction
       value: 
       objectReference: {fileID: 1227565810}
+    - target: {fileID: 3789095109536668881, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
+      propertyPath: recipesByLevel.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789095109536668881, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
+      propertyPath: recipesByLevel.Array.data[0].recipes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789095109536668881, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
+      propertyPath: recipesByLevel.Array.data[1].recipes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3789095109536668881, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
+      propertyPath: 'recipesByLevel.Array.data[0].recipes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 041bf04d5bc61c44f9919c45d243acad, type: 2}
+    - target: {fileID: 3789095109536668881, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
+      propertyPath: 'recipesByLevel.Array.data[1].recipes.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 041bf04d5bc61c44f9919c45d243acad, type: 2}
     - target: {fileID: 4129462201568428823, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0
@@ -17176,7 +17198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25bd4e51c7f8f03469bfcd53e1b599ef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeManager
-  craftInteraction: {fileID: 1227565810}
+  craftSlotList: {fileID: 1464152542}
   storageInventory: {fileID: 5864152863047016145}
   inventorySlotList: {fileID: 1090617590}
   playerInventory: {fileID: 56650075042092300}

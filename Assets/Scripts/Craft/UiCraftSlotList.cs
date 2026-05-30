@@ -2,8 +2,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiCraftSlotList : MonoBehaviour
+public class UiCraftSlotList : MonoBehaviour, IUpgradeable
 {
+    [System.Serializable]
+    public class RecipeLevel
+    {
+        public List<RecipeAsset> recipes;
+    }
+
     public UiCraftSlot prefab;
     public ScrollRect scrollRect;
     public PlayerInventory playerInventory;
@@ -12,6 +18,10 @@ public class UiCraftSlotList : MonoBehaviour
     private List<UiCraftSlot> slotList = new List<UiCraftSlot>();
     private List<RecipeAsset> recipes = new List<RecipeAsset>();
     private UiCraftSlot selectedSlot;
+
+    [SerializeField]
+    private List<RecipeLevel> recipesByLevel;
+    public int Level { get; private set; }
 
     public void Setup(List<RecipeAsset> recipeList)
     {
@@ -67,5 +77,16 @@ public class UiCraftSlotList : MonoBehaviour
         if (selectedSlot != null)
             selectedSlot.SetSelected(false);
         selectedSlot = null;
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= recipesByLevel.Count)
+            return;
+
+        foreach (var recipe in recipesByLevel[Level].recipes)
+            AddRecipe(recipe);
+
+        Level++;
     }
 }

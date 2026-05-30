@@ -7,7 +7,7 @@ public class UpgradeManager : MonoBehaviour
 
     [Header("Systems")]
     [SerializeField]
-    private CraftInteraction craftInteraction;
+    private UiCraftSlotList craftSlotList;
 
     [SerializeField]
     private StorageInventory storageInventory;
@@ -32,7 +32,7 @@ public class UpgradeManager : MonoBehaviour
 
         upgradeTargets = new Dictionary<UpgradeType, IUpgradeable>
         {
-            { UpgradeType.Workbench, craftInteraction },
+            { UpgradeType.Workbench, craftSlotList },
             { UpgradeType.Storage, storageInventory },
             { UpgradeType.Inventory, inventorySlotList },
         };
