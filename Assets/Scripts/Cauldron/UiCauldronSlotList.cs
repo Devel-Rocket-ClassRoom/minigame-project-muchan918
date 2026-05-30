@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UiCauldronSlotList : MonoBehaviour
+public class UiCauldronSlotList : MonoBehaviour, IUpgradeable
 {
     public UiCauldronSlot prefab;
     public ScrollRect scrollRect;
@@ -12,6 +12,17 @@ public class UiCauldronSlotList : MonoBehaviour
     private List<UiCauldronSlot> slotList = new List<UiCauldronSlot>();
     private List<RecipeAsset> recipes = new List<RecipeAsset>();
     private UiCauldronSlot selectedSlot;
+
+    [System.Serializable]
+    public class RecipeLevel
+    {
+        public List<RecipeAsset> recipes;
+    }
+
+    [SerializeField]
+    private List<RecipeLevel> recipesByLevel;
+
+    public int Level { get; private set; }
 
     public void Setup(List<RecipeAsset> recipeList)
     {
@@ -65,5 +76,16 @@ public class UiCauldronSlotList : MonoBehaviour
         if (selectedSlot != null)
             selectedSlot.SetSelected(false);
         selectedSlot = null;
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= recipesByLevel.Count)
+            return;
+
+        foreach (var recipe in recipesByLevel[Level].recipes)
+            AddRecipe(recipe);
+
+        Level++;
     }
 }

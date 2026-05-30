@@ -42,6 +42,7 @@ public class UiInventorySlotList : MonoBehaviour, IUpgradeable
     public void Upgrade()
     {
         Level++;
+        maxSlots += 10;
         Debug.Log($"[Upgrade] 인벤토리 Lv {Level}");
     }
 

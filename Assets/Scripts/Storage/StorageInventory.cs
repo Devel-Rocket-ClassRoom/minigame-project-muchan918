@@ -36,6 +36,7 @@ public class StorageInventory : MonoBehaviour, IUpgradeable
     public void Upgrade()
     {
         Level++;
+        maxSlots += 10;
         Debug.Log($"[Upgrade] 저장소 Lv {Level}");
     }
 

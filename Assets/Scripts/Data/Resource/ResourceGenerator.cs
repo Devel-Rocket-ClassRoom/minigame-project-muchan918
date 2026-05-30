@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceGenerator : MonoBehaviour
+public class ResourceGenerator : MonoBehaviour, IUpgradeable
 {
     [System.Serializable]
     public class ResourceSpawnEntry
@@ -13,25 +13,50 @@ public class ResourceGenerator : MonoBehaviour
         public float spawnChance;
     }
 
-    [Header("Near Zone (희귀한 것 먼저)")]
+    [System.Serializable]
+    public class ResourceUpgradeLevel
+    {
+        public List<ResourceSpawnEntry> nearZone;
+        public List<ResourceSpawnEntry> midZone;
+        public List<ResourceSpawnEntry> farZone;
+    }
+
     [SerializeField]
+    private List<ResourceUpgradeLevel> spawnEntriesByLevel;
+
     private List<ResourceSpawnEntry> nearZone;
-
-    [Header("Mid Zone (희귀한 것 먼저)")]
-    [SerializeField]
     private List<ResourceSpawnEntry> midZone;
-
-    [Header("Far Zone (희귀한 것 먼저)")]
-    [SerializeField]
     private List<ResourceSpawnEntry> farZone;
 
     private TileMapGenerator tileMapGenerator;
-
     private Transform resourceParent;
+
+    public int Level { get; private set; }
 
     private void Awake()
     {
         tileMapGenerator = GetComponent<TileMapGenerator>();
+
+        if (spawnEntriesByLevel.Count > 0)
+        {
+            var entries = spawnEntriesByLevel[0];
+            nearZone = entries.nearZone;
+            midZone = entries.midZone;
+            farZone = entries.farZone;
+        }
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= spawnEntriesByLevel.Count - 1)
+            return;
+
+        Level++;
+
+        var entries = spawnEntriesByLevel[Level];
+        nearZone = entries.nearZone;
+        midZone = entries.midZone;
+        farZone = entries.farZone;
     }
 
     public void Generate()
