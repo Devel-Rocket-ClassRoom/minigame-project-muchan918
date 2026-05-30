@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0.97117877
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
@@ -17153,12 +17153,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AnimalGenerator
   nearZone:
   - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 20
+    spawnCount: 0
+  - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
+    spawnCount: 1
   midZone:
   - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 20
+    spawnCount: 0
   - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 20
+    spawnCount: 0
   farZone:
   - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
     spawnCount: 0
