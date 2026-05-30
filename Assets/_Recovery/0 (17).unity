@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.97117877
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3253,10 +3253,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
-      propertyPath: prefab
-      value: 
-      objectReference: {fileID: 5747241666415972591, guid: dea2d287e7a91a6479d8a48554ee1640, type: 3}
-    - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: maxSlots
       value: 20
       objectReference: {fileID: 0}
@@ -3543,10 +3539,6 @@ PrefabInstance:
     - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_CellSize.y
       value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
-      propertyPath: m_ConstraintCount
-      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4805705830734856348, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: button

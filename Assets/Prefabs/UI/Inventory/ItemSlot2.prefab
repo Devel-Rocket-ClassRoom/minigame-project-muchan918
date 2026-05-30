@@ -87,9 +87,9 @@ GameObject:
   - component: {fileID: 8759982181684020869}
   - component: {fileID: 9025468694111523529}
   - component: {fileID: 2820273062265132583}
-  - component: {fileID: 2841680245464995934}
+  - component: {fileID: 5747241666415972591}
   m_Layer: 5
-  m_Name: CraftSlot
+  m_Name: ItemSlot2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
---- !u!114 &2841680245464995934
+--- !u!114 &5747241666415972591
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -193,14 +193,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1672253496445370749}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6fe0ffad7af27f745bd6a05ff9776855, type: 3}
+  m_Script: {fileID: 11500000, guid: 732362fc3540907429edddc0fe2f00c3, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::UiCraftSlot
+  m_EditorClassIdentifier: Assembly-CSharp::UiInventorySlot
   slotIndex: -1
-  iconImage: {fileID: 4388610010998168178}
-  backgroundImage: {fileID: 3412815897060973245}
-  outlineImage: {fileID: 7508312843156213506}
+  imageIcon: {fileID: 4388610010998168178}
+  imageBg: {fileID: 3412815897060973245}
+  imageOutlineSelected: {fileID: 7508312843156213506}
   button: {fileID: 2820273062265132583}
+  amountText: {fileID: 3778253368192836561}
   nameText: {fileID: 604242198332703711}
 --- !u!1 &2538018587156951375
 GameObject:
