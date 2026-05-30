@@ -35,6 +35,7 @@ public class UpgradeManager : MonoBehaviour
             { UpgradeType.Workbench, craftSlotList },
             { UpgradeType.Storage, storageInventory },
             { UpgradeType.Inventory, inventorySlotList },
+            { UpgradeType.Animal, GetComponent<AnimalGenerator>() },
         };
     }
 

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimalGenerator : MonoBehaviour
+public class AnimalGenerator : MonoBehaviour, IUpgradeable
 {
     [System.Serializable]
     public class AnimalSpawnEntry
@@ -13,24 +13,37 @@ public class AnimalGenerator : MonoBehaviour
         public int spawnCount;
     }
 
-    [Header("Near Zone")]
+    [System.Serializable]
+    public class AnimalUpgradeLevel
+    {
+        public List<AnimalSpawnEntry> nearZone;
+        public List<AnimalSpawnEntry> midZone;
+        public List<AnimalSpawnEntry> farZone;
+    }
+
     [SerializeField]
+    private List<AnimalUpgradeLevel> spawnEntriesByLevel;
+
     private List<AnimalSpawnEntry> nearZone;
-
-    [Header("Mid Zone")]
-    [SerializeField]
     private List<AnimalSpawnEntry> midZone;
-
-    [Header("Far Zone")]
-    [SerializeField]
     private List<AnimalSpawnEntry> farZone;
 
     private TileMapGenerator tileMapGenerator;
     private Transform animalParent;
 
+    public int Level { get; private set; }
+
     private void Awake()
     {
         tileMapGenerator = GetComponent<TileMapGenerator>();
+
+        if (spawnEntriesByLevel.Count > 0)
+        {
+            var entries = spawnEntriesByLevel[0];
+            nearZone = entries.nearZone;
+            midZone = entries.midZone;
+            farZone = entries.farZone;
+        }
     }
 
     public void Generate()
@@ -107,43 +120,6 @@ public class AnimalGenerator : MonoBehaviour
         }
     }
 
-    // private void SpawnZone(List<AnimalSpawnEntry> zone, List<Vector2Int> tiles, MapData mapData)
-    // {
-    //     int tileIndex = 0;
-
-    //     foreach (var entry in zone)
-    //     {
-    //         if (entry.prefab == null || entry.spawnCount <= 0)
-    //             continue;
-
-    //         int spawned = 0;
-
-    //         while (spawned < entry.spawnCount)
-    //         {
-    //             if (tileIndex >= tiles.Count)
-    //             {
-    //                 Debug.LogWarning(
-    //                     $"[AnimalGenerator] '{entry.prefab.name}' {entry.spawnCount}마리 목표 중 "
-    //                         + $"{spawned}마리만 스폰됨 (타일 부족)"
-    //                 );
-    //                 break;
-    //             }
-
-    //             var coord = tiles[tileIndex++];
-
-    //             Instantiate(
-    //                 entry.prefab,
-    //                 new Vector3(coord.x, 0f, coord.y),
-    //                 Quaternion.identity,
-    //                 animalParent
-    //             );
-
-    //             mapData.SetTile(coord, TileType.Resource);
-    //             spawned++;
-    //         }
-    //     }
-    // }
-
     private static void Shuffle<T>(List<T> list, System.Random random)
     {
         for (int i = list.Count - 1; i > 0; i--)
@@ -151,5 +127,18 @@ public class AnimalGenerator : MonoBehaviour
             int j = random.Next(0, i + 1);
             (list[i], list[j]) = (list[j], list[i]);
         }
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= spawnEntriesByLevel.Count - 1)
+            return;
+
+        Level++;
+
+        var entries = spawnEntriesByLevel[Level];
+        nearZone = entries.nearZone;
+        midZone = entries.midZone;
+        farZone = entries.farZone;
     }
 }

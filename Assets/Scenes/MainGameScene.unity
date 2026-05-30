@@ -8035,6 +8035,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: b64e3301eadfb4144b21967fa26b318b, type: 2}
   - {fileID: 11400000, guid: a549a482e96c91f41a49d0086ec6e9fa, type: 2}
   - {fileID: 11400000, guid: 897ddd19b6dd1e445a2bff4062f1a050, type: 2}
+  - {fileID: 11400000, guid: 7e5b2e343258b114789a4218f563e60f, type: 2}
   upgradePanel: {fileID: 2051115723}
   ingredientPanel: {fileID: 1960750311}
   upgradeSlotList: {fileID: 2051115725}
@@ -17173,19 +17174,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 863cc9f2329c33942ad7b9816471fd4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalGenerator
-  nearZone:
-  - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 0
-  - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 1
-  midZone:
-  - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
-    spawnCount: 0
-  - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 0
-  farZone:
-  - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
-    spawnCount: 0
+  spawnEntriesByLevel:
+  - nearZone:
+    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+      spawnCount: 3
+    midZone:
+    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+      spawnCount: 3
+    farZone:
+    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+      spawnCount: 3
+  - nearZone:
+    - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
+      spawnCount: 3
+    midZone:
+    - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
+      spawnCount: 3
+    farZone:
+    - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
+      spawnCount: 3
 --- !u!114 &9195796170670080760
 MonoBehaviour:
   m_ObjectHideFlags: 0
