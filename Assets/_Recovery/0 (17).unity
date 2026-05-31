@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.97117877
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3253,10 +3253,6 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
-      propertyPath: prefab
-      value: 
-      objectReference: {fileID: 5747241666415972591, guid: dea2d287e7a91a6479d8a48554ee1640, type: 3}
-    - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: maxSlots
       value: 20
       objectReference: {fileID: 0}
@@ -3538,15 +3534,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_CellSize.x
-      value: 195
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_CellSize.y
-      value: 195
-      objectReference: {fileID: 0}
-    - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
-      propertyPath: m_ConstraintCount
-      value: 6
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4805705830734856348, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: button
@@ -13272,14 +13264,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 10
-    m_Right: 10
-    m_Top: 0
+    m_Left: 0
+    m_Right: 0
+    m_Top: 30
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 200}
+  m_CellSize: {x: 180, y: 180}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 5
@@ -15150,14 +15142,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 10
-    m_Right: 10
+    m_Left: 30
+    m_Right: 0
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 200}
+  m_CellSize: {x: 180, y: 180}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 5
@@ -15584,7 +15576,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf516d7ea04a9cd4aa46858c43f9ab39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StorageInventory
-  prefab: {fileID: 5747241666415972591, guid: dea2d287e7a91a6479d8a48554ee1640, type: 3}
+  prefab: {fileID: 3412911183743275977, guid: 10868c31c9ce64b44a3dc6095b3c5ace, type: 3}
   scrollRect: {fileID: 3851304101149138460}
   maxSlots: 20
   capacityText: {fileID: 1257538576}
@@ -16984,7 +16976,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::StoragePlayerInventory
   playerInventory: {fileID: 56650075042092300}
-  prefab: {fileID: 5747241666415972591, guid: dea2d287e7a91a6479d8a48554ee1640, type: 3}
+  prefab: {fileID: 3412911183743275977, guid: 10868c31c9ce64b44a3dc6095b3c5ace, type: 3}
   scrollRect: {fileID: 417354440230234760}
   capacityText: {fileID: 2091687962}
 --- !u!222 &8469168931493812460

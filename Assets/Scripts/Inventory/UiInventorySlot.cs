@@ -10,6 +10,7 @@ public class UiInventorySlot : MonoBehaviour
     public Image imageOutlineSelected;
     public Button button;
     public TextMeshProUGUI amountText;
+    public TextMeshProUGUI nameText;
 
     public ItemAsset itemAsset { get; private set; }
 
@@ -17,6 +18,7 @@ public class UiInventorySlot : MonoBehaviour
     {
         itemAsset = asset;
         imageIcon.sprite = asset.Icon;
+        nameText.text = asset.Data.DisplayName;
         gameObject.SetActive(true);
     }
 
@@ -25,6 +27,7 @@ public class UiInventorySlot : MonoBehaviour
         itemAsset = asset;
         imageIcon.sprite = asset.Icon;
         amountText.text = amount.ToString();
+        nameText.text = asset.Data.DisplayName;
         gameObject.SetActive(true);
     }
 
@@ -33,6 +36,7 @@ public class UiInventorySlot : MonoBehaviour
         itemAsset = null;
         imageIcon.sprite = null;
         amountText.text = "";
+        nameText.text = "";
         gameObject.SetActive(false);
     }
 

@@ -42,6 +42,14 @@ public class UiCauldronSlotList : MonoBehaviour, IUpgradeable
         int capturedIndex = slotList.Count;
         slot.button.onClick.AddListener(() =>
         {
+            if (selectedSlot == slotList[capturedIndex])
+            {
+                selectedSlot.SetSelected(false);
+                selectedSlot = null;
+                cauldronInteraction.OnDeselectRecipe();
+                return;
+            }
+
             if (selectedSlot != null)
                 selectedSlot.SetSelected(false);
 

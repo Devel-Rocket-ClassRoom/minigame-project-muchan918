@@ -41,6 +41,14 @@ public class UiCraftSlotList : MonoBehaviour, IUpgradeable
         int capturedIndex = slotList.Count;
         slot.button.onClick.AddListener(() =>
         {
+            if (selectedSlot == slotList[capturedIndex])
+            {
+                selectedSlot.SetSelected(false);
+                selectedSlot = null;
+                craftInteraction.OnDeselectRecipe();
+                return;
+            }
+
             // 이전 선택 슬롯 outline 끄기
             if (selectedSlot != null)
                 selectedSlot.SetSelected(false);

@@ -3538,11 +3538,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_CellSize.x
-      value: 195
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_CellSize.y
-      value: 195
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 4446723498092879714, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: m_ConstraintCount
@@ -13272,8 +13272,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 10
-    m_Right: 10
+    m_Left: 30
+    m_Right: 30
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0
@@ -15150,8 +15150,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.GridLayoutGroup
   m_Padding:
-    m_Left: 10
-    m_Right: 10
+    m_Left: 30
+    m_Right: 30
     m_Top: 0
     m_Bottom: 0
   m_ChildAlignment: 0

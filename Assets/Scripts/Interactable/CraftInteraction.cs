@@ -63,8 +63,7 @@ public class CraftInteraction : MonoBehaviour, IInteractable
 
         // 갱신
         craftSlotList.RefreshAvailability();
-        ingredientPanel.SetActive(false);
-        selectedRecipe = null;
+        ingredientSlotList.Setup(selectedRecipe);
     }
 
     public void OnSelectRecipe(RecipeAsset recipe)
@@ -80,5 +79,11 @@ public class CraftInteraction : MonoBehaviour, IInteractable
         craftPanel.SetActive(false);
         craftSlotList.ResetSelection();
         selectedRecipe = null;
+    }
+
+    public void OnDeselectRecipe()
+    {
+        selectedRecipe = null;
+        ingredientPanel.SetActive(false);
     }
 }
