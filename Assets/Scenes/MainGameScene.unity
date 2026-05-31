@@ -181,7 +181,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.97117877
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5172864267406638593, guid: bd3371215294c594eaee7bcab1f6a426, type: 3}
       propertyPath: m_AnchorMax.y
@@ -3258,7 +3258,7 @@ PrefabInstance:
       objectReference: {fileID: 5747241666415972591, guid: dea2d287e7a91a6479d8a48554ee1640, type: 3}
     - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: maxSlots
-      value: 2
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: fullPopup
@@ -7182,6 +7182,60 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1155384957}
   m_CullTransparentMesh: 1
+--- !u!1 &1204391489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1204391491}
+  - component: {fileID: 1204391490}
+  m_Layer: 0
+  m_Name: GameSaveController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1204391490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204391489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8526803f489b1a543b67f0cf8a00b499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::GameSaveController
+  dayNightCycle: {fileID: 7900980564118895665}
+  playerHealth: {fileID: 5224556440869973754}
+  playerHunger: {fileID: 5224556440869973761}
+  playerInventory: {fileID: 56650075042092300}
+  storageInventory: {fileID: 5864152863047016145}
+  tributeEvent: {fileID: 2007684327670716511}
+  upgradeManager: {fileID: 9195796170670080760}
+  playerEquipment: {fileID: 5224556440869973760}
+  uiEquipPanel: {fileID: 1915456391}
+  tileMapGenerator: {fileID: 9195796170670080758}
+--- !u!4 &1204391491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1204391489}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.69098, y: 2.84589, z: -2.86886}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1221560789
 GameObject:
   m_ObjectHideFlags: 0
@@ -13623,11 +13677,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d307605f59643d74dbfddec427dd04e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TributeEvent
-  requirementPool:
-  - {fileID: 11400000, guid: 2325f1d2283cba045b416b769c9d0c8c, type: 2}
-  - {fileID: 11400000, guid: 8c98792b75807bd40a63a6c9f6ee8be8, type: 2}
-  - {fileID: 11400000, guid: 3de10494a1bda7a42a0af7a343aa1bbe, type: 2}
-  - {fileID: 11400000, guid: 1ec86c075a0ec394092ada68a0c7d240, type: 2}
+  levelPool:
+  - requirements:
+    - {fileID: 11400000, guid: 2325f1d2283cba045b416b769c9d0c8c, type: 2}
+    - {fileID: 11400000, guid: 8c98792b75807bd40a63a6c9f6ee8be8, type: 2}
+  - requirements:
+    - {fileID: 11400000, guid: 1ec86c075a0ec394092ada68a0c7d240, type: 2}
+    - {fileID: 11400000, guid: 3de10494a1bda7a42a0af7a343aa1bbe, type: 2}
   tributeSlotList: {fileID: 582373168}
 --- !u!114 &2023127114752061924
 MonoBehaviour:
@@ -16718,6 +16774,7 @@ MonoBehaviour:
   playerHealth: {fileID: 5224556440869973754}
   playerHunger: {fileID: 5224556440869973761}
   gameOverUI: {fileID: 805958337}
+  gameSaveController: {fileID: 1204391490}
   isCheatMode: 0
 --- !u!222 &7941141556468330020
 CanvasRenderer:
@@ -17280,3 +17337,4 @@ SceneRoots:
   - {fileID: 900987561}
   - {fileID: 693122424}
   - {fileID: 1923272636}
+  - {fileID: 1204391491}

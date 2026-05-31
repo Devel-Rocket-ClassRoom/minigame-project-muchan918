@@ -67,4 +67,18 @@ public class UiTributeSlotList : MonoBehaviour
     {
         selectedSlotIndex = -1;
     }
+
+    public List<int> GetSubmittedList()
+    {
+        var result = new List<int>();
+        foreach (var slot in slotList)
+            result.Add(slot.Submitted);
+        return result;
+    }
+
+    public void RestoreSubmitted(List<int> submittedList)
+    {
+        for (int i = 0; i < slotList.Count && i < submittedList.Count; i++)
+            slotList[i].AddSubmit(submittedList[i]);
+    }
 }

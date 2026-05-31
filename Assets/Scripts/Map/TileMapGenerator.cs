@@ -37,16 +37,12 @@ public class TileMapGenerator : MonoBehaviour
     private AnimalGenerator animalGenerator;
 
     public MapData MapData => _mapData;
+    public int CurrentSeed { get; private set; }
 
     private void Awake()
     {
         resourceGenerator = GetComponent<ResourceGenerator>();
         animalGenerator = GetComponent<AnimalGenerator>();
-    }
-
-    private void Start()
-    {
-        GenerateMap();
     }
 
     private void Update()
@@ -62,13 +58,20 @@ public class TileMapGenerator : MonoBehaviour
         ClearMap();
         GamePause.Pause();
 
-        int usedSeed = seed == 0 ? Random.Range(1, 999999) : seed;
-        _mapData = new MapData(mapWidth, mapHeight, usedSeed, nearZoneRadius, midZoneRadius);
+        CurrentSeed = seed == 0 ? Random.Range(1, 999999) : seed;
+        _mapData = new MapData(mapWidth, mapHeight, CurrentSeed, nearZoneRadius, midZoneRadius);
 
         _groundParent = new GameObject("Ground").transform;
         _groundParent.SetParent(transform);
 
         StartCoroutine(GenerateSequence());
+    }
+
+    public void GenerateMap(int forcedSeed)
+    {
+        seed = forcedSeed;
+        GenerateMap();
+        seed = 0;
     }
 
     private IEnumerator GenerateSequence()

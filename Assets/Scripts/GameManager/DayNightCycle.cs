@@ -30,6 +30,9 @@ public class DayNightCycle : MonoBehaviour
     private GameObject gameOverUI;
 
     [SerializeField]
+    private GameSaveController gameSaveController;
+
+    [SerializeField]
     private bool isCheatMode = false;
 
     private float elapsedTime = 0f;
@@ -41,8 +44,8 @@ public class DayNightCycle : MonoBehaviour
     public int CurrentDay { get; private set; } = 1;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
     public float DayProgress => Mathf.Clamp01(elapsedTime / TotalDayDuration);
-
     public bool IsNight => elapsedTime >= brightDuration + darkenDuration;
+    public int HungerEmptyCount => hungerEmptyCount;
 
     public string CurrentTimeString
     {
@@ -101,6 +104,8 @@ public class DayNightCycle : MonoBehaviour
             if (tributeEvent.Evaluate())
             {
                 tributeEvent.AssignNewEvent();
+                ResourceChunkManager.Instance.ClearDestroyedPositions();
+                AnimalChunkManager.Instance.ClearDeadPositions();
                 tileMapGenerator.GenerateMap();
                 hungerEmptyCount = 0;
             }
@@ -128,6 +133,18 @@ public class DayNightCycle : MonoBehaviour
         }
 
         playerHunger.ResetHunger();
+        AnimalChunkManager.Instance.ResetLivingAnimals();
         CurrentDay++;
+        gameSaveController.SaveGame();
+    }
+
+    public void SetDay(int day)
+    {
+        CurrentDay = day;
+    }
+
+    public void SetHungerEmptyCount(int count)
+    {
+        hungerEmptyCount = count;
     }
 }

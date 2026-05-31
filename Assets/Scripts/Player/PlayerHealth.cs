@@ -28,10 +28,7 @@ public class PlayerHealth : MonoBehaviour, IDefender
             return;
         }
         Instance = this;
-    }
 
-    private void Start()
-    {
         currentHp = maxHp;
         UpdateUI();
     }

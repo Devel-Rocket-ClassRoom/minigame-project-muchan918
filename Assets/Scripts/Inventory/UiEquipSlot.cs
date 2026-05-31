@@ -10,11 +10,6 @@ public class UiEquipSlot : MonoBehaviour
 
     private ItemAsset _equippedItem;
 
-    private void Awake()
-    {
-        item.SetActive(false);
-    }
-
     public void SetItem(ItemAsset asset)
     {
         _equippedItem = asset;

@@ -78,4 +78,9 @@ public class UpgradeManager : MonoBehaviour
 
         return true;
     }
+
+    public void ForceUpgrade(UpgradeType type)
+    {
+        upgradeTargets[type].Upgrade();
+    }
 }
