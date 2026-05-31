@@ -60,4 +60,10 @@ public class PlayerHunger : MonoBehaviour
             return;
         hungerSlider.value = (float)currentHunger / maxHunger;
     }
+
+    public void SetHunger(int amount)
+    {
+        currentHunger = Mathf.Clamp(amount, 0, maxHunger);
+        UpdateUI();
+    }
 }

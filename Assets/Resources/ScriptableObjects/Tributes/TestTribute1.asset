@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0442930d11631e2479c865f4eecd8842, type: 3}
-  m_Name: TestTribute1 3
+  m_Name: TestTribute1
   m_EditorClassIdentifier: Assembly-CSharp::TributeRequirement
+  requirementID: tribute_1_1
   requiredItems:
-  - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
-    amount: 2
-  - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
-    amount: 2
   - item: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
-    amount: 4
+    amount: 2
+  - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
+    amount: 3

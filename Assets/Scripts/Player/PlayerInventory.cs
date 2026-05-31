@@ -53,6 +53,14 @@ public class PlayerInventory : MonoBehaviour
         return success; // 결과 반환
     }
 
+    public int AddItem(ItemAsset asset, int amount)
+    {
+        int moved = slotList.AddItem(asset, amount);
+        if (moved < amount)
+            ShowFullPopup();
+        return moved;
+    }
+
     private void ShowFullPopup()
     {
         if (fullPopup == null)

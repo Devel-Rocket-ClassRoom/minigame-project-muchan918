@@ -6,7 +6,7 @@ public class UiEquipPanel : MonoBehaviour
     public List<UiEquipSlot> slots;
     public UiItemInfo uiItemInfo;
 
-    private void Start()
+    private void Awake()
     {
         foreach (var slot in slots)
         {
@@ -46,8 +46,10 @@ public class UiEquipPanel : MonoBehaviour
     private UiEquipSlot GetSlot(EquipSlotType slotType)
     {
         foreach (var slot in slots)
+        {
             if (slot.slotType == slotType)
                 return slot;
+        }
         return null;
     }
 }

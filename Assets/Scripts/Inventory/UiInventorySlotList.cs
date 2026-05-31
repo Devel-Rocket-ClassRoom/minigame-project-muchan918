@@ -93,6 +93,14 @@ public class UiInventorySlotList : MonoBehaviour, IUpgradeable
         return moved;
     }
 
+    public void LoadSlot(ItemAsset asset, int amount)
+    {
+        if (asset.Data == null)
+            asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(asset.ItemID);
+        slotDataList.Add((asset, amount));
+        UpdateSlots();
+    }
+
     public void RemoveItem()
     {
         RemoveItem(1);
