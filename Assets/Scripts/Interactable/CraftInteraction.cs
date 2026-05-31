@@ -53,13 +53,15 @@ public class CraftInteraction : MonoBehaviour, IInteractable
         if (!ingredientSlotList.IsAllFulfilled())
             return;
 
+        // 결과물 추가
+        // for (int i = 0; i < selectedRecipe.resultAmount; i++)
+        //     playerInventory.AddItem(selectedRecipe.resultItem);
+        if (!playerInventory.AddItem(selectedRecipe.resultItem))
+            return;
+
         // 재료 차감
         foreach (var ingredient in selectedRecipe.ingredients)
             playerInventory.SlotList.RemoveItemByAsset(ingredient.item, ingredient.amount);
-
-        // 결과물 추가
-        for (int i = 0; i < selectedRecipe.resultAmount; i++)
-            playerInventory.AddItem(selectedRecipe.resultItem);
 
         // 갱신
         craftSlotList.RefreshAvailability();

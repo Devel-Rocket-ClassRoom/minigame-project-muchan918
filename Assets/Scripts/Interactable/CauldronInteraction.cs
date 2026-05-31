@@ -59,13 +59,17 @@ public class CauldronInteraction : MonoBehaviour, IInteractable
         if (!ingredientSlotList.IsAllFulfilled())
             return;
 
+        // // 결과물 추가
+        // for (int i = 0; i < selectedRecipe.resultAmount; i++)
+        //     playerInventory.AddItem(selectedRecipe.resultItem);
+
+        // 결과물 추가 실패 시 재료 차감 안 함
+        if (!playerInventory.AddItem(selectedRecipe.resultItem))
+            return;
+
         // 재료 차감
         foreach (var ingredient in selectedRecipe.ingredients)
             playerInventory.SlotList.RemoveItemByAsset(ingredient.item, ingredient.amount);
-
-        // 결과물 추가
-        for (int i = 0; i < selectedRecipe.resultAmount; i++)
-            playerInventory.AddItem(selectedRecipe.resultItem);
 
         // 갱신
         cauldronSlotList.RefreshAvailability();

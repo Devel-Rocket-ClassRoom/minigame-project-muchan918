@@ -2281,7 +2281,6 @@ RectTransform:
   - {fileID: 27596828}
   - {fileID: 1131386427}
   - {fileID: 3911452}
-  - {fileID: 319771847}
   - {fileID: 519101229}
   - {fileID: 805958338}
   - {fileID: 149058350}
@@ -2291,6 +2290,7 @@ RectTransform:
   - {fileID: 1221560793}
   - {fileID: 2051115718}
   - {fileID: 897522379}
+  - {fileID: 319771847}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3258,7 +3258,7 @@ PrefabInstance:
       objectReference: {fileID: 5747241666415972591, guid: dea2d287e7a91a6479d8a48554ee1640, type: 3}
     - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: maxSlots
-      value: 20
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1285809814372124170, guid: 1b48a49fd5a4e2f42a5767259aeb17af, type: 3}
       propertyPath: fullPopup

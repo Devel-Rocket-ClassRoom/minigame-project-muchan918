@@ -14,8 +14,11 @@ public class WorldItem : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         var inventory = player.GetComponent<PlayerInventory>();
-        inventory.AddItem(Asset);
-        Destroy(gameObject);
-        Debug.Log($"[WorldItem] {Asset.Data.DisplayName} 아이템 습득!");
+        bool success = inventory.AddItem(Asset);
+        if (success)
+        {
+            Destroy(gameObject);
+            Debug.Log($"[WorldItem] {Asset.Data.DisplayName} 아이템 습득!");
+        }
     }
 }

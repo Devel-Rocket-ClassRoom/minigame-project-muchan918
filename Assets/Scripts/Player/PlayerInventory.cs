@@ -45,11 +45,12 @@ public class PlayerInventory : MonoBehaviour
         }
     }
 
-    public void AddItem(ItemAsset asset)
+    public bool AddItem(ItemAsset asset) // void → bool 반환
     {
         bool success = slotList.AddItem(asset);
         if (!success)
             ShowFullPopup();
+        return success; // 결과 반환
     }
 
     private void ShowFullPopup()
