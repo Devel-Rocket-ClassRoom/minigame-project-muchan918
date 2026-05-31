@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
-using SaveDataVC = SaveDataV5;
+using SaveDataVC = SaveDataV6;
 
 public static class SaveLoadManager
 {
@@ -11,9 +12,9 @@ public static class SaveLoadManager
         Encrypted, // .dat
     }
 
-    public static SaveMode Mode { get; set; } = SaveMode.Text; // 여기서 모드 전환
+    public static SaveMode Mode { get; set; } = SaveMode.Encrypted; // 여기서 모드 전환
 
-    private static readonly int SaveDataVersion = 5;
+    private static readonly int SaveDataVersion = 6;
     private static readonly string SaveDirectory = Path.Combine(
         Application.persistentDataPath,
         "Save"
@@ -23,6 +24,7 @@ public static class SaveLoadManager
     {
         Formatting = Formatting.Indented,
         TypeNameHandling = TypeNameHandling.All,
+        Converters = new List<JsonConverter> { new Vector2Converter() },
     };
 
     public static SaveDataVC Data { get; set; } = new SaveDataVC();

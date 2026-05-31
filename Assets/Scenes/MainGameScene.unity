@@ -7220,6 +7220,7 @@ MonoBehaviour:
   upgradeManager: {fileID: 9195796170670080760}
   playerEquipment: {fileID: 5224556440869973760}
   uiEquipPanel: {fileID: 1915456391}
+  tileMapGenerator: {fileID: 9195796170670080758}
 --- !u!4 &1204391491
 Transform:
   m_ObjectHideFlags: 0

@@ -104,6 +104,8 @@ public class DayNightCycle : MonoBehaviour
             if (tributeEvent.Evaluate())
             {
                 tributeEvent.AssignNewEvent();
+                ResourceChunkManager.Instance.ClearDestroyedPositions();
+                AnimalChunkManager.Instance.ClearDeadPositions();
                 tileMapGenerator.GenerateMap();
                 hungerEmptyCount = 0;
             }
@@ -131,6 +133,7 @@ public class DayNightCycle : MonoBehaviour
         }
 
         playerHunger.ResetHunger();
+        AnimalChunkManager.Instance.ResetLivingAnimals();
         CurrentDay++;
         gameSaveController.SaveGame();
     }

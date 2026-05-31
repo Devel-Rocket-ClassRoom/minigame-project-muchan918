@@ -75,7 +75,7 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
         Generate();
 
         MapData mapData = tileMapGenerator.MapData;
-        System.Random random = new System.Random(Random.Range(1, 999999));
+        System.Random random = new System.Random(tileMapGenerator.CurrentSeed);
 
         yield return RegisterZone(mapData.NearTiles, nearZone, mapData, random);
         yield return RegisterZone(mapData.MidTiles, midZone, mapData, random);

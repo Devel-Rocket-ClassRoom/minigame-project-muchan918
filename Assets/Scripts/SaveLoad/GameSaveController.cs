@@ -12,6 +12,7 @@ public class GameSaveController : MonoBehaviour
     public UpgradeManager upgradeManager;
     public PlayerEquipment playerEquipment;
     public UiEquipPanel uiEquipPanel;
+    public TileMapGenerator tileMapGenerator;
 
     private void Start()
     {
@@ -52,6 +53,13 @@ public class GameSaveController : MonoBehaviour
         data.EquipShoes = playerEquipment.GetEquippedItem(EquipSlotType.Shoes)?.ItemID;
         data.EquipWeaponRight = playerEquipment.GetEquippedItem(EquipSlotType.WeaponRight)?.ItemID;
 
+        // V6
+        data.MapSeed = tileMapGenerator.CurrentSeed;
+        data.DestroyedResources = new List<Vector2>(
+            ResourceChunkManager.Instance.DestroyedPositions
+        );
+        data.DeadAnimals = new List<Vector2>(AnimalChunkManager.Instance.DeadSpawnPositions);
+
         SaveLoadManager.Save();
     }
 
@@ -62,7 +70,6 @@ public class GameSaveController : MonoBehaviour
         // V1
         dayNightCycle.SetDay(data.CurrentDay);
         dayNightCycle.SetHungerEmptyCount(data.HungerEmptyCount);
-        playerHealth.SetHealth(data.CurrentHp);
 
         // V2
         RestoreInventory(playerInventory, data.Inventory);
@@ -93,6 +100,17 @@ public class GameSaveController : MonoBehaviour
         RestoreEquip(EquipSlotType.Bottom, data.EquipBottom);
         RestoreEquip(EquipSlotType.Shoes, data.EquipShoes);
         RestoreEquip(EquipSlotType.WeaponRight, data.EquipWeaponRight);
+
+        // V6
+        ResourceChunkManager.Instance.LoadDestroyedPositions(data.DestroyedResources);
+        AnimalChunkManager.Instance.LoadDeadPositions(data.DeadAnimals);
+        if (data.MapSeed != 0)
+            tileMapGenerator.GenerateMap(data.MapSeed);
+        else
+            tileMapGenerator.GenerateMap();
+
+        // V1 - MaxHp 변동 후 마지막 세팅
+        playerHealth.SetHealth(data.CurrentHp);
     }
 
     private List<SaveSlotData> GetSlotDataList(List<(ItemAsset asset, int amount)> slots)

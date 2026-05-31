@@ -57,7 +57,7 @@ public class AnimalGenerator : MonoBehaviour, IUpgradeable
         AnimalChunkManager.Instance.Initialize(animalParent);
 
         MapData mapData = tileMapGenerator.MapData;
-        System.Random random = new System.Random(Random.Range(1, 999999));
+        System.Random random = new System.Random(tileMapGenerator.CurrentSeed);
 
         var nearTiles = GetAvailableTiles(mapData.NearTiles, mapData);
         var midTiles = GetAvailableTiles(mapData.MidTiles, mapData);

@@ -41,6 +41,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 
     // 현재 속한 청크 좌표
     private Vector2Int _currentChunk;
+    public Vector3 SpawnPosition { get; set; }
 
     protected virtual void Start()
     {
@@ -169,6 +170,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 
     public void Die()
     {
+        AnimalChunkManager.Instance.UnregisterAnimal(this);
         Destroy(gameObject);
     }
 
@@ -181,5 +183,12 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     protected void ResetStateTimer()
     {
         stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
+    }
+
+    public void ResetToSpawn()
+    {
+        currentHp = Asset.Data.MaxHP;
+        transform.position = SpawnPosition;
+        CurrentState = AnimalState.Idle;
     }
 }

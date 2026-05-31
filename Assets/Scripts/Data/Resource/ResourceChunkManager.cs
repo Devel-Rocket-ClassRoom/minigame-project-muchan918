@@ -27,6 +27,9 @@ public class ResourceChunkManager : MonoBehaviour
     private Transform _resourceParent;
     private Transform _playerTransform;
 
+    private readonly HashSet<Vector2> _destroyedPositions = new();
+    public IReadOnlyCollection<Vector2> DestroyedPositions => _destroyedPositions;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -49,6 +52,12 @@ public class ResourceChunkManager : MonoBehaviour
     // 스폰 정보만 등록 (Instantiate 안 함)
     public void RegisterSpawnInfo(Vector3 worldPosition, GameObject prefab)
     {
+        var pos2D = new Vector2(worldPosition.x, worldPosition.z);
+        if (_destroyedPositions.Contains(pos2D))
+        {
+            return;
+        }
+
         var chunkCoord = WorldToChunk(worldPosition);
         var chunk = GetOrCreateChunk(chunkCoord);
         chunk.PendingSpawns.Add(
@@ -59,7 +68,12 @@ public class ResourceChunkManager : MonoBehaviour
     // 자원 파괴 시 ResourceObject가 호출
     public void UnregisterResource(GameObject resourceObject)
     {
-        var chunkCoord = WorldToChunk(resourceObject.transform.position);
+        var pos = resourceObject.transform.position;
+        var pos2D = new Vector2(pos.x, pos.z);
+        _destroyedPositions.Add(pos2D);
+        Debug.Log($"[Resource] 파괴 기록: {pos2D}, 총 {_destroyedPositions.Count}개");
+
+        var chunkCoord = WorldToChunk(pos);
         if (!_chunks.TryGetValue(chunkCoord, out var chunk))
             return;
 
@@ -165,5 +179,18 @@ public class ResourceChunkManager : MonoBehaviour
         _activeChunks.Clear();
         _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
         _playerTransform = null;
+    }
+
+    public void ClearDestroyedPositions()
+    {
+        _destroyedPositions.Clear();
+    }
+
+    public void LoadDestroyedPositions(List<Vector2> positions)
+    {
+        _destroyedPositions.Clear();
+        foreach (var pos in positions)
+            _destroyedPositions.Add(pos);
+        Debug.Log($"[Resource] 파괴 목록 로드: {_destroyedPositions.Count}개");
     }
 }

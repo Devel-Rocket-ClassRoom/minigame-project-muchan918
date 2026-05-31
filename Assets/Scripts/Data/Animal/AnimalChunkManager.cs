@@ -27,6 +27,9 @@ public class AnimalChunkManager : MonoBehaviour
     private Transform _animalParent;
     private Transform _playerTransform;
 
+    private readonly HashSet<Vector2> _deadSpawnPositions = new();
+    public IReadOnlyCollection<Vector2> DeadSpawnPositions => _deadSpawnPositions;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -49,6 +52,10 @@ public class AnimalChunkManager : MonoBehaviour
     // 스폰 정보만 등록 (Instantiate 안 함)
     public void RegisterSpawnInfo(Vector3 worldPosition, GameObject prefab)
     {
+        var pos2D = new Vector2(worldPosition.x, worldPosition.z);
+        if (_deadSpawnPositions.Contains(pos2D))
+            return;
+
         var chunkCoord = WorldToChunk(worldPosition);
         var chunk = GetOrCreateChunk(chunkCoord);
         chunk.PendingSpawns.Add(new AnimalSpawnInfo { Prefab = prefab, Position = worldPosition });
@@ -57,6 +64,8 @@ public class AnimalChunkManager : MonoBehaviour
     // 동물 파괴 시 Animal.Die()가 호출
     public void UnregisterAnimal(Animal animal)
     {
+        _deadSpawnPositions.Add(new Vector2(animal.SpawnPosition.x, animal.SpawnPosition.z));
+
         var chunkCoord = WorldToChunk(animal.transform.position);
         if (!_chunks.TryGetValue(chunkCoord, out var chunk))
             return;
@@ -138,7 +147,10 @@ public class AnimalChunkManager : MonoBehaviour
                 );
                 var animal = obj.GetComponent<Animal>();
                 if (animal != null)
+                {
+                    animal.SpawnPosition = info.Position;
                     chunk.SpawnedAnimals.Add(animal);
+                }
             }
             chunk.PendingSpawns.Clear();
         }
@@ -194,5 +206,26 @@ public class AnimalChunkManager : MonoBehaviour
         _activeChunks.Clear();
         _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
         _playerTransform = null;
+    }
+
+    public void ClearDeadPositions()
+    {
+        _deadSpawnPositions.Clear();
+    }
+
+    public void LoadDeadPositions(List<Vector2> positions)
+    {
+        _deadSpawnPositions.Clear();
+        foreach (var pos in positions)
+            _deadSpawnPositions.Add(pos);
+        Debug.Log($"[Animal] 죽은 위치 로드: {_deadSpawnPositions.Count}개");
+    }
+
+    public void ResetLivingAnimals()
+    {
+        foreach (var chunk in _chunks.Values)
+        foreach (var animal in chunk.SpawnedAnimals)
+            if (animal != null)
+                animal.ResetToSpawn();
     }
 }
