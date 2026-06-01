@@ -6,10 +6,10 @@ public class TileMapGenerator : MonoBehaviour
 {
     [Header("맵 설정")]
     [SerializeField]
-    private int mapWidth = 200;
+    private int mapWidth = 300;
 
     [SerializeField]
-    private int mapHeight = 200;
+    private int mapHeight = 300;
 
     [SerializeField]
     private int seed = 0;
@@ -21,20 +21,10 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField]
     private float midZoneRadius = 100f;
 
-    [Header("타일 프리팹")]
-    [SerializeField]
-    private GameObject[] groundTilePrefabs;
-
-    [SerializeField]
-    private GameObject[] grassGroundTilePrefabs;
-
-    [SerializeField]
-    private GameObject waterTilePrefab;
-
     private MapData _mapData;
-    private Transform _groundParent;
     private ResourceGenerator resourceGenerator;
     private AnimalGenerator animalGenerator;
+    private Transform _tileParent;
 
     public MapData MapData => _mapData;
     public int CurrentSeed { get; private set; }
@@ -61,8 +51,10 @@ public class TileMapGenerator : MonoBehaviour
         CurrentSeed = seed == 0 ? Random.Range(1, 999999) : seed;
         _mapData = new MapData(mapWidth, mapHeight, CurrentSeed, nearZoneRadius, midZoneRadius);
 
-        _groundParent = new GameObject("Ground").transform;
-        _groundParent.SetParent(transform);
+        _tileParent = new GameObject("Ground").transform;
+        _tileParent.SetParent(transform);
+
+        TileChunkManager.Instance.Initialize(_mapData, _tileParent, CurrentSeed);
 
         StartCoroutine(GenerateSequence());
     }
@@ -76,7 +68,6 @@ public class TileMapGenerator : MonoBehaviour
 
     private IEnumerator GenerateSequence()
     {
-        yield return StartCoroutine(SpawnTilesCoroutine());
         Debug.Log("맵 생성 완료");
 
         yield return StartCoroutine(resourceGenerator.SpawnCoroutine());
@@ -85,54 +76,19 @@ public class TileMapGenerator : MonoBehaviour
         animalGenerator.Generate();
         Debug.Log("동물 생성 완료");
 
+        TileChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
         ResourceChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
         AnimalChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
 
         GamePause.Resume();
     }
 
-    private IEnumerator SpawnTilesCoroutine()
-    {
-        int count = 0;
-        int tilesPerFrame = 500;
-        int halfWidth = mapWidth / 2;
-        int halfHeight = mapHeight / 2;
-        int baseHalf = 15;
-
-        for (int y = 0; y < mapHeight; y++)
-        for (int x = 0; x < mapWidth; x++)
-        {
-            int wx = x - halfWidth;
-            int wy = y - halfHeight;
-            if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
-                continue;
-
-            TileType type = _mapData.GetTile(x, y);
-
-            GameObject prefab;
-            if (type == TileType.Water)
-                prefab = waterTilePrefab;
-            else if (type == TileType.GrassGround)
-                prefab = grassGroundTilePrefabs[Random.Range(0, grassGroundTilePrefabs.Length)];
-            else
-                prefab = groundTilePrefabs[Random.Range(0, groundTilePrefabs.Length)];
-
-            Instantiate(prefab, new Vector3(wx, 0f, wy), Quaternion.identity, _groundParent);
-
-            count++;
-            if (count >= tilesPerFrame)
-            {
-                count = 0;
-                yield return null;
-            }
-        }
-    }
-
     private void ClearMap()
     {
-        if (_groundParent != null)
-            Destroy(_groundParent.gameObject);
+        if (_tileParent != null)
+            Destroy(_tileParent.gameObject);
 
+        TileChunkManager.Instance.Clear();
         ResourceChunkManager.Instance.Clear();
         AnimalChunkManager.Instance.Clear();
     }

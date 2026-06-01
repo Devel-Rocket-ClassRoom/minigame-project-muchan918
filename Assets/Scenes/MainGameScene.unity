@@ -5074,13 +5074,6 @@ MonoBehaviour:
   seed: 0
   nearZoneRadius: 50
   midZoneRadius: 100
-  groundTilePrefabs:
-  - {fileID: 1796225612067908706, guid: 4644e35a294f4cf4bbd50ca829460353, type: 3}
-  grassGroundTilePrefabs:
-  - {fileID: 4651777190826039231, guid: 826c61de2c37cc844b0634f90611d083, type: 3}
-  - {fileID: 8235817832714090928, guid: 8dac292389ff353429a75ecd116bdea5, type: 3}
-  - {fileID: 750520753856365691, guid: 525209b0ffc829141a3215f584cb83e0, type: 3}
-  waterTilePrefab: {fileID: 1526672358175396467, guid: 6e6c36f9b2da5bb4aa99346c1e56f742, type: 3}
 --- !u!114 &878268776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15681,6 +15674,7 @@ GameObject:
   - component: {fileID: 9195796170670080760}
   - component: {fileID: 9195796170670080761}
   - component: {fileID: 9195796170670080762}
+  - component: {fileID: 9195796170670080763}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -17662,13 +17656,6 @@ MonoBehaviour:
   seed: 0
   nearZoneRadius: 50
   midZoneRadius: 100
-  groundTilePrefabs:
-  - {fileID: 1796225612067908706, guid: 4644e35a294f4cf4bbd50ca829460353, type: 3}
-  grassGroundTilePrefabs:
-  - {fileID: 4651777190826039231, guid: 826c61de2c37cc844b0634f90611d083, type: 3}
-  - {fileID: 8235817832714090928, guid: 8dac292389ff353429a75ecd116bdea5, type: 3}
-  - {fileID: 750520753856365691, guid: 525209b0ffc829141a3215f584cb83e0, type: 3}
-  waterTilePrefab: {fileID: 1526672358175396467, guid: 6e6c36f9b2da5bb4aa99346c1e56f742, type: 3}
 --- !u!114 &9195796170670080759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17747,6 +17734,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a886784249a60ed419854f9ef962beaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalChunkManager
+--- !u!114 &9195796170670080763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079424434380309103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abcf5075396ba8d47bbee0ab97b2f70e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TileChunkManager
+  groundTilePrefabs:
+  - {fileID: 1796225612067908706, guid: 4644e35a294f4cf4bbd50ca829460353, type: 3}
+  grassGroundTilePrefabs:
+  - {fileID: 4651777190826039231, guid: 826c61de2c37cc844b0634f90611d083, type: 3}
+  - {fileID: 8235817832714090928, guid: 8dac292389ff353429a75ecd116bdea5, type: 3}
+  - {fileID: 750520753856365691, guid: 525209b0ffc829141a3215f584cb83e0, type: 3}
+  waterTilePrefab: {fileID: 1526672358175396467, guid: 6e6c36f9b2da5bb4aa99346c1e56f742, type: 3}
 --- !u!1 &9215705670280141544
 GameObject:
   m_ObjectHideFlags: 0
