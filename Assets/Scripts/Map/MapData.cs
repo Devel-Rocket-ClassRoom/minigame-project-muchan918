@@ -156,5 +156,12 @@ public class MapData
         return x >= cx - half && x <= cx + half && y >= cy - half && y <= cy + half;
     }
 
+    public TileType GetTileWorld(Vector2Int worldCoord)
+    {
+        int x = worldCoord.x + Width / 2;
+        int y = worldCoord.y + Height / 2;
+        return GetTile(x, y);
+    }
+
     private bool InBounds(int x, int y) => x >= 0 && y >= 0 && x < Width && y < Height;
 }
