@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7042596583874591296}
   - component: {fileID: 3694660889805534993}
   m_Layer: 11
-  m_Name: ResourceDummyItem
+  m_Name: ResourceRuby
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -125,4 +125,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49a16fa7376aa464d9cfe02be6311f09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldItem
-  Asset: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
+  Asset: {fileID: 11400000, guid: a5e0f79599e785e40bec1f64da3bc33c, type: 2}

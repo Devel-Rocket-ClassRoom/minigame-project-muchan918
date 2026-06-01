@@ -23,3 +23,10 @@ crop_potato,감자,Food,20
 crop_tomato,토마토,Food,20
 crop_wheat,밀,Food,20
 crop_mushroom,버섯,Food,20
+item_bush,덤불 잎,Material,10
+item_rock_lava,용암석,Material,10
+item_ore_coal,석탄,Material,10
+item_ore_iron,철광석,Material,10
+item_ore_gold,금광석,Material,10
+item_ore_diamond,다이아몬드,Material,10
+item_ore_ruby,루비,Material,10

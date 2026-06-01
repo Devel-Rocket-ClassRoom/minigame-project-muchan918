@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: bush
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: bush
-  DropPrefab: {fileID: 0}
+  DropPrefab: {fileID: 210965813999700127, guid: 6250894bb911e8d48ae761acda4390db, type: 3}

@@ -17685,11 +17685,17 @@ MonoBehaviour:
   - nearZone:
     - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
       spawnCount: 3
+    - prefab: {fileID: 5495606963657060288, guid: d44ce50da047b844185fe2c967894962, type: 3}
+      spawnCount: 3
     midZone:
-    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+    - prefab: {fileID: 6107592583586777460, guid: 77973968d34a3674e92870c471cd3621, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 959188400645065021, guid: 0d88c49ca8c06a446a12ac71d5d7f41e, type: 3}
       spawnCount: 3
     farZone:
-    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+    - prefab: {fileID: 2196436933527629871, guid: 0530f17ab374c7642889cfd67b88c4d2, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 2346130437619294079, guid: 11b636034858e0c47aeda2d8d07d9308, type: 3}
       spawnCount: 3
   - nearZone:
     - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}
