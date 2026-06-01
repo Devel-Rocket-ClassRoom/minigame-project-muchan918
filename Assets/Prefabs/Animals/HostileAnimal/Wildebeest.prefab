@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 3929442229032970752}
   - component: {fileID: -3304094578063473403}
   - component: {fileID: 5063483098961008748}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Wildebeest
   m_TagString: Untagged
   m_Icon: {fileID: 0}

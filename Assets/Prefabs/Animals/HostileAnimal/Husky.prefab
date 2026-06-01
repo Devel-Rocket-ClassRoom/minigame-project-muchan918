@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 3052425770842979641}
   - component: {fileID: 5293557875180461039}
   - component: {fileID: -1659811155652747783}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Husky
   m_TagString: Untagged
   m_Icon: {fileID: 0}

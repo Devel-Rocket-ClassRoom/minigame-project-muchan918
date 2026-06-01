@@ -809,7 +809,7 @@ GameObject:
   - component: {fileID: 7928938074160055567}
   - component: {fileID: -4805031910261387403}
   - component: {fileID: 3409569093194902475}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lynx
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 2232195816714377671}
   - component: {fileID: 747602069661940311}
   - component: {fileID: -5206444065913198606}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bison
   m_TagString: Untagged
   m_Icon: {fileID: 0}

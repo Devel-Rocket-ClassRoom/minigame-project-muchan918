@@ -77,7 +77,7 @@ GameObject:
   - component: {fileID: 358562617339390635}
   - component: {fileID: -2673221083469700012}
   - component: {fileID: -3731684347142438770}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hedgehog
   m_TagString: Untagged
   m_Icon: {fileID: 0}

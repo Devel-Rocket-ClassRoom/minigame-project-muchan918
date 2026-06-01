@@ -115,7 +115,7 @@ GameObject:
   - component: {fileID: 538193266611748112}
   - component: {fileID: 8907690841798788142}
   - component: {fileID: 5830237364767306183}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Crocodile
   m_TagString: Untagged
   m_Icon: {fileID: 0}

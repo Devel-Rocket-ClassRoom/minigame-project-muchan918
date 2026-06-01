@@ -640,7 +640,7 @@ GameObject:
   - component: {fileID: 4789958616667237918}
   - component: {fileID: 7367704120230909782}
   - component: {fileID: 5092151482155077250}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Hippo
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -141,7 +141,7 @@ GameObject:
   - component: {fileID: 6463612566545088513}
   - component: {fileID: 8315775252880311024}
   - component: {fileID: -1925062048496580214}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Tiger
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -235,7 +235,7 @@ GameObject:
   - component: {fileID: 4030089678859379896}
   - component: {fileID: -5129192568933657824}
   - component: {fileID: -7632413808694170693}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Gorilla
   m_TagString: Untagged
   m_Icon: {fileID: 0}

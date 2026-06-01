@@ -639,7 +639,7 @@ GameObject:
   - component: {fileID: 5427840790895592987}
   - component: {fileID: 575151556872757143}
   - component: {fileID: -5381888590154160235}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Python
   m_TagString: Untagged
   m_Icon: {fileID: 0}

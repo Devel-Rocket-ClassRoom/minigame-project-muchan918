@@ -15675,7 +15675,7 @@ GameObject:
   - component: {fileID: 9195796170670080761}
   - component: {fileID: 9195796170670080762}
   - component: {fileID: 9195796170670080763}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GameManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -17674,15 +17674,25 @@ MonoBehaviour:
       spawnCount: 3
     - prefab: {fileID: 5495606963657060288, guid: d44ce50da047b844185fe2c967894962, type: 3}
       spawnCount: 3
+    - prefab: {fileID: 3494233272091467737, guid: 2c3cca37593771746add6a62c6486834, type: 3}
+      spawnCount: 3
     midZone:
     - prefab: {fileID: 6107592583586777460, guid: 77973968d34a3674e92870c471cd3621, type: 3}
       spawnCount: 3
     - prefab: {fileID: 959188400645065021, guid: 0d88c49ca8c06a446a12ac71d5d7f41e, type: 3}
       spawnCount: 3
+    - prefab: {fileID: 1752931869055528719, guid: 7ab58ec12f8916c46a8d4356fc500287, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 7706654010847631175, guid: d002356433a66194fbbd7423d76c549d, type: 3}
+      spawnCount: 3
     farZone:
     - prefab: {fileID: 2196436933527629871, guid: 0530f17ab374c7642889cfd67b88c4d2, type: 3}
       spawnCount: 3
     - prefab: {fileID: 2346130437619294079, guid: 11b636034858e0c47aeda2d8d07d9308, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 4543232541099304199, guid: 5383ef43e98246643bd9f52e04e71fd7, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 447813359069155535, guid: da6fccbe69433e64393fdcc6e45b4632, type: 3}
       spawnCount: 3
   - nearZone:
     - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}

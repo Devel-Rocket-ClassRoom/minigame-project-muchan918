@@ -176,7 +176,7 @@ GameObject:
   - component: {fileID: 2155835066398252696}
   - component: {fileID: 4347000651160727882}
   - component: {fileID: 4676236728333052514}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Moose
   m_TagString: Untagged
   m_Icon: {fileID: 0}

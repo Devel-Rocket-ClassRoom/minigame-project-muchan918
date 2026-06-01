@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 127168285431905560}
   - component: {fileID: 7972069002178776571}
   - component: {fileID: 2708394474384881124}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lion
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 717503901524363853}
   - component: {fileID: -144691678790576323}
   - component: {fileID: -4171775020324864361}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Bull
   m_TagString: Untagged
   m_Icon: {fileID: 0}

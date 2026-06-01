@@ -749,7 +749,7 @@ GameObject:
   - component: {fileID: 3136462190511971588}
   - component: {fileID: -1864709152526572836}
   - component: {fileID: -1752092025252603921}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Elephant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
