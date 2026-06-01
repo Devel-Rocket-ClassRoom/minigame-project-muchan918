@@ -7,7 +7,7 @@ using UnityEngine;
 public class HostileAnimalAsset : AnimalAsset
 {
     public int Damage;
-    public float EnterAttackRange = 2f;
-    public float ExitAttackRange = 3f;
+    public float EnterAttackRange = 1f;
+    public float ExitAttackRange = 1.6f;
     public RuntimeAnimatorController AnimatorController;
 }

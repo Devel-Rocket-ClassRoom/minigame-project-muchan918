@@ -14,5 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: wolf
   DropPrefab: {fileID: 0}
+  IdleDurationMin: 2
+  IdleDurationMax: 4
   Damage: 0
-  AttackCooldown: 0
+  EnterAttackRange: 1
+  ExitAttackRange: 1.6
+  AnimatorController: {fileID: 0}

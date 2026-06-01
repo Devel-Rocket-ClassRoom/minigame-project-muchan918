@@ -8,9 +8,18 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
     public class ResourceSpawnEntry
     {
         public GameObject prefab;
+        public string resourceId;
+        public string resourceType;
 
         [Range(0f, 1f)]
         public float spawnChance;
+
+        public bool useSpread;
+        public int spreadSeedCount = 3;
+        public int spreadDepth = 5;
+
+        [Range(0f, 1f)]
+        public float spreadChance = 0.55f;
     }
 
     [System.Serializable]
@@ -90,32 +99,101 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
     )
     {
         int count = 0;
-        const int registerPerFrame = 500;
+        const int perFrame = 500;
 
-        foreach (var coord in tiles)
+        // Spread 먼저 배치
+        foreach (var entry in zone)
         {
-            foreach (var entry in zone)
+            if (!entry.useSpread)
+                continue;
+
+            for (int i = 0; i < entry.spreadSeedCount; i++)
             {
-                if (entry.prefab == null)
-                    continue;
-                if (random.NextDouble() > entry.spawnChance)
-                    continue;
+                // 시드 위치 랜덤 선정 (zone 타일 중에서)
+                if (tiles.Count == 0)
+                    break;
+                Vector2Int seed = tiles[random.Next(0, tiles.Count)];
 
-                ResourceChunkManager.Instance.RegisterSpawnInfo(
-                    new Vector3(coord.x, 1f, coord.y),
-                    entry.prefab
-                );
-
-                mapData.SetTile(coord, TileType.Resource);
-                break;
+                SpreadResource(seed, entry, mapData, random);
             }
 
             count++;
-            if (count >= registerPerFrame)
+            if (count >= perFrame)
             {
                 count = 0;
                 yield return null;
             }
         }
+
+        foreach (var coord in tiles)
+        {
+            if (mapData.GetTileWorld(coord) == TileType.Ground)
+            {
+                foreach (var entry in zone)
+                {
+                    if (entry.useSpread)
+                        continue;
+                    if (entry.prefab == null)
+                        continue;
+                    if (random.NextDouble() > entry.spawnChance)
+                        continue;
+
+                    ResourceChunkManager.Instance.RegisterSpawnInfo(
+                        new Vector3(coord.x, 1f, coord.y),
+                        entry.prefab
+                    );
+                    mapData.SetTile(coord, TileType.Resource);
+                    break;
+                }
+            }
+
+            count++;
+            if (count >= perFrame)
+            {
+                count = 0;
+                yield return null;
+            }
+        }
+    }
+
+    private void SpreadResource(
+        Vector2Int origin,
+        ResourceSpawnEntry entry,
+        MapData mapData,
+        System.Random random
+    )
+    {
+        SpreadFrom(origin, entry, entry.spreadDepth, mapData, random);
+    }
+
+    private void SpreadFrom(
+        Vector2Int coord,
+        ResourceSpawnEntry entry,
+        int depth,
+        MapData mapData,
+        System.Random random
+    )
+    {
+        if (depth <= 0)
+            return;
+
+        var tileType = mapData.GetTileWorld(coord);
+        if (tileType != TileType.Ground)
+            return;
+
+        ResourceChunkManager.Instance.RegisterSpawnInfo(
+            new Vector3(coord.x, 1f, coord.y),
+            entry.prefab
+        );
+        mapData.SetTile(coord, TileType.Resource);
+
+        if (random.NextDouble() < entry.spreadChance)
+            SpreadFrom(coord + Vector2Int.right, entry, depth - 1, mapData, random);
+        if (random.NextDouble() < entry.spreadChance)
+            SpreadFrom(coord + Vector2Int.left, entry, depth - 1, mapData, random);
+        if (random.NextDouble() < entry.spreadChance)
+            SpreadFrom(coord + Vector2Int.up, entry, depth - 1, mapData, random);
+        if (random.NextDouble() < entry.spreadChance)
+            SpreadFrom(coord + Vector2Int.down, entry, depth - 1, mapData, random);
     }
 }

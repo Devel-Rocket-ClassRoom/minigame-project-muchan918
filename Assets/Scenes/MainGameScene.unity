@@ -2277,6 +2277,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 913908853}
   - {fileID: 1948195615}
   - {fileID: 27596828}
   - {fileID: 1131386427}
@@ -2291,7 +2292,6 @@ RectTransform:
   - {fileID: 2051115718}
   - {fileID: 897522379}
   - {fileID: 319771847}
-  - {fileID: 913908853}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -17537,16 +17537,112 @@ MonoBehaviour:
   spawnEntriesByLevel:
   - nearZone:
     - prefab: {fileID: 6335314228145748445, guid: a5c2d2b7457aa5b4697ee6911a98a793, type: 3}
+      resourceId: rock_small
+      resourceType: Stone
       spawnChance: 0.01
+      useSpread: 1
+      spreadSeedCount: 3
+      spreadDepth: 5
+      spreadChance: 0.4
     - prefab: {fileID: 3714375759832911863, guid: aa4caa6db1865f449ad70202ff4b3622, type: 3}
+      resourceId: tree_oak
+      resourceType: Tree
       spawnChance: 0.02
-    midZone: []
-    farZone: []
+      useSpread: 0
+      spreadSeedCount: 3
+      spreadDepth: 5
+      spreadChance: 0.4
+    - prefab: {fileID: 3355913714932013587, guid: 4e356702c6102cf49aa6596ef759953e, type: 3}
+      resourceId: crop_mushroom
+      resourceType: Food
+      spawnChance: 0.02
+      useSpread: 0
+      spreadSeedCount: 3
+      spreadDepth: 5
+      spreadChance: 0.4
+    - prefab: {fileID: 8931053931382308905, guid: 1106566bec1e5a647994ef2e9f8542dd, type: 3}
+      resourceId: crop_carrot
+      resourceType: Food
+      spawnChance: 0.02
+      useSpread: 1
+      spreadSeedCount: 3
+      spreadDepth: 5
+      spreadChance: 0.4
+    midZone:
+    - prefab: {fileID: 2523653815816157064, guid: c4d870431a847a44b8a1a36ef41d6538, type: 3}
+      resourceId: bush
+      resourceType: Tree
+      spawnChance: 0.02
+      useSpread: 1
+      spreadSeedCount: 20
+      spreadDepth: 4
+      spreadChance: 0.506
+    - prefab: {fileID: 7093677123798526597, guid: 75ef122915f17d243861b3a1dffc5619, type: 3}
+      resourceId: ore_iron
+      resourceType: Stone
+      spawnChance: 0.02
+      useSpread: 1
+      spreadSeedCount: 10
+      spreadDepth: 3
+      spreadChance: 0.188
+    - prefab: {fileID: 7809990825291582460, guid: 8138be99624b6f64e9586440611f20c8, type: 3}
+      resourceId: crop_golden_berry
+      resourceType: Food
+      spawnChance: 0.02
+      useSpread: 0
+      spreadSeedCount: 10
+      spreadDepth: 3
+      spreadChance: 0.188
+    - prefab: {fileID: 4221449604410808918, guid: ba8a84a1b90bb9641ba7842964b6bb24, type: 3}
+      resourceId: crop_blueberry
+      resourceType: Food
+      spawnChance: 0.02
+      useSpread: 0
+      spreadSeedCount: 10
+      spreadDepth: 3
+      spreadChance: 0.188
+    farZone:
+    - prefab: {fileID: 4095395610791405583, guid: 5aaea55568526c24b8d5defbedc58854, type: 3}
+      resourceId: rock_lava
+      resourceType: Stone
+      spawnChance: 0.02
+      useSpread: 0
+      spreadSeedCount: 10
+      spreadDepth: 3
+      spreadChance: 0.325
+    - prefab: {fileID: 3537780918208571774, guid: 908d556dfe8956248b713d1481a7ce78, type: 3}
+      resourceId: crop_corn
+      resourceType: Food
+      spawnChance: 0.02
+      useSpread: 1
+      spreadSeedCount: 10
+      spreadDepth: 3
+      spreadChance: 0.312
+    - prefab: {fileID: 4484136448008807253, guid: 2afd144b174cf42469f60f2f17059cc2, type: 3}
+      resourceId: ore_diamond
+      resourceType: Stone
+      spawnChance: 0.02
+      useSpread: 0
+      spreadSeedCount: 10
+      spreadDepth: 3
+      spreadChance: 0.312
   - nearZone:
     - prefab: {fileID: 6571442313496509980, guid: c999875d9a2bb5f4c90cbeb7a36975de, type: 3}
+      resourceId: 
+      resourceType: 
       spawnChance: 0.01
+      useSpread: 0
+      spreadSeedCount: 3
+      spreadDepth: 5
+      spreadChance: 0.55
     - prefab: {fileID: 7644618708628473748, guid: 81c078a5d97b83d4e83ac1fcef0729a6, type: 3}
+      resourceId: 
+      resourceType: 
       spawnChance: 0.02
+      useSpread: 0
+      spreadSeedCount: 3
+      spreadDepth: 5
+      spreadChance: 0.55
     midZone: []
     farZone: []
 --- !u!114 &9195796170670080758
@@ -17561,11 +17657,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 300688bb34638a0488fdad6d3438e38e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileMapGenerator
-  mapWidth: 200
-  mapHeight: 200
+  mapWidth: 300
+  mapHeight: 300
   seed: 0
-  nearZoneRadius: 30
-  midZoneRadius: 60
+  nearZoneRadius: 50
+  midZoneRadius: 100
   groundTilePrefabs:
   - {fileID: 1796225612067908706, guid: 4644e35a294f4cf4bbd50ca829460353, type: 3}
   grassGroundTilePrefabs:
@@ -17589,11 +17685,17 @@ MonoBehaviour:
   - nearZone:
     - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
       spawnCount: 3
+    - prefab: {fileID: 5495606963657060288, guid: d44ce50da047b844185fe2c967894962, type: 3}
+      spawnCount: 3
     midZone:
-    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+    - prefab: {fileID: 6107592583586777460, guid: 77973968d34a3674e92870c471cd3621, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 959188400645065021, guid: 0d88c49ca8c06a446a12ac71d5d7f41e, type: 3}
       spawnCount: 3
     farZone:
-    - prefab: {fileID: 521248980379620741, guid: 3f3ab3b8a3654784cbbe2272f5243f9d, type: 3}
+    - prefab: {fileID: 2196436933527629871, guid: 0530f17ab374c7642889cfd67b88c4d2, type: 3}
+      spawnCount: 3
+    - prefab: {fileID: 2346130437619294079, guid: 11b636034858e0c47aeda2d8d07d9308, type: 3}
       spawnCount: 3
   - nearZone:
     - prefab: {fileID: 4578913890715302067, guid: 815ebf14094ca0d4f85ed81b26be7236, type: 3}

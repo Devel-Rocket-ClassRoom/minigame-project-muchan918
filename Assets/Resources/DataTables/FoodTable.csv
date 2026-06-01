@@ -2,3 +2,12 @@ FoodID,DisplayName,EffectType,Value
 food_rabbit_roast,토끼 구이,Hunger,30
 food_bear_roast,곰 구이,Hunger,60
 food_rabbit_bear_roast,토끼곰 구이,Hp,50
+crop_golden_berry,황금베리,Hunger,15
+crop_blueberry,블루베리,Hunger,15
+crop_strawberry,딸기,Hunger,15
+crop_carrot,당근,Hunger,20
+crop_corn,옥수수,Hunger,20
+crop_potato,감자,Hunger,25
+crop_tomato,토마토,Hunger,15
+crop_wheat,밀,Hunger,10
+crop_mushroom,버섯,Hunger,20

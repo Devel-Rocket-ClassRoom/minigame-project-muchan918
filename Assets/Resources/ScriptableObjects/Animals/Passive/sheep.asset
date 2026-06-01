@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8732c69146f39a04c86b3d2db889366a, type: 3}
+  m_Name: sheep
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
+  AnimalID: sheep
+  DropPrefab: {fileID: 0}
+  IdleDurationMin: 2
+  IdleDurationMax: 4
+  FleeDuration: 3
+  AnimatorController: {fileID: 9100000, guid: 5e605f5c94f0f0b43a5636c961e600ff, type: 2}

@@ -63,13 +63,12 @@ public class TableImporter : EditorWindow
         string csvText = File.ReadAllText(csvPath);
         var list = DataTable.LoadCSV<ResourceData>(csvText);
 
-        string soFolder = "Assets/ScriptableObjects/Resources";
+        string soFolder = "Assets/Resources/ScriptableObjects/Resources";
 
-        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
-            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
-
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets/Resources", "ScriptableObjects");
         if (!AssetDatabase.IsValidFolder(soFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Resources");
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects", "Resources");
 
         foreach (var data in list)
         {
@@ -78,13 +77,11 @@ public class TableImporter : EditorWindow
 
             if (existing != null)
             {
-                // 이미 있으면 ID만 갱신 (Prefab, Icon 연결은 유지)
                 existing.ResourceID = data.ResourceID;
                 EditorUtility.SetDirty(existing);
             }
             else
             {
-                // 없으면 새로 생성
                 var so = CreateInstance<ResourceAsset>();
                 so.ResourceID = data.ResourceID;
                 AssetDatabase.CreateAsset(so, assetPath);
@@ -102,13 +99,12 @@ public class TableImporter : EditorWindow
         string csvText = File.ReadAllText(csvPath);
         var list = DataTable.LoadCSV<ItemData>(csvText);
 
-        string soFolder = "Assets/ScriptableObjects/Items";
+        string soFolder = "Assets/Resources/ScriptableObjects/Items";
 
-        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
-            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
-
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets/Resources", "ScriptableObjects");
         if (!AssetDatabase.IsValidFolder(soFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Items");
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects", "Items");
 
         foreach (var data in list)
         {
@@ -139,17 +135,17 @@ public class TableImporter : EditorWindow
         string csvText = File.ReadAllText(csvPath);
         var list = DataTable.LoadCSV<AnimalData>(csvText);
 
-        string passiveFolder = "Assets/ScriptableObjects/Animals/Passive";
-        string hostileFolder = "Assets/ScriptableObjects/Animals/Hostile";
+        string passiveFolder = "Assets/Resources/ScriptableObjects/Animals/Passive";
+        string hostileFolder = "Assets/Resources/ScriptableObjects/Animals/Hostile";
 
-        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
-            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
-        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects/Animals"))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Animals");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets/Resources", "ScriptableObjects");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/ScriptableObjects/Animals"))
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects", "Animals");
         if (!AssetDatabase.IsValidFolder(passiveFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects/Animals", "Passive");
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects/Animals", "Passive");
         if (!AssetDatabase.IsValidFolder(hostileFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects/Animals", "Hostile");
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects/Animals", "Hostile");
 
         foreach (var data in list)
         {
@@ -198,12 +194,12 @@ public class TableImporter : EditorWindow
         string csvText = File.ReadAllText(csvPath);
         var list = DataTable.LoadCSV<EquipmentData>(csvText);
 
-        string soFolder = "Assets/ScriptableObjects/Equipments";
+        string soFolder = "Assets/Resources/ScriptableObjects/Equipments";
 
-        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
-            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets/Resources", "ScriptableObjects");
         if (!AssetDatabase.IsValidFolder(soFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Equipments");
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects", "Equipments");
 
         foreach (var data in list)
         {
@@ -234,12 +230,12 @@ public class TableImporter : EditorWindow
         string csvText = File.ReadAllText(csvPath);
         var list = DataTable.LoadCSV<FoodData>(csvText);
 
-        string soFolder = "Assets/ScriptableObjects/Foods";
+        string soFolder = "Assets/Resources/ScriptableObjects/Foods";
 
-        if (!AssetDatabase.IsValidFolder("Assets/ScriptableObjects"))
-            AssetDatabase.CreateFolder("Assets", "ScriptableObjects");
+        if (!AssetDatabase.IsValidFolder("Assets/Resources/ScriptableObjects"))
+            AssetDatabase.CreateFolder("Assets/Resources", "ScriptableObjects");
         if (!AssetDatabase.IsValidFolder(soFolder))
-            AssetDatabase.CreateFolder("Assets/ScriptableObjects", "Foods");
+            AssetDatabase.CreateFolder("Assets/Resources/ScriptableObjects", "Foods");
 
         foreach (var data in list)
         {

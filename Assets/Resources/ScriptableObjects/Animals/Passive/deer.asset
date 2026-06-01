@@ -14,4 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: deer
   DropPrefab: {fileID: 0}
-  FleeDuration: 0
+  IdleDurationMin: 2
+  IdleDurationMax: 4
+  FleeDuration: 3
+  AnimatorController: {fileID: 9100000, guid: 580f77f630e7fe04a8692ddf7adb68c1, type: 2}

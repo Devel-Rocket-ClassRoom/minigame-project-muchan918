@@ -14,3 +14,19 @@ equip_headgear_02,헤드기어2,Equipment,1
 food_rabbit_roast,토끼 구이,Food,5
 food_bear_roast,곰 구이,Food,5
 food_rabbit_bear_roast,토끼곰 구이,Food,5
+crop_golden_berry,황금베리,Food,20
+crop_blueberry,블루베리,Food,20
+crop_strawberry,딸기,Food,20
+crop_carrot,당근,Food,20
+crop_corn,옥수수,Food,20
+crop_potato,감자,Food,20
+crop_tomato,토마토,Food,20
+crop_wheat,밀,Food,20
+crop_mushroom,버섯,Food,20
+item_bush,덤불 잎,Material,10
+item_rock_lava,용암석,Material,10
+item_ore_coal,석탄,Material,10
+item_ore_iron,철광석,Material,10
+item_ore_gold,금광석,Material,10
+item_ore_diamond,다이아몬드,Material,10
+item_ore_ruby,루비,Material,10
