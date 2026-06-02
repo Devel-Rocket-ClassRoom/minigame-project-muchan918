@@ -18,6 +18,9 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField]
     private PlayerInventory playerInventory;
 
+    [SerializeField]
+    private DayTransitionUI dayTransitionUI;
+
     public Transform PlayerTransform => playerHealth.transform;
 
     private void Awake()
@@ -33,21 +36,24 @@ public class PlayerSpawner : MonoBehaviour
 
     public void Respawn(bool clearInventory = false, bool fullRecover = false)
     {
-        playerHealth.transform.position = spawnPoint.position;
-        playerHealth.transform.rotation = spawnPoint.rotation;
+        dayTransitionUI.PlayTransition(() =>
+        {
+            playerHealth.transform.position = spawnPoint.position;
+            playerHealth.transform.rotation = spawnPoint.rotation;
 
-        int penalty = Mathf.RoundToInt(
-            (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f
-        );
+            int penalty = Mathf.RoundToInt(
+                (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f
+            );
 
-        if (fullRecover)
-            playerHealth.SetHealth(playerHealth.MaxHp - penalty);
-        else
-            playerHealth.SetHealth(playerHealth.MaxHp / 2 - penalty);
+            if (fullRecover)
+                playerHealth.SetHealth(playerHealth.MaxHp - penalty);
+            else
+                playerHealth.SetHealth(playerHealth.MaxHp / 2 - penalty);
 
-        if (clearInventory)
-            playerInventory.SlotList.Clear();
+            if (clearInventory)
+                playerInventory.SlotList.Clear();
 
-        dayNightCycle.SetMorning();
+            dayNightCycle.SetMorning();
+        });
     }
 }

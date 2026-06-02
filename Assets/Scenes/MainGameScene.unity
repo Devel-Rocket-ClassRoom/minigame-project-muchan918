@@ -2300,6 +2300,7 @@ RectTransform:
   - {fileID: 2051115718}
   - {fileID: 897522379}
   - {fileID: 319771847}
+  - {fileID: 653832293}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -4520,6 +4521,97 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 015edf194fe1f7a4683b8d5fbbb0b90d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AltarInteraction
+--- !u!1 &653832292
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 653832293}
+  - component: {fileID: 653832296}
+  - component: {fileID: 653832295}
+  - component: {fileID: 653832294}
+  m_Layer: 5
+  m_Name: 'IrisWipeImage '
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &653832293
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653832292}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 299019899}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &653832294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653832292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce6a906755f96fc46bbdbf3245d6dd82, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DayTransitionUI
+  irisImage: {fileID: 653832295}
+  closeDuration: 1.5
+  openDuration: 1.5
+--- !u!114 &653832295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653832292}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 2100000, guid: 1a7a18b27dc6eaf408fa75568d901db3, type: 2}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &653832296
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 653832292}
+  m_CullTransparentMesh: 1
 --- !u!1 &660490944
 GameObject:
   m_ObjectHideFlags: 0
@@ -8811,43 +8903,43 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 465344588865359597, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 465344588865359597, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 465344588865359597, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 782736939752969354, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 782736939752969354, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 782736939752969354, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -17
       objectReference: {fileID: 0}
     - target: {fileID: 1593341022149891628, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1593341022149891628, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2041246020272525057, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 0
+      value: -66.974304
       objectReference: {fileID: 0}
     - target: {fileID: 2041246020272525057, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 0
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 3065537348774661776, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -9003,11 +9095,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5656346923758432240, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5656346923758432240, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6306061304432003084, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -9019,7 +9111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8147870351690570732, guid: edf2fc2f97106904ba1ec958e84c5181, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -17391,8 +17483,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DayNightCycle
   directionalLight: {fileID: 410087040}
-  brightDuration: 10
-  darkenDuration: 10
+  brightDuration: 5
+  darkenDuration: 5
   nightDuration: 100
   maxIntensity: 1
   minIntensity: 0
@@ -17802,6 +17894,7 @@ MonoBehaviour:
   playerHealth: {fileID: 5224556440869973754}
   playerHunger: {fileID: 5224556440869973761}
   playerInventory: {fileID: 56650075042092300}
+  dayTransitionUI: {fileID: 653832294}
 --- !u!114 &9195796170670080757
 MonoBehaviour:
   m_ObjectHideFlags: 0
