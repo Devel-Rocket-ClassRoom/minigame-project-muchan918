@@ -20,8 +20,14 @@ public class PlayerHealth : MonoBehaviour, IDefender
     [SerializeField]
     private Slider hpSlider;
 
+    private Animator animator;
+    private PlayerMovement playerMovement;
+
     private void Awake()
     {
+        animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
+
         if (Instance != null && Instance != this)
         {
             Destroy(gameObject);
@@ -91,7 +97,18 @@ public class PlayerHealth : MonoBehaviour, IDefender
     public void Die()
     {
         OnPlayerDied?.Invoke();
-        Debug.Log("죽음");
+        animator.SetTrigger("Die");
+        playerMovement.SetDead(true);
+    }
+
+    public void OnDieAnimationEnd()
+    {
         PlayerSpawner.Instance.Respawn(clearInventory: true);
+    }
+
+    public void ResetAnimator()
+    {
+        animator.Rebind();
+        animator.Update(0f);
     }
 }

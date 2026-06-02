@@ -21,6 +21,8 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField]
     private DayTransitionUI dayTransitionUI;
 
+    private PlayerMovement playerMovement;
+
     public Transform PlayerTransform => playerHealth.transform;
 
     private void Awake()
@@ -32,6 +34,7 @@ public class PlayerSpawner : MonoBehaviour
         }
         Instance = this;
         dayNightCycle = GetComponent<DayNightCycle>();
+        playerMovement = playerHealth.GetComponent<PlayerMovement>();
     }
 
     public void Respawn(bool clearInventory = false, bool fullRecover = false)
@@ -40,6 +43,8 @@ public class PlayerSpawner : MonoBehaviour
         {
             playerHealth.transform.position = spawnPoint.position;
             playerHealth.transform.rotation = spawnPoint.rotation;
+            playerMovement.ResetRotation(spawnPoint.rotation);
+            playerHealth.ResetAnimator();
 
             int penalty = Mathf.RoundToInt(
                 (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f
