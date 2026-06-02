@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: rock_lava
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: rock_lava
-  DropPrefab: {fileID: 210965813999700127, guid: 3f526ddbe36654c44aa90a56e507e778, type: 3}
+  DropItem: {fileID: 11400000, guid: 0a7ee710569ce37499567f480098fdf8, type: 2}

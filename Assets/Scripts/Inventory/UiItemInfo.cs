@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UiItemInfo : MonoBehaviour
@@ -11,6 +12,7 @@ public class UiItemInfo : MonoBehaviour
     public Button unequipButton;
     public Button eatButton;
     public Button dropButton;
+    public Button endingButton;
 
     public UiInventorySlotList inventorySlotList;
     public UiEquipPanel equipPanel;
@@ -25,6 +27,7 @@ public class UiItemInfo : MonoBehaviour
         unequipButton.gameObject.SetActive(false);
         eatButton.gameObject.SetActive(false);
         dropButton.gameObject.SetActive(false);
+        endingButton.gameObject.SetActive(false);
     }
 
     public void SetItem(ItemAsset asset)
@@ -36,11 +39,13 @@ public class UiItemInfo : MonoBehaviour
 
         bool isEquipment = asset.Data.ItemType == "Equipment";
         bool isFood = asset.Data.ItemType == "Food";
+        bool isEnding = asset.Data.ItemType == "Ending";
 
         equipButton.gameObject.SetActive(isEquipment);
         unequipButton.gameObject.SetActive(false);
         eatButton.gameObject.SetActive(isFood);
         dropButton.gameObject.SetActive(true);
+        endingButton.gameObject.SetActive(isEnding);
 
         if (isEquipment)
         {
@@ -87,6 +92,14 @@ public class UiItemInfo : MonoBehaviour
 
                 inventorySlotList.RemoveItem(1);
                 SetEmpty();
+            });
+        }
+        if (isEnding)
+        {
+            endingButton.onClick.RemoveAllListeners();
+            endingButton.onClick.AddListener(() =>
+            {
+                SceneManager.LoadScene("Ending");
             });
         }
     }

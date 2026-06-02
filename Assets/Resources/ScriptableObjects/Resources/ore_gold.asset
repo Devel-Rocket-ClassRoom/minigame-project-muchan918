@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ore_gold
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: ore_gold
-  DropPrefab: {fileID: 210965813999700127, guid: 77c185c0b0faf5041973c14a7be0eef1, type: 3}
+  DropItem: {fileID: 11400000, guid: 7e14ce1dad25d2f43b80602ab8f52c54, type: 2}
