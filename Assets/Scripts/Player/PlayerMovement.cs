@@ -130,8 +130,24 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetDead(bool dead)
     {
+        if (isDead == dead)
+            return;
+
         isDead = dead;
         if (dead)
+        {
             rb.linearVelocity = Vector3.zero;
+            rb.isKinematic = true; // 물리 완전 정지
+        }
+        else
+        {
+            rb.isKinematic = false;
+        }
+    }
+
+    public void ResetRotation(Quaternion rotation)
+    {
+        rb.rotation = rotation;
+        transform.rotation = rotation;
     }
 }

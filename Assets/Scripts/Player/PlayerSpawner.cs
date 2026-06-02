@@ -43,8 +43,8 @@ public class PlayerSpawner : MonoBehaviour
         {
             playerHealth.transform.position = spawnPoint.position;
             playerHealth.transform.rotation = spawnPoint.rotation;
+            playerMovement.ResetRotation(spawnPoint.rotation);
             playerHealth.ResetAnimator();
-            playerMovement.SetDead(false);
 
             int penalty = Mathf.RoundToInt(
                 (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f

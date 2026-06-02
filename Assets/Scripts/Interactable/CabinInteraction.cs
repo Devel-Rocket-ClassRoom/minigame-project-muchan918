@@ -14,12 +14,7 @@ public class CabinInteraction : MonoBehaviour, IInteractable
             Debug.Log("아직 너무 이릅니다!");
             return;
         }
-        // TODO: 잠자는 연출
-        OnWakeUp(player);
-    }
-
-    private void OnWakeUp(GameObject player)
-    {
+        dayNightCycle.IsTransitioning = true;
         PlayerSpawner.Instance.Respawn(fullRecover: true);
     }
 }

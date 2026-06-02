@@ -7745,12 +7745,14 @@ GameObject:
   - component: {fileID: 4858127594318337637}
   - component: {fileID: 6754870611007690153}
   - component: {fileID: 3992449887152721330}
-  - component: {fileID: 6206606302358517628}
   - component: {fileID: 4546593040521580740}
+  - component: {fileID: 6206606302358517628}
   - component: {fileID: 3265548943839519873}
   - component: {fileID: 3336935629842957672}
   - component: {fileID: 588724748054518049}
   - component: {fileID: 5852253661222889465}
+  - component: {fileID: 2737994348060481212}
+  - component: {fileID: 7808213325467752191}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -7791,7 +7793,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: c07601ed703dfc04f92dd6056008656f, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -7827,21 +7829,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &6206606302358517628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1422671190694009946}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 614a83a8fffe556408f8309859c0ebcc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  moveSpeed: 3.5
-  rotationSpeed: 20
-  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!136 &4546593040521580740
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7865,6 +7852,23 @@ CapsuleCollider:
   m_Height: 1.5276403
   m_Direction: 1
   m_Center: {x: 0, y: 0.77, z: 0}
+--- !u!114 &6206606302358517628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422671190694009946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 614a83a8fffe556408f8309859c0ebcc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
+  moveSpeed: 3.5
+  rotationSpeed: 20
+  joystick: {fileID: 0}
+  moveAction: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
+  useJoystick: 0
 --- !u!114 &3265548943839519873
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7897,6 +7901,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
   inventoryPanel: {fileID: 0}
   slotList: {fileID: 0}
+  fullPopup: {fileID: 0}
+  fullPopupDuration: 1
 --- !u!114 &588724748054518049
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7928,6 +7934,32 @@ MonoBehaviour:
   interactableLayer:
     serializedVersion: 2
     m_Bits: 2048
+--- !u!114 &2737994348060481212
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422671190694009946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a30767fb64791264f93ab1850374dc00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipment
+--- !u!114 &7808213325467752191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422671190694009946}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a709f314ed5fa424391b37807d7abc8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerHunger
+  maxHunger: 100
+  hungerSlider: {fileID: 0}
 --- !u!1 &1435013287879752901
 GameObject:
   m_ObjectHideFlags: 0

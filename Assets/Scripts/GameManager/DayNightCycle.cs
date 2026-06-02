@@ -46,6 +46,7 @@ public class DayNightCycle : MonoBehaviour
     private TileMapGenerator tileMapGenerator;
 
     public int CurrentDay { get; private set; } = 1;
+    public bool IsTransitioning { get; set; } = false;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
     public float DayProgress => Mathf.Clamp01(elapsedTime / TotalDayDuration);
     public bool IsNight => elapsedTime >= brightDuration + darkenDuration;
@@ -70,6 +71,9 @@ public class DayNightCycle : MonoBehaviour
 
     private void Update()
     {
+        if (IsTransitioning)
+            return;
+
         elapsedTime += Time.deltaTime;
 
         if (elapsedTime <= brightDuration)
@@ -142,6 +146,7 @@ public class DayNightCycle : MonoBehaviour
         AnimalChunkManager.Instance.ResetLivingAnimals();
         CurrentDay++;
         gameSaveController.SaveGame();
+        IsTransitioning = false;
     }
 
     public void SetDay(int day)

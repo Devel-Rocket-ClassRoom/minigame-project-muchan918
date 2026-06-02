@@ -21,10 +21,12 @@ public class PlayerHealth : MonoBehaviour, IDefender
     private Slider hpSlider;
 
     private Animator animator;
+    private PlayerMovement playerMovement;
 
     private void Awake()
     {
         animator = GetComponent<Animator>();
+        playerMovement = GetComponent<PlayerMovement>();
 
         if (Instance != null && Instance != this)
         {
@@ -95,8 +97,8 @@ public class PlayerHealth : MonoBehaviour, IDefender
     public void Die()
     {
         OnPlayerDied?.Invoke();
-        GetComponent<PlayerMovement>().SetDead(true);
         animator.SetTrigger("Die");
+        playerMovement.SetDead(true);
     }
 
     public void OnDieAnimationEnd()

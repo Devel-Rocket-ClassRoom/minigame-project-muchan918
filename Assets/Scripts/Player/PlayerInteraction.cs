@@ -12,10 +12,12 @@ public class PlayerInteraction : MonoBehaviour
     private LayerMask interactableLayer;
 
     private IInteractable currentInteractable;
+    private Animator animator;
 
     private void Awake()
     {
         HideButton();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -57,6 +59,11 @@ public class PlayerInteraction : MonoBehaviour
     public void OnClickInteractButton()
     {
         if (currentInteractable != null)
+        {
+            if (currentInteractable.Type == InteractionType.PickUp)
+                animator.SetTrigger("PickUp");
+
             currentInteractable.Interact(gameObject);
+        }
     }
 }

@@ -13,6 +13,9 @@ public class DayTransitionUI : MonoBehaviour
     [SerializeField]
     private float openDuration = 0.8f;
 
+    [SerializeField]
+    private PlayerMovement playerMovement;
+
     private Material irisMaterial;
 
     private void Awake()
@@ -26,6 +29,7 @@ public class DayTransitionUI : MonoBehaviour
     public void PlayTransition(System.Action onMidpoint)
     {
         irisImage.gameObject.SetActive(true);
+        playerMovement.SetDead(true);
         Sequence seq = DOTween.Sequence();
         seq.Append(
             DOTween
@@ -38,7 +42,8 @@ public class DayTransitionUI : MonoBehaviour
                 .SetEase(Ease.InQuart)
         );
         seq.AppendCallback(() => onMidpoint?.Invoke());
-        seq.AppendInterval(0.2f);
+        seq.AppendInterval(1f);
+        seq.AppendCallback(() => playerMovement.SetDead(false));
         seq.Append(
             DOTween
                 .To(
