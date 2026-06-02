@@ -65,9 +65,6 @@ public class CabinIndicator : MonoBehaviour
             indicatorImage.rectTransform.anchoredPosition = edgePos;
             indicatorImage.gameObject.SetActive(true);
 
-            float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-            indicatorImage.rectTransform.rotation = Quaternion.Euler(0f, 0f, angle);
-
             distanceText.rectTransform.anchoredPosition = edgePos + Vector2.down * textOffset;
             int distance = Mathf.RoundToInt(Vector3.Distance(player.position, cabin.position));
             distanceText.text = $"{distance}m";
