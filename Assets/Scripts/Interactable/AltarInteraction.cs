@@ -29,10 +29,12 @@ public class AltarInteraction : MonoBehaviour, IInteractable
     {
         altarPanel.SetActive(true);
         tributeInventory.UpdateSlots();
+        UiManager.Instance.Register(OnClickClose);
     }
 
     public void OnClickClose()
     {
+        UiManager.Instance.Unregister(OnClickClose);
         tributeInventory.Reset();
         tributeSlotList.Reset();
         submitPanel.gameObject.SetActive(false);

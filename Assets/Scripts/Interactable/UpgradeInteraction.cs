@@ -37,6 +37,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
     public void Interact(GameObject player)
     {
         upgradePanel.SetActive(true);
+        UiManager.Instance.Register(OnClickClose);
     }
 
     public void OnSelectUpgrade(UpgradeAsset asset)
@@ -64,6 +65,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
 
     public void OnClickClose()
     {
+        UiManager.Instance.Unregister(OnClickClose);
         ingredientPanel.SetActive(false);
         upgradePanel.SetActive(false);
         upgradeSlotList.ResetSelection();

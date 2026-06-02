@@ -87,6 +87,7 @@ public class StorageInteraction : MonoBehaviour, IInteractable
         storageInventory.UpdateSlots();
         playerInventoryMirror.UpdateSlots();
         buttonsPanel.SetActive(false);
+        UiManager.Instance.Register(OnClickClose);
     }
 
     public void OnClickAll()
@@ -102,6 +103,7 @@ public class StorageInteraction : MonoBehaviour, IInteractable
 
     public void OnClickClose()
     {
+        UiManager.Instance.Unregister(OnClickClose);
         ResetSelection();
         storagePanel.SetActive(false);
     }

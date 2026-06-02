@@ -96,6 +96,7 @@ public class DayNightCycle : MonoBehaviour
             if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
             {
                 midnightTriggered = true;
+                UiManager.Instance.CloseAll();
                 PlayerHealth.Instance.Die();
             }
         }
@@ -105,6 +106,7 @@ public class DayNightCycle : MonoBehaviour
 
     public void SetMorning()
     {
+        UiManager.Instance.CloseAll();
         elapsedTime = 0f;
         midnightTriggered = false;
         directionalLight.intensity = maxIntensity;
