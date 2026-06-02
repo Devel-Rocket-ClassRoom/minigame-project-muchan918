@@ -132,6 +132,9 @@ public class HostileAnimal : Animal, IAttacker
             case AnimalState.Attack:
                 Animator.SetInteger("State", 3);
                 break;
+            case AnimalState.Die:
+                Animator.SetInteger("State", 4); // Hostile
+                break;
         }
     }
 
