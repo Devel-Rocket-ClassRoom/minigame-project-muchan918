@@ -3,6 +3,9 @@ using UnityEngine.SceneManagement;
 
 public class SettingPanel : MonoBehaviour
 {
+    [SerializeField]
+    private TutorialManager tutorialManager;
+
     public void OnClickSetting()
     {
         gameObject.SetActive(true);
@@ -19,5 +22,11 @@ public class SettingPanel : MonoBehaviour
     {
         gameObject.SetActive(false);
         GamePause.Resume();
+    }
+
+    public void OnClickTutorial()
+    {
+        gameObject.SetActive(false);
+        tutorialManager.Show();
     }
 }
