@@ -8,6 +8,7 @@ public enum AnimalState
     Flee,
     Chase,
     Attack,
+    Die,
 }
 
 public abstract class Animal : MonoBehaviour, IDefender, IDroppable
@@ -171,7 +172,12 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     public void Die()
     {
         AnimalChunkManager.Instance.UnregisterAnimal(this);
-        Destroy(gameObject);
+        if (Agent.enabled)
+            Agent.ResetPath();
+        Agent.enabled = false;
+        GetComponent<Collider>().enabled = false;
+        CurrentState = AnimalState.Die;
+        Destroy(gameObject, 1f);
     }
 
     public void Drop()

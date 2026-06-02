@@ -61,6 +61,9 @@ public class PassiveAnimal : Animal
                 Animator.SetInteger("State", 2);
                 Agent.ResetPath();
                 break;
+            case AnimalState.Die:
+                Animator.SetInteger("State", 3);
+                break;
         }
     }
 
