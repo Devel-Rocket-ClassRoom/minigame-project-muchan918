@@ -6,6 +6,9 @@ public class PlayerEquipment : MonoBehaviour
 {
     public static PlayerEquipment Instance { get; private set; }
 
+    [SerializeField]
+    private PreviewEquipment previewEquipment;
+
     private Transform _partsRoot;
     private readonly Dictionary<
         EquipSlotType,
@@ -62,6 +65,8 @@ public class PlayerEquipment : MonoBehaviour
         _equipped[data.SlotType] = (data.PartsName, index, item, data.Value, data);
 
         ApplyValue(data.SlotType, data.Value);
+
+        previewEquipment?.Equip(data); // 동기화
     }
 
     public ItemAsset UnEquip(EquipSlotType slot)
@@ -80,6 +85,8 @@ public class PlayerEquipment : MonoBehaviour
         SetDefaultActive(slot, true);
 
         ApplyValue(slot, -current.value);
+
+        previewEquipment?.UnEquip(slot); // 동기화
 
         return current.item;
     }
