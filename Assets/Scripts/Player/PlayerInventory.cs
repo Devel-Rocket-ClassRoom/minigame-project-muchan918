@@ -42,7 +42,18 @@ public class PlayerInventory : MonoBehaviour
         if (isOpen)
         {
             slotList.UpdateSlots();
+            UiManager.Instance.Register(Close); // 열릴 때 등록
         }
+        else
+        {
+            UiManager.Instance.Unregister(Close); // 닫힐 때 해제
+        }
+    }
+
+    private void Close()
+    {
+        isOpen = false;
+        inventoryPanel.SetActive(false);
     }
 
     public bool AddItem(ItemAsset asset) // void → bool 반환
