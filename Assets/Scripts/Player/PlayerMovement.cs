@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody rb;
     private Vector2 moveInput;
+    private bool isDead = false;
 
     public bool useJoystick = true;
 
@@ -68,6 +69,8 @@ public class PlayerMovement : MonoBehaviour
         // 게임패드/조이스틱 → 아날로그 -1~1 값
         // if (moveAction != null)
         //     moveInput = moveAction.action.ReadValue<Vector2>();
+        if (isDead)
+            return;
 
         if (Application.isMobilePlatform)
         {
@@ -91,6 +94,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isDead)
+            return;
+
         // 탑뷰 3D : 입력의 y값은 카메라 기준 '앞/뒤'이므로 Z축으로 매핑
         Vector3 moveDir = new Vector3(moveInput.x, 0f, moveInput.y);
 
@@ -120,5 +126,12 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetFloat(SpeedHash, moveDir.magnitude, 0.1f, Time.fixedDeltaTime);
         }
+    }
+
+    public void SetDead(bool dead)
+    {
+        isDead = dead;
+        if (dead)
+            rb.linearVelocity = Vector3.zero;
     }
 }

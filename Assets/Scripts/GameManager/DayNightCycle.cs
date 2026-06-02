@@ -92,7 +92,7 @@ public class DayNightCycle : MonoBehaviour
             if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
             {
                 midnightTriggered = true;
-                PlayerSpawner.Instance.Respawn(clearInventory: true);
+                PlayerHealth.Instance.Die();
             }
         }
 
