@@ -4,7 +4,7 @@ using UnityEngine;
 public class ResourceAsset : ScriptableObject
 {
     public string ResourceID;
-    public GameObject DropPrefab;
+    public ItemAsset DropItem;
 
     [HideInInspector]
     public ResourceData Data;

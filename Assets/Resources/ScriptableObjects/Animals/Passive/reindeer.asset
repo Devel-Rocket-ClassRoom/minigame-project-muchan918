@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: reindeer
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: reindeer
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: a10571a906d93844db722218d54db5d9, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

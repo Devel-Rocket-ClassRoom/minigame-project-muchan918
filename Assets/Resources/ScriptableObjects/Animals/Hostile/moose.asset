@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: moose
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: moose
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: b013e5a7ba811be46a19caa9b1b5a615, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

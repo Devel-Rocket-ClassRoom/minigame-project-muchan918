@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: lion
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: lion
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: a9cc8acf74fc43342b7d8ca856279ce3, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

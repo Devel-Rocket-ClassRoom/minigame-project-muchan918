@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: giraffe
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: giraffe
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 6afecf45c27a38941bc83d0d6038203b, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: squirrel
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: squirrel
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 5f342ad684c67c44d8d78c007377f0c9, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

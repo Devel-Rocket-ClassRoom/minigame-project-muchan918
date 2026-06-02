@@ -12,8 +12,6 @@ equip_bottom_01,낡은 바지,Equipment,1
 equip_shoes_01,낡은 신발,Equipment,1
 equip_headgear_02,헤드기어2,Equipment,1
 food_rabbit_roast,토끼 구이,Food,5
-food_bear_roast,곰 구이,Food,5
-food_rabbit_bear_roast,토끼곰 구이,Food,5
 crop_golden_berry,황금베리,Food,20
 crop_blueberry,블루베리,Food,20
 crop_strawberry,딸기,Food,20
@@ -30,3 +28,41 @@ item_ore_iron,철광석,Material,10
 item_ore_gold,금광석,Material,10
 item_ore_diamond,다이아몬드,Material,10
 item_ore_ruby,루비,Material,10
+animal_rabbit_meat,토끼고기,Food,5
+animal_deer_antler,사슴뿔,Material,5
+animal_wolf_fang,늑대송곳니,Material,5
+animal_bear_claw,곰발톱,Material,5
+animal_reindeer_antler,순록뿔,Material,5
+animal_chick_feather,병아리깃털,Material,10
+animal_cow_hide,소가죽,Material,5
+animal_donkey_hide,당나귀가죽,Material,5
+animal_duck_meat,오리고기,Food,5
+animal_hen_meat,닭고기,Food,5
+animal_pig_meat,돼지고기,Food,5
+animal_rooster_redfeather,붉은깃털,Material,10
+animal_sheep_wool,양털,Material,10
+animal_zebra_hide,줄무늬가죽,Material,5
+animal_goat_meat,염소고기,Food,5
+animal_goose_feather,거위깃털,Material,10
+animal_horse_mane,말갈기,Material,10
+animal_squirrel_acorn,도토리,Material,20
+animal_monkey_bone,원숭이뼈,Material,5
+animal_giraffe_hide,기린가죽,Material,5
+animal_fox_tail,여우꼬리,Material,5
+animal_snake_venom,뱀독,Material,5
+animal_cheetah_hide,치타가죽,Material,5
+animal_hippo_tusk,하마엄니,Material,5
+animal_elephant_tusk,상아,Material,3
+animal_rhino_horn,코뿔소뿔,Material,3
+animal_gorilla_fang,고릴라송곳니,Material,5
+animal_tiger_hide,호랑이가죽,Material,5
+animal_crocodile_hide,악어가죽,Material,5
+animal_husky_fur,북방가죽,Material,5
+animal_lynx_claw,스라소니발톱,Material,5
+animal_python_skin,비단뱀가죽,Material,5
+animal_lion_mane,사자갈기,Material,5
+animal_wildebeest_horn,누뿔,Material,5
+animal_moose_antler,무스뿔,Material,5
+animal_bull_horn,황소뿔,Material,5
+animal_bison_hide,들소가죽,Material,5
+animal_hedgehog_spine,고슴도치가시,Material,10

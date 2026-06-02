@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: lynx
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: lynx
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 8bb2ed56467819d4994d6d229b3b5369, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

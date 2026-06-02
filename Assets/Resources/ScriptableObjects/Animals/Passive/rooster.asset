@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rooster
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: rooster
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: c699bde4b56ee304db55f4794e55cdb1, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

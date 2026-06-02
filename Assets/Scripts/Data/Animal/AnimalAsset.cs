@@ -3,7 +3,7 @@ using UnityEngine;
 public class AnimalAsset : ScriptableObject
 {
     public string AnimalID;
-    public GameObject DropPrefab;
+    public ItemAsset DropItem;
 
     [Header("Idle / Roam")]
     public float IdleDurationMin = 2f;

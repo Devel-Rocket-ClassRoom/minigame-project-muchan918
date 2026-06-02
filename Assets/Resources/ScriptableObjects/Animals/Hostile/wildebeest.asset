@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: wildebeest
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: wildebeest
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: d55f716f7f08cda499cfe0b39922389d, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rabbit
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: rabbit
-  DropPrefab: {fileID: 210965813999700127, guid: 778c8f1ca27464844aeccaba1f2d05fd, type: 3}
+  DropItem: {fileID: 11400000, guid: 133e59512b22fe94ea89df801f55b79d, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

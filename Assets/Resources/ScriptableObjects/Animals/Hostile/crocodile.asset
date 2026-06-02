@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: crocodile
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: crocodile
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: b26828d3e7c679e42b1a80a2d416755b, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5
