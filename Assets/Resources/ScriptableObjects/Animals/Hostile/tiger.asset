@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: tiger
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: tiger
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 39b0ae32d7f994f4f9a6375623c8fad0, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

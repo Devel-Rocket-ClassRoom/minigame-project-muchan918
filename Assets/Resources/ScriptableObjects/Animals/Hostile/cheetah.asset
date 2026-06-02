@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: cheetah
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: cheetah
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: fb4f6134e5dbda14584dbe3bfa2e5ac3, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

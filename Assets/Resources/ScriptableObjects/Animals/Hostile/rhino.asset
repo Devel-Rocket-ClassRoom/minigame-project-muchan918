@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: rhino
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: rhino
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 445f87d2856c4f9488c79b725d99c39d, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

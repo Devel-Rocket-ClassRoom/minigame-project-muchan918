@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: bison
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: bison
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 023b4f59bf16f3a4583fbec01f6ed7cf, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

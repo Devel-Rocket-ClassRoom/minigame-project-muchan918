@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: husky
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: husky
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 4f2992a40524f4944af9095bcb2c4601, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: chick
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: chick
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: aa4cbfd99940ec145ad69333de0a44f0, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: zebra
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: zebra
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 10bd7ae8b8f6b874eace6328a728d93f, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: python
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: python
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 38180b993e5cd8747b1c6c43f2593acb, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

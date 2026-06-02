@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: gorilla
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: gorilla
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 5eac2436c4446dd409bd2d6f5d5f078e, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

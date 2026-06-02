@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: hen
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: hen
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 41fee22249d880849a101f416679cc7a, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

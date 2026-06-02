@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: hippo
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: hippo
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: 5ea917ab012dc0e479cf20f717b03087, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

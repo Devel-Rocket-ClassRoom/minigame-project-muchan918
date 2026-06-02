@@ -176,8 +176,16 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 
     public void Drop()
     {
-        if (Asset.DropPrefab != null)
-            Instantiate(Asset.DropPrefab, transform.position, Quaternion.identity);
+        if (Asset.DropItem == null)
+            return;
+
+        var spawnPos = transform.position + Vector3.up * 0.5f;
+        var go = Instantiate(
+            WorldItemManager.Instance.WorldItemPrefab,
+            spawnPos,
+            Quaternion.identity
+        );
+        go.GetComponent<WorldItem>().Init(Asset.DropItem);
     }
 
     protected void ResetStateTimer()

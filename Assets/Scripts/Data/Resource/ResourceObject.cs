@@ -33,8 +33,15 @@ public class ResourceObject : MonoBehaviour, IDefender, IDroppable
 
     public void Drop()
     {
-        if (Asset.DropPrefab != null)
-            Instantiate(Asset.DropPrefab, transform.position, Quaternion.identity);
+        if (Asset.DropItem == null)
+            return;
+
+        var go = Instantiate(
+            WorldItemManager.Instance.WorldItemPrefab,
+            transform.position,
+            Quaternion.identity
+        );
+        go.GetComponent<WorldItem>().Init(Asset.DropItem);
     }
 
     public void Die()

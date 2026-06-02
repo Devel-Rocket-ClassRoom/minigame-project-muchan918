@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: snake
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: snake
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: d884565bad03f9b4181d5eeb1d264755, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

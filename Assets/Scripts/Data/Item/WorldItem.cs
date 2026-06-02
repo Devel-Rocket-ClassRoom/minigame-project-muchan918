@@ -6,8 +6,9 @@ public class WorldItem : MonoBehaviour, IInteractable
 
     public InteractionType Type => InteractionType.PickUp;
 
-    private void Start()
+    public void Init(ItemAsset asset)
     {
+        Asset = asset;
         Asset.Data = DataTableManager.Get<ItemTable>("ItemTable").Get(Asset.ItemID);
     }
 

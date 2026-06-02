@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: fox
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
   AnimalID: fox
-  DropPrefab: {fileID: 0}
+  DropItem: {fileID: 11400000, guid: c70a8e535e7f4db4887a95c150289301, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   FleeDuration: 3

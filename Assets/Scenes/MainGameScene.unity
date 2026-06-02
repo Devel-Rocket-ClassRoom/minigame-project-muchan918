@@ -5224,8 +5224,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CauldronInteraction
   recipes:
-  - {fileID: 11400000, guid: 041bf04d5bc61c44f9919c45d243acad, type: 2}
-  - {fileID: 11400000, guid: 1e463f309f12b4142893bb4ac4d739ef, type: 2}
+  - {fileID: 11400000, guid: 1fdd074321cba2b478df830fc59b734d, type: 2}
   playerInventory: {fileID: 56650075042092300}
   cauldronPanel: {fileID: 7787676689796282521}
   ingredientPanel: {fileID: 7347028419669332138}
@@ -15675,6 +15674,7 @@ GameObject:
   - component: {fileID: 9195796170670080761}
   - component: {fileID: 9195796170670080762}
   - component: {fileID: 9195796170670080763}
+  - component: {fileID: 9195796170670080764}
   m_Layer: 10
   m_Name: GameManager
   m_TagString: Untagged
@@ -17763,6 +17763,19 @@ MonoBehaviour:
   - {fileID: 8235817832714090928, guid: 8dac292389ff353429a75ecd116bdea5, type: 3}
   - {fileID: 750520753856365691, guid: 525209b0ffc829141a3215f584cb83e0, type: 3}
   waterTilePrefab: {fileID: 1526672358175396467, guid: 6e6c36f9b2da5bb4aa99346c1e56f742, type: 3}
+--- !u!114 &9195796170670080764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5079424434380309103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f98615226275b5b43bcc3874884d0641, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WorldItemManager
+  WorldItemPrefab: {fileID: 2798233120683693037, guid: 9e86697b4168ff946bf213b6bb3e57fa, type: 3}
 --- !u!1 &9215705670280141544
 GameObject:
   m_ObjectHideFlags: 0
