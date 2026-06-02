@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DayNightCycle : MonoBehaviour
 {
@@ -28,6 +29,9 @@ public class DayNightCycle : MonoBehaviour
 
     [SerializeField]
     private GameObject gameOverUI;
+
+    [SerializeField]
+    private Image timerImage;
 
     [SerializeField]
     private GameSaveController gameSaveController;
@@ -91,6 +95,8 @@ public class DayNightCycle : MonoBehaviour
                 PlayerSpawner.Instance.Respawn(clearInventory: true);
             }
         }
+
+        timerImage.fillAmount = DayProgress;
     }
 
     public void SetMorning()
