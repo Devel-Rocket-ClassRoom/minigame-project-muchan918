@@ -44,6 +44,7 @@ public class CraftInteraction : MonoBehaviour, IInteractable
     {
         craftPanel.SetActive(true);
         craftSlotList.RefreshAvailability();
+        UiManager.Instance.Register(OnClickClose);
     }
 
     public void OnClickCraft()
@@ -77,6 +78,7 @@ public class CraftInteraction : MonoBehaviour, IInteractable
 
     public void OnClickClose()
     {
+        UiManager.Instance.Unregister(OnClickClose);
         ingredientPanel.SetActive(false);
         craftPanel.SetActive(false);
         craftSlotList.ResetSelection();

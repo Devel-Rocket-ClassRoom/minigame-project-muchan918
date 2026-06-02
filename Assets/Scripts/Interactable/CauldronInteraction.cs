@@ -43,6 +43,7 @@ public class CauldronInteraction : MonoBehaviour, IInteractable
     {
         cauldronPanel.SetActive(true);
         cauldronSlotList.RefreshAvailability();
+        UiManager.Instance.Register(OnClickClose);
     }
 
     public void OnSelectRecipe(RecipeAsset recipe)
@@ -78,6 +79,7 @@ public class CauldronInteraction : MonoBehaviour, IInteractable
 
     public void OnClickClose()
     {
+        UiManager.Instance.Unregister(OnClickClose);
         ingredientPanel.SetActive(false);
         cauldronPanel.SetActive(false);
         cauldronSlotList.ResetSelection();
