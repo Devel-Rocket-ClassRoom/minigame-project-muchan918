@@ -12,6 +12,7 @@ public enum EquipType
     None,
     Axe,
     Sword,
+    Pickaxe,
 }
 
 public class EquipmentData

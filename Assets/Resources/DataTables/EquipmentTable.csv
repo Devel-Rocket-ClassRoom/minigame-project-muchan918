@@ -1,6 +1,7 @@
 EquipmentID,SlotType,PartsName,PartsIndex,EquipType,Value,TargetTag
 equip_axe_01,WeaponRight,Axe,0,Axe,10,Tree
 equip_sword_01,WeaponRight,Sword,0,Sword,15,Animal
+equip_pickaxe_01,WeaponRight,Pickaxe,0,Pickaxe,10,Stone
 equip_headgear_01,Hat,Headgear,0,None,3,
 equip_headgear_02,Hat,Headgear,1,None,3,
 equip_top_01,Top,Top,0,None,10,
