@@ -17,6 +17,9 @@ public class TileChunkManager : MonoBehaviour
     [SerializeField]
     private GameObject waterTilePrefab;
 
+    [SerializeField]
+    private GameObject borderTilePrefab;
+
     private class ChunkData
     {
         public List<(Vector3 pos, TileType type)> PendingTiles = new();
@@ -41,7 +44,7 @@ public class TileChunkManager : MonoBehaviour
         Instance = this;
     }
 
-    public void Initialize(MapData mapData, Transform tileParent, int seed)
+    public void Initialize(MapData mapData, Transform tileParent, int seed, int borderSize = 30)
     {
         Clear();
         _tileParent = tileParent;
@@ -66,6 +69,19 @@ public class TileChunkManager : MonoBehaviour
 
             var chunk = GetOrCreateChunk(chunkCoord);
             chunk.PendingTiles.Add((pos, type));
+        }
+
+        // 외곽 Water 타일
+        for (int wx = -(halfWidth + borderSize); wx < halfWidth + borderSize; wx++)
+        for (int wy = -(halfHeight + borderSize); wy < halfHeight + borderSize; wy++)
+        {
+            bool insideMap =
+                wx >= -halfWidth && wx < halfWidth && wy >= -halfHeight && wy < halfHeight;
+            if (insideMap)
+                continue;
+
+            var pos = new Vector3(wx, 0f, wy);
+            GetOrCreateChunk(WorldToChunk(pos)).PendingTiles.Add((pos, TileType.Border));
         }
     }
 
@@ -143,6 +159,7 @@ public class TileChunkManager : MonoBehaviour
         return type switch
         {
             TileType.Water => waterTilePrefab,
+            TileType.Border => borderTilePrefab,
             TileType.GrassGround => grassGroundTilePrefabs[
                 _random.Next(0, grassGroundTilePrefabs.Length)
             ],
