@@ -7,6 +7,7 @@ public enum TileType
     GrassGround,
     Water,
     Resource,
+    Border,
 }
 
 public class MapData
