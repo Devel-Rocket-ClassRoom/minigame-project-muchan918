@@ -1,70 +1,45 @@
 ItemID,DisplayName,ItemType,StackMax
-wood_oak,참나무 목재,Material,4
-stone_small,작은 돌,Material,4
-hardwood,단단한 나무,Material,3
-carved_stone,조각된 돌,Material,3
-wood_totem,나무 토템,Material,1
-equip_axe_01,돌 도끼,Equipment,1
-equip_sword_01,돌 칼,Equipment,1
-equip_pickaxe_01,돌 곡괭이,Equipment,1
-equip_headgear_01,풀 모자,Equipment,1
-equip_top_01,낡은 셔츠,Equipment,1
-equip_bottom_01,낡은 바지,Equipment,1
-equip_shoes_01,낡은 신발,Equipment,1
-equip_headgear_02,헤드기어2,Equipment,1
-food_rabbit_roast,토끼 구이,Food,5
-crop_golden_berry,황금베리,Food,20
-crop_blueberry,블루베리,Food,20
-crop_strawberry,딸기,Food,20
-crop_carrot,당근,Food,20
-crop_corn,옥수수,Food,20
-crop_potato,감자,Food,20
-crop_tomato,토마토,Food,20
-crop_wheat,밀,Food,20
-crop_mushroom,버섯,Food,20
-item_bush,덤불 잎,Material,10
-item_rock_lava,용암석,Material,10
-item_ore_coal,석탄,Material,10
-item_ore_iron,철광석,Material,10
-item_ore_gold,금광석,Material,10
-item_ore_diamond,다이아몬드,Material,10
-item_ore_ruby,루비,Material,10
-animal_rabbit_meat,토끼고기,Food,5
-animal_deer_antler,사슴뿔,Material,5
-animal_wolf_fang,늑대송곳니,Material,5
-animal_bear_claw,곰발톱,Material,5
-animal_reindeer_antler,순록뿔,Material,5
+resource_wood,나무,Material,10
+resource_stone,돌,Material,10
+resource_coal,석탄,Material,10
+resource_iron,철광석,Material,10
+resource_diamond,다이아몬드,Material,5
+resource_lava_rock,용암석,Material,10
+resource_bush_stem,덤불 줄기,Material,10
+resource_mushroom,버섯,Food,10
+resource_blueberry,블루베리,Food,10
+resource_gold_berry,골드베리,Food,10
+animal_rabbit_meat,토끼고기,Food,10
 animal_chick_feather,병아리깃털,Material,10
-animal_cow_hide,소가죽,Material,5
-animal_donkey_hide,당나귀가죽,Material,5
-animal_duck_meat,오리고기,Food,5
-animal_hen_meat,닭고기,Food,5
-animal_pig_meat,돼지고기,Food,5
-animal_rooster_redfeather,붉은깃털,Material,10
 animal_sheep_wool,양털,Material,10
-animal_zebra_hide,줄무늬가죽,Material,5
-animal_goat_meat,염소고기,Food,5
-animal_goose_feather,거위깃털,Material,10
-animal_horse_mane,말갈기,Material,10
-animal_squirrel_acorn,도토리,Material,20
-animal_monkey_bone,원숭이뼈,Material,5
-animal_giraffe_hide,기린가죽,Material,5
 animal_fox_tail,여우꼬리,Material,5
-animal_snake_venom,뱀독,Material,5
-animal_cheetah_hide,치타가죽,Material,5
-animal_hippo_tusk,하마엄니,Material,5
+animal_hen_egg,계란,Food,10
+animal_bear_meat,곰고기,Food,5
+animal_lion_mane,사자갈기,Material,3
 animal_elephant_tusk,상아,Material,3
-animal_rhino_horn,코뿔소뿔,Material,3
-animal_gorilla_fang,고릴라송곳니,Material,5
-animal_tiger_hide,호랑이가죽,Material,5
-animal_crocodile_hide,악어가죽,Material,5
-animal_husky_fur,북방가죽,Material,5
-animal_lynx_claw,스라소니발톱,Material,5
-animal_python_skin,비단뱀가죽,Material,5
-animal_lion_mane,사자갈기,Material,5
-animal_wildebeest_horn,누뿔,Material,5
-animal_moose_antler,무스뿔,Material,5
-animal_bull_horn,황소뿔,Material,5
-animal_bison_hide,들소가죽,Material,5
-animal_hedgehog_spine,고슴도치가시,Material,10
+animal_gorilla_hide,고릴라 가죽,Material,3
+item_hardwood,단단한 나무,Material,5
+item_hard_stone,단단한 돌,Material,5
+item_wood_token,나무 토큰,Material,3
+item_lion_necklace,사자갈기 목걸이,Material,1
+item_tusk_necklace,상아 목걸이,Material,1
+item_wool_charm,양털 부적,Material,1
+item_fox_ornament,여우꼬리 장식,Material,1
+food_rabbit_roast,토끼구이,Food,5
+food_bear_roast,곰고기구이,Food,5
+food_mushroom_roast,버섯구이,Food,5
+food_boiled_egg,삶은계란,Food,5
+food_blueberry_jam,블루베리잼,Food,5
+food_golden_jam,골드잼,Food,5
+equip_axe_stone,돌 도끼,Equipment,1
+equip_sword_stone,돌 칼,Equipment,1
+equip_pickaxe_stone,돌 곡괭이,Equipment,1
+equip_hat_wool,양털 모자,Equipment,1
+equip_hat_gorilla,고릴라 가죽 모자,Equipment,1
+equip_top_wool,양털 조끼,Equipment,1
+equip_top_gorilla,고릴라 가죽 조끼,Equipment,1
+equip_bottom_wool,양털 바지,Equipment,1
+equip_bottom_gorilla,고릴라 가죽 바지,Equipment,1
+equip_shoes_wool,양털 신발,Equipment,1
+equip_shoes_gorilla,고릴라 가죽 신발,Equipment,1
 item_ending,신성한 토템,Ending,1

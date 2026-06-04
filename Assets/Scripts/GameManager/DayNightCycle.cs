@@ -7,13 +7,13 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     private Light directionalLight;
 
     [SerializeField]
-    private float brightDuration = 110f; // 06:00 ~ 17:00
+    private float brightDuration = 110f;
 
     [SerializeField]
-    private float darkenDuration = 30f; // 17:00 ~ 20:00
+    private float darkenDuration = 30f;
 
     [SerializeField]
-    private float nightDuration = 40f; // 20:00 ~ 24:00
+    private float nightDuration = 40f;
 
     [SerializeField]
     private float maxIntensity = 1f;
@@ -74,7 +74,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     private void Awake()
     {
         tributeEvent = GetComponent<TributeEvent>();
-        tributeEvent.AssignNewEvent();
+        tributeEvent.SetRequirementIndex(0);
         tileMapGenerator = GetComponent<TileMapGenerator>();
     }
 
@@ -87,25 +87,21 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
         if (elapsedTime <= brightDuration)
         {
-            // 낮 - 최대 밝기 유지
             directionalLight.intensity = maxIntensity;
             RenderSettings.ambientLight = dayAmbient;
         }
         else if (elapsedTime <= brightDuration + darkenDuration)
         {
-            // 노을 - 점점 어두워짐
             float t = (elapsedTime - brightDuration) / darkenDuration;
             float clamped = Mathf.Clamp01(t);
-            directionalLight.intensity = Mathf.Lerp(maxIntensity, minIntensity, Mathf.Clamp01(t));
+            directionalLight.intensity = Mathf.Lerp(maxIntensity, minIntensity, clamped);
             RenderSettings.ambientLight = Color.Lerp(dayAmbient, nightAmbient, clamped);
         }
         else
         {
-            // 밤 - 최소 밝기 유지
             directionalLight.intensity = minIntensity;
             RenderSettings.ambientLight = nightAmbient;
 
-            // 24시 도달 시 리스폰 (치팅 모드면 무시)
             if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
             {
                 midnightTriggered = true;
@@ -160,7 +156,6 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
         if (hungerEmptyCount >= 3)
         {
-            Debug.Log(hungerEmptyCount);
             gameOverUI.SetActive(true);
             GamePause.Pause();
             return;
@@ -186,7 +181,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
     public void Upgrade()
     {
-        if (Level >= 3)
+        if (Level >= 2)
             return;
         Level++;
         pendingDurationUpgrade = true;

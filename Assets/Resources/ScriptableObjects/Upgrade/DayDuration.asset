@@ -17,8 +17,10 @@ MonoBehaviour:
   icon: {fileID: 0}
   costPerLevel:
   - ingredients:
-    - item: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
+    - item: {fileID: 11400000, guid: af7f04b1188f25e46877e234938aae92, type: 2}
       amount: 1
+    - item: {fileID: 11400000, guid: b48cdd6927c6e5b4bba47d83c4182aea, type: 2}
+      amount: 3
   - ingredients:
     - item: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
       amount: 1

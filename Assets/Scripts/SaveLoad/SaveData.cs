@@ -197,6 +197,45 @@ public class SaveDataV6 : SaveDataV5
 
     public override SaveData VersionUp()
     {
+        return new SaveDataV7
+        {
+            Version = 7,
+            CurrentDay = CurrentDay,
+            HungerEmptyCount = HungerEmptyCount,
+            CurrentHp = CurrentHp,
+            Inventory = Inventory,
+            Storage = Storage,
+            TributeSubmitted = TributeSubmitted,
+            TributeRequirementIndex = 0,
+            UpgradeWorkbench = UpgradeWorkbench,
+            UpgradeStorage = UpgradeStorage,
+            UpgradeInventory = UpgradeInventory,
+            UpgradeAnimal = UpgradeAnimal,
+            UpgradeResource = UpgradeResource,
+            UpgradeCauldron = UpgradeCauldron,
+            EquipHat = EquipHat,
+            EquipTop = EquipTop,
+            EquipBottom = EquipBottom,
+            EquipShoes = EquipShoes,
+            EquipWeaponRight = EquipWeaponRight,
+            MapSeed = MapSeed,
+            DestroyedResources = DestroyedResources,
+            DeadAnimals = DeadAnimals,
+        };
+    }
+}
+
+public class SaveDataV7 : SaveDataV6
+{
+    public int TributeRequirementIndex { get; set; } = 0;
+
+    public SaveDataV7()
+    {
+        Version = 7;
+    }
+
+    public override SaveData VersionUp()
+    {
         return this;
     }
 }

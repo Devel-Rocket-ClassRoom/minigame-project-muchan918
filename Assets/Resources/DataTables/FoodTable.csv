@@ -1,16 +1,13 @@
 FoodID,DisplayName,EffectType,Value
-food_rabbit_roast,토끼 구이,Hunger,30
-crop_golden_berry,황금베리,Hunger,15
-crop_blueberry,블루베리,Hunger,15
-crop_strawberry,딸기,Hunger,15
-crop_carrot,당근,Hunger,20
-crop_corn,옥수수,Hunger,20
-crop_potato,감자,Hunger,25
-crop_tomato,토마토,Hunger,15
-crop_wheat,밀,Hunger,10
-crop_mushroom,버섯,Hunger,20
+resource_mushroom,버섯,Hunger,15
+resource_blueberry,블루베리,Hunger,10
+resource_gold_berry,골드베리,Hunger,15
 animal_rabbit_meat,토끼고기,Hunger,15
-animal_hen_meat,닭고기,Hunger,15
-animal_pig_meat,돼지고기,Hunger,20
-animal_goat_meat,염소고기,Hunger,15
-animal_duck_meat,오리고기,Hunger,10
+animal_hen_egg,계란,Hunger,10
+animal_bear_meat,곰고기,Hunger,20
+food_rabbit_roast,토끼구이,Hunger,30
+food_bear_roast,곰고기구이,Hunger,40
+food_mushroom_roast,버섯구이,Hunger,20
+food_boiled_egg,삶은계란,Hunger,20
+food_blueberry_jam,블루베리잼,Hunger,15
+food_golden_jam,골드잼,Hunger,25

@@ -1,4 +1,3 @@
-// UiProgressPanel.cs
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,16 +31,12 @@ public class UiProgressPanel : MonoBehaviour
 
     private void Refresh()
     {
-        // 슬롯 초기화
         foreach (var slot in slotList)
             Destroy(slot.gameObject);
         slotList.Clear();
 
-        // 제단 슬롯 생성
         var slotInfoList = tributeEvent.tributeSlotList.GetSlotInfoList();
-        var requirement = tributeEvent.levelPool[tributeEvent.CurrentEventLevel].requirements[
-            tributeEvent.CurrentRequirementIndex
-        ];
+        var requirement = tributeEvent.requirements[tributeEvent.CurrentRequirementIndex];
 
         for (int i = 0; i < requirement.requiredItems.Count; i++)
         {
@@ -52,7 +47,6 @@ public class UiProgressPanel : MonoBehaviour
             slotList.Add(slot);
         }
 
-        // 굶주림
         int count = dayNightCycle.HungerEmptyCount;
         hungerText.text = $"굶주림: {count} / 3";
     }

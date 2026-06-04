@@ -75,7 +75,7 @@ public class MapData
 
             if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
                 continue;
-            if (_tiles[y, x] != TileType.Ground)
+            if (_tiles[y, x] != TileType.Ground && _tiles[y, x] != TileType.GrassGround)
                 continue;
 
             float dist = Mathf.Sqrt(wx * wx + wy * wy);
