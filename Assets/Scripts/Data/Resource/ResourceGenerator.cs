@@ -8,8 +8,6 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
     public class ResourceSpawnEntry
     {
         public GameObject prefab;
-        public string resourceId;
-        public string resourceType;
 
         [Range(0f, 1f)]
         public float spawnChance;

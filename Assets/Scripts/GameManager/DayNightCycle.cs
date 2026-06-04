@@ -22,6 +22,12 @@ public class DayNightCycle : MonoBehaviour
     private float minIntensity = 0f;
 
     [SerializeField]
+    private Color dayAmbient = new Color(0.4f, 0.4f, 0.4f);
+
+    [SerializeField]
+    private Color nightAmbient = new Color(0.02f, 0.02f, 0.05f);
+
+    [SerializeField]
     private PlayerHealth playerHealth;
 
     [SerializeField]
@@ -80,17 +86,21 @@ public class DayNightCycle : MonoBehaviour
         {
             // 낮 - 최대 밝기 유지
             directionalLight.intensity = maxIntensity;
+            RenderSettings.ambientLight = dayAmbient;
         }
         else if (elapsedTime <= brightDuration + darkenDuration)
         {
             // 노을 - 점점 어두워짐
             float t = (elapsedTime - brightDuration) / darkenDuration;
+            float clamped = Mathf.Clamp01(t);
             directionalLight.intensity = Mathf.Lerp(maxIntensity, minIntensity, Mathf.Clamp01(t));
+            RenderSettings.ambientLight = Color.Lerp(dayAmbient, nightAmbient, clamped);
         }
         else
         {
             // 밤 - 최소 밝기 유지
             directionalLight.intensity = minIntensity;
+            RenderSettings.ambientLight = nightAmbient;
 
             // 24시 도달 시 리스폰 (치팅 모드면 무시)
             if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
@@ -110,6 +120,7 @@ public class DayNightCycle : MonoBehaviour
         elapsedTime = 0f;
         midnightTriggered = false;
         directionalLight.intensity = maxIntensity;
+        RenderSettings.ambientLight = dayAmbient;
 
         if (CurrentDay % 7 == 0)
         {
