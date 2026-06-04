@@ -7,7 +7,7 @@ public class StorageInventory : MonoBehaviour, IUpgradeable
 {
     public UiInventorySlot prefab;
     public ScrollRect scrollRect;
-    public int Level { get; private set; }
+    public int Level { get; private set; } = 1;
 
     [Header("Capacity")]
     [SerializeField]

@@ -10,7 +10,7 @@ using UnityEngine.InputSystem;
 /// On-Screen Stick 바인딩만 추가하면 모바일 조이스틱으로 동작한다.
 /// </summary>
 [RequireComponent(typeof(Rigidbody))]
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IUpgradeable
 {
     [Header("Movement")]
     [Tooltip("초당 이동 속도 (m/s)")]
@@ -39,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
     public bool useJoystick = true;
 
     private static readonly int SpeedHash = Animator.StringToHash("Speed");
+
+    public int Level { get; private set; } = 1;
+    private readonly float[] moveSpeedPerLevel = { 0f, 5f, 5.2f, 5.4f };
 
     private void Awake()
     {
@@ -149,5 +152,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb.rotation = rotation;
         transform.rotation = rotation;
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= 3)
+            return;
+        Level++;
+        moveSpeed = moveSpeedPerLevel[Level];
     }
 }

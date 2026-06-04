@@ -19,7 +19,7 @@ public class UiUpgradeIngredientSlotList : MonoBehaviour
         if (level >= asset.MaxLevel)
             return;
 
-        foreach (var ingredient in asset.costPerLevel[level].ingredients)
+        foreach (var ingredient in asset.costPerLevel[level - 1].ingredients)
         {
             var slot = Instantiate(prefab, scrollRect.content);
             int owned = playerInventory.SlotList.GetTotalAmount(ingredient.item.ItemID);

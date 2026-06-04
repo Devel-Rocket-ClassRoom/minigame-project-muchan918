@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAction : MonoBehaviour, IAttacker
+public class PlayerAction : MonoBehaviour, IAttacker, IUpgradeable
 {
     public static PlayerAction Instance { get; private set; }
 
@@ -24,6 +24,9 @@ public class PlayerAction : MonoBehaviour, IAttacker
     private LayerMask targetLayers;
 
     public int Damage => damage;
+
+    public int Level { get; private set; } = 1;
+    private readonly float[] cooldownPerLevel = { 0f, 0.6f, 0.5f, 0.3f };
 
     private Coroutine actionCoroutine;
 
@@ -105,5 +108,13 @@ public class PlayerAction : MonoBehaviour, IAttacker
     public void AddDamage(int amount)
     {
         damage = Mathf.Max(0, damage + amount);
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= 3)
+            return;
+        Level++;
+        actionCooldown = cooldownPerLevel[Level];
     }
 }
