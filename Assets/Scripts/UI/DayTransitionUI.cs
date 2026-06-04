@@ -36,10 +36,12 @@ public class DayTransitionUI : MonoBehaviour
         }
     }
 
-    public void PlayTransition(System.Action onMidpoint)
+    public void PlayTransition(System.Action onMidpoint, System.Action onComplete = null)
     {
         if (irisImage == null)
             return;
+        if (currentSeq != null)
+            currentSeq.Kill();
 
         irisImage.gameObject.SetActive(true);
         playerMovement.SetDead(true);
@@ -78,13 +80,16 @@ public class DayTransitionUI : MonoBehaviour
             if (irisImage == null)
                 return;
             irisImage.gameObject.SetActive(false);
+            onComplete?.Invoke();
         });
     }
 
-    public void PlayGameOverTransition(System.Action onComplete)
+    public void PlayFadeOut(System.Action onComplete)
     {
         if (irisImage == null)
             return;
+        if (currentSeq != null)
+            currentSeq.Kill();
 
         irisImage.gameObject.SetActive(true);
         playerMovement.SetDead(true);

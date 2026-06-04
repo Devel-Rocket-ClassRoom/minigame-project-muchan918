@@ -18,5 +18,5 @@ MonoBehaviour:
   IdleDurationMax: 4
   Damage: 10
   EnterAttackRange: 1
-  ExitAttackRange: 1.6
+  ExitAttackRange: 1.5
   AnimatorController: {fileID: 9100000, guid: 640f7ef8a1a4d2340a255e0ef58b8a2c, type: 2}

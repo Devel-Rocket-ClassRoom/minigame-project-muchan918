@@ -1,3 +1,4 @@
+using Cinemachine;
 using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
@@ -21,6 +22,9 @@ public class PlayerSpawner : MonoBehaviour
     [SerializeField]
     private DayTransitionUI dayTransitionUI;
 
+    [SerializeField]
+    private CinemachineBrain cinemachineBrain;
+
     private PlayerMovement playerMovement;
 
     public Transform PlayerTransform => playerHealth.transform;
@@ -35,30 +39,42 @@ public class PlayerSpawner : MonoBehaviour
         Instance = this;
         dayNightCycle = GetComponent<DayNightCycle>();
         playerMovement = playerHealth.GetComponent<PlayerMovement>();
+        if (cinemachineBrain != null)
+            cinemachineBrain.m_IgnoreTimeScale = true;
     }
 
     public void Respawn(bool clearInventory = false, bool fullRecover = false)
     {
-        dayTransitionUI.PlayTransition(() =>
-        {
-            playerHealth.transform.position = spawnPoint.position;
-            playerHealth.transform.rotation = spawnPoint.rotation;
-            playerMovement.ResetRotation(spawnPoint.rotation);
-            playerHealth.ResetAnimator();
+        dayTransitionUI.PlayTransition(
+            onMidpoint: () =>
+            {
+                ApplyRespawn(clearInventory, fullRecover);
+                dayNightCycle.SetMorning();
+            },
+            onComplete: () =>
+            {
+                dayNightCycle.IsTransitioning = false;
+            }
+        );
+    }
 
-            int penalty = Mathf.RoundToInt(
-                (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f
-            );
+    private void ApplyRespawn(bool clearInventory, bool fullRecover)
+    {
+        playerHealth.ResetAnimator();
+        playerHealth.transform.position = spawnPoint.position;
+        playerHealth.transform.rotation = spawnPoint.rotation;
+        playerMovement.ResetRotation(spawnPoint.rotation);
 
-            if (fullRecover)
-                playerHealth.SetHealth(playerHealth.MaxHp - penalty);
-            else
-                playerHealth.SetHealth(playerHealth.MaxHp / 2 - penalty);
+        int penalty = Mathf.RoundToInt(
+            (1f - (float)playerHunger.CurrentHunger / playerHunger.MaxHunger) * 30f
+        );
 
-            if (clearInventory)
-                playerInventory.SlotList.Clear();
+        if (fullRecover)
+            playerHealth.SetHealth(playerHealth.MaxHp - penalty);
+        else
+            playerHealth.SetHealth(playerHealth.MaxHp / 2 - penalty);
 
-            dayNightCycle.SetMorning();
-        });
+        if (clearInventory)
+            playerInventory.SlotList.Clear();
     }
 }

@@ -25,6 +25,7 @@ public class TileMapGenerator : MonoBehaviour
     private ResourceGenerator resourceGenerator;
     private AnimalGenerator animalGenerator;
     private Transform _tileParent;
+    private bool isClear = false;
 
     public MapData MapData => _mapData;
     public int CurrentSeed { get; private set; }
@@ -41,13 +42,16 @@ public class TileMapGenerator : MonoBehaviour
             GenerateMap();
     }
 
-    public void GenerateMap()
+    public void GenerateMap(bool clear = false)
     {
         if (GamePause.IsPaused)
             return;
+        isClear = clear;
         ClearMap();
         GamePause.Pause();
-        LoadingUI.Instance.ShowInit();
+
+        if (!isClear)
+            LoadingUI.Instance.ShowInit();
 
         CurrentSeed = seed == 0 ? Random.Range(1, 999999) : seed;
         _mapData = new MapData(mapWidth, mapHeight, CurrentSeed, nearZoneRadius, midZoneRadius);
@@ -70,28 +74,35 @@ public class TileMapGenerator : MonoBehaviour
     private IEnumerator GenerateSequence()
     {
         LoadingUI.Instance.SetProgress(0.3f);
+        if (isClear)
+            LoadingUI.Instance.SetLoadingText("맵 재생성중");
         yield return null;
-        Debug.Log("맵 생성 완료");
 
         yield return StartCoroutine(resourceGenerator.SpawnCoroutine());
         LoadingUI.Instance.SetProgress(0.6f);
+        if (isClear)
+            LoadingUI.Instance.SetLoadingText("자원 재생성중");
         yield return null;
-        Debug.Log("자원 생성 완료");
 
         animalGenerator.Generate();
         LoadingUI.Instance.SetProgress(0.9f);
+        if (isClear)
+            LoadingUI.Instance.SetLoadingText("동물 재생성중");
         yield return null;
-        Debug.Log("동물 생성 완료");
 
         TileChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
         ResourceChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
         AnimalChunkManager.Instance.StartTracking(PlayerSpawner.Instance.PlayerTransform);
 
         LoadingUI.Instance.SetProgress(1f);
-        yield return new WaitForSecondsRealtime(2f);
-        LoadingUI.Instance.Hide();
-        SoundManager.Instance.PlayMainBgm();
-        GamePause.Resume();
+
+        if (!isClear)
+        {
+            yield return new WaitForSecondsRealtime(2f);
+            LoadingUI.Instance.Hide();
+            SoundManager.Instance.PlayMainBgm();
+            GamePause.Resume();
+        }
     }
 
     private void ClearMap()

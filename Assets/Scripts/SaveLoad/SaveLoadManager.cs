@@ -37,6 +37,7 @@ public static class SaveLoadManager
     public static void Init()
     {
         Load();
+        Debug.Log(Application.persistentDataPath);
     }
 
     public static bool Save()

@@ -120,7 +120,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     {
         IsTransitioning = true;
         dayTransitionUI.StopTransition();
-        dayTransitionUI.PlayGameOverTransition(() =>
+        dayTransitionUI.PlayFadeOut(() =>
         {
             gameOverUI.SetActive(true);
             GamePause.Pause();
@@ -150,8 +150,28 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
                 tributeEvent.AssignNewEvent();
                 ResourceChunkManager.Instance.ClearDestroyedPositions();
                 AnimalChunkManager.Instance.ClearDeadPositions();
-                tileMapGenerator.GenerateMap();
                 hungerEmptyCount = 0;
+
+                LoadingUI.Instance.ShowClear(
+                    onLoadingComplete: () =>
+                    {
+                        playerHunger.ResetHunger();
+                        AnimalChunkManager.Instance.ResetLivingAnimals();
+                        CurrentDay++;
+                        UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
+                        gameSaveController.SaveGame();
+                        timerImage.fillAmount = 0f;
+                        LoadingUI.Instance.Hide();
+                        IsTransitioning = false;
+                        GamePause.Resume();
+                        SoundManager.Instance.PlayMainBgm();
+                    },
+                    onImageFadeInComplete: () =>
+                    {
+                        tileMapGenerator.GenerateMap(clear: true);
+                    }
+                );
+                return;
             }
             else
             {
@@ -178,7 +198,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
         CurrentDay++;
         UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
         gameSaveController.SaveGame();
-        IsTransitioning = false;
+        //IsTransitioning = false;
     }
 
     public void SetDay(int day)
