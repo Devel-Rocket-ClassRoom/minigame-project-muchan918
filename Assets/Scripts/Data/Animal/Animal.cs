@@ -158,6 +158,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     public void TakeDamage(int damage, Vector3 hitNormal)
     {
         currentHp -= damage;
+        SoundManager.Instance.PlayAnimalHit();
         OnTakeDamage(hitNormal);
 
         if (currentHp <= 0)

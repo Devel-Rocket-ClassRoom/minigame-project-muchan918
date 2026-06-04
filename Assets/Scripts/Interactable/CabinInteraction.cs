@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class CabinInteraction : MonoBehaviour, IInteractable
@@ -7,14 +8,42 @@ public class CabinInteraction : MonoBehaviour, IInteractable
     [SerializeField]
     private DayNightCycle dayNightCycle;
 
+    [SerializeField]
+    private GameObject tooEarlyPopup;
+
+    [SerializeField]
+    private float popupDuration = 1f;
+
+    private Coroutine popupCoroutine;
+
+    private void Awake()
+    {
+        tooEarlyPopup.SetActive(false);
+    }
+
     public void Interact(GameObject player)
     {
         if (!dayNightCycle.IsNight)
         {
-            Debug.Log("아직 너무 이릅니다!");
+            ShowPopup();
             return;
         }
         dayNightCycle.IsTransitioning = true;
         PlayerSpawner.Instance.Respawn(fullRecover: true);
+    }
+
+    private void ShowPopup()
+    {
+        if (popupCoroutine != null)
+            StopCoroutine(popupCoroutine);
+        popupCoroutine = StartCoroutine(PopupRoutine());
+    }
+
+    private IEnumerator PopupRoutine()
+    {
+        tooEarlyPopup.SetActive(true);
+        yield return new WaitForSecondsRealtime(popupDuration);
+        tooEarlyPopup.SetActive(false);
+        popupCoroutine = null;
     }
 }

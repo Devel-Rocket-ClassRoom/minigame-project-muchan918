@@ -59,6 +59,10 @@ public class PlayerHealth : MonoBehaviour, IDefender
         {
             Die();
         }
+        else
+        {
+            SoundManager.Instance.PlayPlayerHit();
+        }
     }
 
     public void Recover()
@@ -96,6 +100,7 @@ public class PlayerHealth : MonoBehaviour, IDefender
 
     public void Die()
     {
+        SoundManager.Instance.PlayPlayerDie();
         OnPlayerDied?.Invoke();
         animator.SetTrigger("Die");
         playerMovement.SetDead(true);

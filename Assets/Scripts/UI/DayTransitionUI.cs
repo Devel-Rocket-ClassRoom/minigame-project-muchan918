@@ -43,7 +43,11 @@ public class DayTransitionUI : MonoBehaviour
         );
         seq.AppendCallback(() => onMidpoint?.Invoke());
         seq.AppendInterval(1f);
-        seq.AppendCallback(() => playerMovement.SetDead(false));
+        seq.AppendCallback(() =>
+        {
+            playerMovement.SetDead(false);
+            SoundManager.Instance.PlayTransitionOpen();
+        });
         seq.Append(
             DOTween
                 .To(

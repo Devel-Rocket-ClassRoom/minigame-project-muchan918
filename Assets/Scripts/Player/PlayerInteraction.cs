@@ -60,8 +60,16 @@ public class PlayerInteraction : MonoBehaviour
     {
         if (currentInteractable != null)
         {
-            if (currentInteractable.Type == InteractionType.PickUp)
-                animator.SetTrigger("PickUp");
+            switch (currentInteractable.Type)
+            {
+                case InteractionType.PickUp:
+                    SoundManager.Instance.PlayPickUp();
+                    animator.SetTrigger("PickUp");
+                    break;
+                default:
+                    SoundManager.Instance.PlayInteract();
+                    break;
+            }
 
             currentInteractable.Interact(gameObject);
         }

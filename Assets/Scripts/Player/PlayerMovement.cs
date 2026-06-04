@@ -129,6 +129,11 @@ public class PlayerMovement : MonoBehaviour, IUpgradeable
         {
             animator.SetFloat(SpeedHash, moveDir.magnitude, 0.1f, Time.fixedDeltaTime);
         }
+
+        if (moveDir.sqrMagnitude > 0.01f)
+            SoundManager.Instance.PlayFootstep();
+        else
+            SoundManager.Instance.StopFootstep();
     }
 
     public void SetDead(bool dead)

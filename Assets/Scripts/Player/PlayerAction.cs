@@ -60,6 +60,11 @@ public class PlayerAction : MonoBehaviour, IAttacker, IUpgradeable
         actionCoroutine = StartCoroutine(ActionCooldown());
     }
 
+    public void OnAttackStart()
+    {
+        SoundManager.Instance.PlayAction();
+    }
+
     private IEnumerator ActionCooldown()
     {
         IsActing = true;

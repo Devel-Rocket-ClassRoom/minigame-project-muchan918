@@ -23,6 +23,7 @@ public class ResourceObject : MonoBehaviour, IDefender, IDroppable
     public void TakeDamage(int damage, Vector3 hitNormal)
     {
         currentHP -= damage;
+        SoundManager.Instance.PlayResourceHit();
 
         if (currentHP <= 0)
         {
