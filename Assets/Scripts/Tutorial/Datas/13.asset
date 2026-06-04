@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e5440ef9efa9d07488b042c4a4e4b171, type: 3}
+  m_Name: 13
+  m_EditorClassIdentifier: Assembly-CSharp::TutorialData
+  title: "\uC778\uBCA4\uD1A0\uB9AC"
+  image: {fileID: 21300000, guid: ab263fa41dd4b4fabb0c52068c9a4c42, type: 3}
+  description: "\uC778\uBCA4\uD1A0\uB9AC \uBC84\uD2BC\uC744 \uB20C\uB7EC \uBCF4\uC720
+    \uC911\uC778 \uC544\uC774\uD15C\uC744 \uD655\uC778\uD558\uC138\uC694. \uC2AC\uB86F\uC774
+    \uAC00\uB4DD \uCC28\uBA74 \uB354 \uC774\uC0C1 \uC544\uC774\uD15C\uC744 \uD68D\uB4DD\uD560
+    \uC218 \uC5C6\uC2B5\uB2C8\uB2E4."
