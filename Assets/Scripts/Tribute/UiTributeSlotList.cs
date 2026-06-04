@@ -81,4 +81,14 @@ public class UiTributeSlotList : MonoBehaviour
         for (int i = 0; i < slotList.Count && i < submittedList.Count; i++)
             slotList[i].AddSubmit(submittedList[i]);
     }
+
+    public List<(string itemName, int submitted, int required, bool isComplete)> GetSlotInfoList()
+    {
+        var result = new List<(string, int, int, bool)>();
+        foreach (var slot in slotList)
+            result.Add(
+                (slot.ItemAsset.Data.DisplayName, slot.Submitted, slot.Required, slot.IsComplete)
+            );
+        return result;
+    }
 }
