@@ -33,9 +33,7 @@ public class GameSaveController : MonoBehaviour
         data.Storage = GetSlotDataList(storageInventory.SlotDataList);
 
         // V3
-        data.TributeLevel = tributeEvent.TributeLevel;
-        data.CurrentTributeLevel = tributeEvent.CurrentEventLevel;
-        data.TributeRequirementID = tributeEvent.CurrentRequirementID;
+        data.TributeRequirementIndex = tributeEvent.CurrentRequirementIndex;
         data.TributeSubmitted = tributeEvent.tributeSlotList.GetSubmittedList();
 
         // V4
@@ -76,15 +74,8 @@ public class GameSaveController : MonoBehaviour
         RestoreStorageInventory(storageInventory, data.Storage);
 
         // V3
-        if (!string.IsNullOrEmpty(data.TributeRequirementID))
-        {
-            tributeEvent.SetRequirementByID(
-                data.TributeLevel,
-                data.CurrentTributeLevel,
-                data.TributeRequirementID
-            );
-            tributeEvent.tributeSlotList.RestoreSubmitted(data.TributeSubmitted);
-        }
+        tributeEvent.SetRequirementIndex(data.TributeRequirementIndex);
+        tributeEvent.tributeSlotList.RestoreSubmitted(data.TributeSubmitted);
 
         // V4
         ApplyUpgradeLevel(UpgradeType.Workbench, data.UpgradeWorkbench);

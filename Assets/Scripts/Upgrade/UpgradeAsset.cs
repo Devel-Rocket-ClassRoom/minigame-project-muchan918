@@ -36,7 +36,6 @@ public class UpgradeAsset : ScriptableObject
     public string displayName;
     public Sprite icon;
 
-    // costPerLevel[0] = T1→T2 비용, costPerLevel[1] = T2→T3 비용
     public List<Cost> costPerLevel;
 
     public int MaxLevel => costPerLevel.Count + 1;

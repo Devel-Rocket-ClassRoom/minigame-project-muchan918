@@ -1587,7 +1587,7 @@ GameObject:
   - component: {fileID: 3246608255069093338}
   - component: {fileID: 8255746827549998596}
   m_Layer: 0
-  m_Name: Bottom_8
+  m_Name: Wool_Botton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1602,7 +1602,7 @@ Transform:
   m_GameObject: {fileID: 300010419734186619}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7946,6 +7946,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a30767fb64791264f93ab1850374dc00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerEquipment
+  previewEquipment: {fileID: 0}
 --- !u!114 &7808213325467752191
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12407,7 +12408,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1982407155774249852
 Transform:
   m_ObjectHideFlags: 0
@@ -12417,7 +12418,7 @@ Transform:
   m_GameObject: {fileID: 2257144267672569405}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20563,7 +20564,7 @@ GameObject:
   - component: {fileID: 5176361599563993995}
   - component: {fileID: 5941095595643491544}
   m_Layer: 0
-  m_Name: Top_03
+  m_Name: Wool_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -20578,7 +20579,7 @@ Transform:
   m_GameObject: {fileID: 3561263657690044529}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22461,12 +22462,12 @@ GameObject:
   - component: {fileID: 1363165935126909782}
   - component: {fileID: 8524809820466944967}
   m_Layer: 0
-  m_Name: Bottom_20
+  m_Name: Gorilla_Botton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1363165935126909782
 Transform:
   m_ObjectHideFlags: 0
@@ -22476,7 +22477,7 @@ Transform:
   m_GameObject: {fileID: 3943646950472310636}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -24068,9 +24069,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6138637805548543983}
-  - {fileID: 5192288733375338035}
   - {fileID: 8884173839458002985}
+  - {fileID: 5192288733375338035}
+  - {fileID: 6138637805548543983}
   - {fileID: 5765233536751879924}
   - {fileID: 4273802748411302309}
   - {fileID: 4438683543458953045}
@@ -26095,14 +26096,15 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 6123671078210601780}
+  - {fileID: 3246608255069093338}
   - {fileID: 1982407155774249852}
+  - {fileID: 1363165935126909782}
+  - {fileID: 6123671078210601780}
   - {fileID: 2400070848250457878}
   - {fileID: 721587253565299548}
   - {fileID: 6191941781778022083}
   - {fileID: 1196739081353154002}
   - {fileID: 4158967821641941998}
-  - {fileID: 3246608255069093338}
   - {fileID: 5175690897745716563}
   - {fileID: 8981681508670591756}
   - {fileID: 6906679478809208421}
@@ -26114,7 +26116,6 @@ Transform:
   - {fileID: 7419240927709118007}
   - {fileID: 6670844934794885015}
   - {fileID: 1195304735423442287}
-  - {fileID: 1363165935126909782}
   - {fileID: 7596625360948126669}
   - {fileID: 7904985212684677546}
   - {fileID: 4561553329833450151}
@@ -27786,7 +27787,7 @@ GameObject:
   - component: {fileID: 2365171576488584179}
   - component: {fileID: 7297008592453243761}
   m_Layer: 0
-  m_Name: Top_05
+  m_Name: Gorilla_Top
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27801,7 +27802,7 @@ Transform:
   m_GameObject: {fileID: 4982158715655787148}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -34917,11 +34918,11 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5467407547225041343}
-  - {fileID: 4771322181559858943}
   - {fileID: 5176361599563993995}
-  - {fileID: 6120471682824341443}
+  - {fileID: 4771322181559858943}
   - {fileID: 2365171576488584179}
+  - {fileID: 5467407547225041343}
+  - {fileID: 6120471682824341443}
   - {fileID: 4106482284098749972}
   - {fileID: 8261118344984060227}
   - {fileID: 2143379162133736124}
@@ -36055,6 +36056,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8355394490614178169}
+  - {fileID: 7561859216165598805}
   - {fileID: 6652759255861362954}
   - {fileID: 1942610243630892279}
   - {fileID: 5836149535684584094}
@@ -36062,9 +36065,7 @@ Transform:
   - {fileID: 8528001567509067781}
   - {fileID: 6189197865266351778}
   - {fileID: 1196519669920074767}
-  - {fileID: 8355394490614178169}
   - {fileID: 4031500925374591369}
-  - {fileID: 7561859216165598805}
   - {fileID: 7858574168540536894}
   - {fileID: 2087938387443867532}
   - {fileID: 6548540964447129776}
@@ -37291,7 +37292,7 @@ Transform:
   m_GameObject: {fileID: 6652480172982353884}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37780,7 +37781,7 @@ GameObject:
   - component: {fileID: 8884173839458002985}
   - component: {fileID: 1948149211131804006}
   m_Layer: 0
-  m_Name: Headgear_3
+  m_Name: Wool_Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37795,7 +37796,7 @@ Transform:
   m_GameObject: {fileID: 6702270018168787599}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -37995,7 +37996,7 @@ GameObject:
   - component: {fileID: 8355394490614178169}
   - component: {fileID: 5569208996781773550}
   m_Layer: 0
-  m_Name: Shoes_10
+  m_Name: Wool_Shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38010,7 +38011,7 @@ Transform:
   m_GameObject: {fileID: 6707407164788423198}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -38393,7 +38394,7 @@ GameObject:
   - component: {fileID: 7561859216165598805}
   - component: {fileID: 9165523618007532517}
   m_Layer: 0
-  m_Name: Shoes_12
+  m_Name: Gorilla_Shoes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38408,7 +38409,7 @@ Transform:
   m_GameObject: {fileID: 6788206228328660975}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -46663,7 +46664,7 @@ GameObject:
   - component: {fileID: 5192288733375338035}
   - component: {fileID: 2541068680188955163}
   m_Layer: 0
-  m_Name: Headgear_2
+  m_Name: Gorilla_Hat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46678,7 +46679,7 @@ Transform:
   m_GameObject: {fileID: 8313813831436115525}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.IO;
 using Newtonsoft.Json;
 using UnityEngine;
-using SaveDataVC = SaveDataV6;
+using SaveDataVC = SaveDataV7;
 
 public static class SaveLoadManager
 {
@@ -14,7 +14,7 @@ public static class SaveLoadManager
 
     public static SaveMode Mode { get; set; } = SaveMode.Encrypted; // 여기서 모드 전환
 
-    private static readonly int SaveDataVersion = 6;
+    private static readonly int SaveDataVersion = 7;
     private static readonly string SaveDirectory = Path.Combine(
         Application.persistentDataPath,
         "Save"

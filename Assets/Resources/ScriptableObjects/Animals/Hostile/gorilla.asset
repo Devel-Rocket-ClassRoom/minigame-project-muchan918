@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: gorilla
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: gorilla
-  DropItem: {fileID: 11400000, guid: 5eac2436c4446dd409bd2d6f5d5f078e, type: 2}
+  DropItem: {fileID: 11400000, guid: 33d74ea6d9fe289468e80c2356bff6a2, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
-  Damage: 5
+  Damage: 10
   EnterAttackRange: 1
   ExitAttackRange: 1.6
   AnimatorController: {fileID: 9100000, guid: 640f7ef8a1a4d2340a255e0ef58b8a2c, type: 2}

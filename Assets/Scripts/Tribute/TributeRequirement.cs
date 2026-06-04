@@ -4,8 +4,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "7Days/TributeRequirement")]
 public class TributeRequirement : ScriptableObject
 {
-    public string requirementID;
-
     [System.Serializable]
     public class Entry
     {

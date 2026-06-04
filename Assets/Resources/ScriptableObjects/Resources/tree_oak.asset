@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: tree_oak
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: tree_oak
-  DropItem: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
+  DropItem: {fileID: 11400000, guid: 10910ed82b81bde4b9b881de5c2f8f8a, type: 2}

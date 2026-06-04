@@ -99,7 +99,6 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
         int count = 0;
         const int perFrame = 500;
 
-        // Spread 먼저 배치
         foreach (var entry in zone)
         {
             if (!entry.useSpread)
@@ -107,11 +106,9 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
 
             for (int i = 0; i < entry.spreadSeedCount; i++)
             {
-                // 시드 위치 랜덤 선정 (zone 타일 중에서)
                 if (tiles.Count == 0)
                     break;
                 Vector2Int seed = tiles[random.Next(0, tiles.Count)];
-
                 SpreadResource(seed, entry, mapData, random);
             }
 
@@ -125,7 +122,8 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
 
         foreach (var coord in tiles)
         {
-            if (mapData.GetTileWorld(coord) == TileType.Ground)
+            var tileType = mapData.GetTileWorld(coord);
+            if (tileType == TileType.Ground || tileType == TileType.GrassGround) // 수정
             {
                 foreach (var entry in zone)
                 {
@@ -176,7 +174,7 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
             return;
 
         var tileType = mapData.GetTileWorld(coord);
-        if (tileType != TileType.Ground)
+        if (tileType != TileType.Ground && tileType != TileType.GrassGround) // 수정
             return;
 
         ResourceChunkManager.Instance.RegisterSpawnInfo(

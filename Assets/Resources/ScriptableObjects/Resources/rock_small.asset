@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: rock_small
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: rock_small
-  DropItem: {fileID: 11400000, guid: d286097556ef5424a903fe8218e0d055, type: 2}
+  DropItem: {fileID: 11400000, guid: e5c25d2056049ee43a22224ec18f26c0, type: 2}

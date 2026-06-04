@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: bear
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimalAsset
   AnimalID: bear
-  DropItem: {fileID: 11400000, guid: 260fa5196ce727c43b9304f7cedc9ed2, type: 2}
+  DropItem: {fileID: 11400000, guid: 3427e95c85bfc9b428625690ee65c709, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
   Damage: 5

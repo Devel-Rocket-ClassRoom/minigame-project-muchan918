@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: bush
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: bush
-  DropItem: {fileID: 11400000, guid: d1e4d2149bb18144e802dadedf886d71, type: 2}
+  DropItem: {fileID: 11400000, guid: 7bbdd1357d8db01458d49bfcf5c1529b, type: 2}

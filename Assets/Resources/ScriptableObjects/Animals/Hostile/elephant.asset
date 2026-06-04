@@ -16,7 +16,7 @@ MonoBehaviour:
   DropItem: {fileID: 11400000, guid: 9c545da9b5fd28b47810f195ca5d04e7, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
-  Damage: 5
-  EnterAttackRange: 1.5
-  ExitAttackRange: 2
+  Damage: 10
+  EnterAttackRange: 1
+  ExitAttackRange: 1.6
   AnimatorController: {fileID: 9100000, guid: 1011a0b8b95c774428a6ae6dcfb61477, type: 2}
