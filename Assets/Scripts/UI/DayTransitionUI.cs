@@ -17,6 +17,7 @@ public class DayTransitionUI : MonoBehaviour
     private PlayerMovement playerMovement;
 
     private Material irisMaterial;
+    private Sequence currentSeq;
 
     private void Awake()
     {
@@ -26,12 +27,24 @@ public class DayTransitionUI : MonoBehaviour
         irisImage.gameObject.SetActive(false);
     }
 
+    public void StopTransition()
+    {
+        if (currentSeq != null)
+        {
+            currentSeq.Kill();
+            currentSeq = null;
+        }
+    }
+
     public void PlayTransition(System.Action onMidpoint)
     {
+        if (irisImage == null)
+            return;
+
         irisImage.gameObject.SetActive(true);
         playerMovement.SetDead(true);
-        Sequence seq = DOTween.Sequence();
-        seq.Append(
+        currentSeq = DOTween.Sequence().SetUpdate(true);
+        currentSeq.Append(
             DOTween
                 .To(
                     () => irisMaterial.GetFloat("_Radius"),
@@ -41,14 +54,16 @@ public class DayTransitionUI : MonoBehaviour
                 )
                 .SetEase(Ease.InQuart)
         );
-        seq.AppendCallback(() => onMidpoint?.Invoke());
-        seq.AppendInterval(1f);
-        seq.AppendCallback(() =>
+        currentSeq.AppendCallback(() => onMidpoint?.Invoke());
+        currentSeq.AppendInterval(1f);
+        currentSeq.AppendCallback(() =>
         {
+            if (irisImage == null)
+                return;
             playerMovement.SetDead(false);
             SoundManager.Instance.PlayTransitionOpen();
         });
-        seq.Append(
+        currentSeq.Append(
             DOTween
                 .To(
                     () => irisMaterial.GetFloat("_Radius"),
@@ -58,6 +73,32 @@ public class DayTransitionUI : MonoBehaviour
                 )
                 .SetEase(Ease.OutQuart)
         );
-        seq.OnComplete(() => irisImage.gameObject.SetActive(false));
+        currentSeq.OnComplete(() =>
+        {
+            if (irisImage == null)
+                return;
+            irisImage.gameObject.SetActive(false);
+        });
+    }
+
+    public void PlayGameOverTransition(System.Action onComplete)
+    {
+        if (irisImage == null)
+            return;
+
+        irisImage.gameObject.SetActive(true);
+        playerMovement.SetDead(true);
+        currentSeq = DOTween.Sequence().SetUpdate(true);
+        currentSeq.Append(
+            DOTween
+                .To(
+                    () => irisMaterial.GetFloat("_Radius"),
+                    v => irisMaterial.SetFloat("_Radius", v),
+                    0f,
+                    closeDuration
+                )
+                .SetEase(Ease.InQuart)
+        );
+        currentSeq.OnComplete(() => onComplete?.Invoke());
     }
 }

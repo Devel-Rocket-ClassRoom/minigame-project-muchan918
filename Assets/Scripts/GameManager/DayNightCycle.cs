@@ -37,6 +37,9 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     private GameObject gameOverUI;
 
     [SerializeField]
+    private DayTransitionUI dayTransitionUI;
+
+    [SerializeField]
     private Image timerImage;
 
     [SerializeField]
@@ -113,6 +116,17 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
         timerImage.fillAmount = DayProgress;
     }
 
+    private void ShowGameOver()
+    {
+        IsTransitioning = true;
+        dayTransitionUI.StopTransition();
+        dayTransitionUI.PlayGameOverTransition(() =>
+        {
+            gameOverUI.SetActive(true);
+            GamePause.Pause();
+        });
+    }
+
     public void SetMorning()
     {
         UiManager.Instance.CloseAll();
@@ -144,8 +158,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
                 tributeEvent.AssignNewEvent();
                 if (!isCheatMode)
                 {
-                    gameOverUI.SetActive(true);
-                    GamePause.Pause();
+                    ShowGameOver();
                     return;
                 }
             }
@@ -156,8 +169,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
         if (hungerEmptyCount >= 3)
         {
-            gameOverUI.SetActive(true);
-            GamePause.Pause();
+            ShowGameOver();
             return;
         }
 
