@@ -3,11 +3,16 @@ using UnityEngine;
 
 public enum UpgradeType
 {
-    Workbench,
-    Storage,
+    MoveSpeed,
+    AttackSpeed,
+    DayDuration,
     Inventory,
+    Storage,
+
+    // 자동 업그레이드
     Animal,
     Resource,
+    Workbench,
     Cauldron,
 }
 
@@ -34,5 +39,5 @@ public class UpgradeAsset : ScriptableObject
     // costPerLevel[0] = T1→T2 비용, costPerLevel[1] = T2→T3 비용
     public List<Cost> costPerLevel;
 
-    public int MaxLevel => costPerLevel.Count;
+    public int MaxLevel => costPerLevel.Count + 1;
 }

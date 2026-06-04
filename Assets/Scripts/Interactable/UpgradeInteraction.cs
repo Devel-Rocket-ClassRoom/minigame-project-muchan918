@@ -31,6 +31,10 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
     {
         upgradePanel.SetActive(false);
         ingredientPanel.SetActive(false);
+    }
+
+    private void Start()
+    {
         upgradeSlotList.Setup(upgradeList);
     }
 
@@ -59,7 +63,7 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
         if (!success)
             return;
 
-        // 업그레이드 후 재료 목록 및 버튼 상태 갱신
+        upgradeSlotList.UpdateAllLevels();
         OnSelectUpgrade(selectedAsset);
     }
 
@@ -68,7 +72,6 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
         UiManager.Instance.Unregister(OnClickClose);
         ingredientPanel.SetActive(false);
         upgradePanel.SetActive(false);
-        upgradeSlotList.ResetSelection();
         selectedAsset = null;
     }
 }

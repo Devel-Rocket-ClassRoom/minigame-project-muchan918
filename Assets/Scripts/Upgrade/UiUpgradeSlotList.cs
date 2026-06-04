@@ -10,7 +10,6 @@ public class UiUpgradeSlotList : MonoBehaviour
 
     private List<UiUpgradeSlot> slotList = new List<UiUpgradeSlot>();
     private List<UpgradeAsset> assetList = new List<UpgradeAsset>();
-    private UiUpgradeSlot selectedSlot;
 
     public void Setup(List<UpgradeAsset> assets)
     {
@@ -29,22 +28,15 @@ public class UiUpgradeSlotList : MonoBehaviour
         int capturedIndex = slotList.Count;
         slot.button.onClick.AddListener(() =>
         {
-            if (selectedSlot != null)
-                selectedSlot.SetSelected(false);
-
-            selectedSlot = slotList[capturedIndex];
-            selectedSlot.SetSelected(true);
-
             upgradeInteraction.OnSelectUpgrade(assetList[capturedIndex]);
         });
 
         slotList.Add(slot);
     }
 
-    public void ResetSelection()
+    public void UpdateAllLevels()
     {
-        if (selectedSlot != null)
-            selectedSlot.SetSelected(false);
-        selectedSlot = null;
+        foreach (var slot in slotList)
+            slot.UpdateLevel();
     }
 }

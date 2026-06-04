@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DayNightCycle : MonoBehaviour
+public class DayNightCycle : MonoBehaviour, IUpgradeable
 {
     [SerializeField]
     private Light directionalLight;
@@ -48,6 +48,7 @@ public class DayNightCycle : MonoBehaviour
     private float elapsedTime = 0f;
     private bool midnightTriggered = false;
     private int hungerEmptyCount = 0;
+    private bool pendingDurationUpgrade = false;
     private TributeEvent tributeEvent;
     private TileMapGenerator tileMapGenerator;
 
@@ -67,6 +68,8 @@ public class DayNightCycle : MonoBehaviour
             return $"{hour}:00";
         }
     }
+
+    public int Level { get; private set; } = 1;
 
     private void Awake()
     {
@@ -122,6 +125,14 @@ public class DayNightCycle : MonoBehaviour
         directionalLight.intensity = maxIntensity;
         RenderSettings.ambientLight = dayAmbient;
 
+        if (pendingDurationUpgrade)
+        {
+            brightDuration += 5f;
+            darkenDuration += 5f;
+            nightDuration += 5f;
+            pendingDurationUpgrade = false;
+        }
+
         if (CurrentDay % 7 == 0)
         {
             if (tributeEvent.Evaluate())
@@ -158,6 +169,7 @@ public class DayNightCycle : MonoBehaviour
         playerHunger.ResetHunger();
         AnimalChunkManager.Instance.ResetLivingAnimals();
         CurrentDay++;
+        UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
         gameSaveController.SaveGame();
         IsTransitioning = false;
     }
@@ -170,5 +182,13 @@ public class DayNightCycle : MonoBehaviour
     public void SetHungerEmptyCount(int count)
     {
         hungerEmptyCount = count;
+    }
+
+    public void Upgrade()
+    {
+        if (Level >= 3)
+            return;
+        Level++;
+        pendingDurationUpgrade = true;
     }
 }

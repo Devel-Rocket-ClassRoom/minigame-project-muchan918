@@ -5,9 +5,15 @@ public class UpgradeManager : MonoBehaviour
 {
     public static UpgradeManager Instance { get; private set; }
 
-    [Header("Systems")]
+    [Header("Player Systems")]
     [SerializeField]
-    private UiCraftSlotList craftSlotList;
+    private PlayerMovement playerMovement;
+
+    [SerializeField]
+    private PlayerAction playerAction;
+
+    [SerializeField]
+    private DayNightCycle dayNightCycle;
 
     [SerializeField]
     private StorageInventory storageInventory;
@@ -15,12 +21,20 @@ public class UpgradeManager : MonoBehaviour
     [SerializeField]
     private UiInventorySlotList inventorySlotList;
 
+    [Header("Auto Upgrade Systems")]
+    [SerializeField]
+    private UiCraftSlotList craftSlotList;
+
     [SerializeField]
     private UiCauldronSlotList cauldronSlotList;
 
     [Header("Player")]
     [SerializeField]
     private PlayerInventory playerInventory;
+
+    [Header("Auto Upgrade Days")]
+    [SerializeField]
+    private int[] autoUpgradeDays = { 14, 21 };
 
     private Dictionary<UpgradeType, IUpgradeable> upgradeTargets;
 
@@ -35,11 +49,14 @@ public class UpgradeManager : MonoBehaviour
 
         upgradeTargets = new Dictionary<UpgradeType, IUpgradeable>
         {
-            { UpgradeType.Workbench, craftSlotList },
-            { UpgradeType.Storage, storageInventory },
+            { UpgradeType.MoveSpeed, playerMovement },
+            { UpgradeType.AttackSpeed, playerAction },
+            { UpgradeType.DayDuration, dayNightCycle },
             { UpgradeType.Inventory, inventorySlotList },
+            { UpgradeType.Storage, storageInventory },
             { UpgradeType.Animal, GetComponent<AnimalGenerator>() },
             { UpgradeType.Resource, GetComponent<ResourceGenerator>() },
+            { UpgradeType.Workbench, craftSlotList },
             { UpgradeType.Cauldron, cauldronSlotList },
         };
     }
@@ -55,7 +72,7 @@ public class UpgradeManager : MonoBehaviour
             return false;
 
         int level = upgradeTargets[asset.type].Level;
-        foreach (var ingredient in asset.costPerLevel[level].ingredients)
+        foreach (var ingredient in asset.costPerLevel[level - 1].ingredients)
         {
             int owned = playerInventory.SlotList.GetTotalAmount(ingredient.item.ItemID);
             if (owned < ingredient.amount)
@@ -70,13 +87,27 @@ public class UpgradeManager : MonoBehaviour
             return false;
 
         int level = upgradeTargets[asset.type].Level;
-
-        foreach (var ingredient in asset.costPerLevel[level].ingredients)
+        foreach (var ingredient in asset.costPerLevel[level - 1].ingredients)
             playerInventory.SlotList.RemoveItemByAsset(ingredient.item, ingredient.amount);
 
         upgradeTargets[asset.type].Upgrade();
-
         return true;
+    }
+
+    public void CheckAutoUpgrade(int currentDay)
+    {
+        foreach (int day in autoUpgradeDays)
+        {
+            if (currentDay == day)
+            {
+                upgradeTargets[UpgradeType.Animal].Upgrade();
+                upgradeTargets[UpgradeType.Resource].Upgrade();
+                upgradeTargets[UpgradeType.Workbench].Upgrade();
+                upgradeTargets[UpgradeType.Cauldron].Upgrade();
+                Debug.Log($"Day {currentDay} 자동 업그레이드 완료");
+                break;
+            }
+        }
     }
 
     public void ForceUpgrade(UpgradeType type)
