@@ -22,5 +22,5 @@ MonoBehaviour:
     - item: {fileID: 11400000, guid: 133e59512b22fe94ea89df801f55b79d, type: 2}
       amount: 2
   - ingredients:
-    - item: {fileID: 11400000, guid: c0de2bfb7101f7c4b8edad6601c05d8b, type: 2}
+    - item: {fileID: 11400000, guid: 62bf6782566ce6c439197324dfbfa1c5, type: 2}
       amount: 1

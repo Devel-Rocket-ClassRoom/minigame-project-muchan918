@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25e0774a976b1c1478dd3bfab33dcf4d, type: 3}
+  m_Name: 2_carrot_soup
+  m_EditorClassIdentifier: Assembly-CSharp::RecipeAsset
+  resultItem: {fileID: 11400000, guid: 093d8b59f6302604b9fe15073736484e, type: 2}
+  resultAmount: 1
+  ingredients:
+  - item: {fileID: 11400000, guid: e6ac636eb443a834d9517f5f08e66d28, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 9c732a089d7468641aa10038f717892d, type: 2}
+    amount: 2
+  - item: {fileID: 11400000, guid: 7bbdd1357d8db01458d49bfcf5c1529b, type: 2}
+    amount: 2

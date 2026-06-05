@@ -230,7 +230,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7aeefeee7da414a4c973592fe3998c18, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HostileAnimal
-  Asset: {fileID: 11400000, guid: 4fe7eeb0c4cbcc749be7ed08547b7482, type: 2}
+  Asset: {fileID: 11400000, guid: b3d1237f7f099d14fa1b96b8762f6119, type: 2}
 --- !u!195 &3164193486676981689
 NavMeshAgent:
   m_ObjectHideFlags: 0
