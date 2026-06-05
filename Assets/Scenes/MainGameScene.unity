@@ -126533,7 +126533,7 @@ MonoBehaviour:
   directionalLight: {fileID: 410087040}
   brightDuration: 10
   darkenDuration: 10
-  nightDuration: 30
+  nightDuration: 10
   maxIntensity: 1
   minIntensity: 0
   dayAmbient: {r: 0.48235294, g: 0.48235294, b: 0.48235294, a: 1}
