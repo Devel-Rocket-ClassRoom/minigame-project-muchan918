@@ -13,9 +13,6 @@ public class DayTransitionUI : MonoBehaviour
     [SerializeField]
     private float openDuration = 0.8f;
 
-    [SerializeField]
-    private PlayerMovement playerMovement;
-
     private Material irisMaterial;
     private Sequence currentSeq;
 
@@ -29,22 +26,22 @@ public class DayTransitionUI : MonoBehaviour
 
     public void StopTransition()
     {
-        if (currentSeq != null)
-        {
-            currentSeq.Kill();
-            currentSeq = null;
-        }
+        currentSeq?.Kill();
+        currentSeq = null;
     }
 
-    public void PlayTransition(System.Action onMidpoint, System.Action onComplete = null)
+    public void PlayTransition(
+        System.Action onMidpoint,
+        System.Action onFadeInStart = null,
+        System.Action onComplete = null
+    )
     {
         if (irisImage == null)
             return;
-        if (currentSeq != null)
-            currentSeq.Kill();
+        currentSeq?.Kill();
 
         irisImage.gameObject.SetActive(true);
-        playerMovement.SetDead(true);
+
         currentSeq = DOTween.Sequence().SetUpdate(true);
         currentSeq.Append(
             DOTween
@@ -62,7 +59,7 @@ public class DayTransitionUI : MonoBehaviour
         {
             if (irisImage == null)
                 return;
-            playerMovement.SetDead(false);
+            onFadeInStart?.Invoke(); // 페이드인 시작과 동시에 호출
             SoundManager.Instance.PlayTransitionOpen();
         });
         currentSeq.Append(
@@ -88,11 +85,10 @@ public class DayTransitionUI : MonoBehaviour
     {
         if (irisImage == null)
             return;
-        if (currentSeq != null)
-            currentSeq.Kill();
+        currentSeq?.Kill();
 
         irisImage.gameObject.SetActive(true);
-        playerMovement.SetDead(true);
+
         currentSeq = DOTween.Sequence().SetUpdate(true);
         currentSeq.Append(
             DOTween

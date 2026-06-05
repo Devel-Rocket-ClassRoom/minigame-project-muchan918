@@ -28,12 +28,6 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     private Color nightAmbient = new Color(0.02f, 0.02f, 0.05f);
 
     [SerializeField]
-    private PlayerHealth playerHealth;
-
-    [SerializeField]
-    private PlayerHunger playerHunger;
-
-    [SerializeField]
     private GameObject gameOverUI;
 
     [SerializeField]
@@ -109,7 +103,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             {
                 midnightTriggered = true;
                 UiManager.Instance.CloseAll();
-                PlayerHealth.Instance.Die();
+                PlayerHealth.Instance.Die(); // SerializeField 대신 싱글톤
             }
         }
 
@@ -155,7 +149,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
                 LoadingUI.Instance.ShowClear(
                     onLoadingComplete: () =>
                     {
-                        playerHunger.ResetHunger();
+                        PlayerHunger.Instance.ResetHunger(); // 싱글톤
                         AnimalChunkManager.Instance.ResetLivingAnimals();
                         CurrentDay++;
                         UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
@@ -184,7 +178,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             }
         }
 
-        if (playerHunger.CurrentHunger == 0)
+        if (PlayerHunger.Instance.CurrentHunger == 0) // 싱글톤
             hungerEmptyCount++;
 
         if (hungerEmptyCount >= 3)
@@ -193,12 +187,11 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             return;
         }
 
-        playerHunger.ResetHunger();
+        PlayerHunger.Instance.ResetHunger(); // 싱글톤
         AnimalChunkManager.Instance.ResetLivingAnimals();
         CurrentDay++;
         UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
         gameSaveController.SaveGame();
-        //IsTransitioning = false;
     }
 
     public void SetDay(int day)
