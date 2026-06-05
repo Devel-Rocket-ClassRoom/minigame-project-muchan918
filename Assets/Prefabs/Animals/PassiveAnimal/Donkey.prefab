@@ -654,7 +654,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aa7b93248f035478cf33bb70d2c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimal
-  Asset: {fileID: 11400000, guid: 17101489ad4cdb747aea8f4123a85850, type: 2}
+  Asset: {fileID: 11400000, guid: e94bbac4f188ba348bc8ce60ba4e6c51, type: 2}
 --- !u!195 &4508935206916400375
 NavMeshAgent:
   m_ObjectHideFlags: 0

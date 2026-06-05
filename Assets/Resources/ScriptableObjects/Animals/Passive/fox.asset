@@ -16,5 +16,5 @@ MonoBehaviour:
   DropItem: {fileID: 11400000, guid: c70a8e535e7f4db4887a95c150289301, type: 2}
   IdleDurationMin: 2
   IdleDurationMax: 4
-  FleeDuration: 0
+  FleeDuration: 3
   AnimatorController: {fileID: 9100000, guid: 33361a5e5eed7394b8b5f776ee30cd7c, type: 2}

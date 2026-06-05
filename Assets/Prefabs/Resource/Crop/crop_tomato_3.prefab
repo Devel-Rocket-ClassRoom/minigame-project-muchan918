@@ -256,7 +256,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b05adef7be3e704478630a1725b392ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::WorldCrop
-  itemAsset: {fileID: 11400000, guid: 4eaa299d214d8484fae775ec8b9d56b8, type: 2}
+  itemAsset: {fileID: 11400000, guid: 7065eb84e809b0042bb9d49162f23564, type: 2}
 --- !u!65 &386774708039207837
 BoxCollider:
   m_ObjectHideFlags: 0

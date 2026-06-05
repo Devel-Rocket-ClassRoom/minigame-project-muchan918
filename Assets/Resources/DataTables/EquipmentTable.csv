@@ -10,3 +10,6 @@ equip_bottom_wool,Bottom,Bottom,0,None,5,
 equip_bottom_gorilla,Bottom,Bottom,2,None,10,
 equip_shoes_wool,Shoes,Shoes,0,None,3,
 equip_shoes_gorilla,Shoes,Shoes,1,None,6,
+equip_axe_iron,WeaponRight,Axe,1,Axe,20,Tree
+equip_sword_iron,WeaponRight,Sword,1,Sword,30,Animal
+equip_pickaxe_iron,WeaponRight,Pickaxe,1,Pickaxe,20,Stone

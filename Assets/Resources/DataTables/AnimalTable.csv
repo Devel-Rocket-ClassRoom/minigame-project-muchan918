@@ -8,3 +8,7 @@ bear,곰,60,3.0,Hostile
 lion,사자,90,4.5,Hostile
 elephant,코끼리,150,2.5,Hostile
 gorilla,고릴라,90,3.5,Hostile
+pig,돼지,40,2.5,Passive
+donkey,당나귀,50,3.0,Passive
+tiger,호랑이,100,4.5,Hostile
+rhino,코뿔소,130,3.0,Hostile

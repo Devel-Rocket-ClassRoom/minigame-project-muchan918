@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8732c69146f39a04c86b3d2db889366a, type: 3}
+  m_Name: donkey
+  m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimalAsset
+  AnimalID: donkey
+  DropItem: {fileID: 11400000, guid: 65001fbb9ff43584a986791be4a9a17f, type: 2}
+  IdleDurationMin: 2
+  IdleDurationMax: 4
+  FleeDuration: 3
+  AnimatorController: {fileID: 9100000, guid: e45d08b7cac42b345aebfec14e8e61e1, type: 2}
