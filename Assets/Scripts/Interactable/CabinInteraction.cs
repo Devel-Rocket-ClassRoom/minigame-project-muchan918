@@ -28,7 +28,6 @@ public class CabinInteraction : MonoBehaviour, IInteractable
             ShowPopup();
             return;
         }
-        dayNightCycle.IsTransitioning = true;
         PlayerSpawner.Instance.Respawn(fullRecover: true);
     }
 

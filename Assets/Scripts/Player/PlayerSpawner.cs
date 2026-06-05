@@ -41,21 +41,38 @@ public class PlayerSpawner : MonoBehaviour
         playerMovement = playerHealth.GetComponent<PlayerMovement>();
         if (cinemachineBrain != null)
             cinemachineBrain.m_IgnoreTimeScale = true;
+
+        PlayerHealth.OnDieAnimationEnded += OnDieAnimationEnded;
+    }
+
+    private void OnDestroy()
+    {
+        PlayerHealth.OnDieAnimationEnded -= OnDieAnimationEnded;
     }
 
     public void Respawn(bool clearInventory = false, bool fullRecover = false)
     {
+        dayNightCycle.IsTransitioning = true;
+        playerMovement.SetDead(true);
+
         dayTransitionUI.PlayTransition(
             onMidpoint: () =>
             {
                 ApplyRespawn(clearInventory, fullRecover);
                 dayNightCycle.SetMorning();
             },
-            onComplete: () =>
+            onFadeInStart: () =>
             {
+                playerMovement.SetDead(false);
                 dayNightCycle.IsTransitioning = false;
-            }
+            },
+            onComplete: null
         );
+    }
+
+    private void OnDieAnimationEnded()
+    {
+        Respawn(clearInventory: true);
     }
 
     private void ApplyRespawn(bool clearInventory, bool fullRecover)

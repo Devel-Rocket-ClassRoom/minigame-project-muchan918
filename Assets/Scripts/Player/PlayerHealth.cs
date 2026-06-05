@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class PlayerHealth : MonoBehaviour, IDefender
 {
     public static event Action OnPlayerDied;
+    public static event Action OnDieAnimationEnded; // 추가
+
     public static PlayerHealth Instance { get; private set; }
 
     [Header("Stats")]
@@ -56,13 +58,9 @@ public class PlayerHealth : MonoBehaviour, IDefender
         Debug.Log($"HP: {currentHp}/{maxHp}");
 
         if (currentHp <= 0)
-        {
             Die();
-        }
         else
-        {
             SoundManager.Instance.PlayPlayerHit();
-        }
     }
 
     public void Recover()
@@ -87,7 +85,6 @@ public class PlayerHealth : MonoBehaviour, IDefender
     {
         maxHp += amount;
         currentHp += amount;
-        // Debug.Log($"{currentHp}/{maxHp}");
         UpdateUI();
     }
 
@@ -108,7 +105,7 @@ public class PlayerHealth : MonoBehaviour, IDefender
 
     public void OnDieAnimationEnd()
     {
-        PlayerSpawner.Instance.Respawn(clearInventory: true);
+        OnDieAnimationEnded?.Invoke(); // PlayerSpawner.Instance.Respawn() 대신 이벤트 발행
     }
 
     public void ResetAnimator()

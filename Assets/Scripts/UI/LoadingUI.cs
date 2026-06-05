@@ -134,15 +134,9 @@ public class LoadingUI : MonoBehaviour
                 dotAnimCoroutine = null;
             }
 
-            // ClearPanel 이미지 페이드아웃
-            clearImage
-                .DOFade(0f, 0.8f)
-                .SetUpdate(true)
-                .OnComplete(() =>
-                {
-                    clearPanel.SetActive(false);
-                    onClearComplete?.Invoke(); // DayTransitionUI 페이드인 호출
-                });
+            clearSliderGroup.SetActive(false);
+            clearPanel.SetActive(false);
+            onClearComplete?.Invoke();
         }
     }
 
