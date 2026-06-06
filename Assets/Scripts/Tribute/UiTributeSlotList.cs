@@ -39,7 +39,7 @@ public class UiTributeSlotList : MonoBehaviour
                     inventoryAmount
                 );
 
-                tributeInventory.HighlightItem(selectedSlot.ItemID);
+                tributeInventory.HighlightAndSelectFirst(selectedSlot.ItemID);
                 submitPanel.Setup(selectedSlot, maxAmount);
             });
 

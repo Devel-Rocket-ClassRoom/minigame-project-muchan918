@@ -41,21 +41,6 @@ public class TributeInventory : MonoBehaviour
                 int capturedIndex = i;
                 slotList[i].slotIndex = i;
                 slotList[i].button.onClick.RemoveAllListeners();
-                slotList[i]
-                    .button.onClick.AddListener(() =>
-                    {
-                        if (selectedSlotIndex == capturedIndex)
-                        {
-                            submitPanel.OnClickPlus();
-                            return;
-                        }
-
-                        if (selectedSlotIndex != -1)
-                            slotList[selectedSlotIndex].SetNormal();
-
-                        selectedSlotIndex = capturedIndex;
-                        slotList[capturedIndex].SetSelected();
-                    });
                 slotList[i].SetItem(slotDataList[i].asset, slotDataList[i].amount);
                 slotList[i].SetGray();
             }
@@ -100,6 +85,32 @@ public class TributeInventory : MonoBehaviour
                 slotList[i].SetNormal();
             else
                 slotList[i].SetGray();
+        }
+    }
+
+    public void HighlightAndSelectFirst(string itemID)
+    {
+        selectedSlotIndex = -1;
+
+        for (int i = 0; i < slotDataList.Count; i++)
+        {
+            if (slotDataList[i].asset.ItemID == itemID)
+            {
+                if (selectedSlotIndex == -1)
+                {
+                    if (selectedSlotIndex == -1)
+                        selectedSlotIndex = i;
+                    slotList[i].SetNormal();
+                }
+                else
+                {
+                    slotList[i].SetNormal();
+                }
+            }
+            else
+            {
+                slotList[i].SetGray();
+            }
         }
     }
 

@@ -15,6 +15,6 @@ public class DateUI : MonoBehaviour
 
     private void Update()
     {
-        dateText.text = $"Day {dayNightCycle.CurrentDay}, {dayNightCycle.CurrentTimeString}";
+        dateText.text = $"Day {dayNightCycle.CurrentDay}";
     }
 }

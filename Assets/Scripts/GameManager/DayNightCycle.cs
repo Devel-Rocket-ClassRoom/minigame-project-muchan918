@@ -56,16 +56,6 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     public bool IsNight => elapsedTime >= brightDuration + darkenDuration;
     public int HungerEmptyCount => hungerEmptyCount;
 
-    public string CurrentTimeString
-    {
-        get
-        {
-            float totalHours = DayProgress * 18f;
-            int hour = 6 + Mathf.FloorToInt(totalHours);
-            return $"{hour}:00";
-        }
-    }
-
     public int Level { get; private set; } = 1;
 
     private void Awake()
