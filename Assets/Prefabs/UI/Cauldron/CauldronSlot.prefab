@@ -293,8 +293,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\uCC38\uB098\uBB34 \uBAA9\uC7AC\n"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: b4c341a37db190a4082737d204a835b6, type: 2}
-  m_sharedMaterial: {fileID: -5291782813833095389, guid: b4c341a37db190a4082737d204a835b6, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 57bd58ffdc41c2446a8dedc97f2f72c9, type: 2}
+  m_sharedMaterial: {fileID: -5837289894002435137, guid: 57bd58ffdc41c2446a8dedc97f2f72c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

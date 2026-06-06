@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: equip_pickaxe_stone
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: equip_pickaxe_stone
-  Icon: {fileID: 0}
+  Icon: {fileID: 2141237447, guid: 0b16535565967ab40bd4fad49f4c2340, type: 3}

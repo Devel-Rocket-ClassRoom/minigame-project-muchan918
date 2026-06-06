@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: equip_sword_iron
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: equip_sword_iron
-  Icon: {fileID: 0}
+  Icon: {fileID: -554672316, guid: 0b16535565967ab40bd4fad49f4c2340, type: 3}

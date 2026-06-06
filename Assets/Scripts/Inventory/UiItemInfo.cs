@@ -1,3 +1,4 @@
+using DG.Tweening;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -5,6 +6,9 @@ using UnityEngine.UI;
 
 public class UiItemInfo : MonoBehaviour
 {
+    [SerializeField]
+    private Image fadeImage;
+
     public Image imageIcon;
     public TextMeshProUGUI textName;
     public TextMeshProUGUI textType;
@@ -16,6 +20,11 @@ public class UiItemInfo : MonoBehaviour
 
     public UiInventorySlotList inventorySlotList;
     public UiEquipPanel equipPanel;
+
+    private void Awake()
+    {
+        fadeImage.gameObject.SetActive(false);
+    }
 
     public void SetEmpty()
     {
@@ -99,7 +108,7 @@ public class UiItemInfo : MonoBehaviour
             endingButton.onClick.RemoveAllListeners();
             endingButton.onClick.AddListener(() =>
             {
-                SceneManager.LoadScene("Ending");
+                FadeOutAndLoadEnding();
             });
         }
     }
@@ -134,5 +143,25 @@ public class UiItemInfo : MonoBehaviour
 
             SetEmpty();
         });
+    }
+
+    private void FadeOutAndLoadEnding()
+    {
+        fadeImage.gameObject.SetActive(true);
+        fadeImage.color = new Color(0f, 0f, 0f, 0f);
+        fadeImage
+            .DOFade(1f, 1f)
+            .SetUpdate(true)
+            .OnComplete(() =>
+            {
+                DOVirtual.DelayedCall(
+                    0.5f,
+                    () =>
+                    {
+                        SceneManager.LoadScene("Ending");
+                    },
+                    true
+                );
+            });
     }
 }

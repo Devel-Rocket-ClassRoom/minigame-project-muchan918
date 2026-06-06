@@ -99,6 +99,7 @@ public class SettingPanel : MonoBehaviour
     public void OnBackToMenuButton()
     {
         GamePause.Resume();
+        SoundManager.Instance.StopBgm();
         SceneManager.LoadScene("TitleScene");
     }
 

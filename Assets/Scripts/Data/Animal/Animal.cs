@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -159,6 +160,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     {
         currentHp -= damage;
         SoundManager.Instance.PlayAnimalHit();
+        EffectManager.Instance.PlayAnimalHit(transform.position);
         OnTakeDamage(hitNormal);
 
         if (currentHp <= 0)
@@ -178,7 +180,14 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         Agent.enabled = false;
         GetComponent<Collider>().enabled = false;
         CurrentState = AnimalState.Die;
-        Destroy(gameObject, 1f);
+        StartCoroutine(DieRoutine());
+    }
+
+    private IEnumerator DieRoutine()
+    {
+        yield return new WaitForSeconds(1f);
+        EffectManager.Instance.PlayAnimalDie(transform.position);
+        Destroy(gameObject);
     }
 
     public void Drop()

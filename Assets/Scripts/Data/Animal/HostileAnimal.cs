@@ -50,6 +50,11 @@ public class HostileAnimal : Animal, IAttacker
             );
         }
 
+        float dist = Vector3.Distance(transform.position, PlayerTransform.position);
+        Debug.Log(
+            $"[{gameObject.name}] Chase - 거리: {dist:F2} / EnterAttackRange: {HostileAsset.EnterAttackRange}"
+        );
+
         if (
             Vector3.Distance(transform.position, PlayerTransform.position)
             <= HostileAsset.EnterAttackRange
@@ -65,6 +70,11 @@ public class HostileAnimal : Animal, IAttacker
         Vector3 lookAt = PlayerTransform.position;
         lookAt.y = transform.position.y;
         transform.LookAt(lookAt);
+
+        float dist = Vector3.Distance(transform.position, PlayerTransform.position);
+        Debug.Log(
+            $"[{gameObject.name}] Attack - 거리: {dist:F2} / ExitAttackRange: {HostileAsset.ExitAttackRange} / isAttacking: {isAttacking}"
+        );
 
         if (
             !isAttacking

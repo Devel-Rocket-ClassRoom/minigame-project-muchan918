@@ -409,6 +409,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2647931031724116462, guid: 4b071401e293de34bbc2dfc78c3bfcb7, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 57bd58ffdc41c2446a8dedc97f2f72c9, type: 2}
+    - target: {fileID: 2647931031724116462, guid: 4b071401e293de34bbc2dfc78c3bfcb7, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: -5837289894002435137, guid: 57bd58ffdc41c2446a8dedc97f2f72c9, type: 2}
+    - target: {fileID: 2647931031724116462, guid: 4b071401e293de34bbc2dfc78c3bfcb7, type: 3}
+      propertyPath: m_hasFontAssetChanged
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3497398377996425599, guid: 4b071401e293de34bbc2dfc78c3bfcb7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
