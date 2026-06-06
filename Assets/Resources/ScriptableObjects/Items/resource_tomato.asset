@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: resource_tomato
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: resource_tomato
-  Icon: {fileID: 0}
+  Icon: {fileID: -1877631245, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

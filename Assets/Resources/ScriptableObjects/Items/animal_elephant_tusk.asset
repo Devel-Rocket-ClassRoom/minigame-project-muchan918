@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animal_elephant_tusk
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: animal_elephant_tusk
-  Icon: {fileID: 0}
+  Icon: {fileID: 1414240677, guid: c3a11c77aa7ddab45a4e07a4b16b78a5, type: 3}

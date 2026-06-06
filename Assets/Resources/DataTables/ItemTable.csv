@@ -67,4 +67,23 @@ food_golden_sandwich,골드잼 샌드위치,Food,5
 equip_axe_iron,철 도끼,Equipment,1
 equip_sword_iron,철 칼,Equipment,1
 equip_pickaxe_iron,철 곡괭이,Equipment,1
+resource_gold,금,Material,3
+resource_ruby,루비,Material,3
+animal_cow_milk,우유,Food,10
+animal_giraffe_neck,기린 목,Material,3
+animal_monkey_tail,원숭이 꼬리,Material,5
+animal_hedgehog_spine,고슴도치 가시,Material,5
+animal_crocodile_hide,악어 가죽,Material,3
+item_giraffe_charm,기린 부적,Material,1
+item_croc_belt,악어 벨트,Material,1
+item_monkey_staff,원숭이 지팡이,Material,1
+item_hedgehog_arrow,고슴도치 화살,Material,1
+food_cheese,치즈,Food,5
+food_blueberry_toast,블루베리 토스트,Food,5
+food_golden_toast,골드잼 토스트,Food,5
+food_cream_carrot_soup,크림 당근 수프,Food,5
+food_cream_tomato_soup,크림 토마토 수프,Food,5
+equip_axe_diamond,다이아 도끼,Equipment,1
+equip_sword_diamond,다이아 칼,Equipment,1
+equip_pickaxe_diamond,다이아 곡괭이,Equipment,1
 item_ending,신성한 토템,Ending,1

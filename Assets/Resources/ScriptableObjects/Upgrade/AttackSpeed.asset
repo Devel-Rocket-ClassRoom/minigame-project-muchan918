@@ -28,3 +28,8 @@ MonoBehaviour:
       amount: 3
     - item: {fileID: 11400000, guid: fdacc9caab3b9404b86e78ba8b845914, type: 2}
       amount: 3
+  - ingredients:
+    - item: {fileID: 11400000, guid: db5686eb1212c1c4da36884211d92472, type: 2}
+      amount: 2
+    - item: {fileID: 11400000, guid: b2580ebb30572cf4a97729fd7fc1485a, type: 2}
+      amount: 1

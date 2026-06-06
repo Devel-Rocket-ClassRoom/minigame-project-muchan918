@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animal_donkey_hoof
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: animal_donkey_hoof
-  Icon: {fileID: 0}
+  Icon: {fileID: -739457896, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

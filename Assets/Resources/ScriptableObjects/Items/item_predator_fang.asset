@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_predator_fang
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_predator_fang
-  Icon: {fileID: 0}
+  Icon: {fileID: -458714611, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animal_rhino_horn
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: animal_rhino_horn
-  Icon: {fileID: 0}
+  Icon: {fileID: 2086924254, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animal_tiger_hide
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: animal_tiger_hide
-  Icon: {fileID: 0}
+  Icon: {fileID: 1385735656, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

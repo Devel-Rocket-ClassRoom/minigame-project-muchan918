@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_tusk_necklace
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_tusk_necklace
-  Icon: {fileID: 0}
+  Icon: {fileID: -1426879219, guid: bf3bc423a2e549f42bace30f07870ea3, type: 3}

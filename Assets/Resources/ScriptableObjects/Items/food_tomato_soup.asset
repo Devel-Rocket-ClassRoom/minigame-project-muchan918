@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: food_tomato_soup
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: food_tomato_soup
-  Icon: {fileID: 0}
+  Icon: {fileID: 2077703753, guid: 3d56211d8b726bd4abe80aeca3ff44b5, type: 3}

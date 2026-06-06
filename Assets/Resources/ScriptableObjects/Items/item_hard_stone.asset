@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_hard_stone
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_hard_stone
-  Icon: {fileID: 0}
+  Icon: {fileID: 429174015, guid: bf3bc423a2e549f42bace30f07870ea3, type: 3}

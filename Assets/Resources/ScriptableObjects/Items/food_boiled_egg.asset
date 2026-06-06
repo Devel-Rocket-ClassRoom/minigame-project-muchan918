@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: food_boiled_egg
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: food_boiled_egg
-  Icon: {fileID: 0}
+  Icon: {fileID: 546502432, guid: bf3bc423a2e549f42bace30f07870ea3, type: 3}

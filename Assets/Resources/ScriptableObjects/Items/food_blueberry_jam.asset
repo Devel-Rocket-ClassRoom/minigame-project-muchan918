@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: food_blueberry_jam
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: food_blueberry_jam
-  Icon: {fileID: 0}
+  Icon: {fileID: 199520756, guid: bf3bc423a2e549f42bace30f07870ea3, type: 3}

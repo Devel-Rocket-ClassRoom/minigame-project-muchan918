@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: resource_iron
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: resource_iron
-  Icon: {fileID: 0}
+  Icon: {fileID: 120691635, guid: 52c13dcabd46ae34e95e8edbe9165ec7, type: 3}

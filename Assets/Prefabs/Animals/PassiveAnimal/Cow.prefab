@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8514429386299995281}
   m_Layer: 10
   m_Name: Cow
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aa7b93248f035478cf33bb70d2c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimal
-  Asset: {fileID: 11400000, guid: b644eac27eb19b04e8152eb1176e6540, type: 2}
+  Asset: {fileID: 11400000, guid: 0e155b29d44541d408e8bff87ceaed69, type: 2}
 --- !u!195 &8514429386299995281
 NavMeshAgent:
   m_ObjectHideFlags: 0

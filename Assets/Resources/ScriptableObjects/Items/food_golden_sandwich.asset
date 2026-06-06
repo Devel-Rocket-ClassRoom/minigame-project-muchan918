@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: food_golden_sandwich
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: food_golden_sandwich
-  Icon: {fileID: 0}
+  Icon: {fileID: -2002364411, guid: 46c9e4e04ab9cf9468180c7c4d0755f1, type: 3}

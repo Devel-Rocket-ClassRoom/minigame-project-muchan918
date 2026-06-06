@@ -26,3 +26,8 @@ MonoBehaviour:
       amount: 2
     - item: {fileID: 11400000, guid: a66107d244b311b4b8ec5bc785254750, type: 2}
       amount: 2
+  - ingredients:
+    - item: {fileID: 11400000, guid: e646d6274fab22946a03c9aba1c44257, type: 2}
+      amount: 2
+    - item: {fileID: 11400000, guid: b605f218245391b4bba36adc5d6a592c, type: 2}
+      amount: 1

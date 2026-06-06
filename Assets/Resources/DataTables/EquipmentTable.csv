@@ -13,3 +13,6 @@ equip_shoes_gorilla,Shoes,Shoes,1,None,6,
 equip_axe_iron,WeaponRight,Axe,1,Axe,20,Tree
 equip_sword_iron,WeaponRight,Sword,1,Sword,30,Animal
 equip_pickaxe_iron,WeaponRight,Pickaxe,1,Pickaxe,20,Stone
+equip_axe_diamond,WeaponRight,Axe,2,Axe,35,Tree
+equip_sword_diamond,WeaponRight,Sword,2,Sword,50,Animal
+equip_pickaxe_diamond,WeaponRight,Pickaxe,2,Pickaxe,35,Stone

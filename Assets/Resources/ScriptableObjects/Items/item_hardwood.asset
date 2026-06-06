@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_hardwood
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_hardwood
-  Icon: {fileID: 0}
+  Icon: {fileID: 940391984, guid: bf3bc423a2e549f42bace30f07870ea3, type: 3}

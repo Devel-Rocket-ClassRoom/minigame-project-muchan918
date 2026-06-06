@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 90349128576617826}
   m_Layer: 10
   m_Name: Monkey
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -663,7 +663,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1aa7b93248f035478cf33bb70d2c6c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassiveAnimal
-  Asset: {fileID: 11400000, guid: 112f23be439b54f48bcfa7576e9c0c47, type: 2}
+  Asset: {fileID: 11400000, guid: 628dae4109a3d6a4a8343bb464620b2a, type: 2}
 --- !u!195 &90349128576617826
 NavMeshAgent:
   m_ObjectHideFlags: 0

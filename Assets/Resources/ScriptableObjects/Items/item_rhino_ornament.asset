@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_rhino_ornament
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_rhino_ornament
-  Icon: {fileID: 0}
+  Icon: {fileID: 840763149, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

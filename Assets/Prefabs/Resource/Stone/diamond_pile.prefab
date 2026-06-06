@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: -8747001283386958804}
   m_Layer: 10
   m_Name: diamond_pile
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

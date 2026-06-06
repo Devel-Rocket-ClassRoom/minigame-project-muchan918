@@ -1,16 +1,64 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+
+[CustomPropertyDrawer(typeof(ResourceGenerator.ResourceSpawnEntry))]
+public class ResourceSpawnEntryDrawer : PropertyDrawer
+{
+    public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
+    {
+        EditorGUI.BeginProperty(position, label, property);
+
+        float lineH = EditorGUIUtility.singleLineHeight;
+        float spacing = EditorGUIUtility.standardVerticalSpacing;
+        Rect rect = new Rect(position.x, position.y, position.width, lineH);
+
+        EditorGUI.PropertyField(rect, property.FindPropertyRelative("prefab"));
+        rect.y += lineH + spacing;
+
+        var useSpread = property.FindPropertyRelative("useSpread");
+        EditorGUI.PropertyField(rect, useSpread);
+        rect.y += lineH + spacing;
+
+        if (useSpread.boolValue)
+        {
+            EditorGUI.PropertyField(rect, property.FindPropertyRelative("spreadSeedCount"));
+            rect.y += lineH + spacing;
+            EditorGUI.PropertyField(rect, property.FindPropertyRelative("spreadDepth"));
+            rect.y += lineH + spacing;
+            EditorGUI.PropertyField(rect, property.FindPropertyRelative("spreadChance"));
+        }
+        else
+        {
+            EditorGUI.PropertyField(rect, property.FindPropertyRelative("weight"));
+        }
+
+        EditorGUI.EndProperty();
+    }
+
+    public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+    {
+        float lineH = EditorGUIUtility.singleLineHeight;
+        float spacing = EditorGUIUtility.standardVerticalSpacing;
+
+        bool useSpread = property.FindPropertyRelative("useSpread").boolValue;
+        int lines = useSpread ? 5 : 3;
+        return lines * (lineH + spacing);
+    }
+}
+#endif
 
 public class ResourceGenerator : MonoBehaviour, IUpgradeable
 {
     [System.Serializable]
     public class ResourceSpawnEntry
     {
-        public GameObject prefab;
+        public GameObject prefab; // null이면 빈칸
 
-        [Range(0f, 1f)]
-        public float spawnChance;
+        [Min(1)]
+        public int weight = 10;
 
         public bool useSpread;
         public int spreadSeedCount = 3;
@@ -45,12 +93,7 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
         tileMapGenerator = GetComponent<TileMapGenerator>();
 
         if (spawnEntriesByLevel.Count > 0)
-        {
-            var entries = spawnEntriesByLevel[0];
-            nearZone = entries.nearZone;
-            midZone = entries.midZone;
-            farZone = entries.farZone;
-        }
+            ApplyLevel(0);
     }
 
     public void Upgrade()
@@ -59,11 +102,15 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
             return;
 
         Level++;
+        ApplyLevel(Level);
+    }
 
-        var entries = spawnEntriesByLevel[Level];
-        nearZone = entries.nearZone;
-        midZone = entries.midZone;
-        farZone = entries.farZone;
+    private void ApplyLevel(int level)
+    {
+        var l = spawnEntriesByLevel[level];
+        nearZone = l.nearZone;
+        midZone = l.midZone;
+        farZone = l.farZone;
     }
 
     public void Generate()
@@ -99,6 +146,7 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
         int count = 0;
         const int perFrame = 500;
 
+        // Spread 먼저
         foreach (var entry in zone)
         {
             if (!entry.useSpread)
@@ -120,26 +168,42 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
             }
         }
 
+        // 가중치 합산
+        int totalWeight = 0;
+        foreach (var entry in zone)
+            if (!entry.useSpread)
+                totalWeight += entry.weight;
+
+        if (totalWeight == 0)
+            yield break;
+
+        // 타일마다 가중치 룰렛
         foreach (var coord in tiles)
         {
             var tileType = mapData.GetTileWorld(coord);
-            if (tileType == TileType.Ground || tileType == TileType.GrassGround) // 수정
+            if (tileType == TileType.Ground || tileType == TileType.GrassGround)
             {
+                int roll = random.Next(0, totalWeight);
+                int cursor = 0;
+
                 foreach (var entry in zone)
                 {
                     if (entry.useSpread)
                         continue;
-                    if (entry.prefab == null)
-                        continue;
-                    if (random.NextDouble() > entry.spawnChance)
-                        continue;
 
-                    ResourceChunkManager.Instance.RegisterSpawnInfo(
-                        new Vector3(coord.x, 1f, coord.y),
-                        entry.prefab
-                    );
-                    mapData.SetTile(coord, TileType.Resource);
-                    break;
+                    cursor += entry.weight;
+                    if (roll < cursor)
+                    {
+                        if (entry.prefab != null)
+                        {
+                            ResourceChunkManager.Instance.RegisterSpawnInfo(
+                                new Vector3(coord.x, 1f, coord.y),
+                                entry.prefab
+                            );
+                            mapData.SetTile(coord, TileType.Resource);
+                        }
+                        break;
+                    }
                 }
             }
 
@@ -174,7 +238,7 @@ public class ResourceGenerator : MonoBehaviour, IUpgradeable
             return;
 
         var tileType = mapData.GetTileWorld(coord);
-        if (tileType != TileType.Ground && tileType != TileType.GrassGround) // 수정
+        if (tileType != TileType.Ground && tileType != TileType.GrassGround)
             return;
 
         ResourceChunkManager.Instance.RegisterSpawnInfo(

@@ -245,7 +245,7 @@ GameObject:
   - component: {fileID: -8373604139165056889}
   m_Layer: 10
   m_Name: Goose
-  m_TagString: Untagged
+  m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: resource_blueberry
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: resource_blueberry
-  Icon: {fileID: 0}
+  Icon: {fileID: 836540797, guid: 52c13dcabd46ae34e95e8edbe9165ec7, type: 3}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: resource_corn
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: resource_corn
-  Icon: {fileID: 0}
+  Icon: {fileID: 424530431, guid: 26bb308e434a5864b94e799953cdc918, type: 3}

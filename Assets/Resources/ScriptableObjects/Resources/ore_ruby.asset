@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: ore_ruby
   m_EditorClassIdentifier: Assembly-CSharp::ResourceAsset
   ResourceID: ore_ruby
-  DropItem: {fileID: 11400000, guid: a5e0f79599e785e40bec1f64da3bc33c, type: 2}
+  DropItem: {fileID: 11400000, guid: b605f218245391b4bba36adc5d6a592c, type: 2}

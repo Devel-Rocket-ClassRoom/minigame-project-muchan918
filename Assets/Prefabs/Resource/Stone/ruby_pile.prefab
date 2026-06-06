@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: 7049132962147417053}
   m_Layer: 10
   m_Name: ruby_pile
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

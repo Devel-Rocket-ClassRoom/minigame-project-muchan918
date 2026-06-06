@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_fox_ornament
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_fox_ornament
-  Icon: {fileID: 0}
+  Icon: {fileID: 1729728024, guid: bf3bc423a2e549f42bace30f07870ea3, type: 3}

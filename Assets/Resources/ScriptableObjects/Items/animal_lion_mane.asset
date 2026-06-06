@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animal_lion_mane
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: animal_lion_mane
-  Icon: {fileID: 0}
+  Icon: {fileID: -1806096287, guid: c3a11c77aa7ddab45a4e07a4b16b78a5, type: 3}

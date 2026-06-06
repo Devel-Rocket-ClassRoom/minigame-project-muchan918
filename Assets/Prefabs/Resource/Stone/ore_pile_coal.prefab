@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 6689873558868046368}
   m_Layer: 10
   m_Name: ore_pile_coal
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

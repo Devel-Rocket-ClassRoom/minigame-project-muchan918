@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: animal_rabbit_meat
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: animal_rabbit_meat
-  Icon: {fileID: 0}
+  Icon: {fileID: -1631528275, guid: c3a11c77aa7ddab45a4e07a4b16b78a5, type: 3}

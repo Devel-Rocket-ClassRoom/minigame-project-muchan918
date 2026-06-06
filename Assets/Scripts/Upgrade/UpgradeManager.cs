@@ -34,7 +34,7 @@ public class UpgradeManager : MonoBehaviour
 
     [Header("Auto Upgrade Days")]
     [SerializeField]
-    private int[] autoUpgradeDays = { 14, 21 };
+    private int[] autoUpgradeDays = { 21, 42 };
 
     private Dictionary<UpgradeType, IUpgradeable> upgradeTargets;
 
