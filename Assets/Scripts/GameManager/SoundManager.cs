@@ -28,6 +28,10 @@ public class SoundManager : MonoBehaviour
     public AudioClip playerDieClip;
     public AudioClip transitionOpenClip;
 
+    [Header("Clips - UI")]
+    public AudioClip buttonClickClip;
+    public AudioClip completeClip;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -100,5 +104,15 @@ public class SoundManager : MonoBehaviour
     public void PlayTransitionOpen()
     {
         sfxSource.PlayOneShot(transitionOpenClip);
+    }
+
+    public void PlayButtonClick()
+    {
+        sfxSource.PlayOneShot(buttonClickClip);
+    }
+
+    public void PlayComplete()
+    {
+        sfxSource.PlayOneShot(completeClip);
     }
 }

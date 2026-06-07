@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: item_ending
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: item_ending
-  Icon: {fileID: 0}
+  Icon: {fileID: 21300000, guid: 924730e8b17872a4ba4180a7bba98758, type: 3}

@@ -31,7 +31,7 @@ public class TitleSceneManager : MonoBehaviour
 
     public void OnNewGameButton()
     {
-        StartCoroutine(LoadScene("MainGameScene", deleteSave: true));
+        StartCoroutine(LoadScene("TutorialScene", deleteSave: true));
     }
 
     public void OnQuitButton()

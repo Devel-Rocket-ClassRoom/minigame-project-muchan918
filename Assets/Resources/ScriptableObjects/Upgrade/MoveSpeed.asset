@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::UpgradeAsset
   type: 0
   displayName: "\uC774\uB3D9\uC18D\uB3C4 \uC99D\uAC00"
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: adcf41d1c490b474a818a7244f974c93, type: 3}
   costPerLevel:
   - ingredients:
     - item: {fileID: 11400000, guid: aa4cbfd99940ec145ad69333de0a44f0, type: 2}

@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: equip_hat_wool
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: equip_hat_wool
-  Icon: {fileID: 0}
+  Icon: {fileID: -1198281238, guid: 5073a4f98dfae064499cc013d3710782, type: 3}

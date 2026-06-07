@@ -13,4 +13,4 @@ MonoBehaviour:
   m_Name: equip_top_gorilla
   m_EditorClassIdentifier: Assembly-CSharp::ItemAsset
   ItemID: equip_top_gorilla
-  Icon: {fileID: 0}
+  Icon: {fileID: 1479287543, guid: 5073a4f98dfae064499cc013d3710782, type: 3}

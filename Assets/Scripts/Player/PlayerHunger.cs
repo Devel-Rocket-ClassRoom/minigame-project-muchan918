@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,6 +19,11 @@ public class PlayerHunger : MonoBehaviour
     [SerializeField]
     private Slider hungerSlider;
 
+    [SerializeField]
+    private GameObject hungerWarningText; // "음식을 먹어야합니다!" 텍스트 오브젝트
+
+    private Tween blinkTween;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -34,7 +40,6 @@ public class PlayerHunger : MonoBehaviour
 
     private void Update()
     {
-        // 테스트용: K키를 누르면 배고픔 30 회복
         if (Keyboard.current.kKey.wasPressedThisFrame)
         {
             AddHunger(30);
@@ -56,9 +61,27 @@ public class PlayerHunger : MonoBehaviour
 
     private void UpdateUI()
     {
-        if (hungerSlider == null)
+        if (hungerSlider != null)
+            hungerSlider.value = (float)currentHunger / maxHunger;
+
+        if (hungerWarningText == null)
             return;
-        hungerSlider.value = (float)currentHunger / maxHunger;
+
+        if (currentHunger == 0)
+        {
+            hungerWarningText.SetActive(true);
+            if (blinkTween == null || !blinkTween.IsActive())
+            {
+                var graphic = hungerWarningText.GetComponent<Graphic>();
+                blinkTween = graphic.DOFade(0f, 0.6f).SetLoops(-1, LoopType.Yoyo).SetUpdate(true);
+            }
+        }
+        else
+        {
+            blinkTween?.Kill();
+            blinkTween = null;
+            hungerWarningText.SetActive(false);
+        }
     }
 
     public void SetHunger(int amount)

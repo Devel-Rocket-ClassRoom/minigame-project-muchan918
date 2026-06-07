@@ -35,13 +35,13 @@ equip_axe_stone,돌 도끼,Equipment,1
 equip_sword_stone,돌 칼,Equipment,1
 equip_pickaxe_stone,돌 곡괭이,Equipment,1
 equip_hat_wool,양털 모자,Equipment,1
-equip_hat_gorilla,고릴라 가죽 모자,Equipment,1
+equip_hat_gorilla,고릴라 모자,Equipment,1
 equip_top_wool,양털 조끼,Equipment,1
-equip_top_gorilla,고릴라 가죽 조끼,Equipment,1
+equip_top_gorilla,고릴라 조끼,Equipment,1
 equip_bottom_wool,양털 바지,Equipment,1
-equip_bottom_gorilla,고릴라 가죽 바지,Equipment,1
+equip_bottom_gorilla,고릴라 바지,Equipment,1
 equip_shoes_wool,양털 신발,Equipment,1
-equip_shoes_gorilla,고릴라 가죽 신발,Equipment,1
+equip_shoes_gorilla,고릴라 신발,Equipment,1
 animal_pig_meat,돼지고기,Food,10
 animal_donkey_hoof,당나귀 발굽,Material,10
 animal_tiger_hide,호랑이 가죽,Material,3
