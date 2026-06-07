@@ -31,6 +31,7 @@ public class SoundManager : MonoBehaviour
     [Header("Clips - UI")]
     public AudioClip buttonClickClip;
     public AudioClip completeClip;
+    public AudioClip eatClip;
 
     private void Awake()
     {
@@ -114,5 +115,10 @@ public class SoundManager : MonoBehaviour
     public void PlayComplete()
     {
         sfxSource.PlayOneShot(completeClip);
+    }
+
+    public void PlayEatButton()
+    {
+        sfxSource.PlayOneShot(eatClip);
     }
 }

@@ -3348,7 +3348,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 473886780}
         m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
-        m_MethodName: PlayButtonClick
+        m_MethodName: PlayComplete
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4794,6 +4794,7 @@ MonoBehaviour:
   transitionOpenClip: {fileID: 8300000, guid: 22485ca18d055d04aa4ce0b6c0e869c5, type: 3}
   buttonClickClip: {fileID: 8300000, guid: 6df5bc2b225107642a16361361a29e24, type: 3}
   completeClip: {fileID: 8300000, guid: c4e86b30b23a04b4d8f0b97c9e223265, type: 3}
+  eatClip: {fileID: 8300000, guid: 7331aacb26441484cbc3a77520dc739b, type: 3}
 --- !u!4 &473886781
 Transform:
   m_ObjectHideFlags: 0
@@ -15682,7 +15683,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1709191704}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 473886780}
+        m_TargetAssemblyTypeName: SoundManager, Assembly-CSharp
+        m_MethodName: PlayEatButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1709191704
 MonoBehaviour:
   m_ObjectHideFlags: 0
