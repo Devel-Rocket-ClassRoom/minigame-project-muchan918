@@ -22981,7 +22981,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d033bad03bc2d7548a6b8e8cdd961aa2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TutorialSceneManager
-  startStep: 30
+  startStep: 0
   dayNightCycle: {fileID: 7900980564118895665}
   playerMovement: {fileID: 5224556440869973763}
   playerInventory: {fileID: 56650075042092300}

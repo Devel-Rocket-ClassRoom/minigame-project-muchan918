@@ -27,6 +27,7 @@ public class TutorialHostileAnimal : HostileAnimal
         Agent.enabled = false;
         GetComponent<Collider>().enabled = false;
         CurrentState = AnimalState.Die;
+        TutorialSceneManager.Instance.CompleteStep(completeStep);
         StartCoroutine(DieRoutine());
     }
 
@@ -34,7 +35,7 @@ public class TutorialHostileAnimal : HostileAnimal
     {
         yield return new WaitForSeconds(1f);
         EffectManager.Instance.PlayAnimalDie(transform.position);
-        TutorialSceneManager.Instance.CompleteStep(completeStep);
+
         Destroy(gameObject);
     }
 }
