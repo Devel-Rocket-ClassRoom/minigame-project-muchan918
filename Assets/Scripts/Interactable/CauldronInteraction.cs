@@ -44,6 +44,9 @@ public class CauldronInteraction : MonoBehaviour, IInteractable
         cauldronPanel.SetActive(true);
         cauldronSlotList.RefreshAvailability();
         UiManager.Instance.Register(OnClickClose);
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.GoToCauldron);
     }
 
     public void OnSelectRecipe(RecipeAsset recipe)
@@ -75,6 +78,12 @@ public class CauldronInteraction : MonoBehaviour, IInteractable
         // 갱신
         cauldronSlotList.RefreshAvailability();
         ingredientSlotList.Setup(selectedRecipe);
+
+        if (TutorialSceneManager.Instance != null)
+        {
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.Cook);
+            OnClickClose();
+        }
     }
 
     public void OnClickClose()

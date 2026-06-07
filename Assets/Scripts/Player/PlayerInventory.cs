@@ -20,6 +20,7 @@ public class PlayerInventory : MonoBehaviour
 
     private Coroutine fullPopupCoroutine;
     private bool isOpen;
+    public bool IsOpen => isOpen;
 
     private void Awake()
     {

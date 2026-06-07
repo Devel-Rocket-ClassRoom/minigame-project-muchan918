@@ -15,6 +15,9 @@ public class PlayerHealth : MonoBehaviour, IDefender
     private int maxHp = 100;
     private int currentHp;
 
+    [SerializeField]
+    private bool isTutorial = false;
+
     public int MaxHp => maxHp;
     public int CurrentHp => currentHp;
 
@@ -52,10 +55,12 @@ public class PlayerHealth : MonoBehaviour, IDefender
 
     public void TakeDamage(int damage, Vector3 hitNormal)
     {
-        currentHp = Mathf.Max(0, currentHp - damage);
-        UpdateUI();
+        if (isTutorial)
+            currentHp = Mathf.Max((int)(maxHp * 0.2f), currentHp - damage);
+        else
+            currentHp = Mathf.Max(0, currentHp - damage);
 
-        Debug.Log($"HP: {currentHp}/{maxHp}");
+        UpdateUI();
 
         if (currentHp <= 0)
             Die();

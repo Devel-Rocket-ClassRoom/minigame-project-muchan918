@@ -28,6 +28,14 @@ public class CabinInteraction : MonoBehaviour, IInteractable
             ShowPopup();
             return;
         }
+
+        if (TutorialSceneManager.Instance != null)
+        {
+            PlayerSpawner.Instance.Respawn(fullRecover: true);
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.StartDay);
+            return;
+        }
+
         PlayerSpawner.Instance.Respawn(fullRecover: true);
     }
 

@@ -4,7 +4,7 @@ public class HostileAnimal : Animal, IAttacker
 {
     private HostileAnimalAsset HostileAsset => Asset as HostileAnimalAsset;
 
-    public int Damage => HostileAsset.Damage;
+    public virtual int Damage => HostileAsset.Damage;
 
     private bool isAttacking;
 
@@ -49,11 +49,6 @@ public class HostileAnimal : Animal, IAttacker
                 10f * Time.deltaTime
             );
         }
-
-        float dist = Vector3.Distance(transform.position, PlayerTransform.position);
-        Debug.Log(
-            $"[{gameObject.name}] Chase - 거리: {dist:F2} / EnterAttackRange: {HostileAsset.EnterAttackRange}"
-        );
 
         if (
             Vector3.Distance(transform.position, PlayerTransform.position)

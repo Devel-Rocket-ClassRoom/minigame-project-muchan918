@@ -42,6 +42,9 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     [SerializeField]
     private bool isCheatMode = false;
 
+    [SerializeField]
+    private bool isTutorial = false;
+
     private float elapsedTime = 0f;
     private bool midnightTriggered = false;
     private int hungerEmptyCount = 0;
@@ -53,7 +56,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
     public bool IsTransitioning { get; set; } = false;
     public float TotalDayDuration => brightDuration + darkenDuration + nightDuration;
     public float DayProgress => Mathf.Clamp01(elapsedTime / TotalDayDuration);
-    public bool IsNight => elapsedTime >= brightDuration + darkenDuration;
+    public bool IsNight => elapsedTime >= TotalDayDuration * 2f / 3f;
     public int HungerEmptyCount => hungerEmptyCount;
 
     public int Level { get; private set; } = 1;
@@ -67,7 +70,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
     private void Update()
     {
-        if (IsTransitioning)
+        if (IsTransitioning || isTutorial)
             return;
 
         elapsedTime += Time.deltaTime;
@@ -89,7 +92,12 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             directionalLight.intensity = minIntensity;
             RenderSettings.ambientLight = nightAmbient;
 
-            if (!isCheatMode && !midnightTriggered && elapsedTime >= TotalDayDuration)
+            if (
+                !isCheatMode
+                && !isTutorial
+                && !midnightTriggered
+                && elapsedTime >= TotalDayDuration
+            )
             {
                 midnightTriggered = true;
                 UiManager.Instance.CloseAll();
@@ -127,7 +135,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             pendingDurationUpgrade = false;
         }
 
-        if (CurrentDay % 7 == 0)
+        if (!isTutorial && CurrentDay % 7 == 0)
         {
             if (tributeEvent.Evaluate())
             {
@@ -200,5 +208,21 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             return;
         Level++;
         pendingDurationUpgrade = true;
+    }
+
+    public void StartTutorialDay()
+    {
+        isTutorial = false;
+        elapsedTime = 0.99f;
+    }
+
+    public void SetMorningTutorial()
+    {
+        elapsedTime = 0f;
+        midnightTriggered = false;
+        directionalLight.intensity = maxIntensity;
+        RenderSettings.ambientLight = dayAmbient;
+        timerImage.fillAmount = 0f;
+        CurrentDay++;
     }
 }

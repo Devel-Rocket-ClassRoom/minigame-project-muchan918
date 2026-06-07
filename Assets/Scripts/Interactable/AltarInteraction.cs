@@ -30,6 +30,9 @@ public class AltarInteraction : MonoBehaviour, IInteractable
         altarPanel.SetActive(true);
         tributeInventory.UpdateSlots();
         UiManager.Instance.Register(OnClickClose);
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.GoToAltar);
     }
 
     public void OnClickClose()

@@ -79,6 +79,11 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         }
 
         // 청크 이동 감지
+        UpdateChunk();
+    }
+
+    protected virtual void UpdateChunk()
+    {
         var newChunk = AnimalChunkManager.Instance.WorldToChunk(transform.position);
         if (newChunk != _currentChunk)
         {
@@ -172,7 +177,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
 
     protected abstract void OnTakeDamage(Vector3 hitNormal);
 
-    public void Die()
+    public virtual void Die()
     {
         AnimalChunkManager.Instance.UnregisterAnimal(this);
         if (Agent.enabled)
@@ -214,5 +219,10 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         currentHp = Asset.Data.MaxHP;
         transform.position = SpawnPosition;
         CurrentState = AnimalState.Idle;
+    }
+
+    public void SetHp(int hp)
+    {
+        currentHp = hp;
     }
 }

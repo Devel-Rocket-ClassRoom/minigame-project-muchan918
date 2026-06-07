@@ -38,4 +38,10 @@ public class TributeEvent : MonoBehaviour
         IsTributeFulfilled = false;
         tributeSlotList.Setup(requirements[CurrentRequirementIndex]);
     }
+
+    public void SetTutorialRequirement(TributeRequirement requirement)
+    {
+        IsTributeFulfilled = false;
+        tributeSlotList.Setup(requirement);
+    }
 }

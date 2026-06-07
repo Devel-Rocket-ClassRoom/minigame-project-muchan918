@@ -66,4 +66,10 @@ public class PlayerHunger : MonoBehaviour
         currentHunger = Mathf.Clamp(amount, 0, maxHunger);
         UpdateUI();
     }
+
+    public void AddFullHunger()
+    {
+        currentHunger = maxHunger;
+        UpdateUI();
+    }
 }

@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour, IUpgradeable
 
     private Rigidbody rb;
     private Vector2 moveInput;
+    public Vector2 MoveInput => moveInput;
     private bool isDead = false;
 
     public bool useJoystick = true;

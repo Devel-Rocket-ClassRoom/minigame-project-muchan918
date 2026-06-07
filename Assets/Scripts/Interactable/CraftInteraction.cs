@@ -45,6 +45,9 @@ public class CraftInteraction : MonoBehaviour, IInteractable
         craftPanel.SetActive(true);
         craftSlotList.RefreshAvailability();
         UiManager.Instance.Register(OnClickClose);
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.GoToWorkbench);
     }
 
     public void OnClickCraft()
@@ -67,6 +70,10 @@ public class CraftInteraction : MonoBehaviour, IInteractable
         // 갱신
         craftSlotList.RefreshAvailability();
         ingredientSlotList.Setup(selectedRecipe);
+
+        // 튜토리얼 용
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.Craft);
     }
 
     public void OnSelectRecipe(RecipeAsset recipe)

@@ -228,4 +228,11 @@ public class AnimalChunkManager : MonoBehaviour
             if (animal != null)
                 animal.ResetToSpawn();
     }
+
+    public void RegisterAnimal(Animal animal)
+    {
+        var chunkCoord = WorldToChunk(animal.transform.position);
+        var chunk = GetOrCreateChunk(chunkCoord);
+        chunk.SpawnedAnimals.Add(animal);
+    }
 }

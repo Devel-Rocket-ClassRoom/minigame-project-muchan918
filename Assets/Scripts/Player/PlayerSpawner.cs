@@ -59,7 +59,10 @@ public class PlayerSpawner : MonoBehaviour
             onMidpoint: () =>
             {
                 ApplyRespawn(clearInventory, fullRecover);
-                dayNightCycle.SetMorning();
+                if (TutorialSceneManager.Instance != null)
+                    dayNightCycle.SetMorningTutorial();
+                else
+                    dayNightCycle.SetMorning();
             },
             onFadeInStart: () =>
             {
