@@ -1,32 +1,32 @@
 FoodID,DisplayName,EffectType,Value
-resource_mushroom,버섯,Hunger,15
+resource_mushroom,버섯,Hunger,20
 resource_blueberry,블루베리,Hunger,10
-resource_gold_berry,골드베리,Hunger,15
-animal_rabbit_meat,토끼고기,Hunger,15
-animal_hen_egg,계란,Hunger,10
-animal_bear_meat,곰고기,Hunger,20
+resource_gold_berry,골드베리,Hp,10
+animal_rabbit_meat,토끼고기,Hunger,20
+animal_hen_egg,계란,Hunger,20
+animal_bear_meat,곰고기,Hunger,25
 food_rabbit_roast,토끼구이,Hunger,30
 food_bear_roast,곰고기구이,Hunger,40
-food_mushroom_roast,버섯구이,Hunger,20
-food_boiled_egg,삶은계란,Hunger,20
-food_blueberry_jam,블루베리잼,Hunger,15
-food_golden_jam,골드잼,Hunger,25
+food_mushroom_roast,버섯구이,Hunger,30
+food_boiled_egg,삶은계란,Hunger,40
+food_blueberry_jam,블루베리잼,Hunger,25
+food_golden_jam,골드잼,Hp,25
 resource_carrot,당근,Hunger,10
 resource_corn,옥수수,Hunger,10
 resource_potato,감자,Hunger,10
 resource_tomato,토마토,Hunger,10
 animal_pig_meat,돼지고기,Hunger,15
-food_pig_roast,돼지구이,Hunger,35
+food_pig_roast,돼지구이,Hunger,40
 food_pig_stew,돼지찌개,Hunger,50
 food_carrot_soup,당근 수프,Hunger,30
 food_tomato_soup,토마토 수프,Hunger,30
 food_harvest_bowl,수확 한그릇,Hunger,60
 food_bread,빵,Hunger,25
 food_blueberry_sandwich,블루베리 샌드위치,Hunger,35
-food_golden_sandwich,골드잼 샌드위치,Hunger,40
+food_golden_sandwich,골드잼 샌드위치,Hp,40
 animal_cow_milk,우유,Hunger,10
 food_cheese,치즈,Hunger,20
 food_blueberry_toast,블루베리 토스트,Hunger,55
-food_golden_toast,골드잼 토스트,Hunger,60
+food_golden_toast,골드잼 토스트,Hp,60
 food_cream_carrot_soup,크림 당근 수프,Hunger,45
 food_cream_tomato_soup,크림 토마토 수프,Hunger,45

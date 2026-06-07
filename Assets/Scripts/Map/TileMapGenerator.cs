@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 
 public class TileMapGenerator : MonoBehaviour
 {
+    public static event System.Action OnMapLoadComplete;
+
     [Header("맵 설정")]
     [SerializeField]
     private int mapWidth = 300;
@@ -102,6 +104,7 @@ public class TileMapGenerator : MonoBehaviour
             LoadingUI.Instance.Hide();
             SoundManager.Instance.PlayMainBgm();
             GamePause.Resume();
+            OnMapLoadComplete?.Invoke();
         }
     }
 

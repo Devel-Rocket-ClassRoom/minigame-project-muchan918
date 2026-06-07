@@ -429,6 +429,8 @@ public class TutorialSceneManager : MonoBehaviour
 
     private void OnTutorialComplete()
     {
+        PlayerPrefs.SetInt("ShowTutorialOnStart", 1);
+        PlayerPrefs.Save();
         SceneManager.LoadScene("MainGameScene");
     }
 

@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5440ef9efa9d07488b042c4a4e4b171, type: 3}
   m_Name: 5
   m_EditorClassIdentifier: Assembly-CSharp::TutorialData
-  title: "\uC624\uB450\uB9C9\uC5D0\uC11C \uC7A0\uB4E4\uAE30"
-  image: {fileID: 21300000, guid: ab263fa41dd4b4fabb0c52068c9a4c42, type: 3}
-  description: "\uBC24\uC774 \uB418\uBA74 \uC624\uB450\uB9C9\uC5D0\uC11C \uC7A0\uB4E4\uC5B4
-    \uB2E4\uC74C \uB0A0\uB85C \uB118\uC5B4\uAC08 \uC218 \uC788\uC2B5\uB2C8\uB2E4.
-    \uB0AE\uC5D0\uB294 \uC0AC\uC6A9\uD560 \uC218 \uC5C6\uC73C\uB2C8 \uC2DC\uAC04\uC744
-    \uC798 \uD655\uC778\uD558\uC138\uC694."
+  title: "\uC790\uB3D9 \uC5C5\uADF8\uB808\uC774\uB4DC"
+  image: {fileID: 21300000, guid: 990fbb9df3494284eb7a13f38fa2251b, type: 3}
+  description: "Day21, Day42\uC77C\uCC28\uC5D4 \r\n\uC790\uB3D9\uC73C\uB85C \uC5C5\uADF8\uB808\uC774\uB4DC
+    \uB429\uB2C8\uB2E4.\r\n\uC0DD\uC131\uB418\uB294 \uC790\uC6D0\uACFC \uB3D9\uBB3C\uC758
+    \uC885\uB958\uAC00 \uB298\uC5B4\uB098\uBA70\r\n\uC81C\uC791 \uC544\uC774\uD15C\uACFC
+    \uC694\uB9AC \uC544\uC774\uD15C\uC774 \uB298\uC5B4\uB0A9\uB2C8\uB2E4."

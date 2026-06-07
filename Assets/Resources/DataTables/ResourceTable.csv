@@ -1,10 +1,10 @@
 ResourceID,DisplayName,ResourceType,MaxHP
-tree_oak,참나무,Tree,20
+tree_oak,참나무,Tree,30
 rock_small,작은 바위,Stone,30
-bush,덤불,Tree,10
-rock_lava,용암석,Stone,50
-ore_coal,석탄,Stone,25
-ore_iron,철광석,Stone,35
-ore_gold,금광석,Stone,45
-ore_diamond,다이아몬드,Stone,60
-ore_ruby,루비,Stone,60
+bush,덤불,Tree,20
+rock_lava,용암석,Stone,120
+ore_coal,석탄,Stone,50
+ore_iron,철광석,Stone,60
+ore_gold,금광석,Stone,80
+ore_diamond,다이아몬드,Stone,120
+ore_ruby,루비,Stone,150
