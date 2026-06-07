@@ -20,6 +20,7 @@ public class UiProgressPanel : MonoBehaviour
     private TextMeshProUGUI hungerText;
 
     private List<UiProgressSlot> slotList = new List<UiProgressSlot>();
+    private TributeRequirement overrideRequirement = null;
 
     private bool isOpen;
 
@@ -36,7 +37,10 @@ public class UiProgressPanel : MonoBehaviour
         slotList.Clear();
 
         var slotInfoList = tributeEvent.tributeSlotList.GetSlotInfoList();
-        var requirement = tributeEvent.requirements[tributeEvent.CurrentRequirementIndex];
+        var requirement =
+            overrideRequirement != null
+                ? overrideRequirement
+                : tributeEvent.requirements[tributeEvent.CurrentRequirementIndex];
 
         for (int i = 0; i < requirement.requiredItems.Count; i++)
         {
@@ -72,5 +76,10 @@ public class UiProgressPanel : MonoBehaviour
         isOpen = false;
         gameObject.SetActive(false);
         UiManager.Instance.Unregister(Close);
+    }
+
+    public void SetTutorialRequirement(TributeRequirement requirement)
+    {
+        overrideRequirement = requirement;
     }
 }

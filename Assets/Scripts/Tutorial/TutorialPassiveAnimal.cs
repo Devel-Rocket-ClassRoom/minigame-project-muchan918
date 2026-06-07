@@ -4,6 +4,7 @@ using UnityEngine;
 public class TutorialPassiveAnimal : PassiveAnimal
 {
     private bool isDying = false;
+    public TutorialStep completeStep = TutorialStep.PassiveAnimal;
 
     protected override void UpdateChunk() { } // 청크 감지 무시
 

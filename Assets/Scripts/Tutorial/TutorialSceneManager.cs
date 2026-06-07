@@ -23,10 +23,17 @@ public enum TutorialStep
     Cook,
     EatFood,
     HungerExplain,
+    ProgressExplain,
     StartDay,
+    GoToStorage,
     Storage,
-    Cauldron,
+    GoToUpgrade,
     Upgrade,
+    Equip,
+    HuntAnimal,
+    SkipDay,
+    ReturnCabinFinal,
+    TutorialComplete,
     Complete,
 }
 
@@ -46,6 +53,9 @@ public class TutorialSceneManager : MonoBehaviour
     public TributeEvent tributeEvent;
     public CraftInteraction craftInteraction;
     public CauldronInteraction cauldronInteraction;
+    public UiProgressPanel uiProgressPanel;
+    public StorageInventory storageInventory;
+    private int initialStorageCount = 0;
 
     [Header("Explain Panels")]
     public GameObject altarExplainPanel;
@@ -71,7 +81,17 @@ public class TutorialSceneManager : MonoBehaviour
     public GameObject cookPanel;
     public GameObject eatFoodPanel;
     public GameObject hungerExplainPanel;
+    public GameObject progressExplainPanel;
     public GameObject startDayPanel;
+    public GameObject goToStoragePanel;
+    public GameObject storageGuidePanel;
+    public GameObject goToUpgradePanel;
+    public GameObject upgradeGuidePanel;
+    public GameObject equipPanel;
+    public GameObject huntAnimalPanel;
+    public GameObject skipDayPanel;
+    public GameObject returnCabinFinalPanel;
+    public GameObject tutorialCompletePanel;
 
     [Header("Targets")]
     public Transform chopTreeTarget;
@@ -82,12 +102,31 @@ public class TutorialSceneManager : MonoBehaviour
     public Transform altarTarget;
     public Transform cauldronTarget;
     public Transform cabinTarget;
+    public Transform storageTarget;
+    public Transform upgradeTarget;
+    public Transform huntAnimalTarget;
 
     [Header("Tutorial Objects")]
     public GameObject chopTreeObject;
     public GameObject mineStoneObject;
     public GameObject passiveAnimalObject;
     public GameObject hostileAnimalObject;
+    public GameObject huntAnimalObject;
+
+    [Header("Storage Items")]
+    public ItemAsset carrotAsset;
+    public ItemAsset rubyAsset;
+
+    [Header("Upgrade Items")]
+    public ItemAsset chickFeatherAsset;
+    public ItemAsset rabbitMeatAsset;
+
+    [Header("Equip Items")]
+    public ItemAsset swordAsset;
+    public ItemAsset hatAsset;
+    public ItemAsset topAsset;
+    public ItemAsset bottomAsset;
+    public ItemAsset shoesAsset;
 
     [Header("Facilities")]
     public GameObject cabinInteraction;
@@ -112,6 +151,7 @@ public class TutorialSceneManager : MonoBehaviour
         mineStoneObject.SetActive(false);
         passiveAnimalObject.SetActive(false);
         hostileAnimalObject.SetActive(false);
+        huntAnimalObject.SetActive(false);
 
         cabinInteraction.SetActive(false);
         workbench.SetActive(false);
@@ -119,6 +159,8 @@ public class TutorialSceneManager : MonoBehaviour
         cauldron.SetActive(false);
         altar.SetActive(false);
         upgradeBuilding.SetActive(false);
+
+        uiProgressPanel.SetTutorialRequirement(tutorialTributeRequirement);
     }
 
     private void Update()
@@ -165,6 +207,22 @@ public class TutorialSceneManager : MonoBehaviour
                 if (PlayerHunger.Instance.CurrentHunger > 0)
                     CompleteStep(TutorialStep.EatFood);
                 break;
+            case TutorialStep.ProgressExplain:
+                if (uiProgressPanel.gameObject.activeSelf)
+                    CompleteStep(TutorialStep.ProgressExplain);
+                break;
+            case TutorialStep.Storage:
+                if (storageInventory.SlotDataList.Count > initialStorageCount)
+                    CompleteStep(TutorialStep.Storage);
+                break;
+            case TutorialStep.Equip:
+                if (PlayerEquipment.Instance.IsAllEquipped())
+                    CompleteStep(TutorialStep.Equip);
+                break;
+            case TutorialStep.SkipDay:
+                if (dayNightCycle.CurrentDay >= 7)
+                    CompleteStep(TutorialStep.SkipDay);
+                break;
         }
     }
 
@@ -201,7 +259,17 @@ public class TutorialSceneManager : MonoBehaviour
         cookPanel.SetActive(false);
         eatFoodPanel.SetActive(false);
         hungerExplainPanel.SetActive(false);
+        progressExplainPanel.SetActive(false);
         startDayPanel.SetActive(false);
+        goToStoragePanel.SetActive(false);
+        storageGuidePanel.SetActive(false);
+        goToUpgradePanel.SetActive(false);
+        upgradeGuidePanel.SetActive(false);
+        equipPanel.SetActive(false);
+        huntAnimalPanel.SetActive(false);
+        skipDayPanel.SetActive(false);
+        returnCabinFinalPanel.SetActive(false);
+        tutorialCompletePanel.SetActive(false);
 
         switch (step)
         {
@@ -293,6 +361,9 @@ public class TutorialSceneManager : MonoBehaviour
                 PlayerHunger.Instance.AddFullHunger();
                 hungerExplainPanel.SetActive(true);
                 break;
+            case TutorialStep.ProgressExplain:
+                progressExplainPanel.SetActive(true);
+                break;
             case TutorialStep.StartDay:
                 startDayPanel.SetActive(true);
                 dayNightCycle.StartTutorialDay();
@@ -300,17 +371,58 @@ public class TutorialSceneManager : MonoBehaviour
                 directionArrow.SetTarget(cabinTarget);
                 directionArrow.gameObject.SetActive(true);
                 break;
-            case TutorialStep.Storage:
+            case TutorialStep.GoToStorage:
+                goToStoragePanel.SetActive(true);
                 storage.SetActive(true);
+                directionArrow.SetTarget(storageTarget);
+                directionArrow.gameObject.SetActive(true);
+                playerInventory.AddItem(carrotAsset, 10);
+                playerInventory.AddItem(rubyAsset, 5);
                 break;
-            case TutorialStep.Cauldron:
-                cauldron.SetActive(true);
+            case TutorialStep.Storage:
+                storageGuidePanel.SetActive(true);
+                initialStorageCount = storageInventory.SlotDataList.Count;
+                break;
+            case TutorialStep.GoToUpgrade:
+                goToUpgradePanel.SetActive(true);
+                upgradeBuilding.SetActive(true);
+                directionArrow.SetTarget(upgradeTarget);
+                directionArrow.gameObject.SetActive(true);
+                playerInventory.AddItem(chickFeatherAsset, 4);
+                playerInventory.AddItem(rabbitMeatAsset, 2);
                 break;
             case TutorialStep.Upgrade:
-                upgradeBuilding.SetActive(true);
+                upgradeGuidePanel.SetActive(true);
+                break;
+            case TutorialStep.Equip:
+                equipPanel.SetActive(true);
+                playerInventory.AddItem(swordAsset);
+                playerInventory.AddItem(hatAsset);
+                playerInventory.AddItem(topAsset);
+                playerInventory.AddItem(bottomAsset);
+                playerInventory.AddItem(shoesAsset);
+                break;
+            case TutorialStep.HuntAnimal:
+                huntAnimalPanel.SetActive(true);
+                huntAnimalObject.SetActive(true);
+                directionArrow.SetTarget(huntAnimalTarget);
+                directionArrow.gameObject.SetActive(true);
+                break;
+            case TutorialStep.SkipDay:
+                skipDayPanel.SetActive(true);
                 break;
             case TutorialStep.Complete:
                 OnTutorialComplete();
+                break;
+            case TutorialStep.ReturnCabinFinal:
+                returnCabinFinalPanel.SetActive(true);
+                dayNightCycle.SetIsTutorialFalse();
+                dayNightCycle.StartTutorialDay();
+                directionArrow.SetTarget(cabinTarget);
+                directionArrow.gameObject.SetActive(true);
+                break;
+            case TutorialStep.TutorialComplete:
+                tutorialCompletePanel.SetActive(true);
                 break;
         }
     }
@@ -338,5 +450,11 @@ public class TutorialSceneManager : MonoBehaviour
     {
         hungerExplainPanel.SetActive(false);
         CompleteStep(TutorialStep.HungerExplain);
+    }
+
+    public void OnCloseTutorialComplete()
+    {
+        tutorialCompletePanel.SetActive(false);
+        CompleteStep(TutorialStep.TutorialComplete);
     }
 }

@@ -88,6 +88,9 @@ public class StorageInteraction : MonoBehaviour, IInteractable
         playerInventoryMirror.UpdateSlots();
         buttonsPanel.SetActive(false);
         UiManager.Instance.Register(OnClickClose);
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.GoToStorage);
     }
 
     public void OnClickAll()

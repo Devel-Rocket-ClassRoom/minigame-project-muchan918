@@ -130,4 +130,13 @@ public class PlayerEquipment : MonoBehaviour
         if (partsObj != null && def.index < partsObj.childCount)
             partsObj.GetChild(def.index).gameObject.SetActive(active);
     }
+
+    public bool IsAllEquipped()
+    {
+        return _equipped.ContainsKey(EquipSlotType.WeaponRight)
+            && _equipped.ContainsKey(EquipSlotType.Hat)
+            && _equipped.ContainsKey(EquipSlotType.Top)
+            && _equipped.ContainsKey(EquipSlotType.Bottom)
+            && _equipped.ContainsKey(EquipSlotType.Shoes);
+    }
 }

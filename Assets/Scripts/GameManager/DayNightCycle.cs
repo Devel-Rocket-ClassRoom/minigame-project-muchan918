@@ -44,6 +44,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
     [SerializeField]
     private bool isTutorial = false;
+    private bool isTutorialDay = false;
 
     private float elapsedTime = 0f;
     private bool midnightTriggered = false;
@@ -70,7 +71,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
     private void Update()
     {
-        if (IsTransitioning || isTutorial)
+        if (IsTransitioning || (isTutorial && !isTutorialDay))
             return;
 
         elapsedTime += Time.deltaTime;
@@ -95,6 +96,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
             if (
                 !isCheatMode
                 && !isTutorial
+                && !isTutorialDay
                 && !midnightTriggered
                 && elapsedTime >= TotalDayDuration
             )
@@ -157,6 +159,10 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
                         IsTransitioning = false;
                         GamePause.Resume();
                         SoundManager.Instance.PlayMainBgm();
+                        if (TutorialSceneManager.Instance != null)
+                            TutorialSceneManager.Instance.CompleteStep(
+                                TutorialStep.ReturnCabinFinal
+                            );
                     },
                     onImageFadeInComplete: () =>
                     {
@@ -212,8 +218,9 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
 
     public void StartTutorialDay()
     {
-        isTutorial = false;
-        elapsedTime = 0.99f;
+        isTutorialDay = true;
+        elapsedTime = brightDuration + darkenDuration / 2f;
+        timerImage.fillAmount = DayProgress;
     }
 
     public void SetMorningTutorial()
@@ -224,5 +231,14 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
         RenderSettings.ambientLight = dayAmbient;
         timerImage.fillAmount = 0f;
         CurrentDay++;
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.StartDay);
+    }
+
+    public void SetIsTutorialFalse()
+    {
+        isTutorial = false;
+        isTutorialDay = false;
     }
 }

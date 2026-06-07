@@ -4,6 +4,7 @@ using UnityEngine;
 public class TutorialHostileAnimal : HostileAnimal
 {
     private bool isDying = false;
+    public TutorialStep completeStep = TutorialStep.HostileAnimal;
 
     public override int Damage => 3;
 
@@ -26,7 +27,6 @@ public class TutorialHostileAnimal : HostileAnimal
         Agent.enabled = false;
         GetComponent<Collider>().enabled = false;
         CurrentState = AnimalState.Die;
-        TutorialSceneManager.Instance.CompleteStep(TutorialStep.HostileAnimal);
         StartCoroutine(DieRoutine());
     }
 
@@ -34,7 +34,7 @@ public class TutorialHostileAnimal : HostileAnimal
     {
         yield return new WaitForSeconds(1f);
         EffectManager.Instance.PlayAnimalDie(transform.position);
-
+        TutorialSceneManager.Instance.CompleteStep(completeStep);
         Destroy(gameObject);
     }
 }

@@ -42,6 +42,9 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
     {
         upgradePanel.SetActive(true);
         UiManager.Instance.Register(OnClickClose);
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.GoToUpgrade);
     }
 
     public void OnSelectUpgrade(UpgradeAsset asset)
@@ -65,6 +68,9 @@ public class UpgradeInteraction : MonoBehaviour, IInteractable
 
         upgradeSlotList.UpdateAllLevels();
         OnSelectUpgrade(selectedAsset);
+
+        if (TutorialSceneManager.Instance != null)
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.Upgrade);
     }
 
     public void OnClickClose()

@@ -33,9 +33,9 @@ public class CabinInteraction : MonoBehaviour, IInteractable
         {
             PlayerSpawner.Instance.Respawn(fullRecover: true);
             TutorialSceneManager.Instance.CompleteStep(TutorialStep.StartDay);
+            TutorialSceneManager.Instance.CompleteStep(TutorialStep.ReturnCabinFinal);
             return;
         }
-
         PlayerSpawner.Instance.Respawn(fullRecover: true);
     }
 

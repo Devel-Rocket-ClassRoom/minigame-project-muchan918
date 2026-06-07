@@ -67,8 +67,8 @@ food_golden_sandwich,골드잼 샌드위치,Food,5
 equip_axe_iron,철 도끼,Equipment,1
 equip_sword_iron,철 칼,Equipment,1
 equip_pickaxe_iron,철 곡괭이,Equipment,1
-resource_gold,금,Material,3
-resource_ruby,루비,Material,3
+resource_gold,금,Material,5
+resource_ruby,루비,Material,5
 animal_cow_milk,우유,Food,10
 animal_giraffe_neck,기린 목,Material,3
 animal_monkey_tail,원숭이 꼬리,Material,5
