@@ -17,6 +17,13 @@ public class TitleSceneManager : MonoBehaviour
     [SerializeField]
     private AudioClip buttonClick;
 
+    private void Awake()
+    {
+        Debug.unityLogger.logEnabled = true;
+        Application.targetFrameRate = 60;
+        Debug.Log(Application.persistentDataPath);
+    }
+
     private void Start()
     {
         SaveLoadManager.Init();

@@ -221,6 +221,9 @@ public class SaveDataV6 : SaveDataV5
             MapSeed = MapSeed,
             DestroyedResources = DestroyedResources,
             DeadAnimals = DeadAnimals,
+            UpgradeMoveSpeed = 1,
+            UpgradeAttackSpeed = 1,
+            UpgradeDayDuration = 1,
         };
     }
 }
@@ -228,6 +231,9 @@ public class SaveDataV6 : SaveDataV5
 public class SaveDataV7 : SaveDataV6
 {
     public int TributeRequirementIndex { get; set; } = 0;
+    public int UpgradeMoveSpeed { get; set; } = 1;
+    public int UpgradeAttackSpeed { get; set; } = 1;
+    public int UpgradeDayDuration { get; set; } = 1;
 
     public SaveDataV7()
     {
