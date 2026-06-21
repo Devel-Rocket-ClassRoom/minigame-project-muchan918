@@ -98,6 +98,8 @@ public class UpgradeManager : MonoBehaviour
     {
         foreach (int day in autoUpgradeDays)
         {
+            Debug.Log(day);
+            Debug.Log(currentDay);
             if (currentDay == day)
             {
                 upgradeTargets[UpgradeType.Animal].Upgrade();

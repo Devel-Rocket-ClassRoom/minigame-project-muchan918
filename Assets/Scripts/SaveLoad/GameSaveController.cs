@@ -43,6 +43,9 @@ public class GameSaveController : MonoBehaviour
         data.UpgradeAnimal = upgradeManager.GetLevel(UpgradeType.Animal);
         data.UpgradeResource = upgradeManager.GetLevel(UpgradeType.Resource);
         data.UpgradeCauldron = upgradeManager.GetLevel(UpgradeType.Cauldron);
+        data.UpgradeMoveSpeed = upgradeManager.GetLevel(UpgradeType.MoveSpeed);
+        data.UpgradeAttackSpeed = upgradeManager.GetLevel(UpgradeType.AttackSpeed);
+        data.UpgradeDayDuration = upgradeManager.GetLevel(UpgradeType.DayDuration);
 
         // V5
         data.EquipHat = playerEquipment.GetEquippedItem(EquipSlotType.Hat)?.ItemID;
@@ -84,6 +87,9 @@ public class GameSaveController : MonoBehaviour
         ApplyUpgradeLevel(UpgradeType.Animal, data.UpgradeAnimal);
         ApplyUpgradeLevel(UpgradeType.Resource, data.UpgradeResource);
         ApplyUpgradeLevel(UpgradeType.Cauldron, data.UpgradeCauldron);
+        ApplyUpgradeLevel(UpgradeType.MoveSpeed, data.UpgradeMoveSpeed);
+        ApplyUpgradeLevel(UpgradeType.AttackSpeed, data.UpgradeAttackSpeed);
+        ApplyUpgradeLevel(UpgradeType.DayDuration, data.UpgradeDayDuration);
 
         // V5
         RestoreEquip(EquipSlotType.Hat, data.EquipHat);
