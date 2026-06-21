@@ -132,7 +132,9 @@ public class AnimalGenerator : MonoBehaviour, IUpgradeable
     public void Upgrade()
     {
         if (Level >= spawnEntriesByLevel.Count - 1)
+        {
             return;
+        }
 
         Level++;
 

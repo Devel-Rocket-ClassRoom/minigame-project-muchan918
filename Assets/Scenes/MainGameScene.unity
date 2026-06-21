@@ -88937,7 +88937,7 @@ MonoBehaviour:
   craftSlotList: {fileID: 1464152542}
   cauldronSlotList: {fileID: 8832404831836476315}
   playerInventory: {fileID: 56650075042092300}
-  autoUpgradeDays: 0e00000015000000
+  autoUpgradeDays: 160000002b000000
 --- !u!114 &9195796170670080761
 MonoBehaviour:
   m_ObjectHideFlags: 0

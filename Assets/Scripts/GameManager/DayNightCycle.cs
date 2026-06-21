@@ -146,13 +146,17 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
                 AnimalChunkManager.Instance.ClearDeadPositions();
                 hungerEmptyCount = 0;
 
+                // 맵 재생성(GenerateMap)보다 먼저 업그레이드를 적용해야
+                // 업그레이드된 레벨의 동물/자원이 스폰된다.
+                // ShowClear 콜백은 실행 순서가 보장되지 않으므로 호출 전에 동기로 처리한다.
+                CurrentDay++;
+                UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
+
                 LoadingUI.Instance.ShowClear(
                     onLoadingComplete: () =>
                     {
                         PlayerHunger.Instance.ResetHunger(); // 싱글톤
                         AnimalChunkManager.Instance.ResetLivingAnimals();
-                        CurrentDay++;
-                        UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
                         gameSaveController.SaveGame();
                         timerImage.fillAmount = 0f;
                         LoadingUI.Instance.Hide();
