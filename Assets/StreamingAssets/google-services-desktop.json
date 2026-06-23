@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "741450093271",
+    "firebase_url": "https://sevendaty-90c3d-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "sevendaty-90c3d",
+    "storage_bucket": "sevendaty-90c3d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:741450093271:android:811564692f4f3373ab1692",
+        "android_client_info": {
+          "package_name": "com.DevelRocket.firebase"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHhBdvQ-2Nd8F1uUBtNGRbvJizozNFCnc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

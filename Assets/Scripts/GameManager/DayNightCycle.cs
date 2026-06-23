@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -158,6 +159,7 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
                         PlayerHunger.Instance.ResetHunger(); // 싱글톤
                         AnimalChunkManager.Instance.ResetLivingAnimals();
                         gameSaveController.SaveGame();
+                        LeaderboardManager.Instance.SaveToLeaderboardAsync(CurrentDay).Forget();
                         timerImage.fillAmount = 0f;
                         LoadingUI.Instance.Hide();
                         IsTransitioning = false;
@@ -200,6 +202,8 @@ public class DayNightCycle : MonoBehaviour, IUpgradeable
         CurrentDay++;
         UpgradeManager.Instance.CheckAutoUpgrade(CurrentDay);
         gameSaveController.SaveGame();
+        if (!isTutorial)
+            LeaderboardManager.Instance.SaveToLeaderboardAsync(CurrentDay).Forget();
     }
 
     public void SetDay(int day)

@@ -185,6 +185,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         Agent.enabled = false;
         GetComponent<Collider>().enabled = false;
         CurrentState = AnimalState.Die;
+        GameEvents.RaiseAnimalKilled();
         StartCoroutine(DieRoutine());
     }
 
