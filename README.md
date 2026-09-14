@@ -11,7 +11,7 @@
 
 <br><br>
 
-<img src="docs/images/title.png" width="800" alt="7Days 타이틀 화면">
+<img src="Docs/images/title.png" width="800" alt="7Days 타이틀 화면">
 
 </div>
 
@@ -51,7 +51,7 @@ flowchart TD
     style Bad fill:#6b2222,stroke:#4a1717,color:#fff
 ```
 
-<p align="center"><img src="docs/images/daynight.gif" width="600" alt="낮에서 밤으로"></p>
+<p align="center"><img src="Docs/images/daynight.gif" width="600" alt="낮에서 밤으로"></p>
 
 ---
 
@@ -65,7 +65,7 @@ flowchart TD
 **18종의 동물**이 살고 있습니다. 토끼·양·여우처럼 도망치는 동물도 있고,
 곰·사자·호랑이·악어처럼 **먼저 달려드는 동물**도 있습니다. 코뿔소와 악어는 체력 120.
 
-<p align="center"><img src="docs/images/gather_hunt.gif" width="600" alt="채집과 사냥"></p>
+<p align="center"><img src="Docs/images/gather_hunt.gif" width="600" alt="채집과 사냥"></p>
 
 ### 🔨 제작과 요리
 
@@ -74,8 +74,8 @@ flowchart TD
 제단에 바칠 봉헌품도 마찬가지로 토템 → 조각상/부적 → 레전드 순으로 올라갑니다.
 
 <p align="center">
-  <img src="docs/images/craft_panel.png" width="400" alt="작업대">
-  <img src="docs/images/cauldron_panel.png" width="400" alt="가마솥">
+  <img src="Docs/images/craft_panel.png" width="400" alt="작업대">
+  <img src="Docs/images/cauldron_panel.png" width="400" alt="가마솥">
 </p>
 
 ### ⬆️ 거점 업그레이드
@@ -84,21 +84,21 @@ flowchart TD
 이동 속도, 공격 속도, 낮 길이, 인벤토리와 저장소 칸, 숲의 자원·동물 리젠, 작업대와 가마솥 해금까지
 **9개 라인**을 원하는 순서로 올립니다.
 
-<p align="center"><img src="docs/images/upgrade_panel.png" width="400" alt="거점 업그레이드"></p>
+<p align="center"><img src="Docs/images/upgrade_panel.png" width="400" alt="거점 업그레이드"></p>
 
 ### ⛩️ 제단과 공물
 
 7일차에 요구 목록을 채웠는지 평가합니다. 사이클이 넘어갈수록 요구는 무거워집니다.
 부분 제출이 가능하니 며칠에 걸쳐 조금씩 채워도 됩니다.
 
-<p align="center"><img src="docs/images/altar_panel.png" width="400" alt="제단 공물 제출"></p>
+<p align="center"><img src="Docs/images/altar_panel.png" width="400" alt="제단 공물 제출"></p>
 
 ### ❤️ 생존
 
 체력과 배고픔이 따로 돕니다. 배를 채우지 못한 채 잠들면 다음 날이 고단해집니다.
 체력 회복은 오두막 취침, 그리고 약초 수프나 신성한 국 같은 회복 요리로.
 
-<p align="center"><img src="docs/images/survival_hud.png" width="240" alt="체력과 배고픔"></p>
+<p align="center"><img src="Docs/images/survival_hud.png" width="240" alt="체력과 배고픔"></p>
 
 ---
 
