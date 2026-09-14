@@ -52,21 +52,34 @@ flowchart TD
     style Bad fill:#6b2222,stroke:#4a1717,color:#fff
 ```
 
-<p align="center"><img src="Docs/images/daynight.gif" width="600" alt="낮에서 밤으로"></p>
+<p align="center"><img src="Docs/images/낮%20밤%20전환.gif" width="600" alt="낮과 밤 전환"></p>
 
 ---
 
 ## 주요 시스템
 
-### 🪓 채집과 사냥
+### 🪓 채집
 
 숲에서는 나무, 바위, 덤불, 광물 등 **9종의 자원**을 채집할 수 있습니다.
 자원마다 내구도가 있으며, 높은 등급의 도구를 사용하면 더 빠르게 채집할 수 있습니다.
 
+<p align="center"><img src="Docs/images/자원채집.gif" width="600" alt="숲에서 자원 채집"></p>
+
+### 🐾 사냥
+
 숲에는 **18종의 동물**이 등장합니다.
 플레이어를 피해 달아나는 동물도 있지만, 공격받으면 반격하는 동물도 있어 사냥할 때 주의가 필요합니다.
 
-<p align="center"><img src="Docs/images/gather_hunt.gif" width="600" alt="채집과 사냥"></p>
+<table>
+  <tr>
+    <th>도망치는 동물</th>
+    <th>반격하는 동물</th>
+  </tr>
+  <tr>
+    <td><img src="Docs/images/초식동물.gif" width="380" alt="플레이어를 피해 도망치는 동물"></td>
+    <td><img src="Docs/images/공격동물.gif" width="380" alt="공격받으면 반격하는 동물"></td>
+  </tr>
+</table>
 
 ### 🔨 제작과 요리
 
@@ -76,10 +89,16 @@ flowchart TD
 제작과 요리를 합쳐 총 **52종의 레시피**가 있습니다.
 일부 상위 아이템은 다른 아이템을 먼저 제작한 뒤, 이를 재료로 사용해 완성해야 합니다.
 
-<p align="center">
-  <img src="Docs/images/craft_panel.png" width="400" alt="작업대">
-  <img src="Docs/images/cauldron_panel.png" width="400" alt="가마솥">
-</p>
+<table>
+  <tr>
+    <th>작업대 제작</th>
+    <th>가마솥 요리</th>
+  </tr>
+  <tr>
+    <td><img src="Docs/images/제작대.gif" width="380" alt="작업대에서 아이템 제작"></td>
+    <td><img src="Docs/images/가마솥.gif" width="380" alt="가마솥에서 음식 요리"></td>
+  </tr>
+</table>
 
 ### ⬆️ 거점 업그레이드
 
@@ -87,7 +106,7 @@ flowchart TD
 
 이동 속도, 공격 속도, 낮의 지속 시간, 인벤토리 용량, 저장소 용량 등 **5개 항목**을 업그레이드할 수 있습니다.
 
-<p align="center"><img src="Docs/images/upgrade_panel.png" width="400" alt="거점 업그레이드"></p>
+<p align="center"><img src="Docs/images/거점%20업그레이드.gif" width="600" alt="거점 업그레이드"></p>
 
 ### ⛩️ 제단과 공물
 
@@ -96,7 +115,7 @@ flowchart TD
 
 공물은 기한 내에 여러 번 나누어 바칠 수 있으며, 주기가 반복될수록 요구되는 공물 가치가 증가합니다.
 
-<p align="center"><img src="Docs/images/altar_panel.png" width="400" alt="제단 공물 제출"></p>
+<p align="center"><img src="Docs/images/공물%20제출.gif" width="600" alt="제단에 공물 제출"></p>
 
 ### ❤️ 생존
 
@@ -106,7 +125,7 @@ flowchart TD
 체력은 오두막에서 잠을 자거나 회복 효과가 있는 음식을 먹어 회복할 수 있습니다.
 단, 허기진 상태로 잠들면 취침 시 페널티를 받습니다.
 
-<p align="center"><img src="Docs/images/survival_hud.png" width="240" alt="체력과 배고픔"></p>
+<p align="center"><img src="Docs/images/체력과%20배고픔.png" width="240" alt="체력과 배고픔 HUD"></p>
 
 ---
 
