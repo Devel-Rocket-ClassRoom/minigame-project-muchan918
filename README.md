@@ -52,7 +52,20 @@ flowchart TD
     style Bad fill:#6b2222,stroke:#4a1717,color:#fff
 ```
 
-<p align="center"><img src="Docs/images/낮%20밤%20전환.gif" width="600" alt="낮과 밤 전환"></p>
+### 🌙 오두막 취침
+
+<p align="center"><img src="Docs/images/낮%20밤%20전환.gif" width="600" alt="오두막에서 취침하고 다음 날 시작"></p>
+
+<table>
+  <tr>
+    <th>공물 제출 완료</th>
+    <th>공물 제출 실패</th>
+  </tr>
+  <tr>
+    <td><img src="Docs/images/공물%20제출%20완료.gif" width="380" alt="공물 요구 조건을 충족해 다음 주기로 진행"></td>
+    <td><img src="Docs/images/공물%20제출%20실패.gif" width="380" alt="공물 요구 조건을 충족하지 못해 제물 엔딩"></td>
+  </tr>
+</table>
 
 ---
 
