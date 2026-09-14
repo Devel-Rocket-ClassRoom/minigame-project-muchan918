@@ -1,4 +1,4 @@
-<div align="center">
+<div>
 
 # 🌲 7Days
 
@@ -8,8 +8,6 @@
 ![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?logo=android&logoColor=white)
 ![Render](https://img.shields.io/badge/Render-URP-blue)
 ![Genre](https://img.shields.io/badge/Genre-Survival%20%2F%20Crafting-orange)
-
-<br><br>
 
 <img src="Docs/images/title.png" width="800" alt="7Days 타이틀 화면">
 
@@ -60,10 +58,10 @@ flowchart TD
 ### 🪓 채집과 사냥
 
 참나무, 바위, 덤불부터 석탄·철·금·다이아몬드·루비까지 **9종의 자원**이 숲에 흩어져 있습니다.
-자원마다 체력이 있어 좋은 도구일수록 빨리 캡니다. 루비 광맥은 맨손으로는 답이 없습니다.
+자원마다 체력이 있어 좋은 도구일수록 빨리 캡니다.
 
 **18종의 동물**이 살고 있습니다. 토끼·양·여우처럼 도망치는 동물도 있고,
-곰·사자·호랑이·악어처럼 **먼저 달려드는 동물**도 있습니다. 코뿔소와 악어는 체력 120.
+곰·사자·호랑이·악어처럼 **먼저 달려드는 동물**도 있습니다.
 
 <p align="center"><img src="Docs/images/gather_hunt.gif" width="600" alt="채집과 사냥"></p>
 
