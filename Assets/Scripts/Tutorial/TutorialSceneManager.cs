@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public enum TutorialStep
@@ -165,6 +166,13 @@ public class TutorialSceneManager : MonoBehaviour
 
     private void Update()
     {
+        if (Keyboard.current != null && Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            GamePause.Resume();
+            OnTutorialComplete(showGuide: false);
+            return;
+        }
+
         switch (CurrentStep)
         {
             case TutorialStep.Move:
@@ -427,9 +435,9 @@ public class TutorialSceneManager : MonoBehaviour
         }
     }
 
-    private void OnTutorialComplete()
+    private void OnTutorialComplete(bool showGuide = true)
     {
-        PlayerPrefs.SetInt("ShowTutorialOnStart", 1);
+        PlayerPrefs.SetInt("ShowTutorialOnStart", showGuide ? 1 : 0);
         PlayerPrefs.Save();
         SceneManager.LoadScene("MainGameScene");
     }
