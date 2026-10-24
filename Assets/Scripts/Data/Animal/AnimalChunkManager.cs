@@ -4,7 +4,11 @@ using UnityEngine;
 public class AnimalChunkManager : MonoBehaviour
 {
     public const int CHUNK_SIZE = 10;
-    private const int ACTIVE_RADIUS = 2;
+    [SerializeField, Min(0)]
+    [Tooltip("플레이어 청크 기준 활성 반경(청크 단위). 활성 영역: (2R+1) × (2R+1)")]
+    private int activeRadius = 2;
+
+    private int _lastActiveRadius = -1;
 
     public static AnimalChunkManager Instance { get; private set; }
 
@@ -103,7 +107,9 @@ public class AnimalChunkManager : MonoBehaviour
         if (_playerTransform == null)
             return;
 
-        if (WorldToChunk(_playerTransform.position) == _lastPlayerChunk)
+        activeRadius = Mathf.Max(0, activeRadius);
+        if (WorldToChunk(_playerTransform.position) == _lastPlayerChunk
+            && activeRadius == _lastActiveRadius)
             return;
 
         UpdateChunks();
@@ -113,10 +119,12 @@ public class AnimalChunkManager : MonoBehaviour
     {
         var playerChunk = WorldToChunk(_playerTransform.position);
         _lastPlayerChunk = playerChunk;
+        activeRadius = Mathf.Max(0, activeRadius);
+        _lastActiveRadius = activeRadius;
 
         var newActiveChunks = new HashSet<Vector2Int>();
-        for (int dy = -ACTIVE_RADIUS; dy <= ACTIVE_RADIUS; dy++)
-        for (int dx = -ACTIVE_RADIUS; dx <= ACTIVE_RADIUS; dx++)
+        for (int dy = -activeRadius; dy <= activeRadius; dy++)
+        for (int dx = -activeRadius; dx <= activeRadius; dx++)
             newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
 
         foreach (var coord in _activeChunks)
