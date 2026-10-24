@@ -19,19 +19,19 @@ public class MapData
     public readonly List<Vector2Int> MidTiles = new();
     public readonly List<Vector2Int> FarTiles = new();
 
-    private readonly TileType[,] _tiles;
-    private readonly int _baseSize = 30;
+    private readonly TileType[,] tiles;
+    private readonly int baseSize = 30;
 
-    private readonly float _nearZoneRadius;
-    private readonly float _midZoneRadius;
+    private readonly float nearZoneRadius;
+    private readonly float midZoneRadius;
 
     public MapData(int width, int height, int seed, float nearZoneRadius, float midZoneRadius)
     {
         Width = width;
         Height = height;
-        _tiles = new TileType[height, width];
-        _nearZoneRadius = nearZoneRadius;
-        _midZoneRadius = midZoneRadius;
+        tiles = new TileType[height, width];
+        this.nearZoneRadius = nearZoneRadius;
+        this.midZoneRadius = midZoneRadius;
         Generate(seed);
         CacheTiles();
     }
@@ -43,7 +43,7 @@ public class MapData
         // 1단계: 전체 Ground 초기화
         for (int y = 0; y < Height; y++)
         for (int x = 0; x < Width; x++)
-            _tiles[y, x] = TileType.Ground;
+            tiles[y, x] = TileType.Ground;
 
         // 2단계: 물 웅덩이 Spread
         int waterSeedCount = (Width * Height) / 2000;
@@ -57,15 +57,15 @@ public class MapData
         // 3단계: Ground 중 일부를 GrassGround로
         for (int y = 0; y < Height; y++)
         for (int x = 0; x < Width; x++)
-            if (_tiles[y, x] == TileType.Ground && random.NextDouble() < 0.3)
-                _tiles[y, x] = TileType.GrassGround;
+            if (tiles[y, x] == TileType.Ground && random.NextDouble() < 0.3)
+                tiles[y, x] = TileType.GrassGround;
     }
 
     private void CacheTiles()
     {
         int halfWidth = Width / 2;
         int halfHeight = Height / 2;
-        int baseHalf = _baseSize / 2;
+        int baseHalf = baseSize / 2;
 
         for (int y = 0; y < Height; y++)
         for (int x = 0; x < Width; x++)
@@ -75,15 +75,15 @@ public class MapData
 
             if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
                 continue;
-            if (_tiles[y, x] != TileType.Ground && _tiles[y, x] != TileType.GrassGround)
+            if (tiles[y, x] != TileType.Ground && tiles[y, x] != TileType.GrassGround)
                 continue;
 
             float dist = Mathf.Sqrt(wx * wx + wy * wy);
             var coord = new Vector2Int(wx, wy);
 
-            if (dist < _nearZoneRadius)
+            if (dist < nearZoneRadius)
                 NearTiles.Add(coord);
-            else if (dist < _midZoneRadius)
+            else if (dist < midZoneRadius)
                 MidTiles.Add(coord);
             else
                 FarTiles.Add(coord);
@@ -95,7 +95,7 @@ public class MapData
         int x = worldCoord.x + Width / 2;
         int y = worldCoord.y + Height / 2;
         if (InBounds(x, y))
-            _tiles[y, x] = type;
+            tiles[y, x] = type;
     }
 
     private void Spread(
@@ -109,12 +109,12 @@ public class MapData
     {
         if (depth <= 0 || !InBounds(tx, ty))
             return;
-        if (_tiles[ty, tx] == type)
+        if (tiles[ty, tx] == type)
             return;
         if (IsBaseArea(tx, ty))
             return;
 
-        _tiles[ty, tx] = type;
+        tiles[ty, tx] = type;
 
         if (random.NextDouble() < spreadChance)
             Spread(tx + 1, ty, depth - 1, type, spreadChance, random);
@@ -130,7 +130,7 @@ public class MapData
     {
         if (!InBounds(x, y))
             return TileType.Ground;
-        return _tiles[y, x];
+        return tiles[y, x];
     }
 
     public bool IsWater(int x, int y) => GetTile(x, y) == TileType.Water;
@@ -143,7 +143,7 @@ public class MapData
 
         for (int y = startY; y < startY + chunkSize; y++)
         for (int x = startX; x < startX + chunkSize; x++)
-            if (InBounds(x, y) && _tiles[y, x] == TileType.Water)
+            if (InBounds(x, y) && tiles[y, x] == TileType.Water)
                 waterCount++;
 
         return (float)waterCount / (chunkSize * chunkSize);
@@ -153,7 +153,7 @@ public class MapData
     {
         int cx = Width / 2;
         int cy = Height / 2;
-        int half = _baseSize / 2;
+        int half = baseSize / 2;
         return x >= cx - half && x <= cx + half && y >= cy - half && y <= cy + half;
     }
 

@@ -42,7 +42,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     protected Vector3 MoveDirection { get; set; }
 
     // 현재 속한 청크 좌표
-    private Vector2Int _currentChunk;
+    private Vector2Int currentChunk;
     public Vector3 SpawnPosition { get; set; }
 
     protected virtual void Start()
@@ -58,7 +58,7 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
         SetAnimatorController();
 
         // 초기 청크 좌표 저장
-        _currentChunk = AnimalChunkManager.Instance.WorldToChunk(transform.position);
+        currentChunk = AnimalChunkManager.Instance.WorldToChunk(transform.position);
 
         CurrentState = AnimalState.Idle;
         stateTimer = Random.Range(Asset.IdleDurationMin, Asset.IdleDurationMax);
@@ -85,10 +85,10 @@ public abstract class Animal : MonoBehaviour, IDefender, IDroppable
     protected virtual void UpdateChunk()
     {
         var newChunk = AnimalChunkManager.Instance.WorldToChunk(transform.position);
-        if (newChunk != _currentChunk)
+        if (newChunk != currentChunk)
         {
-            AnimalChunkManager.Instance.UpdateAnimalChunk(this, _currentChunk, newChunk);
-            _currentChunk = newChunk;
+            AnimalChunkManager.Instance.UpdateAnimalChunk(this, currentChunk, newChunk);
+            currentChunk = newChunk;
         }
     }
 

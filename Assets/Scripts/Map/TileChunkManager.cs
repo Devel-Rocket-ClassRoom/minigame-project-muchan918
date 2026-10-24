@@ -8,7 +8,7 @@ public class TileChunkManager : MonoBehaviour
     [Tooltip("플레이어 청크 기준 활성 반경(청크 단위). 활성 영역: (2R+1) × (2R+1)")]
     private int activeRadius = 3;
 
-    private int _lastActiveRadius = -1;
+    private int lastActiveRadius = -1;
 
     public static TileChunkManager Instance { get; private set; }
 
@@ -30,13 +30,13 @@ public class TileChunkManager : MonoBehaviour
         public List<GameObject> SpawnedObjects = new();
     }
 
-    private Dictionary<Vector2Int, ChunkData> _chunks = new();
-    private HashSet<Vector2Int> _activeChunks = new();
-    private Vector2Int _lastPlayerChunk = new(int.MinValue, int.MinValue);
+    private Dictionary<Vector2Int, ChunkData> chunks = new();
+    private HashSet<Vector2Int> activeChunks = new();
+    private Vector2Int lastPlayerChunk = new(int.MinValue, int.MinValue);
 
-    private Transform _tileParent;
-    private Transform _playerTransform;
-    private System.Random _random;
+    private Transform tileParent;
+    private Transform playerTransform;
+    private System.Random random;
 
     private void Awake()
     {
@@ -51,8 +51,8 @@ public class TileChunkManager : MonoBehaviour
     public void Initialize(MapData mapData, Transform tileParent, int seed, int borderSize = 30)
     {
         Clear();
-        _tileParent = tileParent;
-        _random = new System.Random(seed);
+        this.tileParent = tileParent;
+        random = new System.Random(seed);
 
         int halfWidth = mapData.Width / 2;
         int halfHeight = mapData.Height / 2;
@@ -91,48 +91,48 @@ public class TileChunkManager : MonoBehaviour
 
     public void StartTracking(Transform playerTransform)
     {
-        _playerTransform = playerTransform;
-        _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
+        this.playerTransform = playerTransform;
+        lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
         UpdateChunks();
     }
 
     private void Update()
     {
-        if (_playerTransform == null)
+        if (playerTransform == null)
             return;
         activeRadius = Mathf.Max(0, activeRadius);
-        if (WorldToChunk(_playerTransform.position) == _lastPlayerChunk
-            && activeRadius == _lastActiveRadius)
+        if (WorldToChunk(playerTransform.position) == lastPlayerChunk
+            && activeRadius == lastActiveRadius)
             return;
         UpdateChunks();
     }
 
     private void UpdateChunks()
     {
-        var playerChunk = WorldToChunk(_playerTransform.position);
-        _lastPlayerChunk = playerChunk;
+        var playerChunk = WorldToChunk(playerTransform.position);
+        lastPlayerChunk = playerChunk;
         activeRadius = Mathf.Max(0, activeRadius);
-        _lastActiveRadius = activeRadius;
+        lastActiveRadius = activeRadius;
 
         var newActiveChunks = new HashSet<Vector2Int>();
         for (int dy = -activeRadius; dy <= activeRadius; dy++)
         for (int dx = -activeRadius; dx <= activeRadius; dx++)
             newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
 
-        foreach (var coord in _activeChunks)
+        foreach (var coord in activeChunks)
             if (!newActiveChunks.Contains(coord))
                 DeactivateChunk(coord);
 
         foreach (var coord in newActiveChunks)
-            if (!_activeChunks.Contains(coord))
+            if (!activeChunks.Contains(coord))
                 ActivateChunk(coord);
 
-        _activeChunks = newActiveChunks;
+        activeChunks = newActiveChunks;
     }
 
     private void ActivateChunk(Vector2Int chunkCoord)
     {
-        if (!_chunks.TryGetValue(chunkCoord, out var chunk))
+        if (!chunks.TryGetValue(chunkCoord, out var chunk))
             return;
 
         if (chunk.PendingTiles.Count > 0)
@@ -142,7 +142,7 @@ public class TileChunkManager : MonoBehaviour
                 var prefab = GetPrefab(type);
                 if (prefab == null)
                     continue;
-                var obj = Instantiate(prefab, pos, Quaternion.identity, _tileParent);
+                var obj = Instantiate(prefab, pos, Quaternion.identity, tileParent);
                 chunk.SpawnedObjects.Add(obj);
             }
             chunk.PendingTiles.Clear();
@@ -155,7 +155,7 @@ public class TileChunkManager : MonoBehaviour
 
     private void DeactivateChunk(Vector2Int chunkCoord)
     {
-        if (!_chunks.TryGetValue(chunkCoord, out var chunk))
+        if (!chunks.TryGetValue(chunkCoord, out var chunk))
             return;
         foreach (var obj in chunk.SpawnedObjects)
             if (obj != null)
@@ -169,9 +169,9 @@ public class TileChunkManager : MonoBehaviour
             TileType.Water => waterTilePrefab,
             TileType.Border => borderTilePrefab,
             TileType.GrassGround => grassGroundTilePrefabs[
-                _random.Next(0, grassGroundTilePrefabs.Length)
+                random.Next(0, grassGroundTilePrefabs.Length)
             ],
-            _ => groundTilePrefabs[_random.Next(0, groundTilePrefabs.Length)],
+            _ => groundTilePrefabs[random.Next(0, groundTilePrefabs.Length)],
         };
     }
 
@@ -185,19 +185,19 @@ public class TileChunkManager : MonoBehaviour
 
     private ChunkData GetOrCreateChunk(Vector2Int coord)
     {
-        if (!_chunks.TryGetValue(coord, out var chunk))
+        if (!chunks.TryGetValue(coord, out var chunk))
         {
             chunk = new ChunkData();
-            _chunks[coord] = chunk;
+            chunks[coord] = chunk;
         }
         return chunk;
     }
 
     public void Clear()
     {
-        _chunks.Clear();
-        _activeChunks.Clear();
-        _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
-        _playerTransform = null;
+        chunks.Clear();
+        activeChunks.Clear();
+        lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
+        playerTransform = null;
     }
 }

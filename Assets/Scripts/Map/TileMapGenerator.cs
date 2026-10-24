@@ -23,13 +23,13 @@ public class TileMapGenerator : MonoBehaviour
     [SerializeField]
     private float midZoneRadius = 100f;
 
-    private MapData _mapData;
+    private MapData mapData;
     private ResourceGenerator resourceGenerator;
     private AnimalGenerator animalGenerator;
-    private Transform _tileParent;
+    private Transform tileParent;
     private bool isClear = false;
 
-    public MapData MapData => _mapData;
+    public MapData MapData => mapData;
     public int CurrentSeed { get; private set; }
 
     private void Awake()
@@ -56,12 +56,12 @@ public class TileMapGenerator : MonoBehaviour
             LoadingUI.Instance.ShowInit();
 
         CurrentSeed = seed == 0 ? Random.Range(1, 999999) : seed;
-        _mapData = new MapData(mapWidth, mapHeight, CurrentSeed, nearZoneRadius, midZoneRadius);
+        mapData = new MapData(mapWidth, mapHeight, CurrentSeed, nearZoneRadius, midZoneRadius);
 
-        _tileParent = new GameObject("Ground").transform;
-        _tileParent.SetParent(transform);
+        tileParent = new GameObject("Ground").transform;
+        tileParent.SetParent(transform);
 
-        TileChunkManager.Instance.Initialize(_mapData, _tileParent, CurrentSeed);
+        TileChunkManager.Instance.Initialize(mapData, tileParent, CurrentSeed);
 
         StartCoroutine(GenerateSequence());
     }
@@ -110,8 +110,8 @@ public class TileMapGenerator : MonoBehaviour
 
     private void ClearMap()
     {
-        if (_tileParent != null)
-            Destroy(_tileParent.gameObject);
+        if (tileParent != null)
+            Destroy(tileParent.gameObject);
 
         TileChunkManager.Instance.Clear();
         ResourceChunkManager.Instance.Clear();

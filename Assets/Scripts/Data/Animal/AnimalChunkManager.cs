@@ -8,7 +8,7 @@ public class AnimalChunkManager : MonoBehaviour
     [Tooltip("플레이어 청크 기준 활성 반경(청크 단위). 활성 영역: (2R+1) × (2R+1)")]
     private int activeRadius = 2;
 
-    private int _lastActiveRadius = -1;
+    private int lastActiveRadius = -1;
 
     public static AnimalChunkManager Instance { get; private set; }
 
@@ -24,15 +24,15 @@ public class AnimalChunkManager : MonoBehaviour
         public List<Animal> SpawnedAnimals = new();
     }
 
-    private Dictionary<Vector2Int, ChunkData> _chunks = new();
-    private HashSet<Vector2Int> _activeChunks = new();
-    private Vector2Int _lastPlayerChunk = new(int.MinValue, int.MinValue);
+    private Dictionary<Vector2Int, ChunkData> chunks = new();
+    private HashSet<Vector2Int> activeChunks = new();
+    private Vector2Int lastPlayerChunk = new(int.MinValue, int.MinValue);
 
-    private Transform _animalParent;
-    private Transform _playerTransform;
+    private Transform animalParent;
+    private Transform playerTransform;
 
-    private readonly HashSet<Vector2> _deadSpawnPositions = new();
-    public IReadOnlyCollection<Vector2> DeadSpawnPositions => _deadSpawnPositions;
+    private readonly HashSet<Vector2> deadSpawnPositions = new();
+    public IReadOnlyCollection<Vector2> DeadSpawnPositions => deadSpawnPositions;
 
     private void Awake()
     {
@@ -47,17 +47,17 @@ public class AnimalChunkManager : MonoBehaviour
     // 맵 생성 시 AnimalGenerator가 호출
     public void Initialize(Transform animalParent)
     {
-        _chunks.Clear();
-        _activeChunks.Clear();
-        _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
-        _animalParent = animalParent;
+        chunks.Clear();
+        activeChunks.Clear();
+        lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
+        this.animalParent = animalParent;
     }
 
     // 스폰 정보만 등록 (Instantiate 안 함)
     public void RegisterSpawnInfo(Vector3 worldPosition, GameObject prefab)
     {
         var pos2D = new Vector2(worldPosition.x, worldPosition.z);
-        if (_deadSpawnPositions.Contains(pos2D))
+        if (deadSpawnPositions.Contains(pos2D))
             return;
 
         var chunkCoord = WorldToChunk(worldPosition);
@@ -68,10 +68,10 @@ public class AnimalChunkManager : MonoBehaviour
     // 동물 파괴 시 Animal.Die()가 호출
     public void UnregisterAnimal(Animal animal)
     {
-        _deadSpawnPositions.Add(new Vector2(animal.SpawnPosition.x, animal.SpawnPosition.z));
+        deadSpawnPositions.Add(new Vector2(animal.SpawnPosition.x, animal.SpawnPosition.z));
 
         var chunkCoord = WorldToChunk(animal.transform.position);
-        if (!_chunks.TryGetValue(chunkCoord, out var chunk))
+        if (!chunks.TryGetValue(chunkCoord, out var chunk))
             return;
 
         chunk.SpawnedAnimals.Remove(animal);
@@ -80,14 +80,14 @@ public class AnimalChunkManager : MonoBehaviour
     // 동물이 청크를 이동했을 때 Animal이 호출
     public void UpdateAnimalChunk(Animal animal, Vector2Int oldChunk, Vector2Int newChunk)
     {
-        if (_chunks.TryGetValue(oldChunk, out var old))
+        if (chunks.TryGetValue(oldChunk, out var old))
             old.SpawnedAnimals.Remove(animal);
 
         var next = GetOrCreateChunk(newChunk);
         next.SpawnedAnimals.Add(animal);
 
         // 새 청크가 활성 범위 밖이면 바로 비활성화
-        if (!_activeChunks.Contains(newChunk))
+        if (!activeChunks.Contains(newChunk))
         {
             animal.OnDeactivate();
             animal.gameObject.SetActive(false);
@@ -97,19 +97,19 @@ public class AnimalChunkManager : MonoBehaviour
     // 맵 생성 완료 후 TileMapGenerator가 호출
     public void StartTracking(Transform playerTransform)
     {
-        _playerTransform = playerTransform;
-        _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
+        this.playerTransform = playerTransform;
+        lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
         UpdateChunks();
     }
 
     private void Update()
     {
-        if (_playerTransform == null)
+        if (playerTransform == null)
             return;
 
         activeRadius = Mathf.Max(0, activeRadius);
-        if (WorldToChunk(_playerTransform.position) == _lastPlayerChunk
-            && activeRadius == _lastActiveRadius)
+        if (WorldToChunk(playerTransform.position) == lastPlayerChunk
+            && activeRadius == lastActiveRadius)
             return;
 
         UpdateChunks();
@@ -117,30 +117,30 @@ public class AnimalChunkManager : MonoBehaviour
 
     private void UpdateChunks()
     {
-        var playerChunk = WorldToChunk(_playerTransform.position);
-        _lastPlayerChunk = playerChunk;
+        var playerChunk = WorldToChunk(playerTransform.position);
+        lastPlayerChunk = playerChunk;
         activeRadius = Mathf.Max(0, activeRadius);
-        _lastActiveRadius = activeRadius;
+        lastActiveRadius = activeRadius;
 
         var newActiveChunks = new HashSet<Vector2Int>();
         for (int dy = -activeRadius; dy <= activeRadius; dy++)
         for (int dx = -activeRadius; dx <= activeRadius; dx++)
             newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
 
-        foreach (var coord in _activeChunks)
+        foreach (var coord in activeChunks)
             if (!newActiveChunks.Contains(coord))
                 DeactivateChunk(coord);
 
         foreach (var coord in newActiveChunks)
-            if (!_activeChunks.Contains(coord))
+            if (!activeChunks.Contains(coord))
                 ActivateChunk(coord);
 
-        _activeChunks = newActiveChunks;
+        activeChunks = newActiveChunks;
     }
 
     private void ActivateChunk(Vector2Int chunkCoord)
     {
-        if (!_chunks.TryGetValue(chunkCoord, out var chunk))
+        if (!chunks.TryGetValue(chunkCoord, out var chunk))
             return;
 
         if (chunk.PendingSpawns.Count > 0)
@@ -151,7 +151,7 @@ public class AnimalChunkManager : MonoBehaviour
                     info.Prefab,
                     info.Position,
                     Quaternion.identity,
-                    _animalParent
+                    animalParent
                 );
                 var animal = obj.GetComponent<Animal>();
                 if (animal != null)
@@ -177,7 +177,7 @@ public class AnimalChunkManager : MonoBehaviour
 
     private void DeactivateChunk(Vector2Int chunkCoord)
     {
-        if (!_chunks.TryGetValue(chunkCoord, out var chunk))
+        if (!chunks.TryGetValue(chunkCoord, out var chunk))
             return;
 
         foreach (var animal in chunk.SpawnedAnimals)
@@ -199,10 +199,10 @@ public class AnimalChunkManager : MonoBehaviour
 
     private ChunkData GetOrCreateChunk(Vector2Int coord)
     {
-        if (!_chunks.TryGetValue(coord, out var chunk))
+        if (!chunks.TryGetValue(coord, out var chunk))
         {
             chunk = new ChunkData();
-            _chunks[coord] = chunk;
+            chunks[coord] = chunk;
         }
         return chunk;
     }
@@ -210,28 +210,28 @@ public class AnimalChunkManager : MonoBehaviour
     // 맵 재생성 시 호출
     public void Clear()
     {
-        _chunks.Clear();
-        _activeChunks.Clear();
-        _lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
-        _playerTransform = null;
+        chunks.Clear();
+        activeChunks.Clear();
+        lastPlayerChunk = new Vector2Int(int.MinValue, int.MinValue);
+        playerTransform = null;
     }
 
     public void ClearDeadPositions()
     {
-        _deadSpawnPositions.Clear();
+        deadSpawnPositions.Clear();
     }
 
     public void LoadDeadPositions(List<Vector2> positions)
     {
-        _deadSpawnPositions.Clear();
+        deadSpawnPositions.Clear();
         foreach (var pos in positions)
-            _deadSpawnPositions.Add(pos);
-        Debug.Log($"[Animal] 죽은 위치 로드: {_deadSpawnPositions.Count}개");
+            deadSpawnPositions.Add(pos);
+        Debug.Log($"[Animal] 죽은 위치 로드: {deadSpawnPositions.Count}개");
     }
 
     public void ResetLivingAnimals()
     {
-        foreach (var chunk in _chunks.Values)
+        foreach (var chunk in chunks.Values)
         foreach (var animal in chunk.SpawnedAnimals)
             if (animal != null)
                 animal.ResetToSpawn();

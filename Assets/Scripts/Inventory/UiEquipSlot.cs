@@ -8,18 +8,18 @@ public class UiEquipSlot : MonoBehaviour
     public Image imageIcon;
     public Button button;
 
-    private ItemAsset _equippedItem;
+    private ItemAsset equippedItem;
 
     public void SetItem(ItemAsset asset)
     {
-        _equippedItem = asset;
+        equippedItem = asset;
         imageIcon.sprite = asset.Icon;
         item.SetActive(true);
     }
 
     public void SetEmpty()
     {
-        _equippedItem = null;
+        equippedItem = null;
         imageIcon.sprite = null;
         item.SetActive(false);
     }

@@ -9,13 +9,13 @@ public class PlayerEquipment : MonoBehaviour
     [SerializeField]
     private PreviewEquipment previewEquipment;
 
-    private Transform _partsRoot;
+    private Transform partsRoot;
     private readonly Dictionary<
         EquipSlotType,
         (string partsName, int index, ItemAsset item, int value, EquipmentData data)
-    > _equipped = new();
+    > equipped = new();
 
-    private readonly Dictionary<EquipSlotType, (string partsName, int index)> _defaults = new()
+    private readonly Dictionary<EquipSlotType, (string partsName, int index)> defaults = new()
     {
         { EquipSlotType.Top, ("Top", 1) },
         { EquipSlotType.Bottom, ("Bottom", 1) },
@@ -29,7 +29,7 @@ public class PlayerEquipment : MonoBehaviour
             return;
         }
         Instance = this;
-        _partsRoot = transform.Find("Parts");
+        partsRoot = transform.Find("Parts");
     }
 
     public void Equip(EquipmentAsset asset, ItemAsset item)
@@ -47,7 +47,7 @@ public class PlayerEquipment : MonoBehaviour
         UnEquip(data.SlotType);
         SetDefaultActive(data.SlotType, false);
 
-        Transform partsObj = _partsRoot.Find(data.PartsName);
+        Transform partsObj = partsRoot.Find(data.PartsName);
         if (partsObj == null)
         {
             Debug.LogWarning($"Parts에서 {data.PartsName} 못 찾음");
@@ -62,7 +62,7 @@ public class PlayerEquipment : MonoBehaviour
         }
 
         partsObj.GetChild(index).gameObject.SetActive(true);
-        _equipped[data.SlotType] = (data.PartsName, index, item, data.Value, data);
+        equipped[data.SlotType] = (data.PartsName, index, item, data.Value, data);
 
         ApplyValue(data.SlotType, data.Value);
 
@@ -71,17 +71,17 @@ public class PlayerEquipment : MonoBehaviour
 
     public ItemAsset UnEquip(EquipSlotType slot)
     {
-        if (!_equipped.TryGetValue(slot, out var current))
+        if (!equipped.TryGetValue(slot, out var current))
         {
             SetDefaultActive(slot, true);
             return null;
         }
 
-        Transform partsObj = _partsRoot.Find(current.partsName);
+        Transform partsObj = partsRoot.Find(current.partsName);
         if (partsObj != null)
             partsObj.GetChild(current.index).gameObject.SetActive(false);
 
-        _equipped.Remove(slot);
+        equipped.Remove(slot);
         SetDefaultActive(slot, true);
 
         ApplyValue(slot, -current.value);
@@ -93,21 +93,21 @@ public class PlayerEquipment : MonoBehaviour
 
     public void UnEquipAll()
     {
-        foreach (var slot in _equipped.Keys.ToList())
+        foreach (var slot in equipped.Keys.ToList())
             UnEquip(slot);
     }
 
     public ItemAsset GetEquippedItem(EquipSlotType slot)
     {
-        _equipped.TryGetValue(slot, out var current);
+        equipped.TryGetValue(slot, out var current);
         return current.item;
     }
 
-    public bool IsEquipped(EquipSlotType slot) => _equipped.ContainsKey(slot);
+    public bool IsEquipped(EquipSlotType slot) => equipped.ContainsKey(slot);
 
     public EquipmentData GetWeaponRightData()
     {
-        if (!_equipped.TryGetValue(EquipSlotType.WeaponRight, out var current))
+        if (!equipped.TryGetValue(EquipSlotType.WeaponRight, out var current))
             return null;
 
         return current.data;
@@ -123,20 +123,20 @@ public class PlayerEquipment : MonoBehaviour
 
     private void SetDefaultActive(EquipSlotType slot, bool active)
     {
-        if (!_defaults.TryGetValue(slot, out var def))
+        if (!defaults.TryGetValue(slot, out var def))
             return;
 
-        Transform partsObj = _partsRoot.Find(def.partsName);
+        Transform partsObj = partsRoot.Find(def.partsName);
         if (partsObj != null && def.index < partsObj.childCount)
             partsObj.GetChild(def.index).gameObject.SetActive(active);
     }
 
     public bool IsAllEquipped()
     {
-        return _equipped.ContainsKey(EquipSlotType.WeaponRight)
-            && _equipped.ContainsKey(EquipSlotType.Hat)
-            && _equipped.ContainsKey(EquipSlotType.Top)
-            && _equipped.ContainsKey(EquipSlotType.Bottom)
-            && _equipped.ContainsKey(EquipSlotType.Shoes);
+        return equipped.ContainsKey(EquipSlotType.WeaponRight)
+            && equipped.ContainsKey(EquipSlotType.Hat)
+            && equipped.ContainsKey(EquipSlotType.Top)
+            && equipped.ContainsKey(EquipSlotType.Bottom)
+            && equipped.ContainsKey(EquipSlotType.Shoes);
     }
 }

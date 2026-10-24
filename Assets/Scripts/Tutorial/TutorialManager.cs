@@ -37,7 +37,7 @@ public class TutorialManager : MonoBehaviour
     [SerializeField]
     private Button completeButton;
 
-    private int _currentPage = 0;
+    private int currentPage = 0;
 
     private void Awake()
     {
@@ -50,7 +50,7 @@ public class TutorialManager : MonoBehaviour
 
     public void Show()
     {
-        _currentPage = 0;
+        currentPage = 0;
         panel.SetActive(true);
         GamePause.Pause();
         UpdatePage();
@@ -64,32 +64,32 @@ public class TutorialManager : MonoBehaviour
 
     private void UpdatePage()
     {
-        var data = pages[_currentPage];
+        var data = pages[currentPage];
         titleText.text = data.title;
         pageImage.sprite = data.image;
         descriptionText.text = data.description;
-        pageText.text = $"{_currentPage + 1} / {pages.Count}";
+        pageText.text = $"{currentPage + 1} / {pages.Count}";
 
-        bool isLastPage = _currentPage == pages.Count - 1;
-        prevButton.gameObject.SetActive(_currentPage > 0);
+        bool isLastPage = currentPage == pages.Count - 1;
+        prevButton.gameObject.SetActive(currentPage > 0);
         nextButton.gameObject.SetActive(!isLastPage);
         completeButton.gameObject.SetActive(isLastPage);
     }
 
     private void OnClickNext()
     {
-        if (_currentPage < pages.Count - 1)
+        if (currentPage < pages.Count - 1)
         {
-            _currentPage++;
+            currentPage++;
             UpdatePage();
         }
     }
 
     private void OnClickPrev()
     {
-        if (_currentPage > 0)
+        if (currentPage > 0)
         {
-            _currentPage--;
+            currentPage--;
             UpdatePage();
         }
     }
