@@ -59,34 +59,34 @@ public class TileChunkManager : MonoBehaviour
         int baseHalf = 15;
 
         for (int y = 0; y < mapData.Height; y++)
-        for (int x = 0; x < mapData.Width; x++)
-        {
-            int wx = x - halfWidth;
-            int wy = y - halfHeight;
+            for (int x = 0; x < mapData.Width; x++)
+            {
+                int wx = x - halfWidth;
+                int wy = y - halfHeight;
 
-            if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
-                continue;
+                if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
+                    continue;
 
-            TileType type = mapData.GetTile(x, y);
-            var pos = new Vector3(wx, 0f, wy);
-            var chunkCoord = WorldToChunk(pos);
+                TileType type = mapData.GetTile(x, y);
+                var pos = new Vector3(wx, 0f, wy);
+                var chunkCoord = WorldToChunk(pos);
 
-            var chunk = GetOrCreateChunk(chunkCoord);
-            chunk.PendingTiles.Add((pos, type));
-        }
+                var chunk = GetOrCreateChunk(chunkCoord);
+                chunk.PendingTiles.Add((pos, type));
+            }
 
         // 외곽 Water 타일
         for (int wx = -(halfWidth + borderSize); wx < halfWidth + borderSize; wx++)
-        for (int wy = -(halfHeight + borderSize); wy < halfHeight + borderSize; wy++)
-        {
-            bool insideMap =
-                wx >= -halfWidth && wx < halfWidth && wy >= -halfHeight && wy < halfHeight;
-            if (insideMap)
-                continue;
+            for (int wy = -(halfHeight + borderSize); wy < halfHeight + borderSize; wy++)
+            {
+                bool insideMap =
+                    wx >= -halfWidth && wx < halfWidth && wy >= -halfHeight && wy < halfHeight;
+                if (insideMap)
+                    continue;
 
-            var pos = new Vector3(wx, 0f, wy);
-            GetOrCreateChunk(WorldToChunk(pos)).PendingTiles.Add((pos, TileType.Border));
-        }
+                var pos = new Vector3(wx, 0f, wy);
+                GetOrCreateChunk(WorldToChunk(pos)).PendingTiles.Add((pos, TileType.Border));
+            }
     }
 
     public void StartTracking(Transform playerTransform)
@@ -116,8 +116,8 @@ public class TileChunkManager : MonoBehaviour
 
         var newActiveChunks = new HashSet<Vector2Int>();
         for (int dy = -activeRadius; dy <= activeRadius; dy++)
-        for (int dx = -activeRadius; dx <= activeRadius; dx++)
-            newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
+            for (int dx = -activeRadius; dx <= activeRadius; dx++)
+                newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
 
         foreach (var coord in activeChunks)
             if (!newActiveChunks.Contains(coord))

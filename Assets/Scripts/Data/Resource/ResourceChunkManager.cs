@@ -114,8 +114,8 @@ public class ResourceChunkManager : MonoBehaviour
 
         var newActiveChunks = new HashSet<Vector2Int>();
         for (int dy = -activeRadius; dy <= activeRadius; dy++)
-        for (int dx = -activeRadius; dx <= activeRadius; dx++)
-            newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
+            for (int dx = -activeRadius; dx <= activeRadius; dx++)
+                newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
 
         foreach (var coord in activeChunks)
             if (!newActiveChunks.Contains(coord))

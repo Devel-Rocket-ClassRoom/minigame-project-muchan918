@@ -42,8 +42,8 @@ public class MapData
 
         // 1단계: 전체 Ground 초기화
         for (int y = 0; y < Height; y++)
-        for (int x = 0; x < Width; x++)
-            tiles[y, x] = TileType.Ground;
+            for (int x = 0; x < Width; x++)
+                tiles[y, x] = TileType.Ground;
 
         // 2단계: 물 웅덩이 Spread
         int waterSeedCount = (Width * Height) / 2000;
@@ -56,9 +56,9 @@ public class MapData
 
         // 3단계: Ground 중 일부를 GrassGround로
         for (int y = 0; y < Height; y++)
-        for (int x = 0; x < Width; x++)
-            if (tiles[y, x] == TileType.Ground && random.NextDouble() < 0.3)
-                tiles[y, x] = TileType.GrassGround;
+            for (int x = 0; x < Width; x++)
+                if (tiles[y, x] == TileType.Ground && random.NextDouble() < 0.3)
+                    tiles[y, x] = TileType.GrassGround;
     }
 
     private void CacheTiles()
@@ -68,26 +68,26 @@ public class MapData
         int baseHalf = baseSize / 2;
 
         for (int y = 0; y < Height; y++)
-        for (int x = 0; x < Width; x++)
-        {
-            int wx = x - halfWidth;
-            int wy = y - halfHeight;
+            for (int x = 0; x < Width; x++)
+            {
+                int wx = x - halfWidth;
+                int wy = y - halfHeight;
 
-            if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
-                continue;
-            if (tiles[y, x] != TileType.Ground && tiles[y, x] != TileType.GrassGround)
-                continue;
+                if (wx >= -baseHalf && wx < baseHalf && wy >= -baseHalf && wy < baseHalf)
+                    continue;
+                if (tiles[y, x] != TileType.Ground && tiles[y, x] != TileType.GrassGround)
+                    continue;
 
-            float dist = Mathf.Sqrt(wx * wx + wy * wy);
-            var coord = new Vector2Int(wx, wy);
+                float dist = Mathf.Sqrt(wx * wx + wy * wy);
+                var coord = new Vector2Int(wx, wy);
 
-            if (dist < nearZoneRadius)
-                NearTiles.Add(coord);
-            else if (dist < midZoneRadius)
-                MidTiles.Add(coord);
-            else
-                FarTiles.Add(coord);
-        }
+                if (dist < nearZoneRadius)
+                    NearTiles.Add(coord);
+                else if (dist < midZoneRadius)
+                    MidTiles.Add(coord);
+                else
+                    FarTiles.Add(coord);
+            }
     }
 
     public void SetTile(Vector2Int worldCoord, TileType type)
@@ -142,9 +142,9 @@ public class MapData
         int waterCount = 0;
 
         for (int y = startY; y < startY + chunkSize; y++)
-        for (int x = startX; x < startX + chunkSize; x++)
-            if (InBounds(x, y) && tiles[y, x] == TileType.Water)
-                waterCount++;
+            for (int x = startX; x < startX + chunkSize; x++)
+                if (InBounds(x, y) && tiles[y, x] == TileType.Water)
+                    waterCount++;
 
         return (float)waterCount / (chunkSize * chunkSize);
     }

@@ -124,8 +124,8 @@ public class AnimalChunkManager : MonoBehaviour
 
         var newActiveChunks = new HashSet<Vector2Int>();
         for (int dy = -activeRadius; dy <= activeRadius; dy++)
-        for (int dx = -activeRadius; dx <= activeRadius; dx++)
-            newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
+            for (int dx = -activeRadius; dx <= activeRadius; dx++)
+                newActiveChunks.Add(new Vector2Int(playerChunk.x + dx, playerChunk.y + dy));
 
         foreach (var coord in activeChunks)
             if (!newActiveChunks.Contains(coord))
@@ -232,9 +232,9 @@ public class AnimalChunkManager : MonoBehaviour
     public void ResetLivingAnimals()
     {
         foreach (var chunk in chunks.Values)
-        foreach (var animal in chunk.SpawnedAnimals)
-            if (animal != null)
-                animal.ResetToSpawn();
+            foreach (var animal in chunk.SpawnedAnimals)
+                if (animal != null)
+                    animal.ResetToSpawn();
     }
 
     public void RegisterAnimal(Animal animal)
