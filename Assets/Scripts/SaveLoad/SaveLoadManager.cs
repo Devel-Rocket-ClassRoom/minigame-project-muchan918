@@ -12,7 +12,7 @@ public static class SaveLoadManager
         Encrypted, // .dat
     }
 
-    public static SaveMode Mode { get; set; } = SaveMode.Encrypted; // 여기서 모드 전환
+    public static SaveMode Mode { get; set; } = SaveMode.Text; // 여기서 모드 전환
 
     private static readonly int SaveDataVersion = 7;
     private static readonly string SaveDirectory = Path.Combine(
