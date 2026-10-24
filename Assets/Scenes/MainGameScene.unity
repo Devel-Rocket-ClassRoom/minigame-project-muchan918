@@ -88950,6 +88950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dab270fbe415a45af96e3669effbf8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ResourceChunkManager
+  activeRadius: 2
 --- !u!114 &9195796170670080762
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88962,6 +88963,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a886784249a60ed419854f9ef962beaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimalChunkManager
+  activeRadius: 2
 --- !u!114 &9195796170670080763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88974,6 +88976,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abcf5075396ba8d47bbee0ab97b2f70e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TileChunkManager
+  activeRadius: 3
   groundTilePrefabs:
   - {fileID: 1796225612067908706, guid: 4644e35a294f4cf4bbd50ca829460353, type: 3}
   grassGroundTilePrefabs:
