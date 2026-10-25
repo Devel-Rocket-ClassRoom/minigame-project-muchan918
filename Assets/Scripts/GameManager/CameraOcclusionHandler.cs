@@ -18,15 +18,10 @@ public class CameraOcclusionHandler : MonoBehaviour
     [SerializeField]
     private float sphereRadius = 0.5f;
 
-    [SerializeField]
-    private string leavesBoneName = "Leaves";
-
-    [SerializeField]
-    private string trunkBoneName = "Trunk";
-
     private Camera cam;
-    private HashSet<GameObject> hiddenLeaves = new();
-    private HashSet<Renderer> fadedRenderers = new();
+    private RaycastHit[] hitBuffer = new RaycastHit[32];
+    private List<OcclusionTarget> previousTargets = new();
+    private List<OcclusionTarget> currentTargets = new();
 
     private void Awake()
     {
@@ -35,91 +30,54 @@ public class CameraOcclusionHandler : MonoBehaviour
 
     private void Update()
     {
-        HashSet<GameObject> hitLeaves = new();
-        HashSet<Renderer> hitRenderers = new();
-
         Vector3 direction = cam.transform.position - player.position;
         float distance = direction.magnitude;
 
-        RaycastHit[] hits = Physics.SphereCastAll(
+        currentTargets.Clear();
+
+        int hitCount = Physics.SphereCastNonAlloc(
             player.position,
             sphereRadius,
             direction.normalized,
+            hitBuffer,
             distance,
             canopyLayer
         );
 
-        foreach (var hit in hits)
+        for (int i = 0; i < hitCount; i++)
         {
-            Transform canopy = hit.collider.transform;
+            OcclusionTarget target = hitBuffer[i].collider.GetComponentInParent<OcclusionTarget>();
 
-            // 나뭇잎 처리
-            Transform leaves = canopy.Find(leavesBoneName);
-            if (leaves != null)
-            {
-                hitLeaves.Add(leaves.gameObject);
-                if (leaves.gameObject.activeSelf)
-                {
-                    leaves.gameObject.SetActive(false);
-                    hiddenLeaves.Add(leaves.gameObject);
-                }
-            }
-
-            // 줄기 처리
-            Transform trunk = canopy.Find(trunkBoneName);
-            if (trunk != null)
-            {
-                foreach (var rend in trunk.GetComponentsInChildren<Renderer>())
-                {
-                    hitRenderers.Add(rend);
-                    if (!fadedRenderers.Contains(rend))
-                    {
-                        rend.material = transparentMaterial;
-                        fadedRenderers.Add(rend);
-                    }
-                }
-            }
+            if (target != null && !currentTargets.Contains(target))
+                currentTargets.Add(target);
         }
 
-        // 나뭇잎 복원
-        List<GameObject> toShow = new();
-        foreach (var leaf in hiddenLeaves)
+        foreach (OcclusionTarget previousTarget in previousTargets)
         {
-            if (!hitLeaves.Contains(leaf))
-            {
-                if (leaf != null)
-                    leaf.SetActive(true);
-                toShow.Add(leaf);
-            }
+            if (previousTarget != null && !currentTargets.Contains(previousTarget))
+                previousTarget.SetOccluded(false, originalMaterial);
         }
-        foreach (var leaf in toShow)
-            hiddenLeaves.Remove(leaf);
 
-        // 줄기 복원
-        List<Renderer> toRestore = new();
-        foreach (var rend in fadedRenderers)
+        foreach (OcclusionTarget currentTarget in currentTargets)
         {
-            if (!hitRenderers.Contains(rend))
-            {
-                if (rend != null)
-                    rend.material = originalMaterial;
-                toRestore.Add(rend);
-            }
+            if (currentTarget != null && !previousTargets.Contains(currentTarget))
+                currentTarget.SetOccluded(true, transparentMaterial);
         }
-        foreach (var rend in toRestore)
-            fadedRenderers.Remove(rend);
+
+        List<OcclusionTarget> temp = previousTargets;
+        previousTargets = currentTargets;
+        currentTargets = temp;
     }
 
     private void OnDisable()
     {
-        foreach (var leaf in hiddenLeaves)
-            if (leaf != null)
-                leaf.SetActive(true);
-        hiddenLeaves.Clear();
+        foreach (OcclusionTarget target in previousTargets)
+        {
+            if (target != null)
+                target.SetOccluded(false, originalMaterial);
+        }
 
-        foreach (var rend in fadedRenderers)
-            if (rend != null)
-                rend.material = originalMaterial;
-        fadedRenderers.Clear();
+        previousTargets.Clear();
+        currentTargets.Clear();
     }
 }
