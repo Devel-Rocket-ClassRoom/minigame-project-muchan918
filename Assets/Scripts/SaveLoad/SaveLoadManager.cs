@@ -12,7 +12,7 @@ public static class SaveLoadManager
         Encrypted, // .dat
     }
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR || DEVELOPMENT_BUILD
     public static SaveMode Mode { get; } = SaveMode.Text;
 #else
     public static SaveMode Mode { get; } = SaveMode.Encrypted;
